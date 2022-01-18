@@ -15,15 +15,15 @@ export const darkTheme = {
 };
 
 export const GlobalStyles = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;600&display=swap');
 * {
    box-sizing: border-box;
    margin:0px;
    padding: 0px;
 }
-body, button {
+body, button,input {
    margin: 0;
    padding: 0;
-   font-family: sans-serif !important;
    background-color: ${({ theme }) => theme.TERTIARY};
    color:${({ theme }) => theme.TEXT};
    font-weight: 400;
@@ -36,6 +36,10 @@ body{
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
 }
-input, textarea, button {font-family: 'inherit'}
+input, textarea, button {
+  font-family: 'Montserrat', sans-serif;
+
+}
 `;

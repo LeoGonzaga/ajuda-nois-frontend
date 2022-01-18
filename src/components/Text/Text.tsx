@@ -6,11 +6,12 @@ export type TextProps = {
   size?: number;
   bold?: boolean;
   color?: string;
+  center?: boolean;
   children: React.ReactNode;
 };
-export const Text = ({ children, bold, size, color }: TextProps) => {
+export const Text = ({ children, bold, size, color, center }: TextProps) => {
   return (
-    <Container bold={bold} size={size} color={color}>
+    <Container bold={bold} size={size} color={color} center={center}>
       {children}
     </Container>
   );

@@ -12,7 +12,7 @@ export const Login: React.FC = () => {
     <Container>
       <Flex direction="column" justify="center" align="center">
         <Flex direction="column" justify="center" width="445px">
-          <Text color={COLORS.WHITE} size={28}>
+          <Text center color={COLORS.WHITE} size={28}>
             Welcome!
           </Text>
           <Text color={COLORS.BLACK}>
