@@ -25,7 +25,7 @@ export const Form: React.FC = () => {
       <Text>Prefiro acessar com meu email e senha</Text>
       <Spacing vertical={5} />
       <TextInput width="350px" placeholder="Digite seu email" />
-      <TextInput width="350px" placeholder="Digite sua senha" />
+      <TextInput width="350px" placeholder="Digite sua senha" type="password" />
       <Spacing vertical={20} />
       <ActionButton color={COLORS.PRIMARY} width="350px">
         Entrar

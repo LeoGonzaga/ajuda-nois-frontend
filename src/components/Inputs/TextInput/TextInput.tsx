@@ -5,8 +5,9 @@ import { Container } from './styles';
 export type TextInputProps = {
   width?: string;
   placeholder?: string;
+  type?: string;
 };
 
-export const TextInput = ({ width, placeholder }: TextInputProps) => {
-  return <Container width={width} placeholder={placeholder} />;
+export const TextInput = ({ width, placeholder, type }: TextInputProps) => {
+  return <Container width={width} type={type} placeholder={placeholder} />;
 };
