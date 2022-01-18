@@ -1,3 +1,4 @@
+import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
 export const Container = styled.input`
@@ -8,4 +9,8 @@ export const Container = styled.input`
   margin: 14px;
   border-radius: 6px;
   padding: 0px 15px;
+  transition: 0ms;
+  &:focus {
+    border: 1px solid ${COLORS.PRIMARY};
+  }
 `;

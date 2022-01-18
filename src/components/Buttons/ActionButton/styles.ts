@@ -9,7 +9,7 @@ export const Container = styled.button<ActionButtonProps>`
   border-radius: 6px;
   outline: none;
   border: 1px;
-  transition: 0.3s;
+  transition: 0.1s;
   &:hover {
     opacity: 0.8;
     box-shadow: ${(props) => (props.color ? props.color : 'initial')} 0px 4px
