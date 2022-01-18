@@ -9,4 +9,5 @@ export const Container = styled.div<FlexProps>`
   align-items: ${(props) => (props.align ? props.align : 'initial')};
   width: ${(props) => (props.width ? `${props.width}` : 'initial')};
   height: 100%;
+  width: 100vw;
 `;

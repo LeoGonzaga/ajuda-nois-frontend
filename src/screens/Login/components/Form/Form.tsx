@@ -13,9 +13,9 @@ export const Form: React.FC = () => {
       <Text center color={COLORS.WHITE} size={28} bold>
         Welcome!
       </Text>
-      <Text color={COLORS.BLACK}>
-        Use these awesome forms to login or create new account in your project
-        for free.
+      <Text color={COLORS.BLACK} center>
+        Use these awesome forms to login or create new account <br />
+        in your project for free.
       </Text>
       <Spacing vertical={10} />
       <ActionButton color={COLORS.SECONDARY} width="350px">
