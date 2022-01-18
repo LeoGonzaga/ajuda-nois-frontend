@@ -6,7 +6,6 @@ export const Container = styled.input`
   width: ${(props) => (props.width ? props.width : 'initial')};
   outline: none;
   border: none;
-  margin: 14px;
   font-size: 16px;
   border-radius: 6px;
   padding: 0px 15px;

@@ -6,6 +6,7 @@ import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 
+import GoogleBtn from '../../../../../assets/google-btn.svg';
 import { Container } from './styles';
 export const Form: React.FC = () => {
   return (
@@ -18,15 +19,16 @@ export const Form: React.FC = () => {
         in your project for free.
       </Text>
       <Spacing vertical={10} />
-      <ActionButton color={COLORS.SECONDARY} width="350px">
-        Google
+      <ActionButton color={COLORS.WHITE} width="350px">
+        <GoogleBtn />
       </ActionButton>
       <Spacing vertical={10} />
       <Text>Prefiro acessar com meu email e senha</Text>
       <Spacing vertical={5} />
       <TextInput width="350px" placeholder="Digite seu email" />
+      <Spacing vertical={5} />
       <TextInput width="350px" placeholder="Digite sua senha" type="password" />
-      <Spacing vertical={20} />
+      <Spacing vertical={10} />
       <ActionButton color={COLORS.PRIMARY} width="350px">
         Entrar
       </ActionButton>
