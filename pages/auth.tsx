@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import Login from '../src/screens/Login';
 
-const Home: NextPage = () => {
+const Auth: NextPage = () => {
   return (
     <>
       <Head>
@@ -12,9 +12,10 @@ const Home: NextPage = () => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h2>dash</h2>{' '}
+
+      <Login />
     </>
   );
 };
 
-export default Home;
+export default Auth;
