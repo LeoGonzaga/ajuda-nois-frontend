@@ -4,7 +4,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   background-color: ${COLORS.NEUTRAL};
-  max-width: 445px;
+  width: 445px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;

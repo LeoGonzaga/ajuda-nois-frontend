@@ -8,6 +8,7 @@ export type ActionButtonProps = {
   loading?: boolean;
   disabled?: boolean;
   children: React.ReactNode;
+  onClick: () => void;
 };
 
 export const ActionButton = ({
@@ -16,9 +17,15 @@ export const ActionButton = ({
   disabled,
   loading,
   width,
+  onClick,
 }: ActionButtonProps) => {
   return (
-    <Container disabled={disabled} color={color} width={width}>
+    <Container
+      disabled={disabled}
+      color={color}
+      width={width}
+      onClick={onClick}
+    >
       {loading ? <p>Carregando</p> : children}
     </Container>
   );
