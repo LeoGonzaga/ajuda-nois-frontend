@@ -8,5 +8,5 @@ export const COLORS = {
   NEUTRAL: '#2D2D35',
   WHITE: '#FFF',
   BLACK: '#CED4DA',
-  TEXT: '',
+  TEXT: '#B4B4B4',
 };

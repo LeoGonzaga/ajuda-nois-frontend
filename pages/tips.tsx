@@ -1,10 +1,9 @@
 import React from 'react';
 
 import Head from 'next/head';
+import Tips from 'src/screens/Tips';
 
-// import { Container } from './styles';
-
-const Tips: React.FC = () => {
+const TipsPage: React.FC = () => {
   return (
     <>
       <Head>
@@ -13,9 +12,9 @@ const Tips: React.FC = () => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <p>Tips</p>
+      <Tips />
     </>
   );
 };
 
-export default Tips;
+export default TipsPage;

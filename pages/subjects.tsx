@@ -1,10 +1,9 @@
 import React from 'react';
 
 import Head from 'next/head';
+import Subjects from 'src/screens/Subjects';
 
-// import { Container } from './styles';
-
-const Subjects: React.FC = () => {
+const SubjectsPage: React.FC = () => {
   return (
     <>
       <Head>
@@ -13,9 +12,9 @@ const Subjects: React.FC = () => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <p>Subjects</p>
+      <Subjects />
     </>
   );
 };
 
-export default Subjects;
+export default SubjectsPage;

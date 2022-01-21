@@ -1,10 +1,9 @@
 import React from 'react';
 
 import Head from 'next/head';
+import Tests from 'src/screens/Tests';
 
-// import { Container } from './styles';
-
-const Tests: React.FC = () => {
+const TestsPage: React.FC = () => {
   return (
     <>
       <Head>
@@ -13,9 +12,9 @@ const Tests: React.FC = () => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <p>Tests</p>
+      <Tests />
     </>
   );
 };
 
-export default Tests;
+export default TestsPage;

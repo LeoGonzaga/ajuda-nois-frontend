@@ -6,6 +6,7 @@ import { Props } from './Item';
 export const Container = styled.div<Props>`
   background-color: ${(props) => (props.active ? COLORS.NEUTRAL : 'none')};
   color: ${(props) => (props.active ? COLORS.SECONDARY : COLORS.WHITE)};
+  font-weight: ${(props) => (props.active ? 'bold' : 'initial')};
   cursor: pointer;
   border-radius: 9px;
   width: 90%;

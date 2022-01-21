@@ -1,10 +1,9 @@
 import React from 'react';
 
 import Head from 'next/head';
+import Quiz from 'src/screens/Quiz';
 
-// import { Container } from './styles';
-
-const Quiz: React.FC = () => {
+const QuizPage: React.FC = () => {
   return (
     <>
       <Head>
@@ -13,9 +12,9 @@ const Quiz: React.FC = () => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <p>Quiz</p>
+      <Quiz />
     </>
   );
 };
 
-export default Quiz;
+export default QuizPage;

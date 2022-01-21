@@ -1,10 +1,9 @@
 import React from 'react';
 
 import Head from 'next/head';
+import Conquests from 'src/screens/Conquests';
 
-// import { Container } from './styles';
-
-const Conquests = () => {
+const ConquestsPage = () => {
   return (
     <>
       <Head>
@@ -13,9 +12,9 @@ const Conquests = () => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <p>Conquests</p>
+      <Conquests />
     </>
   );
 };
 
-export default Conquests;
+export default ConquestsPage;
