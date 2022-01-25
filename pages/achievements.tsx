@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Head from 'next/head';
-import Conquests from 'src/screens/Conquests';
+import Achievements from 'src/screens/Achievements';
 
-const ConquestsPage = () => {
+const AchievementsPage = () => {
   return (
     <>
       <Head>
@@ -12,9 +12,9 @@ const ConquestsPage = () => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Conquests />
+      <Achievements />
     </>
   );
 };
 
-export default ConquestsPage;
+export default AchievementsPage;

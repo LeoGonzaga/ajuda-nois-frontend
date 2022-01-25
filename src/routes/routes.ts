@@ -5,5 +5,5 @@ export const ROUTES = {
   TIPS: '/tips',
   TESTS: '/tests',
   QUIZ: '/quiz',
-  CONQUESTS: '/conquests',
+  ACHIEVEMENTS: '/achievements',
 };
