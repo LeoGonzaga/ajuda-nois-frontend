@@ -8,6 +8,7 @@ export const Conquests: React.FC = () => {
   return (
     <Container>
       <Title text="Suas" contrast="conquistas" />
+      adasdasd
     </Container>
   );
 };
