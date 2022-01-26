@@ -37,6 +37,7 @@ body{
   align-items: center;
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
 }
 input, textarea, button {
   font-family: 'Montserrat', sans-serif;
