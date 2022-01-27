@@ -15,40 +15,84 @@ export const Tips: React.FC = () => {
       <SelectSubject />
       <Spacing vertical={10} />
       <WrapperCards>
-        <Card text="lorem ipsum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor  ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dol ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit aor sit a ipsum dolor sit asit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet psum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor asasdhan is the Founder of Silva Web Designs. He is passionate about web development, website design and basically anything digital related. His main expertise is with WordPress, Magento, Shopify as well as many other frameworks. Whether you need responsive design, SEO, speed optimisation or anything else in the world of digital then get in touch. If you would like to work with Nathan, simply drop him an email atasdasoidaosijdioasjdioajs daiosdj aoijsd iaosj dioasddasasduidhasiuhdas ndasdiauhsd iashdiuahsdaasdasdasdsit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incte design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise ididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />{' '}
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incte design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise ididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit a ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />{' '}
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incte design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise ididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />{' '}
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incte design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise ididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />{' '}
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incte design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise ididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />{' '}
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incte design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise ididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />{' '}
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incte design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise te design and basically anything digital related. His main expertise ididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
-        <Card text="lorem ipshan is the Founder of Silva Web Designs. He is passionate about web development, website design and basically anything digital related. His main expertise is with WordPress, Magento, Shopify as well as many other frameworks. Whether you need responsive design, SEO, speed optimisation or anything else in the world of digital then get in touch. If you would like to work with Nathan, simply drop him an email atum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et" />
+        <Card
+          text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+Why do we use it?
+It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+
+"
+        />
+        <Card
+          text="lonate: If you use this site regularly and would like to help keep the site on the Internet, 
+        please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated 
+        - click here to donate using PayPal. Thank you for your support."
+        />
+        <Card
+          text="lonate: If you use this site regularly and would like to help keep the site on the Internet, 
+        please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated 
+        - click here to donate using PayPal. Thank you for your support."
+        />
+        <Card
+          text="lonate: If you use this site regularly and would like to help keep the site on the Internet, 
+        please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated 
+        - click here to donate using PayPal. Thank you for your support."
+        />
+        <Card
+          text="lonate: If you use this site regularly and would like to help keep the site on the Internet, 
+        please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated 
+        - click here to donate using PayPal. Thank you for your support."
+        />
+        <Card
+          text="lonate: If you use this site regularly and would like to help keep the site on the Internet, 
+        please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated 
+        - click here to donate using PayPal. Thank you for your support."
+        />
+        <Card
+          text="lonate: If you use this site regularly and would like to help keep the site on the Internet, 
+        please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated 
+        - click here to donate using PayPal. Thank you for your support."
+        />
+        <Card
+          text="lonate: If you use this site regularly and would like to help keep the site on the Internet, 
+        please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated 
+        - click here to donate using PayPal. Thank you for your support."
+        />
+        <Card
+          text="lonate: If you use this site regularly and would like to help keep the site on the Internet, 
+        please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated 
+        - click here to donate using PayPal. Thank you for your support."
+        />
+        <Card
+          text="lonate: If you use this site regularly and would like to help keep the site on the Internet, 
+        please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated 
+        - click here to donate using PayPal. Thank you for your support."
+        />
+        <Card
+          text="lonate: If you use this site regularly and would like to help keep the site on the Internet, 
+        please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated 
+        - click here to donate using PayPal. Thank you for your support."
+        />
+        <Card
+          text="lonate: If you use this site regularly and would like to help keep the site on the Internet, 
+        please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated 
+        - click here to donate using PayPal. Thank you for your support."
+        />
+        <Card
+          text="lonate: If you use this site regularly and would like to help keep the site on the Internet, 
+        please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated 
+        - click here to donate using PayPal. Thank you for your support."
+        />
+        <Card
+          text="lonate: If you use this site regularly and would like to help keep the site on the Internet, 
+        please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated 
+        - click here to donate using PayPal. Thank you for your support."
+        />
+        <Card
+          text="lonate: If you use this site regularly and would like to help keep the site on the Internet, 
+        please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated 
+        - click here to donate using PayPal. Thank you for your support."
+        />
       </WrapperCards>
     </Container>
   );

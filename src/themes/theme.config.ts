@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+import { COLORS } from './colors';
+
 export const lightTheme = {
   PRIMARY: '#827AFD',
   SECONDARY: '#00BF20',
@@ -42,5 +44,22 @@ body{
 input, textarea, button {
   font-family: 'Montserrat', sans-serif;
 
+}
+
+
+::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: ${COLORS.NEUTRAL};        /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: ${COLORS.SECONDARY};    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid  ${
+    COLORS.NEUTRAL
+  }; /* creates padding around scroll thumb */
 }
 `;
