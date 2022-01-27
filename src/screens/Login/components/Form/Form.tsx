@@ -9,7 +9,7 @@ import Router from 'next/router';
 import { ROUTES } from 'src/routes/routes';
 
 import GoogleBtn from '../../../../../assets/google-btn.svg';
-import { Container } from './styles';
+import { Container, Wrapper } from './styles';
 export const Form: React.FC = () => {
   const handleSubmit = useCallback(() => {
     Router.push(ROUTES.HOME);
@@ -17,29 +17,47 @@ export const Form: React.FC = () => {
 
   return (
     <Container>
-      <Text color={COLORS.BLACK} center>
-        Continuar com o google
-      </Text>
-      <Spacing vertical={20} />
-      <ActionButton color={COLORS.WHITE} width="350px" onClick={handleSubmit}>
-        <GoogleBtn />
-      </ActionButton>
-      <Spacing vertical={20} />
-      <Text>Prefiro acessar com meu email e senha</Text>
-      <Spacing vertical={10} />
-      <Spacing vertical={5} />
-      <TextInput width="350px" placeholder="Email" type="email" />
-      <Spacing vertical={5} />
-      <TextInput width="350px" placeholder="Senha" type="password" />
-      <Spacing vertical={10} />
-      <ActionButton color={COLORS.PRIMARY} width="350px" onClick={handleSubmit}>
-        Entrar
-      </ActionButton>
-      <Spacing vertical={15} />
-      <Text size={14} color={COLORS.WHITE}>
-        Não tem conta?
-      </Text>
-      <Text color={COLORS.PRIMARY}>Crie uma agora.</Text>
+      <div>
+        <Text color={COLORS.BLACK} center>
+          Bem vindo(a) de volta!
+        </Text>
+
+        <Text bold size={26}>
+          Acessar com a minha conta
+        </Text>
+        <Spacing vertical={10} />
+        <Spacing vertical={5} />
+        <TextInput width="350px" placeholder="Email" type="email" />
+        <Spacing vertical={5} />
+        <TextInput width="350px" placeholder="Senha" type="password" />
+
+        <Wrapper>
+          <div>
+            <input type="checkbox" name="" id="" />
+            <Text size={14}>Lembrar senha</Text>
+          </div>
+        </Wrapper>
+
+        <Spacing vertical={10} />
+        <ActionButton
+          color={COLORS.SECONDARY}
+          width="350px"
+          onClick={handleSubmit}
+        >
+          Entrar
+        </ActionButton>
+        <Spacing vertical={5} />
+
+        <ActionButton
+          color={COLORS.BUTTON}
+          width="350px"
+          onClick={handleSubmit}
+        >
+          <GoogleBtn />
+        </ActionButton>
+        <Spacing vertical={10} />
+        <Text size={14}>Esqueci senha</Text>
+      </div>
     </Container>
   );
 };

@@ -10,7 +10,8 @@ export const Container = styled.input`
   border-radius: 6px;
   padding: 0px 15px;
   transition: 0ms;
+  border: 1px solid ${COLORS.BLACK};
   &:focus {
-    border: 1px solid ${COLORS.PRIMARY};
+    border: 1px solid ${COLORS.SECONDARY};
   }
 `;

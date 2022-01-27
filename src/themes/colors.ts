@@ -9,4 +9,5 @@ export const COLORS = {
   WHITE: '#FFF',
   BLACK: '#CED4DA',
   TEXT: '#B4B4B4',
+  BUTTON: '#2D3748',
 };
