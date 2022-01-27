@@ -28,5 +28,10 @@ export const Wrapper = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    margin-top: 15px;
+
+    p {
+      margin-left: 5px;
+    }
   }
 `;
