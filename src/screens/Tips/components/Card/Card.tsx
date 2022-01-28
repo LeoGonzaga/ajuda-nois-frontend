@@ -4,12 +4,13 @@ import { Container } from './styles';
 
 type CardProps = {
   text?: string;
+  title?: string;
 };
 
-export const Card = ({ text }: CardProps): JSX.Element => {
+export const Card = ({ text, title }: CardProps): JSX.Element => {
   return (
     <Container>
-      <div>Titulo</div>
+      <div>{title}</div>
       <p>{text}</p>
     </Container>
   );
