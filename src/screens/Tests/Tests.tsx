@@ -3,7 +3,7 @@ import React from 'react';
 import Title from '@components/Title';
 
 import Card from './components/Card';
-import { SelectTestYear } from './components/SelectSubject/SelectSubject';
+import SelectTestYear from './components/SelectTestYear';
 import { Container, WrapperCards } from './styles';
 
 export const Tests: React.FC = () => {
