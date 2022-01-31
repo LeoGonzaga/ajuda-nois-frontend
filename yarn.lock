@@ -2638,6 +2638,11 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
+next-share@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/next-share/-/next-share-0.13.0.tgz#7b117d9237fac33064a06f34bfde04a454440d1b"
+  integrity sha512-CR9YsZp6MTdoEgKqMqn2DFUWN8Komzhm1eRUNqWAjAzf1KJxJefwjPFpKXFedskWX17WNgWOgdcDYLU/HdWq5A==
+
 next@12.0.8:
   version "12.0.8"
   resolved "https://registry.yarnpkg.com/next/-/next-12.0.8.tgz#29138f7cdd045e4bbba466af45bf430e769634b4"
@@ -2897,6 +2902,11 @@ queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
+
+react-circular-input@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/react-circular-input/-/react-circular-input-0.2.3.tgz#8c2b64ce31e9a4b3746274533ebc33606d4f53e2"
+  integrity sha512-odLqlRKuu1UuVDuZbfmOE/zXVhowqOh37FCChJme6AXcpczgc8lSGEzWI5pok6qxLd9JcxN/kvFEJR3SfA5b1A==
 
 react-dom@^17.0.2:
   version "17.0.2"

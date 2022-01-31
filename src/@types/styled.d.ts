@@ -4,7 +4,7 @@ import 'styled-components';
 // and extend them!
 declare module 'styled-components' {
   export interface DefaultTheme {
-    PRIMARY: strin;
+    PRIMARY: string;
     SECONDARY: string;
     TERTIARY: string;
     TEXT: string;

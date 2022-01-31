@@ -7,7 +7,11 @@ import { Container } from './styles';
 export const Tests: React.FC = () => {
   return (
     <Container>
-      <Title text="Buscar" contrast="provas" />
+      <Title
+        text="Buscar"
+        contrast="provas"
+        subText="Selecione o ano abaixo para filtrar"
+      />
     </Container>
   );
 };
