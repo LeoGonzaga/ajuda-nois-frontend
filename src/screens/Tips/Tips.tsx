@@ -28,7 +28,11 @@ export const Tips: React.FC = () => {
   ];
   return (
     <Container>
-      <Title text="Buscar" contrast="dicas" />
+      <Title
+        text="Buscar"
+        contrast="dicas"
+        subText="Selecione a matéria abaixo para filtrar"
+      />
       <Spacing vertical={10} />
       <SelectSubject />
       <Spacing vertical={10} />

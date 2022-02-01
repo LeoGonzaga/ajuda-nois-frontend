@@ -66,7 +66,12 @@ export default class ApplicationDocument extends Document<Props> {
             type="image/x-icon"
             href="/favicons/favicon-d1.png"
           />
-          <link rel="stylesheet" href="/css/fonts.css" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+            rel="stylesheet"
+          />
           {this.props.styleTags}
         </Head>
         <body>

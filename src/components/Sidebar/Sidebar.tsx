@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {
   BiHomeAlt,
@@ -22,7 +23,7 @@ export const Sidebar: React.FC = () => {
         <Item text="Dicas" router={ROUTES.TIPS} icon={<BiWorld />} />
         <Item active text="Provas" router={ROUTES.TESTS} icon={<BiBrain />} />
         <Item text="Quiz" router={ROUTES.QUIZ} icon={<BiBulb />} />
-        <Item text="Conquistas" router={ROUTES.CONQUESTS} icon={<BiAward />} />
+        <Item text="Conquistas" router={ROUTES.ACHIEVEMENTS} icon={<BiAward />} />
       </div>
       <Item text="Sair" router={ROUTES.LOGIN} />
     </Container>

@@ -2,6 +2,7 @@ export const COLORS = {
   PRIMARY: '#827AFD',
   SECONDARY: '#00BF20',
   TERTIARY: '#23232C',
+  QUATERNARY: '#FFC13A',
   SUCCESS: '',
   WARNING: '',
   ERROR: '',

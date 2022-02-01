@@ -8,9 +8,10 @@ import { Container } from './styles';
 type Props = {
   text: string;
   contrast?: string;
+  subText?: string;
 };
 
-export const Title = ({ text, contrast }: Props) => {
+export const Title = ({ text, contrast, subText }: Props) => {
   return (
     <Container>
       <span>
@@ -21,8 +22,8 @@ export const Title = ({ text, contrast }: Props) => {
           {contrast}
         </Text>
       </span>
-      <Text size={16} bold color={COLORS.TEXT}>
-        Selecione o ano abaixo para filtar
+      <Text size={15} color={COLORS.TEXT}>
+        {subText}
       </Text>
     </Container>
   );

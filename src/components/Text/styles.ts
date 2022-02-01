@@ -8,6 +8,6 @@ export const Container = styled.p<TextProps>`
   font-weight: ${(props) => (props.bold ? 'bold' : 'normal')};
   font-size: ${(props) => (props.size ? `${props.size}px` : '16px')};
   text-align: ${(props) => (props.center ? 'center' : 'initial')};
-  padding: 5px;
+  padding: 0 5px;
   word-wrap: break-word;
 `;

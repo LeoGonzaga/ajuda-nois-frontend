@@ -17,7 +17,6 @@ export const darkTheme = {
 };
 
 export const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;600&display=swap');
 * {
    box-sizing: border-box;
    margin:0px;
