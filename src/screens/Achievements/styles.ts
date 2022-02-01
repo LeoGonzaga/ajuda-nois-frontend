@@ -28,7 +28,7 @@ export const Content = styled.div`
   padding: 0;
 
   ${Container} {
-    width: 50%;
+    flex: 1;
     padding: 10px;
     justify-content: space-between;
   }
@@ -38,7 +38,7 @@ export const AchievementsContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: 50%;
+  flex: 1;
   max-height: 550px;
   padding: 10px;
 

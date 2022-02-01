@@ -31,30 +31,23 @@ export const ImageContainer = styled.div<Props>`
   min-width: 80px;
   min-height: 80px;
 
-  background-color: ${(props) =>
-    props.achieved ? COLORS.TERTIARY : '#7B693D'};
-  position: relative;
-  border-radius: 100%;
   margin-right: 10px;
 
-  &::before {
-    border-radius: 100%;
-    content: '';
-    background-color: ${COLORS.QUATERNARY};
-    background-image: ${(props) =>
+  padding: 6px;
+
+  border-radius: 100%;
+
+  background-image: ${(props) =>
       props.achieved
-        ? 'linear-gradient(160deg, #ffc13a 0%, #37332b 90%);'
-        : ''};
-    top: -4px;
-    left: -4px;
-    bottom: -4px;
-    right: -4px;
-    position: absolute;
-    z-index: -1;
-  }
+        ? 'linear-gradient(#23232c, #23232c)'
+        : 'linear-gradient(#7B693D, #7B693D)'},
+    radial-gradient(circle at top left, #ffd054, #37332b);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
 
   img {
     max-width: 50px;
     max-height: 50px;
+    border-radius: 100%;
   }
 `;

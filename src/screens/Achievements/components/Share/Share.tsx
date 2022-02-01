@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { IoMdCopy } from 'react-icons/io';
 
 import Flex from '@components/Flex';
@@ -11,11 +12,25 @@ import { LinkedinShare } from './icons/LinkedinShare';
 import { TelegramShare } from './icons/TelegramShare';
 import { TwitterShare } from './icons/TwitterShare';
 import { WhatsappShare } from './icons/WhatsappShare';
-import { Container } from './styles';
+import { Container, NoHeightFlex } from './styles';
+
+type Props = {
+  url: string;
+};
 
 export const Share = () => {
+  const [copySuccess, setCopySuccess] = useState('');
   const { pathname } = useRouter();
   const url = `http://localhost:3000${pathname}`;
+
+  const copyToClipBoard = async ({ url }: Props) => {
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopySuccess('Copiado!');
+    } catch (err) {
+      setCopySuccess('Erro ao copiar!');
+    }
+  };
 
   return (
     <Container>
@@ -35,16 +50,17 @@ export const Share = () => {
         </Flex>
       </span>
 
-      <Text size={12} color={COLORS.TEXT} center>
-        Ou compartilhe com um link
-      </Text>
-
-      <button onClick={() => navigator.clipboard.writeText(url)}>
-        <Text size={14} color={COLORS.TEXT}>
-          {url}
+      <Flex direction="column">
+        <Text size={12} color={COLORS.TEXT} center>
+          Ou compartilhe com um link
         </Text>
-        <IoMdCopy size={22} className="active" />
-      </button>
+        <button onClick={() => copyToClipBoard({ url })}>
+          <Text size={14} color={COLORS.TEXT}>
+            {url}
+          </Text>
+          <IoMdCopy size={22} className="active" />
+        </button>
+      </Flex>
     </Container>
   );
 };

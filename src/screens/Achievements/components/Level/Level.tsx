@@ -1,9 +1,4 @@
-import {
-  CircularInput,
-  CircularTrack,
-  CircularProgress,
-  CircularThumb,
-} from 'react-circular-input';
+import { CircularInput, CircularProgress } from 'react-circular-input';
 
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
@@ -32,14 +27,14 @@ export const Level = ({ exp }: LevelProps) => {
   }
 
   return (
-    <Container className="rounded-corners-gradient-borders">
+    <Container>
       <CircularInput
         value={getProgress(exp, level)}
-        radius={123}
+        radius={125}
         className="flip"
       >
         <CircularProgress
-          strokeWidth={16}
+          strokeWidth={24}
           stroke={COLORS.NEUTRAL}
           strokeLinecap="square"
           background-color="linear-gradient(to bottom, #ffd054 0%, #37332b 100%)"

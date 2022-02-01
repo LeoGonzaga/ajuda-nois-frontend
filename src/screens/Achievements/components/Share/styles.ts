@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 
   width: 100%;
   height: 100%;
@@ -12,7 +13,6 @@ export const Container = styled.div`
   span {
     width: 100%;
     padding: 10px;
-    margin-top: 10px;
     margin-bottom: 10px;
 
     /* Span de display do ícone */
@@ -20,6 +20,7 @@ export const Container = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-top: 20px;
 
       /* Cor do texto abaixo do botão */
       button + p {
@@ -42,8 +43,8 @@ export const Container = styled.div`
 
     cursor: pointer;
 
+    margin-top: 10px;
     padding: 10px 15px;
-    margin-top: -10px;
 
     border: none;
     border-radius: 10px;
@@ -88,4 +89,10 @@ export const ShareIcons = styled.div`
       color: ${COLORS.SECONDARY};
     }
   }
+`;
+
+export const NoHeightFlex = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 `;
