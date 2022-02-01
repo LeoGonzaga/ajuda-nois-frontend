@@ -50,7 +50,7 @@ export const Achievements: React.FC = () => {
     {
       name: 'Texto Curto',
       description: 'POG',
-      exp: 600,
+      exp: 689,
       achieved: true,
       image:
         'https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/344/external-achievement-professional-mentorship-inipagistudio-mixed-inipagistudio.png',
@@ -67,7 +67,7 @@ export const Achievements: React.FC = () => {
     {
       name: 'Pikachu',
       description: 'Use choque do trovão!',
-      exp: 100,
+      exp: 890,
       achieved: true,
       image:
         'https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/344/external-achievement-professional-mentorship-inipagistudio-mixed-inipagistudio.png',
