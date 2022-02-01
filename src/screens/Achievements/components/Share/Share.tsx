@@ -1,17 +1,8 @@
-import { FaWhatsapp } from 'react-icons/fa';
-import { FiTwitter, FiLinkedin } from 'react-icons/fi';
 import { IoMdCopy } from 'react-icons/io';
-import { MdAlternateEmail } from 'react-icons/md';
 
 import Flex from '@components/Flex';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
-import {
-  TwitterShareButton,
-  WhatsappShareButton,
-  LinkedinShareButton,
-  EmailShareButton,
-} from 'next-share';
 import { useRouter } from 'next/router';
 
 import { EmailShare } from './icons/EmailShare';
@@ -20,7 +11,7 @@ import { LinkedinShare } from './icons/LinkedinShare';
 import { TelegramShare } from './icons/TelegramShare';
 import { TwitterShare } from './icons/TwitterShare';
 import { WhatsappShare } from './icons/WhatsappShare';
-import { Container, ShareIcons } from './styles';
+import { Container } from './styles';
 
 export const Share = () => {
   const { pathname } = useRouter();
