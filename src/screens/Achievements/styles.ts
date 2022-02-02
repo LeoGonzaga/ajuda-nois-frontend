@@ -6,7 +6,7 @@ export const Container = styled.div`
 
   max-width: 100%;
   max-height: 100%;
-  padding: 20px 30px;
+  padding: 20px;
 
   overflow-y: hidden;
 

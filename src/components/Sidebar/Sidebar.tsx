@@ -7,6 +7,7 @@ import {
   BiBrain,
   BiBulb,
   BiAward,
+  BiBook,
 } from 'react-icons/bi';
 
 import { ROUTES } from 'src/routes/routes';
@@ -24,6 +25,7 @@ export const Sidebar: React.FC = () => {
         <Item active text="Provas" router={ROUTES.TESTS} icon={<BiBrain />} />
         <Item text="Quiz" router={ROUTES.QUIZ} icon={<BiBulb />} />
         <Item text="Conquistas" router={ROUTES.ACHIEVEMENTS} icon={<BiAward />} />
+        <Item text="Cronograma" router={ROUTES.STUDYPLAN} icon={<BiBook />} />
       </div>
       <Item text="Sair" router={ROUTES.LOGIN} />
     </Container>
