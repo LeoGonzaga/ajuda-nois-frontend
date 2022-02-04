@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
 
-  width: 260px;
+  /* width: 260px; */
   height: 100vh;
   padding: 30px 25px;
 

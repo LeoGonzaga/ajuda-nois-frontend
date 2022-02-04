@@ -1,4 +1,4 @@
-import Month from './Month';
+import Collapsible from '../Collpasible';
 import { Container } from './styles';
 
 export const Months: React.FC = () => {
@@ -58,7 +58,7 @@ export const Months: React.FC = () => {
   return (
     <Container>
       {months?.map(({ name, id }) => (
-        <Month name={name} id={id} currentMonth={currentMonth} key={id} />
+        <Collapsible name={name} id={id} currentMonth={currentMonth} key={id} />
       ))}
     </Container>
   );
