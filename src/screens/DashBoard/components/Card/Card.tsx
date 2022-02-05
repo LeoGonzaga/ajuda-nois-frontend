@@ -11,7 +11,9 @@ export const Card = (): JSX.Element => {
         <p>P</p>
       </Circle>
       <Wrapper>
-        <Text size={34}>57.97%</Text>
+        <Text size={24} bold>
+          57.97%
+        </Text>
         <Text size={16}>Conclusão do Plano</Text>
       </Wrapper>
     </Container>
