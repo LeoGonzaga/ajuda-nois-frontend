@@ -21,7 +21,7 @@ export const Card = ({ color, indicator, value, text }: Props): JSX.Element => {
         <Text size={24} bold>
           {value}%
         </Text>
-        <Text size={16}>{text}</Text>
+        <Text size={12}>{text}</Text>
       </Wrapper>
     </Container>
   );

@@ -2908,6 +2908,11 @@ react-circular-input@^0.2.3:
   resolved "https://registry.yarnpkg.com/react-circular-input/-/react-circular-input-0.2.3.tgz"
   integrity sha512-odLqlRKuu1UuVDuZbfmOE/zXVhowqOh37FCChJme6AXcpczgc8lSGEzWI5pok6qxLd9JcxN/kvFEJR3SfA5b1A==
 
+react-circular-progressbar@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/react-circular-progressbar/-/react-circular-progressbar-2.0.4.tgz#5b04a9cf6be8c522c180e4e99ec6db63677335b0"
+  integrity sha512-OfX0ThSxRYEVGaQSt0DlXfyl5w4DbXHsXetyeivmoQrh9xA9bzVPHNf8aAhOIiwiaxX2WYWpLDB3gcpsDJ9oww==
+
 react-dom@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz"
