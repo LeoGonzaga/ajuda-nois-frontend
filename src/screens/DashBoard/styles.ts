@@ -4,8 +4,9 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
-  height: 100%;
+  height: 95vh;
   padding: 20px;
+  overflow-y: auto;
 `;
 
 export const Row = styled.div`
