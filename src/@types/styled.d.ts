@@ -8,6 +8,5 @@ declare module 'styled-components' {
     SECONDARY: string;
     TERTIARY: string;
     TEXT: string;
-    NEUTRAL: string;
   }
 }
