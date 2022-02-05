@@ -19,3 +19,9 @@ export const Column = styled.div`
   flex-direction: column;
   width: 50%;
 `;
+
+export const Controls = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;

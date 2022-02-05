@@ -1,5 +1,6 @@
 import React from 'react';
 
+import SecundaryButton from '@components/Buttons/SecundaryButton';
 import Title from '@components/Title';
 import { COLORS } from '@themes/colors';
 
@@ -8,14 +9,15 @@ import ResultsPomodoro from './components/ResultsPomodoro';
 import ResultsTest from './components/ResultsTest';
 import SubjectContent from './components/SubjectContent';
 import Timeline from './components/Timeline';
-import { Column, Container, Row } from './styles';
+import { Column, Container, Controls, Row } from './styles';
 
 export const Dashboard: React.FC = () => {
   return (
     <Container>
-      <div>
+      <Controls>
         <Title text="Métricas" contrast="" subText="" />
-      </div>
+        <SecundaryButton>Configurações</SecundaryButton>
+      </Controls>
       <Row>
         <Column>
           <Row>
