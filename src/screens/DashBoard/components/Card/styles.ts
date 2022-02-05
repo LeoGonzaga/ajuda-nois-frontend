@@ -13,11 +13,11 @@ export const Container = styled.div`
   margin-right: 10px;
 `;
 
-export const Circle = styled.div`
+export const Circle = styled.div<{ color: string }>`
   min-height: 60px;
   min-width: 60px;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.SECONDARY};
+  background-color: ${({ color }) => color};
   margin-right: 10px;
   display: flex;
   justify-content: center;

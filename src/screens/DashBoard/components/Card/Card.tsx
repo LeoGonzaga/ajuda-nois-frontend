@@ -4,17 +4,24 @@ import Text from '@components/Text';
 
 import { Container, Circle, Wrapper } from './styles';
 
-export const Card = (): JSX.Element => {
+type Props = {
+  indicator: string;
+  value: string;
+  text: string;
+  color: string;
+};
+
+export const Card = ({ color, indicator, value, text }: Props): JSX.Element => {
   return (
     <Container>
-      <Circle>
-        <p>P</p>
+      <Circle color={color}>
+        <p>{indicator}</p>
       </Circle>
       <Wrapper>
         <Text size={24} bold>
-          57.97%
+          {value}%
         </Text>
-        <Text size={16}>Conclusão do Plano</Text>
+        <Text size={16}>{text}</Text>
       </Wrapper>
     </Container>
   );
