@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   background-color: ${COLORS.NEUTRAL};
-  height: 193px;
   margin-top: 10px;
+  height: 100%;
   margin-right: 10px;
   border-radius: 5px;
   padding: 10px;
@@ -12,7 +12,9 @@ export const Container = styled.div`
 
 export const Row = styled.div`
   display: flex;
+  height: 80%;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
   padding-top: 10px;
 `;
