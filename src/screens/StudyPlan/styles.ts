@@ -14,4 +14,17 @@ export const Container = styled.div`
 
     padding: 20px;
   }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 20px;
+
+    max-height: 50%;
+    width: 100%;
+
+    /* overflow-y: scroll;
+    scroll-behavior: smooth; */
+  }
 `;

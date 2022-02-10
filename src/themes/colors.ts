@@ -5,10 +5,11 @@ export const COLORS = {
   QUATERNARY: '#FFC13A',
   SUCCESS: '',
   WARNING: '',
-  ERROR: '',
+  ERROR: '#F03D3E',
   NEUTRAL: '#2D2D35',
   WHITE: '#FFF',
   BLACK: '#CED4DA',
+  GRAY: '#3D3D45',
   TEXT: '#B4B4B4',
   BUTTON: '#2D3748',
 };
