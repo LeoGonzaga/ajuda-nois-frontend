@@ -24,7 +24,7 @@ export const StudyPlan: React.FC = () => {
             endTime="15:30"
             subject="Matemática"
             topic="Trigonometria"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ullamcorper posuere ipsum id rhoncus. Proin sed congue felis. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod."
+            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod."
           />
           <Card
             status="completed"

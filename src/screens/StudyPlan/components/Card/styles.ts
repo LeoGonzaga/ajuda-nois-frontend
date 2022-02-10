@@ -33,15 +33,17 @@ export const Container = styled.div`
     align-items: center;
 
     width: 550px;
-    max-height: 55px;
+    height: 50px;
 
     padding: 5px 20px 5px 10px;
 
-    transition: max-height 0.3s;
+    transition: height 0.3s;
+
+    overflow: hidden;
   }
 
   .expanded {
-    max-height: 300px;
+    height: 200px;
   }
 
   .extra_info {
@@ -51,5 +53,7 @@ export const Container = styled.div`
     padding: 10px 5px 0 5px;
 
     border-top: 1px solid ${COLORS.GRAY};
+
+    overflow: hidden;
   }
 `;

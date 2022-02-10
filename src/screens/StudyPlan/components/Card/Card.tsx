@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Spacing from '@components/Spacing';
 import { COLORS } from '@themes/colors';
 
-import { useToggle } from '../Sidebar/Collpasible/useToggle';
-import Buttons from './components/Buttons';
-import Description from './components/Description';
-import StatusIcon from './components/StatusIcon';
-import Subject from './components/Subject';
-import Times from './components/Times';
+import Buttons from './Buttons';
+import Description from './Description';
+import StatusIcon from './StatusIcon';
 import { Container } from './styles';
+import Subject from './Subject';
+import Times from './Times';
 
 type Props = {
   status: string;
@@ -28,7 +27,7 @@ export const Card: React.FC<Props> = ({
   topic,
   text,
 }: Props) => {
-  const [expand, setExpand] = useToggle(false);
+  const [expand, setExpand] = useState(false);
 
   return (
     <Container
@@ -40,17 +39,15 @@ export const Card: React.FC<Props> = ({
     >
       <StatusIcon status={status} />
       <div className={expand ? 'content expanded' : 'content'}>
-        <div className="wrapper" onClick={setExpand}>
+        <div className="wrapper" onClick={() => setExpand(!expand)}>
           <Times startTime={startTime} endTime={endTime} />
           <Spacing vertical={3} />
           <Subject subject={subject} topic={topic} />
         </div>
-        {expand && (
-          <div className="extra_info">
-            <Description text={text} onClick={setExpand} />
-            <Buttons status={status} />
-          </div>
-        )}
+        <div className="extra_info">
+          <Description text={text} onClick={() => setExpand(!expand)} />
+          <Buttons status={status} />
+        </div>
       </div>
     </Container>
   );
