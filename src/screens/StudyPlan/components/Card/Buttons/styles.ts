@@ -1,9 +1,7 @@
 import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
-import { Props } from './Buttons';
-
-export const Container = styled.div<Props>`
+export const Container = styled.div`
   display: flex;
   align-items: center;
 
@@ -28,8 +26,11 @@ export const Container = styled.div<Props>`
 
     &:first-child {
       margin-right: 10px;
-      background-color: ${(props) =>
-        props.status == 'completed' ? COLORS.SECONDARY : COLORS.GRAY};
+      background-color: ${COLORS.GRAY};
+
+      &.completed {
+        background-color: ${COLORS.SECONDARY};
+      }
     }
 
     &:last-child {

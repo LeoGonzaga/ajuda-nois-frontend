@@ -15,6 +15,8 @@ export const Container = styled.div`
 
   background-color: ${COLORS.NEUTRAL};
 
+  transition: border 0.3s;
+
   .wrapper {
     display: flex;
     flex-direction: column;

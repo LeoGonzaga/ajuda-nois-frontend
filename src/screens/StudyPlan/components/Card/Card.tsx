@@ -28,16 +28,29 @@ export const Card: React.FC<Props> = ({
   text,
 }: Props) => {
   const [expand, setExpand] = useState(false);
+  const [state, setState] = useState({
+    currentState: status,
+    previousState: '',
+  });
+
+  const handleState = (state: string) => {
+    setState((prevState) => {
+      return {
+        currentState: state,
+        previousState: prevState.currentState,
+      };
+    });
+  };
 
   return (
     <Container
       style={
-        status == 'failed'
+        state.currentState == 'failed'
           ? { border: `1px solid ${COLORS.ERROR}` }
-          : { border: 'none' }
+          : { border: `1px solid ${COLORS.NEUTRAL}` }
       }
     >
-      <StatusIcon status={status} />
+      <StatusIcon status={state.currentState} />
       <div className={expand ? 'content expanded' : 'content'}>
         <div className="wrapper" onClick={() => setExpand(!expand)}>
           <Times startTime={startTime} endTime={endTime} />
@@ -46,7 +59,11 @@ export const Card: React.FC<Props> = ({
         </div>
         <div className="extra_info">
           <Description text={text} onClick={() => setExpand(!expand)} />
-          <Buttons status={status} />
+          <Buttons
+            status={state.currentState}
+            prevStatus={state.previousState}
+            onHandleClick={handleState}
+          />
         </div>
       </div>
     </Container>

@@ -1,21 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Container } from './styles';
 
 export type Props = {
   status: string;
+  prevStatus: string;
+  onHandleClick: (state: string) => void;
 };
 
-export const Buttons: React.FC<Props> = ({ status }: Props) => {
-  const [state, setState] = useState(status);
+export const Buttons: React.FC<Props> = ({
+  status,
+  prevStatus,
+  onHandleClick,
+}: Props) => {
+  const handleStateChange = (state: string) => {
+    onHandleClick(state);
+  };
+
   return (
-    <Container status={state}>
-      {state == 'completed' ? (
-        <div onClick={() => setState('idle')}>Concluído</div>
+    <Container>
+      {status == 'completed' ? (
+        <div
+          onClick={() => handleStateChange(prevStatus)}
+          className="completed"
+        >
+          Concluído
+        </div>
       ) : (
-        <div onClick={() => setState('completed')}>Concluir</div>
+        <div onClick={() => handleStateChange('completed')}>Concluir</div>
       )}
-      {state == 'completed' ? ' ' : <div>Editar</div>}
+      {status == 'completed' ? ' ' : <div>Editar</div>}
       <div>Deletar</div>
     </Container>
   );
