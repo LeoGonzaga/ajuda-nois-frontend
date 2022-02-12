@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Flex from '@components/Flex';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
@@ -25,26 +26,35 @@ export const Card = ({
 }: CardProps): JSX.Element => {
   return (
     <Container color={color}>
-      <div>{title}</div>
-      <Text size={19} bold color={COLORS.TEXT}>
-        1º Dia
-      </Text>
-      <a target="_blank" href={first?.test} rel="noreferrer">
-        <p>Prova</p>
-      </a>
-      <a target="_blank" href={first?.result} rel="noreferrer">
-        <p>Gabarito</p>
-      </a>
-      <Spacing vertical={5} />
-      <Text size={19} bold color={COLORS.TEXT}>
-        2º Dia
-      </Text>
-      <a target="_blank" href={second?.test} rel="noreferrer">
-        <p>Prova</p>
-      </a>
-      <a target="_blank" href={second?.result} rel="noreferrer">
-        <p>Gabarito</p>
-      </a>
+      <Flex align="center" width="100%" justify="center">
+        <p>{title}</p>
+      </Flex>
+      <Spacing vertical={2} />
+      <div>
+        <Flex direction="column">
+          <Text size={20} bold color={COLORS.TEXT}>
+            1º Dia
+          </Text>
+          <a target="_blank" href={first?.test} rel="noreferrer">
+            <p>Prova</p>
+          </a>
+          <a target="_blank" href={first?.result} rel="noreferrer">
+            <p>Gabarito</p>
+          </a>
+        </Flex>
+        <Spacing vertical={5} />
+        <Flex direction="column">
+          <Text size={20} bold color={COLORS.TEXT}>
+            2º Dia
+          </Text>
+          <a target="_blank" href={first?.test} rel="noreferrer">
+            <p>Prova</p>
+          </a>
+          <a target="_blank" href={first?.result} rel="noreferrer">
+            <p>Gabarito</p>
+          </a>
+        </Flex>
+      </div>
     </Container>
   );
 };
