@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  width: 200px;
-  height: 200px;
+export const Container = styled.div<{ color: string }>`
+  width: 220px;
+  height: 100%;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.TEXT};
 
@@ -12,7 +12,24 @@ export const Container = styled.div`
   padding: 15px;
   margin: 10px;
 
+  div {
+    color: ${({ color }) => color};
+    font-size: 18px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  transition: 0.2s;
+
   &:hover {
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-color: ${({ theme }) => theme.PRIMARY};
+  }
+  a {
+    color: ${({ color }) => color};
+    margin-bottom: 2px;
+  }
+  p {
+    font-size: 16px;
   }
 `;

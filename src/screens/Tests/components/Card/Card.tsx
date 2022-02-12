@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 
@@ -13,13 +14,19 @@ type CardProps = {
   title?: string;
   first?: Props;
   second?: Props;
+  color: string;
 };
 
-export const Card = ({ first, second, title }: CardProps): JSX.Element => {
+export const Card = ({
+  first,
+  second,
+  title,
+  color,
+}: CardProps): JSX.Element => {
   return (
-    <Container>
+    <Container color={color}>
       <div>{title}</div>
-      <Text size={19} bold color={COLORS.NEUTRAL}>
+      <Text size={19} bold color={COLORS.TEXT}>
         1º Dia
       </Text>
       <a target="_blank" href={first?.test} rel="noreferrer">
@@ -28,8 +35,8 @@ export const Card = ({ first, second, title }: CardProps): JSX.Element => {
       <a target="_blank" href={first?.result} rel="noreferrer">
         <p>Gabarito</p>
       </a>
-
-      <Text size={19} bold color={COLORS.NEUTRAL}>
+      <Spacing vertical={5} />
+      <Text size={19} bold color={COLORS.TEXT}>
         2º Dia
       </Text>
       <a target="_blank" href={second?.test} rel="noreferrer">
