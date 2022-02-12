@@ -1,23 +1,26 @@
 import styled from 'styled-components';
 
 export const Container = styled.div<{ color: string }>`
-  width: 220px;
-  height: 100%;
+  width: 230px;
+  height: 230px;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.TEXT};
 
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 15px;
+  padding: 10px;
   margin: 10px;
 
   div {
     color: ${({ color }) => color};
     font-size: 18px;
     margin-bottom: 5px;
-    text-transform: uppercase;
     font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
   }
 
   transition: 0.2s;
@@ -27,7 +30,9 @@ export const Container = styled.div<{ color: string }>`
   }
   a {
     color: ${({ color }) => color};
-    margin-bottom: 2px;
+    margin-left: 5px;
+    padding: 3px 0px;
+    text-transform: none;
   }
   p {
     font-size: 16px;
