@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-export const Container = styled.div<{ color: string }>`
+export const Container = styled.div<{ color: string; active: boolean }>`
   width: 200px;
   height: 200px;
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.TEXT};
+  border: 1px solid
+    ${({ theme, active }) => (active ? theme.PRIMARY : theme.TEXT)};
 
   display: flex;
   flex-direction: column;

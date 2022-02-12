@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div<{ color: string }>`
-  width: 270px;
+  width: 230px;
+  height: 230px;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.TEXT};
 
