@@ -1,34 +1,35 @@
-import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  background: ${COLORS.SECONDARY};
-  width: 300px;
-  overflow: hidden;
-  margin: 10px;
-  border-radius: 5px;
+export const Container = styled.div<{ color: string }>`
+  width: 220px;
+  height: 100%;
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.TEXT};
 
-  &:hover {
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+  margin: 10px;
 
   div {
-    background-color: ${COLORS.NEUTRAL};
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: ${({ color }) => color};
+    font-size: 18px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  transition: 0.2s;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.PRIMARY};
   }
   a {
-    text-decoration: none;
-    color: ${COLORS.WHITE};
-    font-weight: bold;
-
-    &:hover {
-      color: ${COLORS.PRIMARY};
-    }
+    color: ${({ color }) => color};
+    margin-bottom: 2px;
   }
   p {
-    padding: 10px;
+    font-size: 16px;
   }
 `;

@@ -6,16 +6,34 @@ export const lightTheme = {
   PRIMARY: '#827AFD',
   SECONDARY: '#00BF20',
   TERTIARY: '#23232C',
-  TEXT: '#000',
-  NEUTRAl: '#2D2D35',
+  QUATERNARY: '#FFC13A',
+  SUCCESS: '#00c86f',
+  WARNING: '#ff8c2a',
+  ERROR: '#FF4C61',
+  PINK: '#dc6ebe',
+  NEUTRAL: '#2D2D35',
+  WHITE: '#FFF',
+  BLACK: '#CED4DA',
+  TEXT: '#B4B4B4',
+  BUTTON: '#2D3748',
+  BLUE: '#6bd1ff',
 };
 
 export const darkTheme = {
   PRIMARY: '#827AFD',
   SECONDARY: '#00BF20',
   TERTIARY: '#23232C',
-  TEXT: '#FFF',
-  NEUTRAl: '#2D2D35',
+  QUATERNARY: '#FFC13A',
+  SUCCESS: '#00c86f',
+  WARNING: '#ff8c2a',
+  ERROR: '#FF4C61',
+  PINK: '#dc6ebe',
+  BLUE: '#6bd1ff',
+  NEUTRAL: '#2D2D35',
+  WHITE: '#FFF',
+  BLACK: '#CED4DA',
+  TEXT: '#fff',
+  BUTTON: '#2D3748',
 };
 
 export const GlobalStyles = createGlobalStyle`
