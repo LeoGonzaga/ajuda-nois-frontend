@@ -7,7 +7,7 @@ export const lightTheme = {
   SECONDARY: '#00BF20',
   TERTIARY: '#23232C',
   TEXT: '#000',
-  NEUTRAl: '#2D2D35',
+  NEUTRAL: '#000',
 };
 
 export const darkTheme = {
@@ -15,7 +15,7 @@ export const darkTheme = {
   SECONDARY: '#00BF20',
   TERTIARY: '#23232C',
   TEXT: '#FFF',
-  NEUTRAl: '#2D2D35',
+  NEUTRAL: '#000',
 };
 
 export const GlobalStyles = createGlobalStyle`
