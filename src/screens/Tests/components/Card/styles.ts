@@ -1,40 +1,27 @@
 import styled from 'styled-components';
 
 export const Container = styled.div<{ color: string }>`
-  width: 230px;
-  height: 230px;
-  border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.TEXT};
-
+  border: 1px solid ${({ color }) => color};
+  background-color: ${({ color }) => color};
+  border-radius: 5px;
+  width: 240px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 10px;
-  margin: 10px;
+  padding: 20px;
+  margin: 5px;
+  color: ${({ theme }) => theme.TERTIARY};
 
-  div {
-    color: ${({ color }) => color};
-    font-size: 18px;
-    margin-bottom: 5px;
-    font-weight: bold;
-
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
+  svg {
+    height: 100%;
   }
 
-  transition: 0.2s;
-
-  &:hover {
-    border-color: ${({ theme }) => theme.PRIMARY};
-  }
   a {
-    color: ${({ color }) => color};
-    margin-left: 5px;
-    padding: 3px 0px;
-    text-transform: none;
+    color: ${({ theme }) => theme.TERTIARY};
+    font-size: 15px;
   }
-  p {
-    font-size: 16px;
+
+  div > p {
+    text-transform: uppercase;
+    font-weight: bold;
   }
 `;

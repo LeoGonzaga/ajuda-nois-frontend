@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 100%;
   padding: 20px;
+  overflow-y: auto;
+  height: 95vh;
 `;
 
 export const WrapperCards = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 5px 0px;
+  div {
+    display: flex;
+  }
 `;

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Spacing from '@components/Spacing';
+import Text from '@components/Text';
 import Title from '@components/Title';
 import { getColorByTest, getRandomColors } from '@utils/functions';
 
@@ -10,7 +12,7 @@ import { Container, WrapperCards } from './styles';
 export const Tests: React.FC = () => {
   const data = [
     {
-      title: 'CADER. Azul',
+      title: 'CADERNO Azul',
       color: 'blue',
       firstDay: {
         test: 'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_PV_reaplicacao_PPL_D1_CD1.pdf',
@@ -24,7 +26,7 @@ export const Tests: React.FC = () => {
       },
     },
     {
-      title: 'CADER. Amarelo',
+      title: 'CADERNO Amarelo',
       color: 'yellow',
       firstDay: {
         test: 'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_PV_reaplicacao_PPL_D1_CD1.pdf',
@@ -38,7 +40,7 @@ export const Tests: React.FC = () => {
       },
     },
     {
-      title: 'CADER. Branco',
+      title: 'CADERNO Branco',
       color: 'white',
       firstDay: {
         test: 'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_PV_reaplicacao_PPL_D1_CD1.pdf',
@@ -52,7 +54,7 @@ export const Tests: React.FC = () => {
       },
     },
     {
-      title: 'CADER. Rosa',
+      title: 'CADERNO Rosa',
       color: 'pink',
       firstDay: {
         test: 'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_PV_reaplicacao_PPL_D1_CD1.pdf',
@@ -74,16 +76,74 @@ export const Tests: React.FC = () => {
         subText="Selecione o ano abaixo para filtrar"
       />
       <SelectTestYear />
+
       <WrapperCards>
-        {data?.map((elem, index) => (
-          <Card
-            color={getColorByTest(elem.color)}
-            title={elem.title}
-            key={index}
-            first={elem.firstDay}
-            second={elem.secondDay}
-          />
-        ))}
+        <Text size={20} bold>
+          2021
+        </Text>
+        <div>
+          {data?.map((elem, index) => (
+            <Card
+              color={getColorByTest(elem.color)}
+              title={elem.title}
+              key={index}
+              first={elem.firstDay}
+              second={elem.secondDay}
+            />
+          ))}
+        </div>
+      </WrapperCards>
+
+      <WrapperCards>
+        <Text size={20} bold>
+          2021
+        </Text>
+        <div>
+          {data?.map((elem, index) => (
+            <Card
+              color={getColorByTest(elem.color)}
+              title={elem.title}
+              key={index}
+              first={elem.firstDay}
+              second={elem.secondDay}
+            />
+          ))}
+        </div>
+      </WrapperCards>
+
+      <WrapperCards>
+        <Text size={20} bold>
+          2021
+        </Text>
+        <div>
+          {data?.map((elem, index) => (
+            <Card
+              color={getColorByTest(elem.color)}
+              title={elem.title}
+              key={index}
+              first={elem.firstDay}
+              second={elem.secondDay}
+            />
+          ))}
+        </div>
+      </WrapperCards>
+
+      <WrapperCards>
+        <Text size={20} bold>
+          2021
+        </Text>
+
+        <div>
+          {data?.map((elem, index) => (
+            <Card
+              color={getColorByTest(elem.color)}
+              title={elem.title}
+              key={index}
+              first={elem.firstDay}
+              second={elem.secondDay}
+            />
+          ))}
+        </div>
       </WrapperCards>
     </Container>
   );
