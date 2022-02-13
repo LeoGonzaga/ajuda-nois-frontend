@@ -1,3 +1,4 @@
+import { FadeInAnimation, ScaleAnimation } from '@themes/animations/animations';
 import styled from 'styled-components';
 
 export const Container = styled.div<{ color: string }>`
@@ -10,7 +11,7 @@ export const Container = styled.div<{ color: string }>`
   padding: 20px;
   margin: 5px;
   color: ${({ theme }) => theme.TERTIARY};
-
+  animation: ${FadeInAnimation} 0.5s ease-in;
   svg {
     height: 100%;
   }
@@ -23,5 +24,9 @@ export const Container = styled.div<{ color: string }>`
   div > p {
     text-transform: uppercase;
     font-weight: bold;
+  }
+
+  &:hover {
+    /* animation: ${ScaleAnimation} 0.2s forwards; */
   }
 `;
