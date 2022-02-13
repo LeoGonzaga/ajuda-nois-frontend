@@ -10,7 +10,8 @@ import { ROUTES } from 'src/routes/routes';
 
 import GoogleBtn from '../../../../../assets/google-btn.svg';
 import { Container, Wrapper } from './styles';
-export const Form: React.FC = () => {
+
+export const Form = (): JSX.Element => {
   const handleSubmit = useCallback(() => {
     Router.push(ROUTES.HOME);
   }, []);

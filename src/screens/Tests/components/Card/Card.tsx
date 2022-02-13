@@ -4,6 +4,7 @@ import Flex from '@components/Flex';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
+import EnemLogo from 'assets/enem.svg';
 
 import { Container } from './styles';
 
@@ -26,15 +27,17 @@ export const Card = ({
 }: CardProps): JSX.Element => {
   return (
     <Container color={color}>
-      <Flex align="center" width="100%" justify="center">
+      <EnemLogo />
+      <Flex align="center" width="100%" justify="left">
         <p>{title}</p>
       </Flex>
-      <Spacing vertical={2} />
+      <Spacing vertical={5} />
       <div>
         <Flex direction="column">
-          <Text size={20} bold color={COLORS.TEXT}>
+          <Text size={16} bold color={COLORS.TERTIARY}>
             1º Dia
           </Text>
+          <Spacing vertical={2} />
           <a target="_blank" href={first?.test} rel="noreferrer">
             <p>Prova</p>
           </a>
@@ -44,9 +47,10 @@ export const Card = ({
         </Flex>
         <Spacing vertical={5} />
         <Flex direction="column">
-          <Text size={20} bold color={COLORS.TEXT}>
+          <Text size={16} bold color={COLORS.TERTIARY}>
             2º Dia
           </Text>
+          <Spacing vertical={2} />
           <a target="_blank" href={first?.test} rel="noreferrer">
             <p>Prova</p>
           </a>

@@ -4,7 +4,7 @@ import Title from '@components/Title';
 
 import { Container } from './styles';
 
-export const Quiz: React.FC = () => {
+export const Quiz = (): JSX.Element => {
   return (
     <Container>
       <Title text="Iniciar" contrast="quiz" />

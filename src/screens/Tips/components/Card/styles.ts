@@ -1,3 +1,4 @@
+import { FadeInAnimation } from '@themes/animations/animations';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -12,7 +13,7 @@ export const Container = styled.div`
   margin: 10px;
 
   transition: 0.2s;
-
+  animation: ${FadeInAnimation} 0.5s ease-in;
   &:hover {
     border-color: ${({ theme }) => theme.PRIMARY};
   }
