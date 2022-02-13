@@ -29,7 +29,7 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [ ] Adição do plano de estudo do aluno
 - [ ] Adição da visualização de contéudo por matéria
 
-Ele esta disponivel para a visualização por esse [link]('https://ajudanois.vercel.app/).
+Ele esta disponivel para a visualização por esse [link](https://ajudanois.vercel.app/).
 
 ## 💻 Pré-requisitos
 
