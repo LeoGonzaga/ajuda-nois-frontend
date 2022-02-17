@@ -1,4 +1,5 @@
-import React, { FormEvent, useState } from 'react';
+import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import Modal from 'react-modal';
 
 import Flex from '@components/Flex';
@@ -11,38 +12,21 @@ type Props = {
   onRequestClose: () => void;
 };
 
+type FormData = {
+  startTime: string;
+  endTime: string;
+  subject: string;
+  topic: string;
+  info: string;
+};
+
 export function NewCardModal({ isOpen, onRequestClose }: Props) {
-  // const [startTime, setStartTime] = useState('');
-  // const [endTime, setEndTime] = useState('');
-  // const [subject, setSubject] = useState('');
-  // const [topic, setTopic] = useState('');
-  // const [info, setInfo] = useState('');
-  // const [formData, setFormData] = useState({
-  //   startTime: '',
-  //   endTime: '',
-  //   subject: '',
-  //   topic: '',
-  //   info: '',
-  // });
+  const { register, handleSubmit } = useForm<FormData>();
 
-  async function handleCreateNewJourney(event: FormEvent) {
-    // const newFormData = formData;
-    event.preventDefault();
+  const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
+    console.log(data);
     onRequestClose();
-    // setStartTime(event.target.startTime.value);
-    // setEndTime(event.target.endTime.value);
-    // setSubject(event.target.subject.value);
-    // setTopic(event.target.topic.value);
-    // setInfo(event.target.info.value);
-
-    // newFormData.startTime = startTime;
-    // newFormData.endTime = endTime;
-    // newFormData.subject = subject;
-    // newFormData.topic = topic;
-    // newFormData.info = info;
-
-    // setFormData(newFormData);
-  }
+  };
 
   return (
     <Modal
@@ -52,20 +36,38 @@ export function NewCardModal({ isOpen, onRequestClose }: Props) {
       overlayClassName="modalOverlay"
       className="modalContent"
     >
-      <Container onSubmit={handleCreateNewJourney}>
+      <Container onSubmit={handleSubmit(onSubmit)}>
         <Flex direction="horizontal" justify="space-between">
           <Flex align="center" justify="center">
             <label htmlFor="startTime">
               <strong>Início - </strong>
             </label>
-            <input type="time" id="startTime" name="startTime" />
+            <input
+              type="time"
+              id="startTime"
+              {...register('startTime', {
+                required: {
+                  value: true,
+                  message: 'Insira um horário de início!',
+                },
+              })}
+            />
           </Flex>
           <div className="bar"></div>
           <Flex align="center" justify="center">
             <label htmlFor="endTime">
               <strong>Término - </strong>
             </label>
-            <input type="time" id="endTime" name="endTime" />
+            <input
+              type="time"
+              id="endTime"
+              {...register('endTime', {
+                required: {
+                  value: true,
+                  message: 'Insira um horário de término!',
+                },
+              })}
+            />
           </Flex>
         </Flex>
 
@@ -76,8 +78,15 @@ export function NewCardModal({ isOpen, onRequestClose }: Props) {
             <label htmlFor="subject">
               <strong>Disciplina:</strong>
             </label>
-            <select name="subject" id="subject">
-              <option value="" disabled selected hidden>
+            <select
+              id="subject"
+              {...register('subject', {
+                required: true,
+                validate: (value) =>
+                  value !== 'Escolher...' || 'Seleciona uma matéria!',
+              })}
+            >
+              <option value="Escolher..." disabled selected hidden>
                 Escolher...
               </option>
               <option value="Biologia">Biologia</option>
@@ -102,7 +111,12 @@ export function NewCardModal({ isOpen, onRequestClose }: Props) {
               type="text"
               id="topic"
               placeholder="Insira um tópico..."
-              name="topic"
+              {...register('topic', {
+                required: {
+                  value: true,
+                  message: 'Insira um tópico para estudar!',
+                },
+              })}
             />
           </Flex>
         </Flex>
@@ -111,10 +125,10 @@ export function NewCardModal({ isOpen, onRequestClose }: Props) {
 
         <div className="text-area-wrapper">
           <textarea
-            name="info"
             id="info"
             rows={8}
             placeholder="Alguma nota ou comentário a adicionar para este card?"
+            {...register('info')}
           ></textarea>
         </div>
 

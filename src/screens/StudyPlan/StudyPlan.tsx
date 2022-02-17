@@ -11,7 +11,7 @@ import { Container } from './styles';
 
 export const StudyPlan: React.FC = () => {
   const [isNewCardModalOpen, setIsNewCardModalOpen] = useState(false);
-  const cards = [
+  const [cards, setCards] = useState([
     {
       status: 'idle',
       startTime: '10:00',
@@ -36,7 +36,7 @@ export const StudyPlan: React.FC = () => {
       topic: 'Existencialismo',
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.',
     },
-  ];
+  ]);
 
   function handleOpenNewCardModal() {
     setIsNewCardModalOpen(true);
