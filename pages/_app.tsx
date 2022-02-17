@@ -1,3 +1,5 @@
+import Modal from 'react-modal';
+
 import { ContainerStyled } from '@components/Container/styles';
 import Flex from '@components/Flex';
 import Sidebar from '@components/Sidebar';
@@ -7,6 +9,8 @@ import { useRouter } from 'next/router';
 import { ROUTES } from 'src/routes/routes';
 import Content from 'src/screens/DashBoard/components/Content';
 import { ThemeProvider } from 'styled-components';
+
+Modal.setAppElement('#__next');
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();

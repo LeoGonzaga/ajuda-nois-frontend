@@ -1,22 +1,22 @@
 import React from 'react';
 
-import SecundaryButton from '@components/Buttons/SecundaryButton';
+import SecondaryButton from '@components/Buttons/SecondaryButton';
 
 export const SelectTestYear = (): JSX.Element => {
   return (
     <>
-      <SecundaryButton>2021</SecundaryButton>
-      <SecundaryButton>2020</SecundaryButton>
-      <SecundaryButton>2019</SecundaryButton>
-      <SecundaryButton>2018</SecundaryButton>
-      <SecundaryButton>2017</SecundaryButton>
-      <SecundaryButton>2016</SecundaryButton>
-      <SecundaryButton>2015</SecundaryButton>
-      <SecundaryButton>2014</SecundaryButton>
-      <SecundaryButton>2013</SecundaryButton>
-      <SecundaryButton>2012</SecundaryButton>
-      <SecundaryButton>2011</SecundaryButton>
-      <SecundaryButton>2010</SecundaryButton>
+      <SecondaryButton>2021</SecondaryButton>
+      <SecondaryButton>2020</SecondaryButton>
+      <SecondaryButton>2019</SecondaryButton>
+      <SecondaryButton>2018</SecondaryButton>
+      <SecondaryButton>2017</SecondaryButton>
+      <SecondaryButton>2016</SecondaryButton>
+      <SecondaryButton>2015</SecondaryButton>
+      <SecondaryButton>2014</SecondaryButton>
+      <SecondaryButton>2013</SecondaryButton>
+      <SecondaryButton>2012</SecondaryButton>
+      <SecondaryButton>2011</SecondaryButton>
+      <SecondaryButton>2010</SecondaryButton>
     </>
   );
 };

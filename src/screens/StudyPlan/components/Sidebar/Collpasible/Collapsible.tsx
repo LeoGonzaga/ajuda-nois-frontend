@@ -3,34 +3,33 @@ import React from 'react';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 
-import Animation from '../Animations';
 import MonthCalendar from '../Calendar';
 import { Container } from './styles';
-import { useToggle } from './useToggle';
 
 type Props = {
   name: string;
   id: number;
-  currentMonth: number;
+  expanded: boolean;
+  onHandleClick: (id: number) => void;
 };
 
-export function Collapsible({ name, id, currentMonth }: Props) {
-  const open = id === currentMonth ? true : false;
-  const [expand, setExpand] = useToggle(open);
+export function Collapsible({ name, id, expanded, onHandleClick }: Props) {
+  const handleExpand = (id: number) => {
+    onHandleClick(id);
+  };
 
   return (
     <Container>
-      <span className={expand ? 'active' : ''} onClick={setExpand}>
+      <span
+        className={expanded ? 'active' : ''}
+        onClick={() => handleExpand(id)}
+      >
         <Text size={16}>{name}</Text>
       </span>
       <Spacing vertical={2} />
-      {expand && (
-        <Animation active={expand}>
-          <span className="content">
-            <MonthCalendar id={id} />
-          </span>
-        </Animation>
-      )}
+      <span className={expanded ? 'content expanded' : 'content'}>
+        <MonthCalendar id={id} />
+      </span>
     </Container>
   );
 }

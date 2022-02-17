@@ -1,8 +1,25 @@
+import { useState } from 'react';
+
 import Collapsible from '../Collpasible';
 import { Container } from './styles';
 
 export const Months: React.FC = () => {
   const currentMonth = new Date().getMonth();
+  const [active, setActive] = useState(currentMonth);
+  const [state, setState] = useState([
+    currentMonth == 0 ? true : false,
+    currentMonth == 1 ? true : false,
+    currentMonth == 2 ? true : false,
+    currentMonth == 3 ? true : false,
+    currentMonth == 4 ? true : false,
+    currentMonth == 5 ? true : false,
+    currentMonth == 6 ? true : false,
+    currentMonth == 7 ? true : false,
+    currentMonth == 8 ? true : false,
+    currentMonth == 9 ? true : false,
+    currentMonth == 10 ? true : false,
+    currentMonth == 11 ? true : false,
+  ]);
 
   const months = [
     {
@@ -55,10 +72,28 @@ export const Months: React.FC = () => {
     },
   ];
 
+  const handleState = (id: number) => {
+    if (active != id) {
+      const newState = state;
+
+      newState[id] = true;
+      newState[active] = false;
+
+      setActive(id);
+      setState(newState);
+    }
+  };
+
   return (
     <Container>
       {months?.map(({ name, id }) => (
-        <Collapsible name={name} id={id} currentMonth={currentMonth} key={id} />
+        <Collapsible
+          key={id}
+          name={name}
+          id={id}
+          expanded={state[id]}
+          onHandleClick={handleState}
+        />
       ))}
     </Container>
   );

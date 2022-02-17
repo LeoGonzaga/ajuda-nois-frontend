@@ -1,19 +1,19 @@
 import React from 'react';
 
-import SecundaryButton from '@components/Buttons/SecundaryButton';
+import SecondaryButton from '@components/Buttons/SecondaryButton';
 
 import { Container } from './styles';
 
 export const Weekday: React.FC = () => {
   return (
     <Container>
-      <SecundaryButton>DOM</SecundaryButton>
-      <SecundaryButton>SEG</SecundaryButton>
-      <SecundaryButton>TER</SecundaryButton>
-      <SecundaryButton>QUA</SecundaryButton>
-      <SecundaryButton>QUI</SecundaryButton>
-      <SecundaryButton>SEX</SecundaryButton>
-      <SecundaryButton>SAB</SecundaryButton>
+      <SecondaryButton>DOM</SecondaryButton>
+      <SecondaryButton>SEG</SecondaryButton>
+      <SecondaryButton>TER</SecondaryButton>
+      <SecondaryButton>QUA</SecondaryButton>
+      <SecondaryButton>QUI</SecondaryButton>
+      <SecondaryButton>SEX</SecondaryButton>
+      <SecondaryButton>SAB</SecondaryButton>
     </Container>
   );
 };

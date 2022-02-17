@@ -2,11 +2,11 @@ import React from 'react';
 
 import { Container } from './styles';
 
-type SecundaryButtonProps = {
+type SecondaryButtonProps = {
   children: React.ReactNode;
 };
-export const SecundaryButton = ({
+export const SecondaryButton = ({
   children,
-}: SecundaryButtonProps): JSX.Element => {
+}: SecondaryButtonProps): JSX.Element => {
   return <Container>{children}</Container>;
 };

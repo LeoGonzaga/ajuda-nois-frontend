@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BsPlusLg } from 'react-icons/bs';
 
 import Title from '@components/Title';
 
 import Card from './components/Card';
+import NewCardModal from './components/NewCardModal';
 import Sidebar from './components/Sidebar';
 import Weekday from './components/Weekday';
 import { Container } from './styles';
 
 export const StudyPlan: React.FC = () => {
+  const [isNewCardModalOpen, setIsNewCardModalOpen] = useState(false);
   const cards = [
     {
       status: 'idle',
@@ -35,30 +38,50 @@ export const StudyPlan: React.FC = () => {
     },
   ];
 
+  function handleOpenNewCardModal() {
+    setIsNewCardModalOpen(true);
+  }
+
+  function handleCloseNewCardModal() {
+    setIsNewCardModalOpen(false);
+  }
+
   return (
     <Container>
       <div className="container">
-        <Title
-          text="Cronograma de"
-          contrast="estudos"
-          subText="Selecione um dia para filtrar"
-        />
-        <Weekday />
-        <div className="cards">
-          {cards.map((card, index) => (
-            <Card
-              key={index}
-              status={card.status}
-              startTime={card.startTime}
-              endTime={card.endTime}
-              subject={card.subject}
-              topic={card.topic}
-              text={card.text}
-            />
-          ))}
+        <div className="title-wrapper">
+          <Title
+            text="Cronograma de"
+            contrast="estudos"
+            subText="Selecione um dia para filtrar"
+          />
+          <button onClick={handleOpenNewCardModal}>
+            <BsPlusLg /> Criar novo plano
+          </button>
+        </div>
+        <div className="wrapper">
+          <Weekday />
+          <div className="cards">
+            {cards.map((card, index) => (
+              <Card
+                key={index}
+                status={card.status}
+                startTime={card.startTime}
+                endTime={card.endTime}
+                subject={card.subject}
+                topic={card.topic}
+                text={card.text}
+              />
+            ))}
+          </div>
         </div>
       </div>
       <Sidebar />
+
+      <NewCardModal
+        isOpen={isNewCardModalOpen}
+        onRequestClose={handleCloseNewCardModal}
+      />
     </Container>
   );
 };

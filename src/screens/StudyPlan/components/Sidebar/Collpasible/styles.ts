@@ -27,29 +27,28 @@ export const Container = styled.div`
   }
 
   .content {
-    width: 100%;
     display: flex;
     align-self: center;
 
-    padding: 5px 10px 10px 10px;
+    width: 100%;
+    max-height: 0px;
+    overflow: hidden;
+
+    padding: 0px 10px;
+    margin-bottom: 0px;
+
     background-color: ${COLORS.NEUTRAL};
     border-radius: 5px;
 
     cursor: default;
-  }
 
-  /* For animation */
-  .wrapper {
-    /* height: 0; */
-    padding: 0 5px;
-    margin-bottom: 0px;
-    overflow: hidden;
-
-    transition: all 0.5s;
+    transition: max-height 0.3s ease, padding-top 0.3s ease,
+      padding-bottom 0.3s ease, margin-bottom 0.3s ease;
   }
 
   .expanded {
-    /* height: 250px; */
+    max-height: 200px;
+    padding: 5px 10px;
     margin-bottom: 10px;
   }
 `;

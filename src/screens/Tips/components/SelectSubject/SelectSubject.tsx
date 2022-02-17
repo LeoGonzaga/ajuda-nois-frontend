@@ -1,24 +1,24 @@
 import React from 'react';
 
-import SecundaryButton from '@components/Buttons/SecundaryButton';
+import SecondaryButton from '@components/Buttons/SecondaryButton';
 
 import { Wrapper } from '../../styles';
 
 export const SelectSubject = (): JSX.Element => {
   return (
     <Wrapper>
-      <SecundaryButton>Biologia</SecundaryButton>
-      <SecundaryButton>Química</SecundaryButton>
-      <SecundaryButton>Física</SecundaryButton>
-      <SecundaryButton>História</SecundaryButton>
-      <SecundaryButton>Geografia</SecundaryButton>
-      <SecundaryButton>Filosofia</SecundaryButton>
-      <SecundaryButton>Sociologia</SecundaryButton>
-      <SecundaryButton>Português</SecundaryButton>
-      <SecundaryButton>Literatura</SecundaryButton>
-      <SecundaryButton>Inglês</SecundaryButton>
-      <SecundaryButton>Matemática</SecundaryButton>
-      <SecundaryButton>Redação</SecundaryButton>
+      <SecondaryButton>Biologia</SecondaryButton>
+      <SecondaryButton>Química</SecondaryButton>
+      <SecondaryButton>Física</SecondaryButton>
+      <SecondaryButton>História</SecondaryButton>
+      <SecondaryButton>Geografia</SecondaryButton>
+      <SecondaryButton>Filosofia</SecondaryButton>
+      <SecondaryButton>Sociologia</SecondaryButton>
+      <SecondaryButton>Português</SecondaryButton>
+      <SecondaryButton>Literatura</SecondaryButton>
+      <SecondaryButton>Inglês</SecondaryButton>
+      <SecondaryButton>Matemática</SecondaryButton>
+      <SecondaryButton>Redação</SecondaryButton>
     </Wrapper>
   );
 };
