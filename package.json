@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@svgr/webpack": "^5.5.0",
+    "@tiptap/extension-image": "^2.0.0-beta.27",
     "@tiptap/react": "^2.0.0-beta.108",
     "@tiptap/starter-kit": "^2.0.0-beta.183",
     "@types/styled-components": "^5.1.20",
