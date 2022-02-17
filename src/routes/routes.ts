@@ -6,4 +6,5 @@ export const ROUTES = {
   TESTS: '/tests',
   QUIZ: '/quiz',
   ACHIEVEMENTS: '/achievements',
+  EDITOR: '/editor',
 };

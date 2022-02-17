@@ -3,7 +3,7 @@ import React from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
-const MenuBar = ({ editor }) => {
+const MenuBar = ({ editor }: any) => {
   if (!editor) {
     return null;
   }
