@@ -47,7 +47,7 @@ export const Container = styled.div`
   }
 
   .expanded {
-    max-height: 200px;
+    max-height: 300px;
     padding: 5px 10px;
     margin-bottom: 10px;
   }
