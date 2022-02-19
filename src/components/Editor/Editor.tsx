@@ -1,6 +1,15 @@
 import React, { ChangeEvent } from 'react';
+import { AiOutlineLink } from 'react-icons/ai';
 import { CgArrowsBreakeV } from 'react-icons/cg';
-import { FaBold, FaCode, FaItalic, FaStrikethrough } from 'react-icons/fa';
+import {
+  FaBold,
+  FaCode,
+  FaImages,
+  FaItalic,
+  FaRedoAlt,
+  FaStrikethrough,
+  FaUndoAlt,
+} from 'react-icons/fa';
 import { GoListOrdered } from 'react-icons/go';
 import { GrBlockQuote } from 'react-icons/gr';
 import { MdFormatListBulleted } from 'react-icons/md';
@@ -10,7 +19,13 @@ import Link from '@tiptap/extension-link';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
-import { Button, Container, EditorArea } from './styles';
+import {
+  Button,
+  Container,
+  EditorArea,
+  UploadImageContainer,
+  Header,
+} from './styles';
 
 const MenuBar = ({ editor }: any) => {
   if (!editor) {
@@ -34,12 +49,10 @@ const MenuBar = ({ editor }: any) => {
     const url = event.target.files![0];
     const link = URL.createObjectURL(url);
     editor.chain().focus().setImage({ src: link }).run();
-    const html = editor.getHTML();
-    console.log('aaaaaaaaaa', html);
   };
 
   return (
-    <>
+    <Header>
       <Button
         onClick={() => editor.chain().focus().toggleBold().run()}
         className={editor.isActive('bold') ? 'is-active' : ''}
@@ -127,12 +140,24 @@ const MenuBar = ({ editor }: any) => {
       <Button onClick={() => editor.chain().focus().setHardBreak().run()}>
         <CgArrowsBreakeV />
       </Button>
-      <Button onClick={addImage}>setImage</Button>
-
-      <input type={'file'} onChange={uploadImage} />
-      <Button onClick={() => editor.chain().focus().undo().run()}>undo</Button>
-      <Button onClick={() => editor.chain().focus().redo().run()}>redo</Button>
-    </>
+      <Button onClick={addImage}>
+        <AiOutlineLink />
+      </Button>
+      <Button>
+        <UploadImageContainer>
+          <label htmlFor="file-input">
+            <FaImages />
+          </label>
+          <input type={'file'} id="file-input" onChange={uploadImage} />
+        </UploadImageContainer>
+      </Button>
+      <Button onClick={() => editor.chain().focus().undo().run()}>
+        <FaUndoAlt />
+      </Button>
+      <Button onClick={() => editor.chain().focus().redo().run()}>
+        <FaRedoAlt />
+      </Button>
+    </Header>
   );
 };
 
@@ -140,9 +165,9 @@ export const EditorContainer = () => {
   const editor = useEditor({
     extensions: [StarterKit, Image, Link],
     content: `
-      <h2>
-       Olá! Para começar, basta clicar nessa frase
-      </h2>
+      <p>
+      Digite aqui...
+      </p>
    
     `,
   });

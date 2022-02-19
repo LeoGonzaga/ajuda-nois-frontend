@@ -14,7 +14,6 @@ export const Button = styled.button`
 `;
 
 export const EditorArea = styled.div`
-  margin-top: 10px;
   border: 1px solid ${({ theme }) => theme.BLACK};
   padding: 10px;
   border-radius: 4px;
@@ -23,4 +22,20 @@ export const EditorArea = styled.div`
     outline: none;
     min-height: 500px;
   }
+`;
+
+export const UploadImageContainer = styled.div`
+  input {
+    display: none;
+  }
+
+  img {
+    width: 30px;
+    cursor: pointer;
+  }
+`;
+
+export const Header = styled.div`
+  border-radius: 4px;
+  padding: 4px 0px;
 `;
