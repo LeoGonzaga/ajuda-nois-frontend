@@ -1,9 +1,9 @@
 import React, { ChangeEvent } from 'react';
 import { AiOutlineLink } from 'react-icons/ai';
+import { BiParagraph } from 'react-icons/bi';
 import { CgArrowsBreakeV } from 'react-icons/cg';
 import {
   FaBold,
-  FaCode,
   FaImages,
   FaItalic,
   FaRedoAlt,
@@ -14,8 +14,14 @@ import { GoListOrdered } from 'react-icons/go';
 import { GrBlockQuote } from 'react-icons/gr';
 import { MdFormatListBulleted } from 'react-icons/md';
 
+import ActionButton from '@components/Buttons/ActionButton';
+import Flex from '@components/Flex';
+import Spacing from '@components/Spacing';
+import { COLORS } from '@themes/colors';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
+import Paragraph from '@tiptap/extension-paragraph';
+import Text from '@tiptap/extension-text';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
@@ -72,10 +78,10 @@ const MenuBar = ({ editor }: any) => {
         <FaStrikethrough />
       </Button>
       <Button
-        onClick={() => editor.chain().focus().toggleCode().run()}
-        className={editor.isActive('code') ? 'is-active' : ''}
+        onClick={() => editor.chain().focus().setParagraph().run()}
+        className={editor.isActive('paragraph') ? 'is-active' : ''}
       >
-        <FaCode />
+        <BiParagraph />
       </Button>
       <Button onClick={() => editor.chain().focus().unsetAllMarks().run()}>
         Limpar marcadores
@@ -163,7 +169,7 @@ const MenuBar = ({ editor }: any) => {
 
 export const EditorContainer = () => {
   const editor = useEditor({
-    extensions: [StarterKit, Image, Link],
+    extensions: [StarterKit, Image, Link, Paragraph, Text],
     content: `
       <p>
       Digite aqui...
@@ -172,10 +178,12 @@ export const EditorContainer = () => {
     `,
   });
 
-  if (editor) {
-    const html = editor.getHTML();
-    console.log(html);
-  }
+  const handleSaveContent = () => {
+    if (editor) {
+      const html = editor.getHTML();
+      console.log(html);
+    }
+  };
 
   return (
     <Container>
@@ -183,6 +191,17 @@ export const EditorContainer = () => {
       <EditorArea>
         <EditorContent editor={editor} />
       </EditorArea>
+      <Spacing vertical={10} />
+
+      <Flex width="100%" justify="flex-end">
+        <ActionButton
+          onClick={handleSaveContent}
+          color={COLORS.SECONDARY}
+          width="200px"
+        >
+          Salvar
+        </ActionButton>
+      </Flex>
     </Container>
   );
 };
