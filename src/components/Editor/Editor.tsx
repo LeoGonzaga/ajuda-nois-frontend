@@ -1,6 +1,12 @@
-import React, { ChangeEvent, useCallback } from 'react';
+import React, { ChangeEvent } from 'react';
+import { CgArrowsBreakeV } from 'react-icons/cg';
+import { FaBold, FaCode, FaItalic, FaStrikethrough } from 'react-icons/fa';
+import { GoListOrdered } from 'react-icons/go';
+import { GrBlockQuote } from 'react-icons/gr';
+import { MdFormatListBulleted } from 'react-icons/md';
 
 import Image from '@tiptap/extension-image';
+import Link from '@tiptap/extension-link';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
@@ -14,7 +20,12 @@ const MenuBar = ({ editor }: any) => {
     const url = window.prompt('URL');
 
     if (url) {
-      editor.chain().focus().setImage({ src: url }).run();
+      editor.commands.setLink({
+        href: url,
+        target: '_blank',
+      });
+    } else {
+      editor.commands.unsetLink();
     }
   };
 
@@ -33,28 +44,28 @@ const MenuBar = ({ editor }: any) => {
         onClick={() => editor.chain().focus().toggleBold().run()}
         className={editor.isActive('bold') ? 'is-active' : ''}
       >
-        B
+        <FaBold />
       </Button>
       <Button
         onClick={() => editor.chain().focus().toggleItalic().run()}
         className={editor.isActive('italic') ? 'is-active' : ''}
       >
-        I
+        <FaItalic />
       </Button>
       <Button
         onClick={() => editor.chain().focus().toggleStrike().run()}
         className={editor.isActive('strike') ? 'is-active' : ''}
       >
-        strike
+        <FaStrikethrough />
       </Button>
       <Button
         onClick={() => editor.chain().focus().toggleCode().run()}
         className={editor.isActive('code') ? 'is-active' : ''}
       >
-        code
+        <FaCode />
       </Button>
       <Button onClick={() => editor.chain().focus().unsetAllMarks().run()}>
-        clear marks
+        Limpar marcadores
       </Button>
 
       <Button
@@ -97,31 +108,24 @@ const MenuBar = ({ editor }: any) => {
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={editor.isActive('bulletList') ? 'is-active' : ''}
       >
-        bullet list
+        <MdFormatListBulleted />
       </Button>
       <Button
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         className={editor.isActive('orderedList') ? 'is-active' : ''}
       >
-        ordered list
+        <GoListOrdered />
       </Button>
-      <Button
-        onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-        className={editor.isActive('codeBlock') ? 'is-active' : ''}
-      >
-        code block
-      </Button>
+
       <Button
         onClick={() => editor.chain().focus().toggleBlockquote().run()}
         className={editor.isActive('blockquote') ? 'is-active' : ''}
       >
-        blockquote
+        <GrBlockQuote />
       </Button>
-      <Button onClick={() => editor.chain().focus().setHorizontalRule().run()}>
-        horizontal rule
-      </Button>
+
       <Button onClick={() => editor.chain().focus().setHardBreak().run()}>
-        hard break
+        <CgArrowsBreakeV />
       </Button>
       <Button onClick={addImage}>setImage</Button>
 
@@ -134,7 +138,7 @@ const MenuBar = ({ editor }: any) => {
 
 export const EditorContainer = () => {
   const editor = useEditor({
-    extensions: [StarterKit, Image],
+    extensions: [StarterKit, Image, Link],
     content: `
       <h2>
        Olá! Para começar, basta clicar nessa frase
