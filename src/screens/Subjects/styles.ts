@@ -19,19 +19,3 @@ export const Table = styled.div`
   overflow-y: auto;
   height: 80vh;
 `;
-
-export const TableItem = styled.div`
-  background-color: ${({ theme }) => theme.NEUTRAL};
-  height: 50px;
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 10px;
-  margin-top: 10px;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.PRIMARY};
-  }
-`;

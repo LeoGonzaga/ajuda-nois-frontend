@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { AiOutlineCalculator } from 'react-icons/ai';
 import { BsChatLeftQuote, BsFillCheckCircleFill } from 'react-icons/bs';
 import { GiGreekTemple } from 'react-icons/gi';
@@ -9,7 +9,8 @@ import Title from '@components/Title';
 import { COLORS } from '@themes/colors';
 
 import Card from './components/Card';
-import { Container, Grid, SubjectContent, Table, TableItem } from './styles';
+import SubjectItem from './components/SubjectItem';
+import { Container, Grid, SubjectContent, Table } from './styles';
 
 export const Subjects = (): JSX.Element => {
   const [activeSubject, setActiveSubject] = useState<string>('Matemática');
@@ -58,80 +59,8 @@ export const Subjects = (): JSX.Element => {
               {activeSubject}
             </Text>
             <Table>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-
-                <BsFillCheckCircleFill color={COLORS.SECONDARY} />
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
-              <TableItem>
-                <Text>Equação do 1º Grau</Text>
-              </TableItem>
+              <SubjectItem />
+              <SubjectItem />
             </Table>
           </SubjectContent>
         )}
