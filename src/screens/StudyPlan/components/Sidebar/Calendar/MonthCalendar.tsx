@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DayPicker from 'react-day-picker';
 
 import 'react-day-picker/lib/style.css';
@@ -34,6 +34,13 @@ export function MonthCalendar({ id }: Props) {
     'Sábado',
   ];
   const WEEKDAYS_SHORT = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+  const [state, setState] = useState<Date>();
+
+  const handleDayClick = (day: Date) => {
+    setState(day);
+  };
+
+  console.log(state?.toLocaleDateString());
 
   calendar.setMonth(id);
   return (
@@ -48,6 +55,8 @@ export function MonthCalendar({ id }: Props) {
         weekdaysShort={WEEKDAYS_SHORT}
         firstDayOfWeek={0}
         className={Container}
+        onDayClick={handleDayClick}
+        selectedDays={state}
       />
     </Container>
   );

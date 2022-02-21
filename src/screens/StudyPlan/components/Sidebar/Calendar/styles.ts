@@ -78,9 +78,15 @@ export const Container = styled.div`
 
     padding: 5px;
 
-    border-radius: 50%;
+    border-radius: 10%;
 
     cursor: pointer;
+
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: ${COLORS.GRAY};
+    }
   }
 
   .DayPicker-Day--today {
