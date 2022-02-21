@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
   margin-bottom: 20px;
 
   width: 100%;
@@ -20,7 +21,7 @@ export const Container = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 20px;
+      margin-top: 10px;
 
       /* Cor do texto abaixo do botão */
       button + p {

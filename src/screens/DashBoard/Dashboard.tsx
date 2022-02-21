@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SecundaryButton from '@components/Buttons/SecundaryButton';
+import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Title from '@components/Title';
 import { COLORS } from '@themes/colors';
 
@@ -16,7 +16,7 @@ export const Dashboard: React.FC = () => {
     <Container>
       <Controls>
         <Title text="Métricas" contrast="" subText="" />
-        <SecundaryButton>Configurações</SecundaryButton>
+        <SecondaryButton>Configurações</SecondaryButton>
       </Controls>
       <Row>
         <Column>

@@ -65,6 +65,43 @@ input, textarea, button {
 
 }
 
+.modalOverlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modalContent {
+  width: 100%;
+  max-width: 550px;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: ${({ theme }) => theme.TERTIARY};
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
 
 ::-webkit-scrollbar {
   width: 12px;               /* width of the entire scrollbar */

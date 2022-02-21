@@ -10,6 +10,7 @@ export const COLORS = {
   NEUTRAL: '#2D2D35',
   WHITE: '#FFF',
   BLACK: '#CED4DA',
+  GRAY: '#3D3D45',
   TEXT: '#B4B4B4',
   BUTTON: '#2D3748',
   BLUE: '#6bd1ff',
