@@ -40,8 +40,6 @@ export function MonthCalendar({ id }: Props) {
     setState(day);
   };
 
-  console.log(state?.toLocaleDateString());
-
   calendar.setMonth(id);
   return (
     <Container>
