@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-
   max-width: 100%;
   max-height: 100%;
   padding: 20px;
@@ -37,9 +36,8 @@ export const Content = styled.div`
 export const AchievementsContainer = styled.div`
   display: flex;
   flex-direction: column;
-
+  height: 80vh;
   flex: 1;
-  max-height: 550px;
   padding: 10px;
 
   overflow-y: auto;

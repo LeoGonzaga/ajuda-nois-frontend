@@ -12,7 +12,7 @@ import { LinkedinShare } from './icons/LinkedinShare';
 import { TelegramShare } from './icons/TelegramShare';
 import { TwitterShare } from './icons/TwitterShare';
 import { WhatsappShare } from './icons/WhatsappShare';
-import { Container, NoHeightFlex } from './styles';
+import { Container } from './styles';
 
 type Props = {
   url: string;

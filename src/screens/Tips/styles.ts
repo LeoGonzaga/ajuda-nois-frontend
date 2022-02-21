@@ -11,4 +11,20 @@ export const Wrapper = styled.div``;
 export const WrapperCards = styled.div`
   display: flex;
   flex-wrap: wrap;
+
+  div {
+    &:before {
+      counter-increment: items;
+    }
+
+    &:nth-of-type(4n + 1) {
+      order: 1;
+    }
+    &:nth-of-type(4n + 2) {
+      order: 2;
+    }
+    &:nth-of-type(4n + 3) {
+      order: 3;
+    }
+  }
 `;

@@ -1,28 +1,31 @@
-import { COLORS } from '@themes/colors';
+import { FadeInAnimation } from '@themes/animations/animations';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background: ${COLORS.SECONDARY};
-  width: 300px;
-  height: 250px;
-  overflow: hidden;
-  margin: 10px;
-  border-radius: 5px;
-  overflow-y: scroll;
+  width: 220px;
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.TEXT};
 
+  display: flex;
+  flex-direction: column;
+
+  padding: 15px;
+  margin: 10px;
+
+  transition: 0.2s;
+  animation: ${FadeInAnimation} 0.5s ease-in;
   &:hover {
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-color: ${({ theme }) => theme.PRIMARY};
   }
 
-  div {
-    background-color: ${COLORS.NEUTRAL};
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  h1 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    color: ${({ color }) => color};
   }
 
   p {
-    padding: 10px;
+    font-size: 14px;
   }
 `;

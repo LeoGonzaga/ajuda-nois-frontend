@@ -1,7 +1,10 @@
 import React from 'react';
 
+import Flex from '@components/Flex';
+import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
+import EnemLogo from 'assets/enem.svg';
 
 import { Container } from './styles';
 
@@ -13,31 +16,49 @@ type CardProps = {
   title?: string;
   first?: Props;
   second?: Props;
+  color: string;
 };
 
-export const Card = ({ first, second, title }: CardProps): JSX.Element => {
+export const Card = ({
+  first,
+  second,
+  title,
+  color,
+}: CardProps): JSX.Element => {
   return (
-    <Container>
-      <div>{title}</div>
-      <Text size={19} bold color={COLORS.NEUTRAL}>
-        1º Dia
-      </Text>
-      <a target="_blank" href={first?.test} rel="noreferrer">
-        <p>Prova</p>
-      </a>
-      <a target="_blank" href={first?.result} rel="noreferrer">
-        <p>Gabarito</p>
-      </a>
-
-      <Text size={19} bold color={COLORS.NEUTRAL}>
-        2º Dia
-      </Text>
-      <a target="_blank" href={second?.test} rel="noreferrer">
-        <p>Prova</p>
-      </a>
-      <a target="_blank" href={second?.result} rel="noreferrer">
-        <p>Gabarito</p>
-      </a>
+    <Container color={color}>
+      <EnemLogo />
+      <Flex align="center" width="100%" justify="left">
+        <p>{title}</p>
+      </Flex>
+      <Spacing vertical={5} />
+      <div>
+        <Flex direction="column">
+          <Text size={16} bold color={COLORS.TERTIARY}>
+            1º Dia
+          </Text>
+          <Spacing vertical={2} />
+          <a target="_blank" href={first?.test} rel="noreferrer">
+            <p>Prova</p>
+          </a>
+          <a target="_blank" href={first?.result} rel="noreferrer">
+            <p>Gabarito</p>
+          </a>
+        </Flex>
+        <Spacing vertical={5} />
+        <Flex direction="column">
+          <Text size={16} bold color={COLORS.TERTIARY}>
+            2º Dia
+          </Text>
+          <Spacing vertical={2} />
+          <a target="_blank" href={first?.test} rel="noreferrer">
+            <p>Prova</p>
+          </a>
+          <a target="_blank" href={first?.result} rel="noreferrer">
+            <p>Gabarito</p>
+          </a>
+        </Flex>
+      </div>
     </Container>
   );
 };

@@ -9,4 +9,8 @@ export const Container = styled.button`
   padding: 10px 20px;
   border-radius: 10px;
   margin: 5px;
+  transition: 0.1s;
+  &:hover {
+    box-shadow: inset 0 0 2em ${COLORS.SECONDARY}, 0 0 2em ${COLORS.SECONDARY};
+  }
 `;

@@ -1,4 +1,3 @@
-import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
 type Props = {

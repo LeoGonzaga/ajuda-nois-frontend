@@ -1,11 +1,47 @@
 import React from 'react';
 
-import { ContainerStyled } from '@components/Container/styles';
-import Flex from '@components/Flex';
-import Sidebar from '@components/Sidebar';
+import SecundaryButton from '@components/Buttons/SecundaryButton';
+import Title from '@components/Title';
+import { COLORS } from '@themes/colors';
 
-import Content from './components/Content';
+import Card from './components/Card';
+import ResultsPomodoro from './components/ResultsPomodoro';
+import ResultsTest from './components/ResultsTest';
+import SubjectContent from './components/SubjectContent';
+import Timeline from './components/Timeline';
+import { Column, Container, Controls, Row } from './styles';
 
 export const Dashboard: React.FC = () => {
-  return <div>te</div>;
+  return (
+    <Container>
+      <Controls>
+        <Title text="Métricas" contrast="" subText="" />
+        <SecundaryButton>Configurações</SecundaryButton>
+      </Controls>
+      <Row>
+        <Column>
+          <Row>
+            <Card
+              color={COLORS.SECONDARY}
+              indicator="P"
+              value="0.00"
+              text="Conclusão do Plano"
+            />
+            <Card
+              color={COLORS.PRIMARY}
+              indicator="Q"
+              value="100.00"
+              text="Acertos em Quiz"
+            />
+          </Row>
+          <SubjectContent />
+        </Column>
+        <ResultsTest />
+      </Row>
+      <Row>
+        <ResultsPomodoro />
+        <Timeline />
+      </Row>
+    </Container>
+  );
 };

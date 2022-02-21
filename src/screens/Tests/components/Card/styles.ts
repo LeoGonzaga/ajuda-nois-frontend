@@ -1,34 +1,32 @@
-import { COLORS } from '@themes/colors';
+import { FadeInAnimation, ScaleAnimation } from '@themes/animations/animations';
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  background: ${COLORS.SECONDARY};
-  width: 300px;
-  overflow: hidden;
-  margin: 10px;
+export const Container = styled.div<{ color: string }>`
+  border: 1px solid ${({ color }) => color};
+  background-color: ${({ color }) => color};
   border-radius: 5px;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 5px;
+  color: ${({ theme }) => theme.TERTIARY};
+  animation: ${FadeInAnimation} 0.5s ease-in;
+  svg {
+    height: 100%;
+  }
+
+  a {
+    color: ${({ theme }) => theme.TERTIARY};
+    font-size: 15px;
+  }
+
+  div > p {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
 
   &:hover {
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  }
-
-  div {
-    background-color: ${COLORS.NEUTRAL};
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  a {
-    text-decoration: none;
-    color: ${COLORS.WHITE};
-    font-weight: bold;
-
-    &:hover {
-      color: ${COLORS.PRIMARY};
-    }
-  }
-  p {
-    padding: 10px;
+    /* animation: ${ScaleAnimation} 0.2s forwards; */
   }
 `;
