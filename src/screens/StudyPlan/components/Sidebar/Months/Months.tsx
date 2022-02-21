@@ -6,6 +6,7 @@ import { Container } from './styles';
 export const Months: React.FC = () => {
   const currentMonth = new Date().getMonth();
   const [active, setActive] = useState(currentMonth);
+  const [selectedDays, setSelectedDays] = useState<Date[]>([]);
   const [state, setState] = useState([
     currentMonth == 0 ? true : false,
     currentMonth == 1 ? true : false,
@@ -84,6 +85,12 @@ export const Months: React.FC = () => {
     }
   };
 
+  const handleSelectedDays = (dates: Date[]) => {
+    setSelectedDays(dates);
+  };
+
+  console.log(selectedDays);
+
   return (
     <Container>
       {months?.map(({ name, id }) => (
@@ -92,7 +99,9 @@ export const Months: React.FC = () => {
           name={name}
           id={id}
           expanded={state[id]}
+          selectedDays={selectedDays}
           onHandleClick={handleState}
+          onHandleSelectedDays={handleSelectedDays}
         />
       ))}
     </Container>

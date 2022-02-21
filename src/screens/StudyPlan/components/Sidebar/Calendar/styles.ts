@@ -51,6 +51,10 @@ export const Container = styled.div`
 
   .DayPicker-WeekdaysRow {
     display: table-row;
+
+    abbr {
+      text-decoration: none;
+    }
   }
 
   .DayPicker-Weekday {
@@ -97,5 +101,24 @@ export const Container = styled.div`
   .DayPicker-Day--outside {
     color: #8b9898;
     cursor: default;
+  }
+
+  .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+    position: relative;
+
+    background-color: ${COLORS.PRIMARY};
+    color: ${COLORS.WHITE};
+  }
+
+  .DayPicker-Month {
+    border-collapse: separate;
+  }
+
+  .DayPicker-Day--hoverRange {
+    background-color: ${COLORS.GRAY} !important;
+  }
+
+  .DayPicker-Day--selectedRange {
+    background-color: ${COLORS.PRIMARY} !important;
   }
 `;
