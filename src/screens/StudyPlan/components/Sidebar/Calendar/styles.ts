@@ -51,7 +51,6 @@ export const Container = styled.div`
 
   .DayPicker-WeekdaysRow {
     display: table-row;
-
     abbr {
       text-decoration: none;
     }
@@ -61,7 +60,8 @@ export const Container = styled.div`
     display: table-cell;
     text-align: center;
 
-    padding: 6px;
+    padding-bottom: 6px;
+    min-width: 40px;
 
     color: #8b9898;
     font-size: 14px;
@@ -82,7 +82,7 @@ export const Container = styled.div`
 
     padding: 5px;
 
-    border-radius: 10%;
+    border-radius: 100px;
 
     cursor: pointer;
 
@@ -118,7 +118,18 @@ export const Container = styled.div`
     background-color: ${COLORS.GRAY} !important;
   }
 
+  .DayPicker-Day--selectedRange:is(.DayPicker-Day--today) {
+    color: ${COLORS.PRIMARY} !important;
+    background-color: #eee !important;
+  }
+
+  .DayPicker-Day--selectedRange:is(.DayPicker-Day--outside) {
+    filter: brightness(0.55);
+  }
+
   .DayPicker-Day--selectedRange {
+    color: ${COLORS.WHITE} !important;
+    font-weight: 700;
     background-color: ${COLORS.PRIMARY} !important;
   }
 `;
