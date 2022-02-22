@@ -4,7 +4,7 @@ import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 
 import MonthCalendar from '../Calendar';
-import { Container } from './styles';
+import { Container, ExpandableContent } from './styles';
 
 type Props = {
   name: string;
@@ -28,21 +28,18 @@ export function Collapsible({
   };
 
   return (
-    <Container>
-      <span
-        className={expanded ? 'active' : ''}
-        onClick={() => handleExpand(id)}
-      >
+    <Container expanded={expanded}>
+      <span onClick={() => handleExpand(id)}>
         <Text size={16}>{name}</Text>
       </span>
       <Spacing vertical={2} />
-      <span className={expanded ? 'content expanded' : 'content'}>
+      <ExpandableContent expanded={expanded}>
         <MonthCalendar
           id={id}
           selectedDays={selectedDays}
           onHandleSelectedDays={onHandleSelectedDays}
         />
-      </span>
+      </ExpandableContent>
     </Container>
   );
 }
