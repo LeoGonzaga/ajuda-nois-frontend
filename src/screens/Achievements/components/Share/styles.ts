@@ -27,7 +27,7 @@ export const Container = styled.div`
       button + p {
         color: ${COLORS.TEXT};
 
-        transition: color 0.2s;
+        transition: color 0.3s ease;
       }
 
       button:hover + p {
@@ -51,15 +51,15 @@ export const Container = styled.div`
     border-radius: 10px;
     background-color: ${COLORS.NEUTRAL};
 
-    .active {
+    svg {
       margin: 0 10px;
 
       color: ${COLORS.TEXT};
 
-      transition: color 0.2s;
+      transition: color 0.3s ease;
     }
 
-    &:hover .active {
+    &:hover svg {
       color: ${COLORS.SECONDARY};
     }
   }
@@ -77,16 +77,16 @@ export const ShareIcons = styled.div`
 
   transition: background-color 0.2s;
 
-  .active {
+  svg {
     color: ${COLORS.TEXT};
 
-    transition: color 0.2s;
+    transition: color 0.3s ease;
   }
 
   button:hover & {
     background-color: #88e0ad50;
 
-    .active {
+    svg {
       color: ${COLORS.SECONDARY};
     }
   }

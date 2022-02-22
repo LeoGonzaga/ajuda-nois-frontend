@@ -15,11 +15,7 @@ export const WhatsappShare = ({ url }: Props) => {
     <span>
       <WhatsappShareButton url={url}>
         <ShareIcons>
-          <FaWhatsapp
-            size={20}
-            title="Share with Telegram"
-            className="active"
-          />
+          <FaWhatsapp size={20} title="Share with Telegram" />
         </ShareIcons>
       </WhatsappShareButton>
       <Spacing vertical={3} />
