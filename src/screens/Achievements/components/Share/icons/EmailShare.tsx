@@ -15,11 +15,7 @@ export const EmailShare = ({ url }: Props) => {
     <span>
       <EmailShareButton url={url}>
         <ShareIcons>
-          <MdAlternateEmail
-            size={20}
-            title="Share with Telegram"
-            className="active"
-          />
+          <MdAlternateEmail size={20} title="Share with Telegram" />
         </ShareIcons>
       </EmailShareButton>
       <Spacing vertical={3} />

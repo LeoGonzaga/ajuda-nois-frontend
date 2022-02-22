@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BsPlusLg } from 'react-icons/bs';
 
 import Title from '@components/Title';
-import moment from 'moment';
 
 import Card from './components/Card';
 import NewCardModal from './components/NewCardModal';
 import Sidebar from './components/Sidebar';
 import Weekday from './components/Weekday';
-import { Container } from './styles';
+import {
+  Container,
+  VerticalContainer,
+  TitleWrapper,
+  CardsWrapper,
+} from './styles';
 
 export const StudyPlan: React.FC = () => {
   const [isNewCardModalOpen, setIsNewCardModalOpen] = useState(false);
@@ -54,8 +58,8 @@ export const StudyPlan: React.FC = () => {
 
   return (
     <Container>
-      <div className="container">
-        <div className="title-wrapper">
+      <VerticalContainer>
+        <TitleWrapper>
           <Title
             text="Cronograma de"
             contrast="estudos"
@@ -64,24 +68,22 @@ export const StudyPlan: React.FC = () => {
           <button onClick={handleOpenNewCardModal}>
             <BsPlusLg /> Criar novo plano
           </button>
-        </div>
-        <div className="wrapper">
-          <Weekday selectedDays={selectedDays} />
-          <div className="cards">
-            {cards.map((card, index) => (
-              <Card
-                key={index}
-                status={card.status}
-                startTime={card.startTime}
-                endTime={card.endTime}
-                subject={card.subject}
-                topic={card.topic}
-                text={card.text}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+        </TitleWrapper>
+        <Weekday selectedDays={selectedDays} />
+        <CardsWrapper>
+          {cards.map((card, index) => (
+            <Card
+              key={index}
+              status={card.status}
+              startTime={card.startTime}
+              endTime={card.endTime}
+              subject={card.subject}
+              topic={card.topic}
+              text={card.text}
+            />
+          ))}
+        </CardsWrapper>
+      </VerticalContainer>
       <Sidebar
         selectedDays={selectedDays}
         onHandleSelectedDays={handleSelectedDays}

@@ -15,11 +15,7 @@ export const TelegramShare = ({ url }: Props) => {
     <span>
       <TelegramShareButton url={url}>
         <ShareIcons>
-          <FaRegPaperPlane
-            size={20}
-            title="Share with Telegram"
-            className="active"
-          />
+          <FaRegPaperPlane size={20} title="Share with Telegram" />
         </ShareIcons>
       </TelegramShareButton>
       <Spacing vertical={3} />

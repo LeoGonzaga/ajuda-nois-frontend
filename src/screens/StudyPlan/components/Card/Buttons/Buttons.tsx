@@ -18,14 +18,9 @@ export const Buttons: React.FC<Props> = ({
   };
 
   return (
-    <Container>
+    <Container status={status}>
       {status == 'completed' ? (
-        <div
-          onClick={() => handleStateChange(prevStatus)}
-          className="completed"
-        >
-          Concluído
-        </div>
+        <div onClick={() => handleStateChange(prevStatus)}>Concluído</div>
       ) : (
         <div onClick={() => handleStateChange('completed')}>Concluir</div>
       )}

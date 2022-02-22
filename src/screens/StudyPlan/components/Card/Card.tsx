@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 
 import Spacing from '@components/Spacing';
-import { COLORS } from '@themes/colors';
 
 import Buttons from './Buttons';
 import Description from './Description';
 import StatusIcon from './StatusIcon';
-import { Container } from './styles';
+import {
+  Container,
+  ExpandableContent,
+  HideableContent,
+  Wrapper,
+} from './styles';
 import Subject from './Subject';
 import Times from './Times';
 
@@ -27,7 +31,7 @@ export const Card: React.FC<Props> = ({
   topic,
   text,
 }: Props) => {
-  const [expand, setExpand] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const [state, setState] = useState({
     currentState: status,
     previousState: '',
@@ -43,29 +47,23 @@ export const Card: React.FC<Props> = ({
   };
 
   return (
-    <Container
-      style={
-        state.currentState == 'failed'
-          ? { border: `1px solid ${COLORS.ERROR}` }
-          : { border: `1px solid ${COLORS.NEUTRAL}` }
-      }
-    >
+    <Container status={state.currentState}>
       <StatusIcon status={state.currentState} />
-      <div className={expand ? 'content expanded' : 'content'}>
-        <div className="wrapper" onClick={() => setExpand(!expand)}>
+      <ExpandableContent expanded={expanded}>
+        <Wrapper onClick={() => setExpanded(!expanded)}>
           <Times startTime={startTime} endTime={endTime} />
           <Spacing vertical={3} />
           <Subject subject={subject} topic={topic} />
-        </div>
-        <div className="extra_info">
-          <Description text={text} onClick={() => setExpand(!expand)} />
+        </Wrapper>
+        <HideableContent>
+          <Description text={text} onClick={() => setExpanded(!expanded)} />
           <Buttons
             status={state.currentState}
             prevStatus={state.previousState}
             onHandleClick={handleState}
           />
-        </div>
-      </div>
+        </HideableContent>
+      </ExpandableContent>
     </Container>
   );
 };

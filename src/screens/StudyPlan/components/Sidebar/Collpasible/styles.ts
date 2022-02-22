@@ -1,7 +1,11 @@
 import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
-export const Container = styled.div`
+type Props = {
+  expanded: boolean;
+};
+
+export const Container = styled.div<Props>`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -10,7 +14,7 @@ export const Container = styled.div`
     cursor: pointer;
 
     p {
-      color: ${COLORS.TEXT};
+      color: ${(props) => (props.expanded ? '#00BF20' : '#B4B4B4')};
 
       transition: color 0.2s;
 
@@ -19,36 +23,25 @@ export const Container = styled.div`
       }
     }
   }
+`;
 
-  .active {
-    p {
-      color: ${COLORS.SECONDARY};
-    }
-  }
+export const ExpandableContent = styled.div<Props>`
+  display: flex;
+  align-self: center;
 
-  .content {
-    display: flex;
-    align-self: center;
+  width: 100%;
+  max-height: ${(props) => (props.expanded ? '300px' : '0px')};
 
-    width: 100%;
-    max-height: 0px;
-    overflow: hidden;
+  padding: ${(props) => (props.expanded ? '5px 10px' : '0px 10px')};
+  margin-bottom: ${(props) => (props.expanded ? '10px' : '0px')};
 
-    padding: 0px 10px;
-    margin-bottom: 0px;
+  background-color: ${COLORS.NEUTRAL};
+  border-radius: 5px;
 
-    background-color: ${COLORS.NEUTRAL};
-    border-radius: 5px;
+  overflow: hidden;
 
-    cursor: default;
+  cursor: default;
 
-    transition: max-height 0.3s ease, padding-top 0.3s ease,
-      padding-bottom 0.3s ease, margin-bottom 0.3s ease;
-  }
-
-  .expanded {
-    max-height: 300px;
-    padding: 5px 10px;
-    margin-bottom: 10px;
-  }
+  transition: max-height 0.3s ease, padding-top 0.3s ease,
+    padding-bottom 0.3s ease, margin-bottom 0.3s ease;
 `;

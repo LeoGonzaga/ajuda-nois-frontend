@@ -8,74 +8,68 @@ export const Container = styled.div`
 
   height: 100%;
   width: 100%;
+`;
 
-  .container {
+export const VerticalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  padding: 20px;
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 10px;
+
+  button {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    width: 100%;
+    height: fit-content;
 
-    padding: 20px;
+    padding: 12px 18px;
 
-    .title-wrapper {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    color: ${COLORS.SECONDARY};
+    font-weight: bold;
 
-      margin-bottom: 10px;
+    background-color: transparent;
+    border: 1px solid ${COLORS.SECONDARY};
+    border-radius: 8px;
 
-      button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    cursor: pointer;
 
-        height: fit-content;
+    filter: brightness(0.8);
 
-        padding: 12px 18px;
-
-        color: ${COLORS.SECONDARY};
-        font-weight: bold;
-
-        background-color: transparent;
-        border: 1px solid ${COLORS.SECONDARY};
-        border-radius: 8px;
-
-        cursor: pointer;
-
-        filter: brightness(0.8);
-
-        &:hover {
-          filter: brightness(1);
-        }
-
-        svg {
-          margin-right: 5px;
-          font-size: 10px;
-        }
-      }
+    &:hover {
+      filter: brightness(1);
     }
 
-    /* .cards-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    } */
+    svg {
+      margin-right: 5px;
+      font-size: 10px;
+    }
   }
+`;
 
-  .cards {
-    display: flex;
-    flex-direction: column;
+export const CardsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 
-    margin-top: 10px;
+  margin-top: 10px;
 
-    max-height: 500px;
+  max-height: 500px;
 
-    overflow-y: scroll;
-    scroll-behavior: smooth;
-    -ms-overflow-style: none;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  &::-webkit-scrollbar {
+    display: none;
   }
 `;

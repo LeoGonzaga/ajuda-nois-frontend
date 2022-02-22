@@ -15,7 +15,7 @@ export const TwitterShare = ({ url }: Props) => {
     <span>
       <TwitterShareButton url={url}>
         <ShareIcons>
-          <FiTwitter size={20} title="Share with Telegram" className="active" />
+          <FiTwitter size={20} title="Share with Telegram" />
         </ShareIcons>
       </TwitterShareButton>
       <Spacing vertical={3} />
