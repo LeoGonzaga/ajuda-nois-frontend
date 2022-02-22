@@ -82,7 +82,7 @@ export function MonthCalendar({
 
   const daysAreSelected = selectedDays?.length > 0;
 
-  const modifiers = {
+  const modifiers: any = {
     hoverRange,
     selectedRange: daysAreSelected && {
       from: selectedDays[0],

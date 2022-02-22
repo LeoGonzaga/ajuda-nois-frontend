@@ -4,11 +4,22 @@ import CurrentDate from './CurrentDate';
 import Months from './Months';
 import { Container } from './styles';
 
-export const Sidebar: React.FC = () => {
+type Props = {
+  selectedDays: Date[];
+  onHandleSelectedDays: (dates: Date[]) => void;
+};
+
+export const Sidebar: React.FC<Props> = ({
+  selectedDays,
+  onHandleSelectedDays,
+}: Props) => {
   return (
     <Container>
       <CurrentDate />
-      <Months />
+      <Months
+        selectedDays={selectedDays}
+        onHandleSelectedDays={onHandleSelectedDays}
+      />
     </Container>
   );
 };

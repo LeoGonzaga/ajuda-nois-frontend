@@ -3,10 +3,17 @@ import { useState } from 'react';
 import Collapsible from '../Collpasible';
 import { Container } from './styles';
 
-export const Months: React.FC = () => {
+type Props = {
+  selectedDays: Date[];
+  onHandleSelectedDays: (dates: Date[]) => void;
+};
+
+export const Months: React.FC<Props> = ({
+  selectedDays,
+  onHandleSelectedDays,
+}: Props) => {
   const currentMonth = new Date().getMonth();
   const [active, setActive] = useState(currentMonth);
-  const [selectedDays, setSelectedDays] = useState<Date[]>([]);
   const [state, setState] = useState([
     currentMonth == 0 ? true : false,
     currentMonth == 1 ? true : false,
@@ -85,12 +92,6 @@ export const Months: React.FC = () => {
     }
   };
 
-  const handleSelectedDays = (dates: Date[]) => {
-    setSelectedDays(dates);
-  };
-
-  console.log(selectedDays);
-
   return (
     <Container>
       {months?.map(({ name, id }) => (
@@ -101,7 +102,7 @@ export const Months: React.FC = () => {
           expanded={state[id]}
           selectedDays={selectedDays}
           onHandleClick={handleState}
-          onHandleSelectedDays={handleSelectedDays}
+          onHandleSelectedDays={onHandleSelectedDays}
         />
       ))}
     </Container>

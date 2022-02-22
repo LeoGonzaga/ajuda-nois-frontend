@@ -11,6 +11,7 @@ import { Container } from './styles';
 
 export const StudyPlan: React.FC = () => {
   const [isNewCardModalOpen, setIsNewCardModalOpen] = useState(false);
+  const [selectedDays, setSelectedDays] = useState<Date[]>([]);
   const [cards, setCards] = useState([
     {
       status: 'idle',
@@ -46,6 +47,10 @@ export const StudyPlan: React.FC = () => {
     setIsNewCardModalOpen(false);
   }
 
+  const handleSelectedDays = (dates: Date[]) => {
+    setSelectedDays(dates);
+  };
+
   return (
     <Container>
       <div className="container">
@@ -60,7 +65,7 @@ export const StudyPlan: React.FC = () => {
           </button>
         </div>
         <div className="wrapper">
-          <Weekday />
+          <Weekday selectedDays={selectedDays} />
           <div className="cards">
             {cards.map((card, index) => (
               <Card
@@ -76,7 +81,10 @@ export const StudyPlan: React.FC = () => {
           </div>
         </div>
       </div>
-      <Sidebar />
+      <Sidebar
+        selectedDays={selectedDays}
+        onHandleSelectedDays={handleSelectedDays}
+      />
 
       <NewCardModal
         isOpen={isNewCardModalOpen}
