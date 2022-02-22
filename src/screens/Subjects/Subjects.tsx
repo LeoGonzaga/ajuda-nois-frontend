@@ -27,28 +27,28 @@ export const Subjects = (): JSX.Element => {
           <Card
             onClick={() => handleToggleToShowContent('Matemática')}
             title={'Matemática e suas Tecnologias'}
-            color="#00c86f"
+            color="#6F52ED"
             icon={<AiOutlineCalculator />}
             active={'Matemática' == activeSubject}
           />
           <Card
             onClick={() => handleToggleToShowContent('Humanas')}
             title={'Ciencias Humanas'}
-            color="#6bd1ff"
+            color="#FBBC05"
             icon={<GiGreekTemple />}
             active={'Humanas' == activeSubject}
           />
           <Card
             onClick={() => handleToggleToShowContent('Natureza')}
             title={'Ciências da natureza'}
-            color="#dc6ebe"
+            color="#00BF20"
             icon={<IoTelescopeOutline />}
             active={'Natureza' == activeSubject}
           />
           <Card
             onClick={() => handleToggleToShowContent('Linguagens')}
             title={'Linguagens e códigos'}
-            color="#ff8c2a"
+            color="#CA1E3C"
             icon={<BsChatLeftQuote />}
             active={'Linguagens' == activeSubject}
           />

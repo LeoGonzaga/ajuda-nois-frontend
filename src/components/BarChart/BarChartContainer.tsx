@@ -10,7 +10,10 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  Cell,
 } from 'recharts';
+
+const barColors = ['#6F52ED', '#00BF20', '#CA1E3C', '#FBBC05'];
 
 const data = [
   {
@@ -53,21 +56,21 @@ export class BarChartContainer extends PureComponent {
             left: 20,
             bottom: 5,
           }}
-          barSize={20}
+          barSize={30}
         >
           <XAxis
             dataKey="name"
             scale="point"
-            padding={{ left: 10, right: 10 }}
+            padding={{ left: 40, right: 40 }}
           />
-          <YAxis />
+          <YAxis type="number" domain={[0, 45]} />
           <Tooltip />
-          <CartesianGrid strokeDasharray="3 3" />
-          <Bar
-            dataKey="acertos"
-            fill={COLORS.SECONDARY}
-            background={{ fill: '#eee' }}
-          />
+          <CartesianGrid strokeDasharray="3 3" vertical={false} />
+          <Bar dataKey="acertos" background={{ fill: 'transparent' }}>
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={barColors[index]} />
+            ))}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     );

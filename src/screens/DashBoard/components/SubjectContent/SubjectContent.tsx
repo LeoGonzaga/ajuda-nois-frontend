@@ -11,10 +11,10 @@ export const SubjectContent = (): JSX.Element => {
     <Container>
       <Text>Conteúdo</Text>
       <Row>
-        <CircleProgress area="Natureza" color={COLORS.PINK} value={100} />
-        <CircleProgress area="Exatas" color={COLORS.SUCCESS} value={75} />
-        <CircleProgress area="Linguagens" color={COLORS.WARNING} value={50} />
-        <CircleProgress area="Humanas" color={COLORS.BLUE} value={25} />
+        <CircleProgress area="Natureza" color={COLORS.GREEN} value={100} />
+        <CircleProgress area="Exatas" color={COLORS.SUBJECT_BLUE} value={75} />
+        <CircleProgress area="Linguagens" color={COLORS.RED} value={50} />
+        <CircleProgress area="Humanas" color={COLORS.YELLOW} value={25} />
       </Row>
     </Container>
   );

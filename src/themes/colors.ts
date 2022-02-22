@@ -14,4 +14,8 @@ export const COLORS = {
   TEXT: '#B4B4B4',
   BUTTON: '#2D3748',
   BLUE: '#6bd1ff',
+  RED: '#CA1E3C',
+  YELLOW: '#FBBC05',
+  GREEN: '#00BF20',
+  SUBJECT_BLUE: '#6F52ED',
 };
