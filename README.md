@@ -22,11 +22,11 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [x] Adição da tela de conquistas
 - [x] Adição da possibilidade de compartilhar as conquistas
 - [x] Adição da tela com cards de dicas
+- [x] Adição do plano de estudo do aluno
 - [ ] Adição da visualização de contéudo por matéria
 - [ ] Desenvolver uma imagem para a área de login
 - [ ] Adição do gráfico de tempo por área
 - [ ] Adição do QUIZ com questões cadastradas pelos professores
-- [ ] Adição do plano de estudo do aluno
 - [ ] Adição da visualização de contéudo por matéria
 
 Ele esta disponivel para a visualização por esse [link](https://ajudanois.vercel.app/).

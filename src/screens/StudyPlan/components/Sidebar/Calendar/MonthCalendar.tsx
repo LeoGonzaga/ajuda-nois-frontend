@@ -1,15 +1,36 @@
 import React, { useState } from 'react';
 import DayPicker from 'react-day-picker';
 
-import 'react-day-picker/lib/style.css';
+import moment from 'moment';
+
 import { Container } from './styles';
 
 type Props = {
   id: number;
+  selectedDays: Date[];
+  onHandleSelectedDays: (dates: Date[]) => void;
 };
 
-export function MonthCalendar({ id }: Props) {
-  const calendar = new Date();
+function getWeekDays(weekStart: Date) {
+  const days = [weekStart];
+  for (let i = 1; i < 7; i += 1) {
+    days.push(moment(weekStart).add(i, 'days').toDate());
+  }
+  return days;
+}
+
+function getWeekRange(date: Date) {
+  return {
+    from: moment(date).startOf('week').toDate(),
+    to: moment(date).endOf('week').toDate(),
+  };
+}
+
+export function MonthCalendar({
+  id,
+  selectedDays,
+  onHandleSelectedDays,
+}: Props) {
   const MONTHS = [
     'Janeiro',
     'Fevereiro',
@@ -34,13 +55,45 @@ export function MonthCalendar({ id }: Props) {
     'Sábado',
   ];
   const WEEKDAYS_SHORT = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-  const [state, setState] = useState<Date>();
-
-  const handleDayClick = (day: Date) => {
-    setState(day);
-  };
+  const calendar = new Date();
+  const [hoverRange, setHoverRange] = useState<any>(undefined);
 
   calendar.setMonth(id);
+
+  const handleDayChange = (date: Date) => {
+    onHandleSelectedDays(getWeekDays(getWeekRange(date).from));
+  };
+
+  const handleDayEnter = (date: Date) => {
+    setHoverRange(getWeekRange(date));
+  };
+
+  const handleDayLeave = () => {
+    setHoverRange(undefined);
+  };
+
+  const handleWeekClick = (
+    weekNumber: number,
+    days: Date[],
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    onHandleSelectedDays(days);
+  };
+
+  const daysAreSelected = selectedDays?.length > 0;
+
+  const modifiers: any = {
+    hoverRange,
+    selectedRange: daysAreSelected && {
+      from: selectedDays[0],
+      to: selectedDays[6],
+    },
+    hoverRangeStart: hoverRange && hoverRange.from,
+    hoverRangeEnd: hoverRange && hoverRange.to,
+    selectedRangeStart: daysAreSelected && selectedDays[0],
+    selectedRangeEnd: daysAreSelected && selectedDays[6],
+  };
+
   return (
     <Container>
       <DayPicker
@@ -52,9 +105,12 @@ export function MonthCalendar({ id }: Props) {
         weekdaysLong={WEEKDAYS_LONG}
         weekdaysShort={WEEKDAYS_SHORT}
         firstDayOfWeek={0}
-        className={Container}
-        onDayClick={handleDayClick}
-        selectedDays={state}
+        selectedDays={selectedDays}
+        modifiers={modifiers}
+        onDayClick={handleDayChange}
+        onDayMouseEnter={handleDayEnter}
+        onDayMouseLeave={handleDayLeave}
+        onWeekClick={handleWeekClick}
       />
     </Container>
   );

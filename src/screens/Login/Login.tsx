@@ -1,5 +1,6 @@
 import React from 'react';
 
+import BG from '../../../assets/boy.svg';
 import Form from './components/Form';
 import { Container } from './styles';
 
@@ -7,7 +8,7 @@ import { Container } from './styles';
 export const Login = (): JSX.Element => {
   return (
     <Container>
-      {/* <BG /> */}
+      <BG />
       <Form />
     </Container>
   );
