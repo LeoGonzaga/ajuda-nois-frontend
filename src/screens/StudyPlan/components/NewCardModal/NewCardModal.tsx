@@ -6,17 +6,31 @@ import Spacing from '@components/Spacing';
 
 import { Container } from './styles';
 
+type CardProps = {
+  status: string;
+  startTime: string;
+  endTime: string;
+  subject: string;
+  topic: string;
+  text?: string;
+};
+
 type Props = {
   isOpen: boolean;
   onRequestClose: () => void;
+  onHandleNewCard: (data: CardProps) => void;
 };
 
-export function NewCardModal({ isOpen, onRequestClose }: Props) {
+export function NewCardModal({
+  isOpen,
+  onRequestClose,
+  onHandleNewCard,
+}: Props) {
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
   const [subject, setSubject] = useState('Escolher...');
   const [topic, setTopic] = useState('');
-  const [info, setInfo] = useState('');
+  const [text, setText] = useState('');
 
   const subjects = [
     'Biologia',
@@ -35,8 +49,9 @@ export function NewCardModal({ isOpen, onRequestClose }: Props) {
 
   function handleCreateNewCard(event: FormEvent) {
     event.preventDefault();
-    console.log(startTime, endTime, subject, topic, info);
-
+    const status = 'idle';
+    const data = { status, startTime, endTime, subject, topic, text };
+    onHandleNewCard(data);
     onRequestClose();
   }
 
@@ -115,11 +130,11 @@ export function NewCardModal({ isOpen, onRequestClose }: Props) {
 
         <div className="text-area-wrapper">
           <textarea
-            id="info"
+            id="text"
             rows={8}
             placeholder="Alguma nota ou comentário a adicionar para este card?"
-            value={info}
-            onChange={(event) => setInfo(event.target.value)}
+            value={text}
+            onChange={(event) => setText(event.target.value)}
           ></textarea>
         </div>
 

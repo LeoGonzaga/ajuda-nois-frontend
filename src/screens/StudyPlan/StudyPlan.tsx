@@ -14,10 +14,19 @@ import {
   CardsWrapper,
 } from './styles';
 
+type CardProps = {
+  status: string;
+  startTime: string;
+  endTime: string;
+  subject: string;
+  topic: string;
+  text?: string;
+};
+
 export const StudyPlan: React.FC = () => {
   const [isNewCardModalOpen, setIsNewCardModalOpen] = useState(false);
   const [selectedDays, setSelectedDays] = useState<Date[]>([]);
-  const [cards, setCards] = useState([
+  const [cards, setCards] = useState<CardProps[]>([
     {
       status: 'idle',
       startTime: '10:00',
@@ -51,6 +60,10 @@ export const StudyPlan: React.FC = () => {
   function handleCloseNewCardModal() {
     setIsNewCardModalOpen(false);
   }
+
+  const handleNewCard = (data: CardProps) => {
+    setCards((prevState) => [...prevState, data]);
+  };
 
   const handleSelectedDays = (dates: Date[]) => {
     setSelectedDays(dates);
@@ -92,6 +105,7 @@ export const StudyPlan: React.FC = () => {
       <NewCardModal
         isOpen={isNewCardModalOpen}
         onRequestClose={handleCloseNewCardModal}
+        onHandleNewCard={handleNewCard}
       />
     </Container>
   );
