@@ -37,7 +37,7 @@ export const ExpandableContent = styled.div<ExpandedProps>`
   align-items: center;
 
   width: 550px;
-  max-height: ${(props) => (props.expanded ? '200px' : '50px')};
+  max-height: ${(props) => (props.expanded ? '250px' : '50px')};
 
   padding: 5px 20px 5px 10px;
 

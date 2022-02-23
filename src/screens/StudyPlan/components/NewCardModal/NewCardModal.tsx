@@ -31,6 +31,13 @@ export function NewCardModal({
   const [subject, setSubject] = useState('Escolher...');
   const [topic, setTopic] = useState('');
   const [text, setText] = useState('');
+  const [errors, setErrors] = useState({
+    startTime: '',
+    endTime: '',
+    times: '',
+    subject: '',
+    topic: '',
+  });
 
   const subjects = [
     'Biologia',
@@ -47,12 +54,72 @@ export function NewCardModal({
     'Sociologia',
   ];
 
+  function handleValidation() {
+    let formIsValid = true;
+    const currentErrors = errors;
+
+    if (!startTime) {
+      formIsValid = false;
+      currentErrors.startTime = 'Selecione um horário de início';
+    }
+
+    if (!endTime) {
+      formIsValid = false;
+      currentErrors.endTime = 'Selecione um horário de término';
+    }
+
+    if (subject === 'Escolher...') {
+      formIsValid = false;
+      currentErrors.subject = 'Selecione uma matéria';
+    }
+
+    if (!topic) {
+      formIsValid = false;
+      currentErrors.topic = 'Indique o tópico da matéria';
+    }
+
+    if (
+      startTime &&
+      endTime &&
+      Number(startTime.replace(/:/g, '')) > Number(endTime.replace(/:/g, ''))
+    ) {
+      formIsValid = false;
+      currentErrors.times =
+        'O horário de início deve ser menor que o horário de término';
+    }
+
+    setErrors(currentErrors);
+
+    return formIsValid;
+  }
+
   function handleCreateNewCard(event: FormEvent) {
     event.preventDefault();
-    const status = 'idle';
-    const data = { status, startTime, endTime, subject, topic, text };
-    onHandleNewCard(data);
-    onRequestClose();
+
+    if (handleValidation()) {
+      const status = 'idle';
+      const data = { status, startTime, endTime, subject, topic, text };
+
+      onHandleNewCard(data);
+
+      setStartTime('');
+      setEndTime('');
+      setSubject('Escolher...');
+      setTopic('');
+      setText('');
+
+      onRequestClose();
+    } else {
+      console.log({ errors });
+    }
+
+    setErrors({
+      startTime: '',
+      endTime: '',
+      times: '',
+      subject: '',
+      topic: '',
+    });
   }
 
   return (
