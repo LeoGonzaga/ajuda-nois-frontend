@@ -1,7 +1,11 @@
 import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
-export const Container = styled.div`
+type Props = {
+  status: string;
+};
+
+export const Container = styled.div<Props>`
   display: flex;
   align-items: center;
 
@@ -26,11 +30,8 @@ export const Container = styled.div`
 
     &:first-child {
       margin-right: 10px;
-      background-color: ${COLORS.GRAY};
-
-      &.completed {
-        background-color: ${COLORS.SECONDARY};
-      }
+      background-color: ${(props) =>
+        props.status == 'completed' ? '#00BF20' : '#3D3D45'};
     }
 
     &:last-child {

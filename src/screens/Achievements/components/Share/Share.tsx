@@ -58,7 +58,7 @@ export const Share = () => {
           <Text size={14} color={COLORS.TEXT}>
             {url}
           </Text>
-          <IoMdCopy size={22} className="active" />
+          <IoMdCopy size={22} />
         </button>
       </Flex>
     </Container>

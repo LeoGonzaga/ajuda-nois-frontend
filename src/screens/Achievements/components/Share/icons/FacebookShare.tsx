@@ -15,11 +15,7 @@ export const FacebookShare = ({ url }: Props) => {
     <span>
       <FacebookShareButton url={url}>
         <ShareIcons>
-          <FiFacebook
-            size={20}
-            title="Share with Facebook"
-            className="active"
-          />
+          <FiFacebook size={20} title="Share with Facebook" />
         </ShareIcons>
       </FacebookShareButton>
       <Spacing vertical={3} />

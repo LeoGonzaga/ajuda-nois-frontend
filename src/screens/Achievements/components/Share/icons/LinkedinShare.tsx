@@ -15,11 +15,7 @@ export const LinkedinShare = ({ url }: Props) => {
     <span>
       <LinkedinShareButton url={url}>
         <ShareIcons>
-          <FiLinkedin
-            size={20}
-            title="Share with Telegram"
-            className="active"
-          />
+          <FiLinkedin size={20} title="Share with Telegram" />
         </ShareIcons>
       </LinkedinShareButton>
       <Spacing vertical={3} />
