@@ -1,4 +1,6 @@
-import React, { FormEvent, useState } from 'react';
+import React from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { BiError } from 'react-icons/bi';
 import Modal from 'react-modal';
 
 import Flex from '@components/Flex';
@@ -26,18 +28,12 @@ export function NewCardModal({
   onRequestClose,
   onHandleNewCard,
 }: Props) {
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
-  const [subject, setSubject] = useState('Escolher...');
-  const [topic, setTopic] = useState('');
-  const [text, setText] = useState('');
-  const [errors, setErrors] = useState({
-    startTime: '',
-    endTime: '',
-    times: '',
-    subject: '',
-    topic: '',
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm<CardProps>();
 
   const subjects = [
     'Biologia',
@@ -54,84 +50,16 @@ export function NewCardModal({
     'Sociologia',
   ];
 
-  function handleValidation() {
-    let formIsValid = true;
-    const currentErrors = errors;
-
-    if (!startTime) {
-      formIsValid = false;
-      currentErrors.startTime = 'Selecione um horário de início';
-    } else {
-      currentErrors.startTime = '';
-    }
-
-    if (!endTime) {
-      formIsValid = false;
-      currentErrors.endTime = 'Selecione um horário de término';
-    } else {
-      currentErrors.endTime = '';
-    }
-
-    if (subject === 'Escolher...') {
-      formIsValid = false;
-      currentErrors.subject = 'Selecione uma matéria';
-    } else {
-      currentErrors.subject = '';
-    }
-
-    if (!topic) {
-      formIsValid = false;
-      currentErrors.topic = 'Indique o tópico da matéria';
-    } else {
-      currentErrors.topic = '';
-    }
-
+  const onSubmit: SubmitHandler<CardProps> = (data) => {
+    data.status = 'idle';
     if (
-      startTime &&
-      endTime &&
-      Number(startTime.replace(/:/g, '')) > Number(endTime.replace(/:/g, ''))
+      Number(data.startTime.replace(/:/g, '')) <
+      Number(data.endTime.replace(/:/g, ''))
     ) {
-      formIsValid = false;
-      currentErrors.times =
-        'O horário de início deve ser menor que o horário de término';
-    } else {
-      currentErrors.times = '';
-    }
-
-    setErrors(currentErrors);
-
-    return formIsValid;
-  }
-
-  function handleCreateNewCard(event: FormEvent) {
-    event.preventDefault();
-
-    if (handleValidation()) {
-      const status = 'idle';
-      const data = { status, startTime, endTime, subject, topic, text };
-
       onHandleNewCard(data);
-
-      setStartTime('');
-      setEndTime('');
-      setSubject('Escolher...');
-      setTopic('');
-      setText('');
-
       onRequestClose();
     }
-    // setErrors({
-    //   startTime: '',
-    //   endTime: '',
-    //   times: '',
-    //   subject: '',
-    //   topic: '',
-    // });
-  }
-
-  function handleStartTimeChange(event: any) {
-    setStartTime(event.target.value);
-  }
+  };
 
   return (
     <Modal
@@ -141,7 +69,7 @@ export function NewCardModal({
       overlayClassName="modalOverlay"
       className="modalContent"
     >
-      <Container onSubmit={handleCreateNewCard}>
+      <Container onSubmit={handleSubmit(onSubmit)}>
         <Flex direction="row" justify="space-between">
           <Flex direction="column" align="center" justify="flex-end">
             <Flex align="center" justify="center">
@@ -151,11 +79,15 @@ export function NewCardModal({
               <input
                 type="time"
                 id="startTime"
-                value={startTime}
-                onChange={handleStartTimeChange}
+                {...register('startTime', { required: true })}
               />
             </Flex>
-            <InputError>{errors.startTime}</InputError>
+            {errors.startTime && (
+              <InputError>
+                <BiError size={15} />
+                Insira um horário de início
+              </InputError>
+            )}
           </Flex>
           <div className="bar"></div>
           <Flex direction="column" align="center" justify="flex-end">
@@ -166,16 +98,26 @@ export function NewCardModal({
               <input
                 type="time"
                 id="endTime"
-                value={endTime}
-                onChange={(event) => setEndTime(event.target.value)}
+                {...register('endTime', { required: true })}
               />
             </Flex>
-            <InputError>{errors.endTime}</InputError>
+            {errors.endTime && (
+              <InputError>
+                <BiError size={15} />
+                Insira um horário de término
+              </InputError>
+            )}
           </Flex>
         </Flex>
-
+        {!!getValues('startTime') &&
+          !!getValues('endTime') &&
+          getValues('startTime') > getValues('endTime') && (
+            <InputError>
+              <BiError size={15} />O horário de início deve ser inferior ao
+              horário de término
+            </InputError>
+          )}
         <Spacing vertical={10} />
-        <InputError>{errors.times}</InputError>
 
         <Flex direction="row" justify="space-between">
           <Flex direction="column" align="center" justify="flex-end">
@@ -185,10 +127,13 @@ export function NewCardModal({
               </label>
               <select
                 id="subject"
-                value={subject}
-                onChange={(event) => setSubject(event.target.value)}
+                {...register('subject', {
+                  validate: {
+                    selected: (value) => value != 'Escolher...',
+                  },
+                })}
               >
-                <option value="Escolher..." disabled hidden>
+                <option value="Escolher..." disabled selected hidden>
                   Escolher...
                 </option>
                 {subjects.map((item, index) => (
@@ -198,7 +143,12 @@ export function NewCardModal({
                 ))}
               </select>
             </Flex>
-            <InputError>{errors.subject}</InputError>
+            {errors.subject && (
+              <InputError>
+                <BiError size={15} />
+                Selecione uma matéria
+              </InputError>
+            )}
           </Flex>
 
           <Flex direction="column" align="center" justify="flex-end">
@@ -210,11 +160,15 @@ export function NewCardModal({
                 type="text"
                 id="topic"
                 placeholder="Insira um tópico..."
-                value={topic}
-                onChange={(event) => setTopic(event.target.value)}
+                {...register('topic', { required: true })}
               />
             </Flex>
-            <InputError>{errors.topic}</InputError>
+            {errors.topic && (
+              <InputError>
+                <BiError size={15} />
+                Especifique um tópico
+              </InputError>
+            )}
           </Flex>
         </Flex>
 
@@ -225,8 +179,7 @@ export function NewCardModal({
             id="text"
             rows={8}
             placeholder="Alguma nota ou comentário a adicionar para este card?"
-            value={text}
-            onChange={(event) => setText(event.target.value)}
+            {...register('text')}
           />
         </div>
 

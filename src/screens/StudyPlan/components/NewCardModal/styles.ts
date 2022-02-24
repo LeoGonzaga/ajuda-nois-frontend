@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const Container = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   padding: 20px;
 
@@ -81,6 +82,8 @@ export const Container = styled.form`
     justify-content: space-between;
     align-items: center;
 
+    width: 100%;
+
     margin-top: 20px;
     padding: 0 10px;
 
@@ -115,8 +118,17 @@ export const Container = styled.form`
 `;
 
 export const InputError = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   margin-top: 5px;
   margin-bottom: -5px;
+
   font-size: 12px;
   color: ${COLORS.ERROR};
+
+  svg {
+    margin-right: 5px;
+  }
 `;
