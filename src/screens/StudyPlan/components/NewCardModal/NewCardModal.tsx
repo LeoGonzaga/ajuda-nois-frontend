@@ -6,7 +6,11 @@ import Modal from 'react-modal';
 import Flex from '@components/Flex';
 import Spacing from '@components/Spacing';
 
-import { Container, InputError } from './styles';
+import EndTime from './EndTime';
+import StartTime from './StartTime';
+import { Bar, Container, InputError, Wrapper } from './styles';
+import Subject from './Subject';
+import Topic from './Topic';
 
 type CardProps = {
   status: string;
@@ -33,7 +37,11 @@ export function NewCardModal({
     handleSubmit,
     formState: { errors },
     getValues,
-  } = useForm<CardProps>();
+  } = useForm<CardProps>({
+    defaultValues: {
+      subject: 'Escolher...',
+    },
+  });
 
   const subjects = [
     'Biologia',
@@ -71,44 +79,23 @@ export function NewCardModal({
     >
       <Container onSubmit={handleSubmit(onSubmit)}>
         <Flex direction="row" justify="space-between">
-          <Flex direction="column" align="center" justify="flex-end">
-            <Flex align="center" justify="center">
-              <label htmlFor="startTime">
-                <strong>Início - </strong>
-              </label>
-              <input
-                type="time"
-                id="startTime"
-                {...register('startTime', { required: true })}
-              />
-            </Flex>
-            {errors.startTime && (
-              <InputError>
-                <BiError size={15} />
-                Insira um horário de início
-              </InputError>
-            )}
-          </Flex>
-          <div className="bar"></div>
-          <Flex direction="column" align="center" justify="flex-end">
-            <Flex align="center" justify="center">
-              <label htmlFor="endTime">
-                <strong>Término - </strong>
-              </label>
-              <input
-                type="time"
-                id="endTime"
-                {...register('endTime', { required: true })}
-              />
-            </Flex>
-            {errors.endTime && (
-              <InputError>
-                <BiError size={15} />
-                Insira um horário de término
-              </InputError>
-            )}
-          </Flex>
+          <StartTime showError={!!errors.startTime}>
+            <input
+              type="time"
+              id="startTime"
+              {...register('startTime', { required: true })}
+            />
+          </StartTime>
+          <Bar />
+          <EndTime showError={!!errors.endTime}>
+            <input
+              type="time"
+              id="endTime"
+              {...register('endTime', { required: true })}
+            />
+          </EndTime>
         </Flex>
+
         {!!getValues('startTime') &&
           !!getValues('endTime') &&
           getValues('startTime') > getValues('endTime') && (
@@ -120,68 +107,45 @@ export function NewCardModal({
         <Spacing vertical={10} />
 
         <Flex direction="row" justify="space-between">
-          <Flex direction="column" align="center" justify="flex-end">
-            <Flex align="center" justify="center">
-              <label htmlFor="subject">
-                <strong>Disciplina:</strong>
-              </label>
-              <select
-                id="subject"
-                {...register('subject', {
-                  validate: {
-                    selected: (value) => value != 'Escolher...',
-                  },
-                })}
-              >
-                <option value="Escolher..." disabled selected hidden>
-                  Escolher...
+          <Subject showError={!!errors.subject}>
+            <select
+              id="subject"
+              {...register('subject', {
+                validate: {
+                  selected: (value) => value != 'Escolher...',
+                },
+              })}
+            >
+              <option value="Escolher..." disabled hidden>
+                Escolher...
+              </option>
+              {subjects.map((item, index) => (
+                <option key={index} value={item}>
+                  {item}
                 </option>
-                {subjects.map((item, index) => (
-                  <option key={index} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </Flex>
-            {errors.subject && (
-              <InputError>
-                <BiError size={15} />
-                Selecione uma matéria
-              </InputError>
-            )}
-          </Flex>
-
-          <Flex direction="column" align="center" justify="flex-end">
-            <Flex align="center" justify="center">
-              <label htmlFor="topic">
-                <strong>Tópico: </strong>
-              </label>
-              <input
-                type="text"
-                id="topic"
-                placeholder="Insira um tópico..."
-                {...register('topic', { required: true })}
-              />
-            </Flex>
-            {errors.topic && (
-              <InputError>
-                <BiError size={15} />
-                Especifique um tópico
-              </InputError>
-            )}
-          </Flex>
+              ))}
+            </select>
+          </Subject>
+          <Topic showError={!!errors.topic}>
+            <input
+              type="text"
+              id="topic"
+              placeholder="Insira um tópico..."
+              {...register('topic', { required: true })}
+            />
+          </Topic>
         </Flex>
 
         <Spacing vertical={10} />
 
-        <div className="text-area-wrapper">
+        <Wrapper>
           <textarea
             id="text"
             rows={8}
             placeholder="Alguma nota ou comentário a adicionar para este card?"
             {...register('text')}
           />
-        </div>
+        </Wrapper>
 
         <span>
           <button type="submit">Confirmar</button>

@@ -10,16 +10,6 @@ export const Container = styled.form`
 
   color: ${COLORS.TEXT};
 
-  .bar {
-    width: 1px;
-    height: 28px;
-
-    margin-right: 5px;
-
-    border: none;
-    background-color: ${COLORS.GRAY};
-  }
-
   .text-area-wrapper {
     width: 510px;
 
@@ -131,4 +121,22 @@ export const InputError = styled.p`
   svg {
     margin-right: 5px;
   }
+`;
+
+export const Bar = styled.div`
+  width: 1px;
+  height: 28px;
+
+  margin-right: 5px;
+
+  border: none;
+  background-color: ${COLORS.GRAY};
+`;
+
+export const Wrapper = styled.div`
+  width: 510px;
+
+  padding: 15px 10px 0px 10px;
+
+  border-top: 1px solid ${COLORS.GRAY};
 `;
