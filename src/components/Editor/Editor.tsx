@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 import { AiOutlineLink } from 'react-icons/ai';
 import { BiParagraph } from 'react-icons/bi';
 import { CgArrowsBreakeV } from 'react-icons/cg';
@@ -14,8 +14,6 @@ import { GoListOrdered } from 'react-icons/go';
 import { GrBlockQuote } from 'react-icons/gr';
 import { MdFormatListBulleted } from 'react-icons/md';
 
-import ActionButton from '@components/Buttons/ActionButton';
-import Flex from '@components/Flex';
 import Spacing from '@components/Spacing';
 import { COLORS } from '@themes/colors';
 import Image from '@tiptap/extension-image';
@@ -32,6 +30,11 @@ import {
   UploadImageContainer,
   Header,
 } from './styles';
+
+type Props = {
+  showControls: boolean;
+  data?: string;
+};
 
 const MenuBar = ({ editor }: any) => {
   if (!editor) {
@@ -167,16 +170,24 @@ const MenuBar = ({ editor }: any) => {
   );
 };
 
-export const EditorContainer = () => {
+export const EditorContainer = ({ showControls, data }: Props) => {
   const editor = useEditor({
     extensions: [StarterKit, Image, Link, Paragraph, Text],
-    content: `
+    content: data
+      ? data
+      : `
       <p>
       Digite aqui...
       </p>
    
     `,
   });
+
+  useEffect(() => {
+    if (editor) {
+      editor.setOptions({ editable: showControls });
+    }
+  }, [editor, showControls]);
 
   const handleSaveContent = () => {
     if (editor) {
@@ -187,7 +198,7 @@ export const EditorContainer = () => {
 
   return (
     <Container>
-      <MenuBar editor={editor} />
+      {showControls && <MenuBar editor={editor} />}
       <EditorArea>
         <EditorContent editor={editor} />
       </EditorArea>

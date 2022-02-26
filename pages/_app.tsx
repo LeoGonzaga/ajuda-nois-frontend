@@ -16,6 +16,7 @@ Modal.setAppElement('#__next');
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
+  console.log(pathname);
   return (
     <ThemeProvider theme={darkTheme}>
       <GlobalStyles />
