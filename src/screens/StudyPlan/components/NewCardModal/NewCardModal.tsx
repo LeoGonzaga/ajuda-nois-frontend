@@ -1,31 +1,72 @@
 import React from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { BiError } from 'react-icons/bi';
 import Modal from 'react-modal';
 
 import Flex from '@components/Flex';
 import Spacing from '@components/Spacing';
 
-import { Container } from './styles';
+import EndTime from './EndTime';
+import StartTime from './StartTime';
+import { Bar, Container, InputError, Wrapper } from './styles';
+import Subject from './Subject';
+import Topic from './Topic';
 
-type Props = {
-  isOpen: boolean;
-  onRequestClose: () => void;
-};
-
-type FormData = {
+type CardProps = {
+  status: string;
   startTime: string;
   endTime: string;
   subject: string;
   topic: string;
-  info: string;
+  text?: string;
 };
 
-export function NewCardModal({ isOpen, onRequestClose }: Props) {
-  const { register, handleSubmit } = useForm<FormData>();
+type Props = {
+  isOpen: boolean;
+  onRequestClose: () => void;
+  onHandleNewCard: (data: CardProps) => void;
+};
 
-  const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
-    console.log(data);
-    onRequestClose();
+export function NewCardModal({
+  isOpen,
+  onRequestClose,
+  onHandleNewCard,
+}: Props) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm<CardProps>({
+    defaultValues: {
+      subject: 'Escolher...',
+    },
+  });
+
+  const subjects = [
+    'Biologia',
+    'Espanhol',
+    'Filosofia',
+    'Física',
+    'Química',
+    'Geografia',
+    'História',
+    'Inglês',
+    'Literatura',
+    'Matemática',
+    'Português',
+    'Sociologia',
+  ];
+
+  const onSubmit: SubmitHandler<CardProps> = (data) => {
+    data.status = 'idle';
+    if (
+      Number(data.startTime.replace(/:/g, '')) <
+      Number(data.endTime.replace(/:/g, ''))
+    ) {
+      onHandleNewCard(data);
+      onRequestClose();
+    }
   };
 
   return (
@@ -37,100 +78,74 @@ export function NewCardModal({ isOpen, onRequestClose }: Props) {
       className="modalContent"
     >
       <Container onSubmit={handleSubmit(onSubmit)}>
-        <Flex direction="horizontal" justify="space-between">
-          <Flex align="center" justify="center">
-            <label htmlFor="startTime">
-              <strong>Início - </strong>
-            </label>
+        <Flex direction="row" justify="space-between">
+          <StartTime showError={!!errors.startTime}>
             <input
               type="time"
               id="startTime"
-              {...register('startTime', {
-                required: {
-                  value: true,
-                  message: 'Insira um horário de início!',
-                },
-              })}
+              {...register('startTime', { required: true })}
             />
-          </Flex>
-          <div className="bar"></div>
-          <Flex align="center" justify="center">
-            <label htmlFor="endTime">
-              <strong>Término - </strong>
-            </label>
+          </StartTime>
+          <Bar />
+          <EndTime showError={!!errors.endTime}>
             <input
               type="time"
               id="endTime"
-              {...register('endTime', {
-                required: {
-                  value: true,
-                  message: 'Insira um horário de término!',
-                },
-              })}
+              {...register('endTime', { required: true })}
             />
-          </Flex>
+          </EndTime>
         </Flex>
 
+        {!!getValues('startTime') &&
+          !!getValues('endTime') &&
+          getValues('startTime') > getValues('endTime') && (
+            <InputError>
+              <BiError size={15} />O horário de início deve ser inferior ao
+              horário de término
+            </InputError>
+          )}
         <Spacing vertical={10} />
 
-        <Flex direction="horizontal" justify="space-between">
-          <Flex align="center" justify="center">
-            <label htmlFor="subject">
-              <strong>Disciplina:</strong>
-            </label>
+        <Flex direction="row" justify="space-between">
+          <Subject showError={!!errors.subject}>
             <select
               id="subject"
               {...register('subject', {
-                required: true,
-                validate: (value) =>
-                  value !== 'Escolher...' || 'Seleciona uma matéria!',
+                validate: {
+                  selected: (value) => value != 'Escolher...',
+                },
               })}
             >
-              <option value="Escolher..." disabled selected hidden>
+              <option value="Escolher..." disabled hidden>
                 Escolher...
               </option>
-              <option value="Biologia">Biologia</option>
-              <option value="Espanhol">Espanhol</option>
-              <option value="Filosofia">Filosofia</option>
-              <option value="Fisica">Física</option>
-              <option value="Quimica">Química</option>
-              <option value="Geografia">Geografia</option>
-              <option value="Historia">História</option>
-              <option value="Ingles">Inglês</option>
-              <option value="Literatura">Literatura</option>
-              <option value="Matematica">Matemática</option>
-              <option value="Portugues">Português</option>
-              <option value="Sociologia">Sociologia</option>
+              {subjects.map((item, index) => (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              ))}
             </select>
-          </Flex>
-          <Flex align="center" justify="center">
-            <label htmlFor="topic">
-              <strong>Tópico: </strong>
-            </label>
+          </Subject>
+          <Topic showError={!!errors.topic}>
             <input
               type="text"
               id="topic"
               placeholder="Insira um tópico..."
-              {...register('topic', {
-                required: {
-                  value: true,
-                  message: 'Insira um tópico para estudar!',
-                },
-              })}
+              {...register('topic', { required: true })}
             />
-          </Flex>
+          </Topic>
         </Flex>
 
         <Spacing vertical={10} />
 
-        <div className="text-area-wrapper">
+        <Wrapper>
           <textarea
-            id="info"
+            id="text"
             rows={8}
             placeholder="Alguma nota ou comentário a adicionar para este card?"
-            {...register('info')}
-          ></textarea>
-        </div>
+            {...register('text')}
+          />
+        </Wrapper>
 
         <span>
           <button type="submit">Confirmar</button>

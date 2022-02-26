@@ -20,7 +20,7 @@ type Props = {
   endTime: string;
   subject: string;
   topic: string;
-  text: string;
+  text?: string;
 };
 
 export const Card: React.FC<Props> = ({
@@ -56,7 +56,9 @@ export const Card: React.FC<Props> = ({
           <Subject subject={subject} topic={topic} />
         </Wrapper>
         <HideableContent>
-          <Description text={text} onClick={() => setExpanded(!expanded)} />
+          {text && (
+            <Description text={text} onClick={() => setExpanded(!expanded)} />
+          )}
           <Buttons
             status={state.currentState}
             prevStatus={state.previousState}

@@ -60,9 +60,11 @@ export const TitleWrapper = styled.div`
 export const CardsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   margin-top: 10px;
 
+  width: 100%;
   max-height: 500px;
 
   overflow-y: scroll;

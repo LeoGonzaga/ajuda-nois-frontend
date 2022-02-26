@@ -14,17 +14,26 @@ import {
   CardsWrapper,
 } from './styles';
 
+type CardProps = {
+  status: string;
+  startTime: string;
+  endTime: string;
+  subject: string;
+  topic: string;
+  text?: string;
+};
+
 export const StudyPlan: React.FC = () => {
   const [isNewCardModalOpen, setIsNewCardModalOpen] = useState(false);
   const [selectedDays, setSelectedDays] = useState<Date[]>([]);
-  const [cards, setCards] = useState([
+  const [cards, setCards] = useState<CardProps[]>([
     {
       status: 'idle',
       startTime: '10:00',
       endTime: '15:30',
       subject: 'Matemática',
       topic: 'Trigonometria',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.',
     },
     {
       status: 'failed',
@@ -51,6 +60,10 @@ export const StudyPlan: React.FC = () => {
   function handleCloseNewCardModal() {
     setIsNewCardModalOpen(false);
   }
+
+  const handleNewCard = (data: CardProps) => {
+    setCards((prevState) => [...prevState, data]);
+  };
 
   const handleSelectedDays = (dates: Date[]) => {
     setSelectedDays(dates);
@@ -92,6 +105,7 @@ export const StudyPlan: React.FC = () => {
       <NewCardModal
         isOpen={isNewCardModalOpen}
         onRequestClose={handleCloseNewCardModal}
+        onHandleNewCard={handleNewCard}
       />
     </Container>
   );
