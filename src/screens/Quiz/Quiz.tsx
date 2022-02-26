@@ -13,7 +13,7 @@ export const Quiz = (): JSX.Element => {
     <Container>
       <Title text="Iniciar" contrast="quiz" />
       <Spacing vertical={5} />
-      <EditorContainer />
+      <EditorContainer showControls />
       <Spacing vertical={15} />
       <Text>Marque o checkbox para validar a resposta verdadeira.</Text>
       <Spacing vertical={15} />
