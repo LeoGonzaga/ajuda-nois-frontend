@@ -13,11 +13,10 @@ export const Quiz = (): JSX.Element => {
     <Container>
       <Title text="Iniciar" contrast="quiz" />
       <Spacing vertical={5} />
-      <Text>
-        Primeiro cadastre as repostas que deseja disponibilizar para a questão.
-        Marque o checkbox para validar a resposta verdadeira.
-      </Text>
-
+      <EditorContainer />
+      <Spacing vertical={15} />
+      <Text>Marque o checkbox para validar a resposta verdadeira.</Text>
+      <Spacing vertical={15} />
       <AwnserContainer>
         <TextInput placeholder="Digite uma reposta" />
         <TextInput placeholder="Digite uma reposta" />
@@ -25,7 +24,6 @@ export const Quiz = (): JSX.Element => {
         <TextInput placeholder="Digite uma reposta" />
         <TextInput placeholder="Digite uma reposta" />
       </AwnserContainer>
-      <EditorContainer />
     </Container>
   );
 };

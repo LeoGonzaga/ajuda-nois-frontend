@@ -18,7 +18,7 @@ export const EditorArea = styled.div`
 
   div {
     outline: none;
-    min-height: 500px;
+    min-height: 400px;
     padding: 0px 10px;
   }
 `;

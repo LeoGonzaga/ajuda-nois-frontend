@@ -192,16 +192,6 @@ export const EditorContainer = () => {
         <EditorContent editor={editor} />
       </EditorArea>
       <Spacing vertical={10} />
-
-      <Flex width="100%" justify="flex-end">
-        <ActionButton
-          onClick={handleSaveContent}
-          color={COLORS.SECONDARY}
-          width="200px"
-        >
-          Salvar
-        </ActionButton>
-      </Flex>
     </Container>
   );
 };
