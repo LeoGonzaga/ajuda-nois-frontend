@@ -1,23 +1,43 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { AiOutlineCalculator } from 'react-icons/ai';
-import { BsChatLeftQuote, BsFillCheckCircleFill } from 'react-icons/bs';
+import { BsChatLeftQuote } from 'react-icons/bs';
 import { GiGreekTemple } from 'react-icons/gi';
 import { IoTelescopeOutline } from 'react-icons/io5';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Text from '@components/Text';
 import Title from '@components/Title';
-import { COLORS } from '@themes/colors';
+import { add } from 'src/config/actions/subjects';
+import { RootState } from 'src/config/store';
 
 import Card from './components/Card';
 import SubjectItem from './components/SubjectItem';
 import { Container, Grid, SubjectContent, Table } from './styles';
 
 export const Subjects = (): JSX.Element => {
+  /***
+   * Como usar o redux:
+   * Você vai precisar do dispatch para disparar as suas ações, ou seja
+   * todo comando que vai usar das actions, precisam estar sendo chamadas dentro de um
+   * dispacth.
+   *  EX:   dispatch(add(value));
+   *
+   * O add é a nossa funçao que foi criada dentro do actions. Nessas actions,
+   * você precisa atribuir um nome para ela para que possa ser puxada no useSelector
+   * EX:  const selectedGenres = useSelector((state: RootState) => state.subjects);
+   *
+   */
+  const dispatch = useDispatch();
+  const selectedGenres = useSelector((state: RootState) => state.subjects);
+
   const [activeSubject, setActiveSubject] = useState<string>('Matemática');
 
   const handleToggleToShowContent = (value: string) => {
     setActiveSubject(value);
+    dispatch(add(value));
   };
+
+  console.log(selectedGenres);
 
   return (
     <Container>
