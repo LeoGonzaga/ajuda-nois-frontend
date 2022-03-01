@@ -4,11 +4,11 @@ import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Title from '@components/Title';
 import { COLORS } from '@themes/colors';
 
-import Card from './components/Card';
-import ResultsPomodoro from './components/ResultsPomodoro';
-import ResultsTest from './components/ResultsTest';
-import SubjectContent from './components/SubjectContent';
-import Timeline from './components/Timeline';
+import Card from '../components/Card';
+import ResultsPomodoro from '../components/ResultsPomodoro';
+import ResultsTest from '../components/ResultsTest';
+import SubjectContent from '../components/SubjectContent';
+import Timeline from '../components/Timeline';
 import { Column, Container, Controls, Row } from './styles';
 
 export const Dashboard: React.FC = () => {
