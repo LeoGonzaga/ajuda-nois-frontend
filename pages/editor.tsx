@@ -13,7 +13,8 @@ const EditorPage: React.FC = () => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <EditorContainer />
+
+      <EditorContainer showControls />
     </>
   );
 };

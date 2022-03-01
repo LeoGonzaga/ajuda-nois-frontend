@@ -12,13 +12,14 @@ export const Button = styled.button`
 `;
 
 export const EditorArea = styled.div`
-  border: 1px solid ${({ theme }) => theme.BLACK};
+  /* border: 1px solid ${({ theme }) => theme.BLACK}; */
+
   padding: 10px 4px;
   border-radius: 4px;
 
   div {
     outline: none;
-    min-height: 500px;
+    min-height: 80vh;
     padding: 0px 10px;
   }
 `;

@@ -3,6 +3,7 @@ import { BsFillCheckCircleFill } from 'react-icons/bs';
 
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
+import Link from 'next/link';
 
 import { ContentLine, TableItem, TableItemContent } from './styles';
 
@@ -21,9 +22,11 @@ export const SubjectItem = (): JSX.Element => {
       </TableItem>
       {expand && (
         <TableItemContent>
-          <ContentLine>
-            <Text>Função</Text>
-          </ContentLine>
+          <Link href="/subject/math">
+            <ContentLine>
+              <Text>Função</Text>
+            </ContentLine>
+          </Link>
           <ContentLine>
             <Text>Função</Text>
           </ContentLine>
