@@ -36,7 +36,7 @@ export const Dashboard: React.FC = () => {
           </Row>
           <SubjectContent />
         </Column>
-        <ResultsTest />
+        <ResultsTest type="vertical" />
       </Row>
       <Row>
         <ResultsPomodoro />

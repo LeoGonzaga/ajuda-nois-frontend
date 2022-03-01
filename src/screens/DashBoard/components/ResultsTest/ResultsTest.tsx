@@ -1,23 +1,41 @@
 import React from 'react';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 import BarChartContainer from '@components/BarChart';
+import HorizontalBarChartContainer from '@components/HorizontalBarChart';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 
-import { Container } from './styles';
+import { Arrow, Container, Title, Wrapper } from './styles';
 
-export const ResultsTest = (): JSX.Element => {
+type Props = {
+  type: string;
+};
+
+export const ResultsTest = ({ type }: Props): JSX.Element => {
   return (
     <Container>
-      <div>
-        <Text bold color={COLORS.WHITE}>
+      <Title>
+        <Text bold color={COLORS.WHITE} size={18}>
           Simulados
         </Text>
-        <Text size={14}>Mês/Periodo</Text>
-      </div>
+        <Text size={14}>Média Geral</Text>
+      </Title>
       <Spacing vertical={10} />
-      <BarChartContainer />
+      {type === 'horizontal' ? (
+        <Wrapper>
+          <Arrow>
+            <IoIosArrowBack />
+          </Arrow>
+          <HorizontalBarChartContainer />
+          <Arrow>
+            <IoIosArrowForward />
+          </Arrow>
+        </Wrapper>
+      ) : (
+        <BarChartContainer />
+      )}
     </Container>
   );
 };

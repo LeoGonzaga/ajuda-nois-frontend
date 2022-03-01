@@ -14,8 +14,6 @@ export const Container = styled.div<Props>`
 
   width: 100%;
 
-  margin-right: 20px;
-
   border-radius: 5px;
   background-color: ${COLORS.NEUTRAL};
 
