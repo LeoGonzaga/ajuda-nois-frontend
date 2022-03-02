@@ -5,7 +5,7 @@ import Flex from '@components/Flex';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 
-import { Container } from './styles';
+import { Container, Wrapper } from './styles';
 
 type Props = {
   title: string;
@@ -21,25 +21,22 @@ export const Expandable: React.FC<Props> = ({
   children,
 }: Props) => {
   const [expanded, setExpanded] = useState(false);
-  const expandSize = size * 15;
+  // Container fechado + legenda e paddings + tamanho de cada linha com espaçamento
+  const expandSize = 80 + 95 + 26 * size;
 
   return (
-    <Container
-      expanded={expanded}
-      size={expandSize + 'px'}
-      onClick={() => setExpanded(!expanded)}
-    >
-      <Flex justify="space-between" align="center">
+    <Container expanded={expanded} size={expandSize + 'px'}>
+      <Wrapper expanded={expanded} onClick={() => setExpanded(!expanded)}>
         <div>
           <Text bold color={COLORS.BLACK} size={20}>
-            Simulados
+            {title}
           </Text>
           <Text size={14} color={COLORS.TEXT}>
-            Média Geral
+            {subtitle}
           </Text>
         </div>
         <IoIosArrowBack fontSize={25} color={COLORS.TEXT} />
-      </Flex>
+      </Wrapper>
       {children}
     </Container>
   );

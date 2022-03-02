@@ -9,6 +9,7 @@ import { COLORS } from '@themes/colors';
 import BigCard from '../components/BigCard';
 import Expandable from '../components/Expandable';
 import ResultsTest from '../components/ResultsTest';
+import StudentTable from './StudentTable';
 import { Column, Container, Controls, Row } from './styles';
 
 export const Dashboard: React.FC = () => {
@@ -44,6 +45,7 @@ export const Dashboard: React.FC = () => {
         <Spacing vertical={5} />
         <ResultsTest type="horizontal" />
         <Spacing vertical={10} />
+        <StudentTable size={3} />
       </Column>
     </Container>
   );

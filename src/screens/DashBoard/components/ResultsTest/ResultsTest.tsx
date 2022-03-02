@@ -17,7 +17,7 @@ export const ResultsTest = ({ type }: Props): JSX.Element => {
   return (
     <Container>
       <Title>
-        <Text bold color={COLORS.WHITE} size={18}>
+        <Text bold color={COLORS.BLACK} size={18}>
           Simulados
         </Text>
         <Text size={14}>Média Geral</Text>

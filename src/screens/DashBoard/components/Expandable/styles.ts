@@ -2,8 +2,8 @@ import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
 type Props = {
-  expanded: boolean;
-  size: string;
+  expanded?: boolean;
+  size?: string;
 };
 
 export const Container = styled.div<Props>`
@@ -20,6 +20,15 @@ export const Container = styled.div<Props>`
   overflow-y: hidden;
 
   transition: max-height 0.3s ease;
+`;
+
+export const Wrapper = styled.div<Props>`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
 
   cursor: pointer;
 
