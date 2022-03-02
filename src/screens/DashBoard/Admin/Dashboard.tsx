@@ -7,6 +7,7 @@ import Title from '@components/Title';
 import { COLORS } from '@themes/colors';
 
 import BigCard from '../components/BigCard';
+import Expandable from '../components/Expandable';
 import ResultsTest from '../components/ResultsTest';
 import { Column, Container, Controls, Row } from './styles';
 
@@ -42,6 +43,7 @@ export const Dashboard: React.FC = () => {
         </Row>
         <Spacing vertical={5} />
         <ResultsTest type="horizontal" />
+        <Spacing vertical={10} />
       </Column>
     </Container>
   );

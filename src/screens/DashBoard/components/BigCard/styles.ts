@@ -62,6 +62,7 @@ export const Focus = styled.p<Props>`
 export const Wrapper = styled.div<Props>`
   svg {
     font-size: ${(props) => (props.type === 'Simulados' ? '75px' : '90px')};
+    margin-bottom: ${(props) => (props.type === 'Simulados' ? '-10px' : '0')};
     color: ${(props) => props.color};
   }
 `;
