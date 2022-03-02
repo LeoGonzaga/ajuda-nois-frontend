@@ -11,6 +11,7 @@ import Expandable from '../components/Expandable';
 import ResultsTest from '../components/ResultsTest';
 import StudentTable from './StudentTable';
 import { Column, Container, Controls, Row } from './styles';
+import TeacherTable from './TeacherTable';
 
 export const Dashboard: React.FC = () => {
   return (
@@ -45,7 +46,9 @@ export const Dashboard: React.FC = () => {
         <Spacing vertical={5} />
         <ResultsTest type="horizontal" />
         <Spacing vertical={10} />
-        <StudentTable size={3} />
+        <StudentTable size={10} />
+        <Spacing vertical={10} />
+        <TeacherTable size={3} />
       </Column>
     </Container>
   );
