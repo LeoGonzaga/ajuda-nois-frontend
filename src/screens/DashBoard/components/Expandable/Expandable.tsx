@@ -9,8 +9,9 @@ import { Container, Wrapper } from './styles';
 
 type Props = {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   size: number;
+  type: string;
   children: React.ReactNode;
 };
 
@@ -18,24 +19,31 @@ export const Expandable: React.FC<Props> = ({
   title,
   subtitle,
   size,
+  type,
   children,
 }: Props) => {
   const [expanded, setExpanded] = useState(false);
-  // Container fechado + legenda e paddings + tamanho de cada linha com espaçamento
-  const expandSize = 80 + 95 + 26 * size;
+  // max-height = height conteúdo + height container fechado + paddings tabela + height da linha * nº de linhas
+  const expandSize = (type == 'admin' ? 0 : 500) + 80 + 95 + 26 * size;
 
   return (
-    <Container expanded={expanded} size={expandSize + 'px'}>
-      <Wrapper expanded={expanded} onClick={() => setExpanded(!expanded)}>
+    <Container expanded={expanded} size={expandSize + 'px'} type={type}>
+      <Wrapper
+        expanded={expanded}
+        type={type}
+        onClick={() => setExpanded(!expanded)}
+      >
         <div>
-          <Text bold color={COLORS.BLACK} size={20}>
+          <Text bold size={20}>
             {title}
           </Text>
-          <Text size={14} color={COLORS.TEXT}>
-            {subtitle}
-          </Text>
+          {!!subtitle && (
+            <Text size={14} color={COLORS.TEXT}>
+              {subtitle}
+            </Text>
+          )}
         </div>
-        <IoIosArrowBack fontSize={25} color={COLORS.TEXT} />
+        <IoIosArrowBack fontSize={25} />
       </Wrapper>
       {children}
     </Container>

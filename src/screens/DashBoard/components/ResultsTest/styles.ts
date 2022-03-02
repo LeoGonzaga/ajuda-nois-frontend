@@ -1,18 +1,17 @@
 import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  width: 100%;
+type Props = {
+  type: string;
+};
+
+export const Container = styled.div<Props>`
+  width: ${(props) => (props.type == 'horizontal' ? '100%' : '50%')};
   margin-top: 10px;
   background-color: ${COLORS.NEUTRAL};
   border-radius: 5px;
   padding: 15px;
   max-height: 400px;
-`;
-
-export const Title = styled.div`
-  padding-top: 10px;
-  padding-left: 10px;
 `;
 
 export const Wrapper = styled.div`

@@ -7,7 +7,7 @@ import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 
-import { Arrow, Container, Title, Wrapper } from './styles';
+import { Arrow, Container, Wrapper } from './styles';
 
 type Props = {
   type: string;
@@ -15,13 +15,13 @@ type Props = {
 
 export const ResultsTest = ({ type }: Props): JSX.Element => {
   return (
-    <Container>
-      <Title>
+    <Container type={type}>
+      <div>
         <Text bold color={COLORS.BLACK} size={18}>
           Simulados
         </Text>
         <Text size={14}>Média Geral</Text>
-      </Title>
+      </div>
       <Spacing vertical={10} />
       {type === 'horizontal' ? (
         <Wrapper>

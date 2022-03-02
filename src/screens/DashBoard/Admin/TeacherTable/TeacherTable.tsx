@@ -36,6 +36,7 @@ export const TeacherTable: React.FC<Props> = ({ size }: Props) => {
         title="Professores"
         subtitle="Cadastrados neste ano"
         size={size}
+        type="admin"
       >
         <Spacing vertical={10} />
         <Content>

@@ -7,7 +7,6 @@ import Title from '@components/Title';
 import { COLORS } from '@themes/colors';
 
 import BigCard from '../components/BigCard';
-import Expandable from '../components/Expandable';
 import ResultsTest from '../components/ResultsTest';
 import StudentTable from './StudentTable';
 import { Column, Container, Controls, Row } from './styles';
