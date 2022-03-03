@@ -7,11 +7,14 @@ type Props = {
 
 export const Container = styled.div<Props>`
   width: ${(props) => (props.type == 'horizontal' ? '100%' : '50%')};
-  margin-top: 10px;
-  background-color: ${COLORS.NEUTRAL};
-  border-radius: 5px;
-  padding: 15px;
   max-height: 400px;
+
+  margin-top: ${(props) => (props.type == 'specific' ? '0px' : '10px')};
+  margin-left: 10px;
+  padding: 15px;
+
+  border-radius: 5px;
+  background-color: ${COLORS.NEUTRAL};
 `;
 
 export const Wrapper = styled.div`

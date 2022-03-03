@@ -4,6 +4,7 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import BarChartContainer from '@components/BarChart';
 import HorizontalBarChartContainer from '@components/HorizontalBarChart';
 import Spacing from '@components/Spacing';
+import SpecificBarChartContainer from '@components/SpecificBarChart';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 
@@ -20,7 +21,7 @@ export const ResultsTest = ({ type }: Props): JSX.Element => {
         <Text bold color={COLORS.BLACK} size={18}>
           Simulados
         </Text>
-        <Text size={14}>Média Geral</Text>
+        <Text size={14}>Mês/Período</Text>
       </div>
       <Spacing vertical={10} />
       {type === 'horizontal' ? (
@@ -33,8 +34,10 @@ export const ResultsTest = ({ type }: Props): JSX.Element => {
             <IoIosArrowForward />
           </Arrow>
         </Wrapper>
-      ) : (
+      ) : type === 'vertical' ? (
         <BarChartContainer />
+      ) : (
+        <SpecificBarChartContainer />
       )}
     </Container>
   );

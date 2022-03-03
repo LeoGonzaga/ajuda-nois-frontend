@@ -1,33 +1,16 @@
-import React, { useState } from 'react';
-import { IoWarning } from 'react-icons/io5';
-import { MdError } from 'react-icons/md';
+import React from 'react';
 
 import Spacing from '@components/Spacing';
-import { COLORS } from '@themes/colors';
 
 import Expandable from '../../components/Expandable';
-import MediumCard from '../../components/MediumCard';
-import ResultsTest from '../../components/ResultsTest';
-import TopicContent from '../../components/TopicContent';
-import StudentTable from '../StudentTable';
-import { Column, Container, Content, Row, Wrapper } from './styles';
+import { Container, Content } from './styles';
 
 type Props = {
+  size: number;
   name: string;
-  topics: Array<string>;
-  quizRates: Array<number>;
-  children?: React.ReactNode;
 };
 
-export const Subject: React.FC<Props> = ({
-  name,
-  topics,
-  quizRates,
-  children,
-}: Props) => {
-  const [lowRate, setLowRate] = useState(25);
-  const [mediumRate, setMediumRate] = useState(60);
-
+export const StudentTable: React.FC<Props> = ({ size, name }: Props) => {
   const data = [
     {
       name: 'Alan Bedoura de Pinto',
@@ -102,38 +85,72 @@ export const Subject: React.FC<Props> = ({
       mathScore: '45/45',
     },
   ];
-
   return (
     <Container>
-      <Expandable title={name} size={10} type="teacher">
+      <Expandable
+        title="Alunos"
+        subtitle={'Turma de ' + name}
+        size={size}
+        type="admin"
+      >
+        <Spacing vertical={10} />
         <Content>
-          <Column>
-            <Row>
-              <MediumCard
-                color={COLORS.RED}
-                indicator={25}
-                value={3}
-                icon={<MdError />}
-              />
-              <Spacing horizontal={5} />
-              <MediumCard
-                color={COLORS.YELLOW}
-                indicator={60}
-                value={10}
-                icon={<IoWarning />}
-              />
-            </Row>
-            <TopicContent
-              topics={topics}
-              quizRates={quizRates}
-              lowRate={lowRate}
-              mediumRate={mediumRate}
-            />
-          </Column>
-          <ResultsTest type="specific" />
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>
+                  <div>
+                    Média <br /> Humanas
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    Média <br /> Natureza
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    Média <br /> Linguagens
+                  </div>
+                </th>
+                <th>
+                  <div>
+                    Média <br /> Matemática
+                  </div>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {data?.map(
+                (
+                  {
+                    name,
+                    email,
+                    humanScore,
+                    natureScore,
+                    languageScore,
+                    mathScore,
+                  },
+                  index
+                ) => {
+                  return (
+                    <tr key={index}>
+                      <td>{name}</td>
+                      <td>{email}</td>
+                      <td>{humanScore}</td>
+                      <td>{natureScore}</td>
+                      <td>{languageScore}</td>
+                      <td>{mathScore}</td>
+                    </tr>
+                  );
+                }
+              )}
+            </tbody>
+          </table>
         </Content>
-        <Spacing vertical={5} />
-        <StudentTable size={12} name={name} />
       </Expandable>
     </Container>
   );

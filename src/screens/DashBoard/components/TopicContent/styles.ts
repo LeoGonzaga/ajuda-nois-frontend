@@ -23,7 +23,7 @@ export const Container = styled.div`
   }
 
   .each-slide {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
   }
 
   .arrow {
