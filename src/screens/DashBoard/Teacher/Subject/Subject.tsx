@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { IoWarning } from 'react-icons/io5';
+import { MdError } from 'react-icons/md';
 
 import Spacing from '@components/Spacing';
+import { COLORS } from '@themes/colors';
 
 import Expandable from '../../components/Expandable';
-import { Container, Content } from './styles';
+import MediumCard from '../../components/MediumCard';
+import ResultsTest from '../../components/ResultsTest';
+import TopicContent from '../../components/TopicContent';
+import { Column, Container, Content, Row, Wrapper } from './styles';
 
 type Props = {
   name: string;
   topics: Array<string>;
   quizRates: Array<number>;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 export const Subject: React.FC<Props> = ({
@@ -18,6 +24,9 @@ export const Subject: React.FC<Props> = ({
   quizRates,
   children,
 }: Props) => {
+  const [lowRate, setLowRate] = useState(25);
+  const [mediumRate, setMediumRate] = useState(60);
+
   const data = [
     {
       name: 'Alan Bedoura de Pinto',
@@ -92,10 +101,38 @@ export const Subject: React.FC<Props> = ({
       mathScore: '45/45',
     },
   ];
+
   return (
     <Container>
       <Expandable title={name} size={10} type="teacher">
-        <Content>{children}</Content>
+        <Content>
+          <Column>
+            <Row>
+              <MediumCard
+                color={COLORS.RED}
+                indicator={25}
+                value={3}
+                icon={<MdError />}
+              />
+              <Spacing horizontal={5} />
+              <MediumCard
+                color={COLORS.YELLOW}
+                indicator={60}
+                value={10}
+                icon={<IoWarning />}
+              />
+            </Row>
+            <TopicContent
+              topics={topics}
+              quizRates={quizRates}
+              lowRate={lowRate}
+              mediumRate={mediumRate}
+            />
+          </Column>
+          <Wrapper>
+            <ResultsTest type="vertical" />
+          </Wrapper>
+        </Content>
       </Expandable>
     </Container>
   );

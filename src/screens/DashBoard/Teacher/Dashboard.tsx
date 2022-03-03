@@ -18,8 +18,8 @@ export const Dashboard: React.FC = () => {
   const data = [
     {
       name: 'Geografia',
-      topics: ['Planetas', 'Minérios', 'Bacias Hidrográficas'],
-      quizRates: [78, 55, 83],
+      topics: ['Planetas', 'Minérios', 'Bacias Hidrográficas', 'Minérios'],
+      quizRates: [78, 55, 83, 12],
     },
     {
       name: 'Matemática',
@@ -55,29 +55,7 @@ export const Dashboard: React.FC = () => {
               name={name}
               topics={topics}
               quizRates={quizRates}
-            >
-              <Row>
-                <Column>
-                  <Row>
-                    <Card
-                      color={COLORS.SECONDARY}
-                      indicator="P"
-                      value="0.00"
-                      text="Conclusão do Plano"
-                    />
-                    <Card
-                      color={COLORS.PRIMARY}
-                      indicator="Q"
-                      value="100.00"
-                      text="Acertos em Quiz"
-                    />
-                  </Row>
-                  <SubjectContent />
-                </Column>
-                <ResultsTest type="vertical" />
-              </Row>
-            </Subject>
-            {/* <Spacing vertical={10} /> */}
+            />
           </>
         );
       })}
