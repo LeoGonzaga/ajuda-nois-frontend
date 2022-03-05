@@ -10,17 +10,19 @@ export const Container = styled.div<Props>`
   max-height: 400px;
 
   margin-top: ${(props) => (props.type == 'specific' ? '0px' : '10px')};
-  margin-left: 10px;
+  margin-left: ${(props) => (props.type == 'specific' ? '10px' : '0px')};
   padding: 15px;
 
   border-radius: 5px;
   background-color: ${COLORS.NEUTRAL};
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<Props>`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: ${(props) => (props.type == 'specific' ? '100%' : '')};
+  margin-top: ${(props) => (props.type == 'specific' ? '-10px' : '0px')};
 `;
 
 export const Arrow = styled.button`

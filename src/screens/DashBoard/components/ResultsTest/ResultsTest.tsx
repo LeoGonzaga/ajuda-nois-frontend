@@ -25,7 +25,7 @@ export const ResultsTest = ({ type }: Props): JSX.Element => {
       </div>
       <Spacing vertical={10} />
       {type === 'horizontal' ? (
-        <Wrapper>
+        <Wrapper type="horizontal">
           <Arrow>
             <IoIosArrowBack />
           </Arrow>
@@ -37,7 +37,15 @@ export const ResultsTest = ({ type }: Props): JSX.Element => {
       ) : type === 'vertical' ? (
         <BarChartContainer />
       ) : (
-        <SpecificBarChartContainer />
+        <Wrapper type="specific">
+          <Arrow>
+            <IoIosArrowBack />
+          </Arrow>
+          <SpecificBarChartContainer />
+          <Arrow>
+            <IoIosArrowForward />
+          </Arrow>
+        </Wrapper>
       )}
     </Container>
   );

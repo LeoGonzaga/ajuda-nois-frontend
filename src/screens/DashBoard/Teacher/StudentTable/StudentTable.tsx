@@ -3,88 +3,79 @@ import React from 'react';
 import Spacing from '@components/Spacing';
 
 import Expandable from '../../components/Expandable';
-import { Container, Content } from './styles';
+import { ColorTD, Container, Content } from './styles';
 
 type Props = {
   size: number;
   name: string;
+  lowRate: number;
+  mediumRate: number;
 };
 
-export const StudentTable: React.FC<Props> = ({ size, name }: Props) => {
+export const StudentTable: React.FC<Props> = ({
+  size,
+  name,
+  lowRate,
+  mediumRate,
+}: Props) => {
+  const simsNames = [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+  ];
+  const simsQuestions = [45, 45, 45, 30, 30, 40, 45];
   const data = [
     {
       name: 'Alan Bedoura de Pinto',
-      email: 'l337g4m3r@hotmail.com',
-      humanScore: '27/45',
-      natureScore: '32/45',
-      languageScore: '35/45',
-      mathScore: '33/45',
+      quizAverage: 69,
+      sims: [30, 45, 12, 24, 28, '-', 7],
     },
     {
       name: 'Botelho Kunavara',
-      email: 'ex.ample@yahoo.com.br',
-      humanScore: '40/45',
-      natureScore: '40/45',
-      languageScore: '40/45',
-      mathScore: '40/45',
+      quizAverage: 88,
+      sims: ['-', 5, 2, 14, 18, '-', 11],
     },
     {
       name: 'Yasmin Asbolla',
-      email: 'ligma@gmail.com',
-      humanScore: '15/45',
-      natureScore: '25/45',
-      languageScore: '35/45',
-      mathScore: '45/45',
+      quizAverage: 28,
+      sims: [30, 45, 12, 24, 28, '-', 7],
     },
     {
       name: 'Alan Bedoura de Pinto',
-      email: 'l337g4m3r@hotmail.com',
-      humanScore: '27/45',
-      natureScore: '32/45',
-      languageScore: '35/45',
-      mathScore: '33/45',
+      quizAverage: 69,
+      sims: [30, 45, 12, 24, 28, '-', 25],
     },
     {
       name: 'Botelho Kunavara',
-      email: 'ex.ample@yahoo.com.br',
-      humanScore: '40/45',
-      natureScore: '40/45',
-      languageScore: '40/45',
-      mathScore: '40/45',
+      quizAverage: 88,
+      sims: [30, 45, 12, 24, 28, '-', 7],
     },
     {
       name: 'Yasmin Asbolla',
-      email: 'ligma@gmail.com',
-      humanScore: '15/45',
-      natureScore: '25/45',
-      languageScore: '35/45',
-      mathScore: '45/45',
+      quizAverage: 28,
+      sims: [30, 45, 12, 24, 28, '-', 7],
     },
     {
       name: 'Alan Bedoura de Pinto',
-      email: 'l337g4m3r@hotmail.com',
-      humanScore: '27/45',
-      natureScore: '32/45',
-      languageScore: '35/45',
-      mathScore: '33/45',
+      quizAverage: 69,
+      sims: [30, 45, 12, 24, 28, '-', 7],
     },
     {
       name: 'Botelho Kunavara',
-      email: 'ex.ample@yahoo.com.br',
-      humanScore: '40/45',
-      natureScore: '40/45',
-      languageScore: '40/45',
-      mathScore: '40/45',
+      quizAverage: 88,
+      sims: [30, 45, 12, 24, 28, '-', 7],
     },
     {
       name: 'Yasmin Asbolla',
-      email: 'ligma@gmail.com',
-      humanScore: '15/45',
-      natureScore: '25/45',
-      languageScore: '35/45',
-      mathScore: '45/45',
+      quizAverage: 28,
+      sims: [30, 45, 12, 24, 28, '-', 42],
     },
   ];
+
   return (
     <Container>
       <Expandable
@@ -99,55 +90,65 @@ export const StudentTable: React.FC<Props> = ({ size, name }: Props) => {
             <thead>
               <tr>
                 <th>Nome</th>
-                <th>Email</th>
                 <th>
                   <div>
-                    Média <br /> Humanas
+                    Média <br /> Quizzes
                   </div>
                 </th>
-                <th>
-                  <div>
-                    Média <br /> Natureza
-                  </div>
-                </th>
-                <th>
-                  <div>
-                    Média <br /> Linguagens
-                  </div>
-                </th>
-                <th>
-                  <div>
-                    Média <br /> Matemática
-                  </div>
-                </th>
+                {simsNames?.map((name, index) => {
+                  return (
+                    <th key={index}>
+                      <div>
+                        Simulado <br /> {name}
+                      </div>
+                    </th>
+                  );
+                })}
               </tr>
             </thead>
 
             <tbody>
-              {data?.map(
-                (
-                  {
-                    name,
-                    email,
-                    humanScore,
-                    natureScore,
-                    languageScore,
-                    mathScore,
-                  },
-                  index
-                ) => {
-                  return (
-                    <tr key={index}>
-                      <td>{name}</td>
-                      <td>{email}</td>
-                      <td>{humanScore}</td>
-                      <td>{natureScore}</td>
-                      <td>{languageScore}</td>
-                      <td>{mathScore}</td>
-                    </tr>
-                  );
-                }
-              )}
+              {data?.map(({ name, quizAverage, sims }, index) => {
+                return (
+                  <tr key={index}>
+                    <ColorTD
+                      value={
+                        sims[sims.length - 1] != '-'
+                          ? (sims[sims.length - 1] * 100) /
+                            simsQuestions[sims.length - 1]
+                          : '-'
+                      }
+                      low={lowRate}
+                      medium={mediumRate}
+                    >
+                      {name}
+                    </ColorTD>
+                    <ColorTD
+                      value={quizAverage}
+                      low={lowRate}
+                      medium={mediumRate}
+                    >
+                      {quizAverage} %
+                    </ColorTD>
+                    {sims.map((sim, simIndex) => {
+                      return (
+                        <ColorTD
+                          key={simIndex}
+                          value={
+                            sim != '-'
+                              ? (sim * 100) / simsQuestions[simIndex]
+                              : '-'
+                          }
+                          low={lowRate}
+                          medium={mediumRate}
+                        >
+                          {sim} / {simsQuestions[simIndex]}
+                        </ColorTD>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </Content>

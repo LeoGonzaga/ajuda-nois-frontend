@@ -23,32 +23,42 @@ export const TopicContent = ({
   lowRate,
   mediumRate,
 }: Props): JSX.Element => {
+  const properties = {
+    autoplay: false,
+    indicators: false,
+    transitionDuration: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    prevArrow: (
+      <IoIosArrowBack size={30} color={COLORS.TEXT} className="arrow" />
+    ),
+    nextArrow: (
+      <IoIosArrowForward size={30} color={COLORS.TEXT} className="arrow" />
+    ),
+    responsive: [
+      {
+        breakpoint: 1140,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
   return (
     <Container>
       <Text bold>Taxa de Acertos nos Quizzes</Text>
       <Flex direction="row" align="center" justify="center">
         <Row>
           {topics.length > 0 ? (
-            <Slide
-              autoplay={false}
-              transitionDuration={500}
-              easing="ease"
-              slidesToShow={4}
-              prevArrow={
-                <IoIosArrowBack
-                  size={30}
-                  color={COLORS.TEXT}
-                  className="arrow"
-                />
-              }
-              nextArrow={
-                <IoIosArrowForward
-                  size={30}
-                  color={COLORS.TEXT}
-                  className="arrow"
-                />
-              }
-            >
+            <Slide {...properties}>
               {topics?.map((_topic, index) => {
                 return (
                   <div className="each-slide" key={index}>

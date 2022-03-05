@@ -14,57 +14,57 @@ const barColors = ['#6F52ED', '#00BF20', '#CA1E3C', '#FBBC05'];
 
 const data = [
   {
-    name: '<=5',
+    name: '≤5',
     uv: 4000,
-    acertos: 2,
+    acertos: 22,
     amt: 45,
   },
   {
-    name: '<=10',
+    name: '≤10',
     uv: 3000,
+    acertos: 1,
+    amt: 22,
+  },
+  {
+    name: '≤15',
+    uv: 2000,
+    acertos: 19,
+    amt: 12,
+  },
+  {
+    name: '≤20',
+    uv: 2780,
+    acertos: 2,
+    amt: 22,
+  },
+  {
+    name: '≤25',
+    uv: 4000,
+    acertos: 5,
+    amt: 45,
+  },
+  {
+    name: '≤30',
+    uv: 3000,
+    acertos: 13,
+    amt: 22,
+  },
+  {
+    name: '≤35',
+    uv: 2000,
+    acertos: 27,
+    amt: 12,
+  },
+  {
+    name: '≤40',
+    uv: 2780,
     acertos: 15,
     amt: 22,
   },
   {
-    name: '<=15',
-    uv: 2000,
-    acertos: 9,
-    amt: 12,
-  },
-  {
-    name: '<=20',
+    name: '≤45',
     uv: 2780,
-    acertos: 22,
-    amt: 22,
-  },
-  {
-    name: '<=25',
-    uv: 4000,
-    acertos: 25,
-    amt: 45,
-  },
-  {
-    name: '<=30',
-    uv: 3000,
-    acertos: 23,
-    amt: 22,
-  },
-  {
-    name: '<=35',
-    uv: 2000,
-    acertos: 7,
-    amt: 12,
-  },
-  {
-    name: '<=40',
-    uv: 2780,
-    acertos: 5,
-    amt: 22,
-  },
-  {
-    name: '<=45',
-    uv: 2780,
-    acertos: 1,
+    acertos: 11,
     amt: 22,
   },
 ];
@@ -74,14 +74,14 @@ export class SpecificBarChartContainer extends PureComponent {
     return (
       <ResponsiveContainer width="100%" height="90%">
         <BarChart
-          width={330}
+          width={300}
           height={300}
           data={data}
           margin={{
-            top: 5,
-            right: 10,
-            left: -20,
-            bottom: 5,
+            top: 0,
+            right: 0,
+            left: -30,
+            bottom: 20,
           }}
           barSize={10}
         >

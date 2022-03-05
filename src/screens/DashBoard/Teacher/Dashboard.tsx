@@ -3,15 +3,8 @@ import React from 'react';
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Spacing from '@components/Spacing';
 import Title from '@components/Title';
-import { COLORS } from '@themes/colors';
 
-import Card from '../components/Card';
-import Expandable from '../components/Expandable';
-import ResultsPomodoro from '../components/ResultsPomodoro';
-import ResultsTest from '../components/ResultsTest';
-import SubjectContent from '../components/SubjectContent';
-import Timeline from '../components/Timeline';
-import { Column, Container, Controls, Row } from './styles';
+import { Container, Controls } from './styles';
 import Subject from './Subject';
 
 export const Dashboard: React.FC = () => {
@@ -40,6 +33,7 @@ export const Dashboard: React.FC = () => {
       quizRates: [],
     },
   ];
+
   return (
     <Container>
       <Controls>

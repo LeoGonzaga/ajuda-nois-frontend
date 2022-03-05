@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
+  width: 100%;
 `;
 
 export const Content = styled.div`
@@ -24,10 +25,4 @@ export const Column = styled.div`
   flex-direction: column;
   align-items: center;
   width: 60%;
-`;
-
-export const Wrapper = styled.div`
-  width: 40%;
-  height: 100%;
-  margin-left: 10px;
 `;

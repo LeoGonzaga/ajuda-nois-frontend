@@ -9,17 +9,6 @@ export const Container = styled.div`
   overflow-y: auto;
 `;
 
-export const Row = styled.div`
-  display: flex;
-  padding-top: 10px;
-`;
-
-export const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 5%;
-`;
-
 export const Controls = styled.div`
   display: flex;
   align-items: center;

@@ -10,20 +10,18 @@ import MediumCard from '../../components/MediumCard';
 import ResultsTest from '../../components/ResultsTest';
 import TopicContent from '../../components/TopicContent';
 import StudentTable from '../StudentTable';
-import { Column, Container, Content, Row, Wrapper } from './styles';
+import { Column, Container, Content, Row } from './styles';
 
 type Props = {
   name: string;
   topics: Array<string>;
   quizRates: Array<number>;
-  children?: React.ReactNode;
 };
 
 export const Subject: React.FC<Props> = ({
   name,
   topics,
   quizRates,
-  children,
 }: Props) => {
   const [lowRate, setLowRate] = useState(25);
   const [mediumRate, setMediumRate] = useState(60);
@@ -133,7 +131,12 @@ export const Subject: React.FC<Props> = ({
           <ResultsTest type="specific" />
         </Content>
         <Spacing vertical={5} />
-        <StudentTable size={12} name={name} />
+        <StudentTable
+          size={12}
+          name={name}
+          lowRate={lowRate}
+          mediumRate={mediumRate}
+        />
       </Expandable>
     </Container>
   );

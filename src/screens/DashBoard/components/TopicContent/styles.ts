@@ -12,13 +12,13 @@ export const Container = styled.div`
   background-color: ${COLORS.NEUTRAL};
 
   .react-slideshow-container {
-    width: 580px;
+    max-width: 580px;
     display: flex;
     justify-content: space-between;
   }
 
   .react-slideshow-wrapper {
-    width: 580px;
+    /* width: 580px; */
     padding: 30px 0;
   }
 
