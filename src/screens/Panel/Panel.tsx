@@ -15,11 +15,13 @@ export const Panel = (): JSX.Element => {
     {
       name: 'Matérias',
       path: ROUTES.LIST_SUBJECTS,
+      quantity: 2,
     },
 
     {
       name: 'Alunos',
       path: ROUTES.LIST_USERS,
+      quantity: 56,
     },
   ];
 
@@ -35,7 +37,12 @@ export const Panel = (): JSX.Element => {
         {items?.map((elem, index) => (
           <SubjectCards key={index} onClick={() => handleRedirect(elem.path)}>
             <Circle background={COLORS.PRIMARY} />
-            <Text>{elem.name}</Text>
+            <div>
+              <Text bold size={18}>
+                {elem.name}
+              </Text>
+              <Text size={14}>{elem.quantity} cadastrados</Text>
+            </div>
           </SubjectCards>
         ))}
       </Content>

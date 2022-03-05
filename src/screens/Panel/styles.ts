@@ -1,3 +1,4 @@
+import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -29,6 +30,10 @@ export const SubjectCards = styled.button`
   cursor: pointer;
   border: none;
   outline: none;
+
+  :hover {
+    box-shadow: inset 0 0 2em ${COLORS.PRIMARY}, 0 0 2em ${COLORS.PRIMARY};
+  }
 `;
 
 export const Circle = styled.div<Props>`
