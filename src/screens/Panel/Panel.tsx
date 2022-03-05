@@ -11,12 +11,12 @@ export const Panel = (): JSX.Element => {
   const items = [
     {
       name: 'Matérias',
-      path: ROUTES.EDITOR,
+      path: ROUTES.LIST_SUBJECTS,
     },
 
     {
       name: 'Quiz',
-      path: ROUTES.ACHIEVEMENTS,
+      path: ROUTES.LIST_QUIZ,
     },
     {
       name: 'Provas',
@@ -24,7 +24,7 @@ export const Panel = (): JSX.Element => {
     },
     {
       name: 'Conquistas',
-      path: ROUTES.EDITOR,
+      path: ROUTES.ACHIEVEMENTS,
     },
     {
       name: 'Dicas',
@@ -32,7 +32,7 @@ export const Panel = (): JSX.Element => {
     },
     {
       name: 'Alunos',
-      path: ROUTES.EDITOR,
+      path: ROUTES.LIST_USERS,
     },
     {
       name: 'Notas',

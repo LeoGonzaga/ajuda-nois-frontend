@@ -1,0 +1,82 @@
+import React from 'react';
+
+import { Container, Tr, Column, Th, ScrollContainer } from './styles';
+
+export const Table = (): JSX.Element => {
+  return (
+    <Container>
+      <ScrollContainer>
+        <Th>
+          <Column>Nome</Column>
+          <Column>Status</Column>
+          <Column>Situação</Column>
+        </Th>
+        <Tr>
+          <Column>teste</Column>
+          <Column>teste</Column>
+          <Column>teste</Column>
+        </Tr>
+        <Tr>
+          <Column>teste</Column>
+          <Column>teste</Column>
+          <Column>teste</Column>
+        </Tr>
+        <Tr>
+          <Column>teste</Column>
+          <Column>teste</Column>
+          <Column>teste</Column>
+        </Tr>
+        <Tr>
+          <Column>teste</Column>
+          <Column>teste</Column>
+          <Column>teste</Column>
+        </Tr>
+        <Tr>
+          <Column>teste</Column>
+          <Column>teste</Column>
+          <Column>teste</Column>
+        </Tr>
+        <Tr>
+          <Column>teste</Column>
+          <Column>teste</Column>
+          <Column>teste</Column>
+        </Tr>
+        <Tr>
+          <Column>teste</Column>
+          <Column>teste</Column>
+          <Column>teste</Column>
+        </Tr>
+        <Tr>
+          <Column>teste</Column>
+          <Column>teste</Column>
+          <Column>teste</Column>
+        </Tr>
+        <Tr>
+          <Column>teste</Column>
+          <Column>teste</Column>
+          <Column>teste</Column>
+        </Tr>
+        <Tr>
+          <Column>teste</Column>
+          <Column>teste</Column>
+          <Column>teste</Column>
+        </Tr>
+        <Tr>
+          <Column>teste</Column>
+          <Column>teste</Column>
+          <Column>teste</Column>
+        </Tr>
+        <Tr>
+          <Column>teste</Column>
+          <Column>teste</Column>
+          <Column>teste</Column>
+        </Tr>
+        <Tr>
+          <Column>aaa</Column>
+          <Column>teste</Column>
+          <Column>teste</Column>
+        </Tr>
+      </ScrollContainer>
+    </Container>
+  );
+};

@@ -16,8 +16,7 @@ Modal.setAppElement('#__next');
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
-  const HIDE_SIDEBAR = ['/craete', '/panel'];
-  console.log(pathname);
+  const HIDE_SIDEBAR = ['/craete', '/panel', '/list/subjects', '/list/users'];
   return (
     <ThemeProvider theme={darkTheme}>
       <GlobalStyles />

@@ -9,4 +9,7 @@ export const ROUTES = {
   ACHIEVEMENTS: '/achievements',
   EDITOR: '/editor',
   PANEL: '/panel',
+  LIST_USERS: '/list/users',
+  LIST_SUBJECTS: '/list/subjects',
+  LIST_QUIZ: '/list/quiz',
 };

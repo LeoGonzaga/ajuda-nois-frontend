@@ -1,0 +1,27 @@
+import React, { useCallback } from 'react';
+
+import SecondaryButton from '@components/Buttons/SecondaryButton';
+import Flex from '@components/Flex';
+import Table from '@components/Table';
+import Title from '@components/Title';
+
+import { Container } from './styles';
+
+export const Users = (): JSX.Element => {
+  const handleOpenModalCreateUser = useCallback(() => {
+    console.log('abrir modal');
+  }, []);
+
+  return (
+    <Container>
+      <Flex align="center" justify="space-between">
+        <Title text="Usuários" contrast="" subText="" />
+        <SecondaryButton onClick={handleOpenModalCreateUser}>
+          Novo usuário
+        </SecondaryButton>
+      </Flex>
+
+      <Table />
+    </Container>
+  );
+};
