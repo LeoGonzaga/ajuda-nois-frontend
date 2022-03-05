@@ -4,7 +4,7 @@ import { Container } from './styles';
 
 type SecondaryButtonProps = {
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
 };
 export const SecondaryButton = ({
   children,
