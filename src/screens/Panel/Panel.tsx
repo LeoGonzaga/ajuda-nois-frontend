@@ -5,7 +5,7 @@ import Text from '@components/Text';
 import { handleRedirect } from '@utils/functions';
 import { ROUTES } from 'src/routes/routes';
 
-import { Circle, Container, Content, SubjectCards } from './styles';
+import { BackButton, Circle, Container, Content, SubjectCards } from './styles';
 
 export const Panel = (): JSX.Element => {
   const items = [
@@ -52,15 +52,16 @@ export const Panel = (): JSX.Element => {
 
   return (
     <Container>
-      <IoArrowBackSharp size={30} />
+      <div>
+        <BackButton>
+          <IoArrowBackSharp size={30} />
+          <Text>Voltar</Text>
+        </BackButton>
+      </div>
       <Content>
         {items?.map((elem, index) => (
-          <SubjectCards
-            key={index}
-            background={COLORS[index]}
-            onClick={() => handleRedirect(elem.path)}
-          >
-            <Circle />
+          <SubjectCards key={index} onClick={() => handleRedirect(elem.path)}>
+            <Circle background={COLORS[index]} />
             <Text>{elem.name}</Text>
           </SubjectCards>
         ))}
