@@ -4,9 +4,11 @@ import { Container } from './styles';
 
 type SecondaryButtonProps = {
   children: React.ReactNode;
+  onClick?: () => void;
 };
 export const SecondaryButton = ({
   children,
+  onClick,
 }: SecondaryButtonProps): JSX.Element => {
-  return <Container>{children}</Container>;
+  return <Container onClick={onClick}>{children}</Container>;
 };

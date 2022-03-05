@@ -16,7 +16,7 @@ Modal.setAppElement('#__next');
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
-  console.log(pathname);
+  const HIDE_SIDEBAR = ['/craete', '/panel', '/list/subjects', '/list/users'];
   return (
     <ThemeProvider theme={darkTheme}>
       <GlobalStyles />
@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         ) : (
           <ContainerStyled>
             <Flex>
-              <Sidebar />
+              {!HIDE_SIDEBAR.includes(pathname) && <Sidebar />}
               <Content>
                 <Component {...pageProps} />
               </Content>
