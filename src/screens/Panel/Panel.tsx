@@ -1,11 +1,14 @@
 import React from 'react';
-import { IoArrowBackSharp } from 'react-icons/io5';
 
+import BackButton from '@components/BackButton';
+import Flex from '@components/Flex';
 import Text from '@components/Text';
+import Title from '@components/Title';
+import { COLORS } from '@themes/colors';
 import { handleRedirect } from '@utils/functions';
 import { ROUTES } from 'src/routes/routes';
 
-import { BackButton, Circle, Container, Content, SubjectCards } from './styles';
+import { Circle, Container, Content, SubjectCards } from './styles';
 
 export const Panel = (): JSX.Element => {
   const items = [
@@ -15,53 +18,23 @@ export const Panel = (): JSX.Element => {
     },
 
     {
-      name: 'Quiz',
-      path: ROUTES.LIST_QUIZ,
-    },
-    {
-      name: 'Provas',
-      path: ROUTES.EDITOR,
-    },
-    {
-      name: 'Conquistas',
-      path: ROUTES.ACHIEVEMENTS,
-    },
-    {
-      name: 'Dicas',
-      path: ROUTES.EDITOR,
-    },
-    {
       name: 'Alunos',
       path: ROUTES.LIST_USERS,
     },
-    {
-      name: 'Notas',
-      path: ROUTES.EDITOR,
-    },
-  ];
-
-  const COLORS = [
-    '#822E81',
-    '#AA6373',
-    '#F0F2A6',
-    '#392061',
-    '#1A1B25',
-    '#AA6373',
-    '#F0F2A6',
   ];
 
   return (
     <Container>
       <div>
-        <BackButton>
-          <IoArrowBackSharp size={30} />
-          <Text>Voltar</Text>
-        </BackButton>
+        <BackButton route="/" />
       </div>
+      <Flex align="center" justify="space-between">
+        <Title text="Painel de controle" contrast="" subText="" />
+      </Flex>
       <Content>
         {items?.map((elem, index) => (
           <SubjectCards key={index} onClick={() => handleRedirect(elem.path)}>
-            <Circle background={COLORS[index]} />
+            <Circle background={COLORS.PRIMARY} />
             <Text>{elem.name}</Text>
           </SubjectCards>
         ))}

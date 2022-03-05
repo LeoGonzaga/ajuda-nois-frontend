@@ -35,13 +35,6 @@ export const Circle = styled.div<Props>`
   height: 180px;
   width: 180px;
   border-radius: 50%;
+  border: 5px solid #fff;
   background-color: ${(props) => props.background};
-`;
-
-export const BackButton = styled.button`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-
-  border: none;
 `;
