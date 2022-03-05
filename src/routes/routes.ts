@@ -8,4 +8,5 @@ export const ROUTES = {
   QUIZ: '/quiz',
   ACHIEVEMENTS: '/achievements',
   EDITOR: '/editor',
+  PANEL: '/panel',
 };
