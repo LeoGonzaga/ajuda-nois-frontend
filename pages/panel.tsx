@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Head from 'next/head';
+import Panel from 'src/screens/Panel';
 
 const PanelPage: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const PanelPage: React.FC = () => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>panel</h1>
+      <Panel />
     </>
   );
 };
