@@ -8,7 +8,7 @@ import Flex from '@components/Flex';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 
-import { Container, Info, Row } from './styles';
+import { Center, Container, Info, Row } from './styles';
 
 type Props = {
   topics: Array<string>;
@@ -29,6 +29,8 @@ export const TopicContent = ({
     transitionDuration: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    canSwipe: topics.length > 4 ? true : false,
+    arrows: topics.length > 4 ? true : false,
     prevArrow: (
       <IoIosArrowBack size={30} color={COLORS.TEXT} className="arrow" />
     ),
@@ -57,7 +59,7 @@ export const TopicContent = ({
       <Text bold>Taxa de Acertos nos Quizzes</Text>
       <Flex direction="row" align="center" justify="center">
         <Row>
-          {topics.length > 0 ? (
+          {topics.length > 4 ? (
             <Slide {...properties}>
               {topics?.map((_topic, index) => {
                 return (
@@ -77,6 +79,26 @@ export const TopicContent = ({
                 );
               })}
             </Slide>
+          ) : topics.length > 0 ? (
+            <Center>
+              {topics?.map((_topic, index) => {
+                return (
+                  <div className="each-slide" key={index}>
+                    <CircleProgress
+                      area={topics[index]}
+                      color={
+                        quizRates[index] > mediumRate
+                          ? COLORS.GREEN
+                          : quizRates[index] > lowRate
+                          ? COLORS.YELLOW
+                          : COLORS.RED
+                      }
+                      value={quizRates[index]}
+                    />
+                  </div>
+                );
+              })}
+            </Center>
           ) : (
             <Info>Nenhum quiz cadastrado até o momento!</Info>
           )}

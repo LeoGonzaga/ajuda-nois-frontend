@@ -18,7 +18,6 @@ export const Container = styled.div`
   }
 
   .react-slideshow-wrapper {
-    /* width: 580px; */
     padding: 30px 0;
   }
 
@@ -40,6 +39,19 @@ export const Container = styled.div`
     &:hover {
       filter: brightness(0.8);
     }
+  }
+`;
+
+export const Center = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  .each-slide {
+    margin-right: 20px;
   }
 `;
 

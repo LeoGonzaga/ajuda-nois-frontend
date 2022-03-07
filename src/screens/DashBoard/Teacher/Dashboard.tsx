@@ -11,7 +11,7 @@ export const Dashboard: React.FC = () => {
   const data = [
     {
       name: 'Geografia',
-      topics: ['Planetas', 'Minérios', 'Bacias Hidrográficas', 'Minérios'],
+      topics: ['Planetas', 'Minérios', 'Bacias Hidrográficas'],
       quizRates: [78, 55, 83, 12],
     },
     {
