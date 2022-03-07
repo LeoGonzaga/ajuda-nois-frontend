@@ -1,4 +1,5 @@
 import { COLORS } from '@themes/colors';
+import Router from 'next/router';
 
 const RANDOM_COLORS = [
   COLORS.SUCCESS,
@@ -22,4 +23,8 @@ const colors = {
 
 export const getColorByTest = (color: string) => {
   return (colors as any)[color];
+};
+
+export const handleRedirect = (route: string) => {
+  Router.push(route);
 };
