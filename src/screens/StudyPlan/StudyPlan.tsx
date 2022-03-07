@@ -25,7 +25,6 @@ type CardProps = {
 
 export const StudyPlan: React.FC = () => {
   const [isNewCardModalOpen, setIsNewCardModalOpen] = useState(false);
-  const [selectedDays, setSelectedDays] = useState<Date[]>([]);
   const [cards, setCards] = useState<CardProps[]>([
     {
       status: 'idle',
@@ -65,10 +64,6 @@ export const StudyPlan: React.FC = () => {
     setCards((prevState) => [...prevState, data]);
   };
 
-  const handleSelectedDays = (dates: Date[]) => {
-    setSelectedDays(dates);
-  };
-
   return (
     <Container>
       <VerticalContainer>
@@ -82,7 +77,7 @@ export const StudyPlan: React.FC = () => {
             <BsPlusLg /> Criar novo plano
           </button>
         </TitleWrapper>
-        <Weekday selectedDays={selectedDays} />
+        <Weekday />
         <CardsWrapper>
           {cards.map((card, index) => (
             <Card
@@ -97,10 +92,7 @@ export const StudyPlan: React.FC = () => {
           ))}
         </CardsWrapper>
       </VerticalContainer>
-      <Sidebar
-        selectedDays={selectedDays}
-        onHandleSelectedDays={handleSelectedDays}
-      />
+      <Sidebar />
 
       <NewCardModal
         isOpen={isNewCardModalOpen}

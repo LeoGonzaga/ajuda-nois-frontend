@@ -15,18 +15,6 @@ import SubjectItem from './components/SubjectItem';
 import { Container, Grid, SubjectContent, Table } from './styles';
 
 export const Subjects = (): JSX.Element => {
-  /***
-   * Como usar o redux:
-   * Você vai precisar do dispatch para disparar as suas ações, ou seja
-   * todo comando que vai usar das actions, precisam estar sendo chamadas dentro de um
-   * dispacth.
-   *  EX:   dispatch(add(value));
-   *
-   * O add é a nossa funçao que foi criada dentro do actions. Nessas actions,
-   * você precisa atribuir um nome para ela para que possa ser puxada no useSelector
-   * EX:  const selectedGenres = useSelector((state: RootState) => state.subjects);
-   *
-   */
   const dispatch = useDispatch();
   const selectedGenres = useSelector((state: RootState) => state.subjects);
 

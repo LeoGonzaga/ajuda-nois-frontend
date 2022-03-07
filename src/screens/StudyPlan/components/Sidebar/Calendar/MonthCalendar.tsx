@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DayPicker from 'react-day-picker';
+import { useDispatch, useSelector } from 'react-redux';
 
 import moment from 'moment';
+import { add } from 'src/config/actions/calendar';
+import { RootState } from 'src/config/store';
 
 import { Container } from './styles';
 
 type Props = {
   id: number;
-  selectedDays: Date[];
-  onHandleSelectedDays: (dates: Date[]) => void;
 };
 
 function getWeekDays(weekStart: Date) {
@@ -26,11 +27,12 @@ function getWeekRange(date: Date) {
   };
 }
 
-export function MonthCalendar({
-  id,
-  selectedDays,
-  onHandleSelectedDays,
-}: Props) {
+export function MonthCalendar({ id }: Props) {
+  const dispatch = useDispatch();
+  const calendar = new Date();
+  const [selectedDays, setSelectedDays] = useState<Date[]>([]);
+  const [hoverRange, setHoverRange] = useState<any>(undefined);
+
   const MONTHS = [
     'Janeiro',
     'Fevereiro',
@@ -55,13 +57,10 @@ export function MonthCalendar({
     'Sábado',
   ];
   const WEEKDAYS_SHORT = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-  const calendar = new Date();
-  const [hoverRange, setHoverRange] = useState<any>(undefined);
-
-  calendar.setMonth(id);
 
   const handleDayChange = (date: Date) => {
-    onHandleSelectedDays(getWeekDays(getWeekRange(date).from));
+    setSelectedDays(getWeekDays(getWeekRange(date).from));
+    dispatch(add(getWeekDays(getWeekRange(date).from)));
   };
 
   const handleDayEnter = (date: Date) => {
@@ -77,7 +76,7 @@ export function MonthCalendar({
     days: Date[],
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
-    onHandleSelectedDays(days);
+    setSelectedDays(days);
   };
 
   const daysAreSelected = selectedDays?.length > 0;
@@ -93,6 +92,13 @@ export function MonthCalendar({
     selectedRangeStart: daysAreSelected && selectedDays[0],
     selectedRangeEnd: daysAreSelected && selectedDays[6],
   };
+
+  calendar.setMonth(id);
+
+  useEffect(() => {
+    const aux = new Date();
+    if (calendar.getMonth() === aux.getMonth()) handleDayChange(calendar);
+  });
 
   return (
     <Container>

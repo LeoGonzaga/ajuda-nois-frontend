@@ -1,14 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import SecondaryButton from '@components/Buttons/SecondaryButton';
+import { RootState } from 'src/config/store';
 
 import { Container } from './styles';
 
-type Props = {
-  selectedDays: Date[];
-};
-
-export const Weekday: React.FC<Props> = ({ selectedDays }: Props) => {
+export const Weekday: React.FC = () => {
+  const selectedDays = useSelector((state: RootState) => state.calendar);
+  console.log(selectedDays);
   return (
     <Container>
       <SecondaryButton>
@@ -16,49 +16,49 @@ export const Weekday: React.FC<Props> = ({ selectedDays }: Props) => {
         {new Intl.DateTimeFormat('pt-BR', {
           month: '2-digit',
           day: '2-digit',
-        }).format(selectedDays[0])}
+        }).format(selectedDays.selectedDays[0])}
       </SecondaryButton>
       <SecondaryButton>
         SEG <br />
         {new Intl.DateTimeFormat('pt-BR', {
           month: '2-digit',
           day: '2-digit',
-        }).format(selectedDays[1])}
+        }).format(selectedDays.selectedDays[1])}
       </SecondaryButton>
       <SecondaryButton>
         TER <br />
         {new Intl.DateTimeFormat('pt-BR', {
           month: '2-digit',
           day: '2-digit',
-        }).format(selectedDays[2])}
+        }).format(selectedDays.selectedDays[2])}
       </SecondaryButton>
       <SecondaryButton>
         QUA <br />
         {new Intl.DateTimeFormat('pt-BR', {
           month: '2-digit',
           day: '2-digit',
-        }).format(selectedDays[3])}
+        }).format(selectedDays.selectedDays[3])}
       </SecondaryButton>
       <SecondaryButton>
         QUI <br />
         {new Intl.DateTimeFormat('pt-BR', {
           month: '2-digit',
           day: '2-digit',
-        }).format(selectedDays[4])}
+        }).format(selectedDays.selectedDays[4])}
       </SecondaryButton>
       <SecondaryButton>
         SEX <br />
         {new Intl.DateTimeFormat('pt-BR', {
           month: '2-digit',
           day: '2-digit',
-        }).format(selectedDays[5])}
+        }).format(selectedDays.selectedDays[5])}
       </SecondaryButton>
       <SecondaryButton>
         SAB <br />
         {new Intl.DateTimeFormat('pt-BR', {
           month: '2-digit',
           day: '2-digit',
-        }).format(selectedDays[6])}
+        }).format(selectedDays.selectedDays[6])}
       </SecondaryButton>
     </Container>
   );

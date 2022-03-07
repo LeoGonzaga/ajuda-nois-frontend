@@ -52,6 +52,10 @@ export const Center = styled.div`
 
   .each-slide {
     margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 `;
 
