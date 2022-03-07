@@ -63,7 +63,7 @@ export const TopicContent = ({
             <Slide {...properties}>
               {topics?.map((_topic, index) => {
                 return (
-                  <div className="each-slide" key={index}>
+                  <div className="each-slide" key={_topic + index}>
                     <CircleProgress
                       area={topics[index]}
                       color={
@@ -83,7 +83,7 @@ export const TopicContent = ({
             <Center>
               {topics?.map((_topic, index) => {
                 return (
-                  <div className="each-slide" key={index}>
+                  <div className="each-slide" key={_topic + index}>
                     <CircleProgress
                       area={topics[index]}
                       color={
