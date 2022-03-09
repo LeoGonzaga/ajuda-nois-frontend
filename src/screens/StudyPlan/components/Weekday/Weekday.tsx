@@ -8,7 +8,6 @@ import { Container } from './styles';
 
 export const Weekday: React.FC = () => {
   const selectedDays = useSelector((state: RootState) => state.calendar);
-  console.log(selectedDays);
   return (
     <Container>
       <SecondaryButton>

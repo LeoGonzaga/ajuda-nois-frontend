@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { ImParagraphLeft } from 'react-icons/im';
 
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Spacing from '@components/Spacing';
 import Title from '@components/Title';
 
 import ConfigurationsModal from './ConfigurationsModal';
-import { Container, Controls } from './styles';
+import { ConfigButton, Container, Controls } from './styles';
 import Subject from './Subject';
 
 type ConfigProps = {
@@ -60,9 +61,12 @@ export const Dashboard: React.FC = () => {
     <Container>
       <Controls>
         <Title text="Dashboard" contrast="" subText="" />
-        <SecondaryButton onClick={() => handleOpenConfigurations()}>
-          Configurações
-        </SecondaryButton>
+        <span>
+          <ConfigButton onClick={handleOpenConfigurations}>
+            <ImParagraphLeft /> Medidores
+          </ConfigButton>
+          <SecondaryButton>Configurações</SecondaryButton>
+        </span>
       </Controls>
       <Spacing vertical={5} />
       {data?.map(({ name, topics, quizRates }, index) => {
