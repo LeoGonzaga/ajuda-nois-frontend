@@ -7,11 +7,11 @@ import Link from 'next/link';
 import Router from 'next/router';
 import { ROUTES } from 'src/routes/routes';
 
-import Card from './components/Card';
-import ResultsPomodoro from './components/ResultsPomodoro';
-import ResultsTest from './components/ResultsTest';
-import SubjectContent from './components/SubjectContent';
-import Timeline from './components/Timeline';
+import Card from '../components/Card';
+import ResultsPomodoro from '../components/ResultsPomodoro';
+import ResultsTest from '../components/ResultsTest';
+import SubjectContent from '../components/SubjectContent';
+import Timeline from '../components/Timeline';
 import { Column, Container, Controls, Row } from './styles';
 
 export const Dashboard: React.FC = () => {
@@ -44,7 +44,7 @@ export const Dashboard: React.FC = () => {
           </Row>
           <SubjectContent />
         </Column>
-        <ResultsTest />
+        <ResultsTest type="vertical" />
       </Row>
       <Row>
         <ResultsPomodoro />

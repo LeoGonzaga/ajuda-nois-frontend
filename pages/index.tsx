@@ -1,7 +1,9 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-import Dashboard from '../src/screens/DashBoard';
+import { default as AdminDashboard } from '../src/screens/DashBoard/Admin';
+import { default as StudentDashboard } from '../src/screens/DashBoard/Student';
+import { default as TeacherDashboard } from '../src/screens/DashBoard/Teacher';
 
 const Home: NextPage = () => {
   return (
@@ -12,7 +14,9 @@ const Home: NextPage = () => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Dashboard />
+      {/* <StudentDashboard /> */}
+      {/* <AdminDashboard /> */}
+      <TeacherDashboard />
     </>
   );
 };

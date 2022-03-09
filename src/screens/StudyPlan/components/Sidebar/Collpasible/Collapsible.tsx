@@ -10,19 +10,10 @@ type Props = {
   name: string;
   id: number;
   expanded: boolean;
-  selectedDays: Date[];
   onHandleClick: (id: number) => void;
-  onHandleSelectedDays: (dates: Date[]) => void;
 };
 
-export function Collapsible({
-  name,
-  id,
-  expanded,
-  selectedDays,
-  onHandleClick,
-  onHandleSelectedDays,
-}: Props) {
+export function Collapsible({ name, id, expanded, onHandleClick }: Props) {
   const handleExpand = (id: number) => {
     onHandleClick(id);
   };
@@ -34,11 +25,7 @@ export function Collapsible({
       </span>
       <Spacing vertical={2} />
       <ExpandableContent expanded={expanded}>
-        <MonthCalendar
-          id={id}
-          selectedDays={selectedDays}
-          onHandleSelectedDays={onHandleSelectedDays}
-        />
+        <MonthCalendar id={id} />
       </ExpandableContent>
     </Container>
   );
