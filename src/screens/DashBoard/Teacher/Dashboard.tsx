@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Spacing from '@components/Spacing';
 import Title from '@components/Title';
 
+import ConfigurationsModal from './ConfigurationsModal';
 import { Container, Controls } from './styles';
 import Subject from './Subject';
 
+type ConfigProps = {
+  ratesLow: number;
+  ratesMedium: number;
+};
+
 export const Dashboard: React.FC = () => {
+  const [isConfigurationsOpen, setIsConfigurationsOpen] = useState(false);
+  const [lowRate, setLowRate] = useState(25);
+  const [mediumRate, setMediumRate] = useState(60);
   const data = [
     {
       name: 'Geografia',
-      topics: ['Planetas', 'Minérios', 'Bacias Hidrográficas', 'Relevo'],
+      topics: ['Planetas', 'Minérios', 'Bacias Hidrográficas'],
       quizRates: [78, 55, 83, 12],
     },
     {
@@ -34,11 +43,26 @@ export const Dashboard: React.FC = () => {
     },
   ];
 
+  function handleOpenConfigurations() {
+    setIsConfigurationsOpen(true);
+  }
+
+  function handleCloseConfigurations() {
+    setIsConfigurationsOpen(false);
+  }
+
+  const handleConfigurations = ({ ratesLow, ratesMedium }: ConfigProps) => {
+    setLowRate(ratesLow);
+    setMediumRate(ratesMedium);
+  };
+
   return (
     <Container>
       <Controls>
         <Title text="Dashboard" contrast="" subText="" />
-        <SecondaryButton>Configurações</SecondaryButton>
+        <SecondaryButton onClick={() => handleOpenConfigurations()}>
+          Configurações
+        </SecondaryButton>
       </Controls>
       <Spacing vertical={5} />
       {data?.map(({ name, topics, quizRates }, index) => {
@@ -48,11 +72,19 @@ export const Dashboard: React.FC = () => {
               key={index}
               name={name}
               topics={topics}
+              lowRate={lowRate}
+              mediumRate={mediumRate}
               quizRates={quizRates}
             />
           </>
         );
       })}
+
+      <ConfigurationsModal
+        isOpen={isConfigurationsOpen}
+        onRequestClose={handleCloseConfigurations}
+        onHandleConfigurations={handleConfigurations}
+      />
     </Container>
   );
 };

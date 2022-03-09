@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const slice = createSlice({
   name: 'calendars',
   initialState: {
-    selectedDays: [] as Date[],
+    selectedDays: [] as any[],
   },
   reducers: {
     add(state, data) {

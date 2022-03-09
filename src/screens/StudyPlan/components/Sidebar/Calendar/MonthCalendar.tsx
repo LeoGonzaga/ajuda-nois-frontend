@@ -98,7 +98,7 @@ export function MonthCalendar({ id }: Props) {
   useEffect(() => {
     const aux = new Date();
     if (calendar.getMonth() === aux.getMonth()) handleDayChange(calendar);
-  });
+  }, []);
 
   return (
     <Container>

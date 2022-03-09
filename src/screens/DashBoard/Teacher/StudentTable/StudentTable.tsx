@@ -12,6 +12,12 @@ type Props = {
   mediumRate: number;
 };
 
+type SimsProps = {
+  name: string;
+  quizAverage: number;
+  sims: Array<any>;
+};
+
 export const StudentTable: React.FC<Props> = ({
   size,
   name,
@@ -28,7 +34,7 @@ export const StudentTable: React.FC<Props> = ({
     'Julho',
   ];
   const simsQuestions = [45, 45, 45, 30, 30, 40, 45];
-  const data = [
+  const data: Array<SimsProps> = [
     {
       name: 'Alan Bedoura de Pinto',
       quizAverage: 69,
