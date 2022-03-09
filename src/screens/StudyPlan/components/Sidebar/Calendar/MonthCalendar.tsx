@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import DayPicker from 'react-day-picker';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import moment from 'moment';
 import { add } from 'src/config/actions/calendar';
-import { RootState } from 'src/config/store';
 
 import { Container } from './styles';
 
