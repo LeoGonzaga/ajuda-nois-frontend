@@ -1,7 +1,9 @@
 export const ROUTES = {
   HOME: '/',
+  // remover abaixo
   TEACHER: '/teacher',
   ADMIN: '/admin',
+  // remover acima
   LOGIN: '/auth',
   STUDYPLAN: '/studyplan',
   SUBJECT: '/subjects',
