@@ -110,14 +110,14 @@ export const Subject: React.FC<Props> = ({
             <Row>
               <MediumCard
                 color={COLORS.RED}
-                indicator={25}
+                indicator={lowRate}
                 value={3}
                 icon={<MdError />}
               />
               <Spacing horizontal={5} />
               <MediumCard
                 color={COLORS.YELLOW}
-                indicator={60}
+                indicator={mediumRate}
                 value={10}
                 icon={<IoWarning />}
               />

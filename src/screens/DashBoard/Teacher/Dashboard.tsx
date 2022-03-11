@@ -9,11 +9,6 @@ import ConfigurationsModal from './ConfigurationsModal';
 import { ConfigButton, Container, Controls } from './styles';
 import Subject from './Subject';
 
-type ConfigProps = {
-  ratesLow: number;
-  ratesMedium: number;
-};
-
 export const Dashboard: React.FC = () => {
   const [isConfigurationsOpen, setIsConfigurationsOpen] = useState(false);
   const [lowRate, setLowRate] = useState(25);
@@ -52,8 +47,11 @@ export const Dashboard: React.FC = () => {
     setIsConfigurationsOpen(false);
   }
 
-  const handleConfigurations = ({ ratesLow, ratesMedium }: ConfigProps) => {
+  const handleLowRate = (ratesLow: number) => {
     setLowRate(ratesLow);
+  };
+
+  const handleMediumRate = (ratesMedium: number) => {
     setMediumRate(ratesMedium);
   };
 
@@ -86,8 +84,11 @@ export const Dashboard: React.FC = () => {
 
       <ConfigurationsModal
         isOpen={isConfigurationsOpen}
+        lowRate={lowRate}
+        mediumRate={mediumRate}
         onRequestClose={handleCloseConfigurations}
-        onHandleConfigurations={handleConfigurations}
+        onHandleLowRate={handleLowRate}
+        onHandleMediumRate={handleMediumRate}
       />
     </Container>
   );
