@@ -21,6 +21,8 @@ export const Sidebar: React.FC = () => {
     <Container>
       <div>
         <Item text="Inicio" router={ROUTES.HOME} icon={<BiHomeAlt />} />
+        <Item text="Professor" router={ROUTES.TEACHER} icon={<BiHomeAlt />} />
+        <Item text="Admin" router={ROUTES.ADMIN} icon={<BiHomeAlt />} />
         <Item text="Matérias" router={ROUTES.SUBJECT} icon={<BiRocket />} />
         <Item text="Dicas" router={ROUTES.TIPS} icon={<BiWorld />} />
         <Item active text="Provas" router={ROUTES.TESTS} icon={<BiBrain />} />

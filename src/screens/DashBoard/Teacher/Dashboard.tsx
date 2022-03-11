@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
+import { ImParagraphLeft } from 'react-icons/im';
 
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Spacing from '@components/Spacing';
 import Title from '@components/Title';
 
 import ConfigurationsModal from './ConfigurationsModal';
-import { Container, Controls } from './styles';
+import { ConfigButton, Container, Controls } from './styles';
 import Subject from './Subject';
-
-type ConfigProps = {
-  ratesLow: number;
-  ratesMedium: number;
-};
 
 export const Dashboard: React.FC = () => {
   const [isConfigurationsOpen, setIsConfigurationsOpen] = useState(false);
@@ -51,8 +47,11 @@ export const Dashboard: React.FC = () => {
     setIsConfigurationsOpen(false);
   }
 
-  const handleConfigurations = ({ ratesLow, ratesMedium }: ConfigProps) => {
+  const handleLowRate = (ratesLow: number) => {
     setLowRate(ratesLow);
+  };
+
+  const handleMediumRate = (ratesMedium: number) => {
     setMediumRate(ratesMedium);
   };
 
@@ -60,9 +59,12 @@ export const Dashboard: React.FC = () => {
     <Container>
       <Controls>
         <Title text="Dashboard" contrast="" subText="" />
-        <SecondaryButton onClick={() => handleOpenConfigurations()}>
-          Configurações
-        </SecondaryButton>
+        <span>
+          <ConfigButton onClick={handleOpenConfigurations}>
+            <ImParagraphLeft /> Medidores
+          </ConfigButton>
+          <SecondaryButton>Configurações</SecondaryButton>
+        </span>
       </Controls>
       <Spacing vertical={5} />
       {data?.map(({ name, topics, quizRates }, index) => {
@@ -82,8 +84,11 @@ export const Dashboard: React.FC = () => {
 
       <ConfigurationsModal
         isOpen={isConfigurationsOpen}
+        lowRate={lowRate}
+        mediumRate={mediumRate}
         onRequestClose={handleCloseConfigurations}
-        onHandleConfigurations={handleConfigurations}
+        onHandleLowRate={handleLowRate}
+        onHandleMediumRate={handleMediumRate}
       />
     </Container>
   );

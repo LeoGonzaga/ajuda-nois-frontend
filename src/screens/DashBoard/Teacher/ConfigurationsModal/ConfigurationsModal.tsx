@@ -1,13 +1,13 @@
 import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { BiError } from 'react-icons/bi';
+import { useForm, Controller } from 'react-hook-form';
 import { IoClose } from 'react-icons/io5';
 import Modal from 'react-modal';
 
 import Flex from '@components/Flex';
 import Spacing from '@components/Spacing';
 
-import { Container, ModalLabel } from './styles';
+import SliderComponent from '../../components/SliderComponent';
+import { Container, Content, ModalLabel } from './styles';
 
 type ConfigProps = {
   ratesLow: number;
@@ -16,24 +16,30 @@ type ConfigProps = {
 
 type Props = {
   isOpen: boolean;
+  lowRate: number;
+  mediumRate: number;
   onRequestClose: () => void;
-  onHandleConfigurations: (rates: ConfigProps) => void;
+  onHandleLowRate: (ratesLow: number) => void;
+  onHandleMediumRate: (ratesMedium: number) => void;
 };
 
 export function ConfigurationsModal({
   isOpen,
+  lowRate,
+  mediumRate,
   onRequestClose,
-  onHandleConfigurations,
+  onHandleLowRate,
+  onHandleMediumRate,
 }: Props) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    getValues,
-  } = useForm<ConfigProps>();
+  const { handleSubmit, control } = useForm<ConfigProps>();
 
-  const onSubmit: SubmitHandler<ConfigProps> = (data) => {
-    onHandleConfigurations(data);
+  const onSubmit = (data: ConfigProps) => {
+    data.ratesMedium =
+      data.ratesMedium <= data.ratesLow ? data.ratesLow + 1 : data.ratesMedium;
+
+    onHandleLowRate(data.ratesLow);
+    onHandleMediumRate(data.ratesMedium);
+
     onRequestClose();
   };
 
@@ -44,12 +50,66 @@ export function ConfigurationsModal({
       onRequestClose={onRequestClose}
       overlayClassName="modalOverlay"
       className="modalContent"
+      style={{ content: { maxWidth: '500px' } }}
     >
       <Container onSubmit={handleSubmit(onSubmit)}>
         <ModalLabel>
           <span>Configurações</span>
           <IoClose onClick={() => onRequestClose()} />
         </ModalLabel>
+        <Content>
+          <Spacing vertical={10} />
+          <Flex direction="column">
+            <p>Taxa de acerto para rendimento baixo: 0% à {lowRate}%</p>
+            <Controller
+              control={control}
+              name="ratesLow"
+              defaultValue={lowRate}
+              render={({ field: { value, onChange } }) => (
+                <SliderComponent
+                  axis={'x'}
+                  type="ratesLow"
+                  valueMax={50}
+                  valueMin={0}
+                  valueStep={1}
+                  onChange={onChange}
+                  value={value}
+                  onHandleLowRate={onHandleLowRate}
+                  onHandleMediumRate={onHandleMediumRate}
+                />
+              )}
+            />
+          </Flex>
+          <Spacing vertical={8} />
+          <Flex direction="column">
+            <p>
+              Taxa de acerto para rendimento médio: {lowRate}% à{' '}
+              {mediumRate <= lowRate ? lowRate + 1 : mediumRate}%
+            </p>
+            <Controller
+              control={control}
+              name="ratesMedium"
+              defaultValue={mediumRate}
+              render={({ field: { value, onChange } }) => (
+                <SliderComponent
+                  axis={'x'}
+                  type="ratesMedium"
+                  valueMax={75}
+                  valueMin={lowRate + 1}
+                  valueStep={1}
+                  onChange={onChange}
+                  value={value}
+                  onHandleLowRate={onHandleLowRate}
+                  onHandleMediumRate={onHandleMediumRate}
+                />
+              )}
+            />
+          </Flex>
+          <span>
+            <button type="submit">Confirmar</button>
+            <div onClick={onRequestClose}>Cancelar</div>
+          </span>
+        </Content>
       </Container>
     </Modal>
   );
