@@ -26,6 +26,7 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
     background: COLORS.GRAY,
     borderRadius: 8,
+    border: 'none',
   },
 };
 export const ModalContainer = ({
@@ -35,7 +36,12 @@ export const ModalContainer = ({
   title = '',
 }: Props): JSX.Element => {
   return (
-    <Modal isOpen={open} onRequestClose={handleClose} style={customStyles}>
+    <Modal
+      overlayClassName="modalOverlay"
+      isOpen={open}
+      onRequestClose={handleClose}
+      style={customStyles}
+    >
       <Styles.Container>
         <Flex justify="space-between">
           <Styles.BackButton onClick={handleClose}>

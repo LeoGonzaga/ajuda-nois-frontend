@@ -15,6 +15,11 @@ const Container = styled.select`
   transition: 0ms;
   border: 1px solid ${COLORS.BLACK};
   text-transform: capitalize;
+  background: url(https://www.pngkit.com/png/full/50-508417_blue-arrow-down-png-download-white-arrow-down.png)
+    no-repeat right;
+  background-size: 20px 10px;
+  -webkit-appearance: none;
+  background-position-x: 95%;
   &:focus {
     border: 1px solid ${COLORS.SECONDARY};
   }
