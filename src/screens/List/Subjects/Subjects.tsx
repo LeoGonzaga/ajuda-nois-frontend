@@ -12,16 +12,17 @@ import { Container } from './styles';
 export const Subjects = (): JSX.Element => {
   return (
     <Container>
-      <div>
-        <BackButton route={ROUTES.PANEL} />
-      </div>
-      <Flex align="center" justify="space-between">
-        <Title text="Matérias" contrast="" subText="" />
-        <SecondaryButton onClick={() => console.log('a')}>
-          Nova matéria
-        </SecondaryButton>
+      <Flex align="center">
+        <div>
+          <BackButton route={ROUTES.PANEL} />
+        </div>
+        <Flex align="center" justify="space-between">
+          <Title text="Matérias" contrast="" subText="" />
+          <SecondaryButton onClick={() => console.log('a')}>
+            Nova matéria
+          </SecondaryButton>
+        </Flex>
       </Flex>
-
       <Table />
     </Container>
   );

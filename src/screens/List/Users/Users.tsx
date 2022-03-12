@@ -27,14 +27,16 @@ export const Users = (): JSX.Element => {
       >
         <Form />
       </ModalContainer>
-      <div>
-        <BackButton route={ROUTES.PANEL} />
-      </div>
-      <Flex align="center" justify="space-between">
-        <Title text="Usuários" contrast="" subText="" />
-        <SecondaryButton onClick={handleToggleModalCreateUser}>
-          Novo usuário
-        </SecondaryButton>
+      <Flex align="center">
+        <div>
+          <BackButton route={ROUTES.PANEL} />
+        </div>
+        <Flex align="center" justify="space-between">
+          <Title text="Usuários" contrast="" subText="" />
+          <SecondaryButton onClick={handleToggleModalCreateUser}>
+            Novo usuário
+          </SecondaryButton>
+        </Flex>
       </Flex>
 
       <Table />

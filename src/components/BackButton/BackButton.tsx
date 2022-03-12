@@ -14,7 +14,6 @@ export const BackButton = ({ route }: Props): JSX.Element => {
   return (
     <Container onClick={() => handleRedirect(route)}>
       <IoArrowBackSharp size={30} />
-      <Text>Voltar</Text>
     </Container>
   );
 };

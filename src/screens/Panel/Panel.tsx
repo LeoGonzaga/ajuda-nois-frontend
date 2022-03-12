@@ -27,11 +27,13 @@ export const Panel = (): JSX.Element => {
 
   return (
     <Container>
-      <div>
-        <BackButton route="/" />
-      </div>
-      <Flex align="center" justify="space-between">
-        <Title text="Painel de controle" contrast="" subText="" />
+      <Flex justify="space-between" width="100%">
+        <div>
+          <BackButton route="/" />
+        </div>
+        <Flex align="center" justify="space-between">
+          <Title text="Painel de controle" contrast="" subText="" />
+        </Flex>
       </Flex>
       <Content>
         {items?.map((elem, index) => (
