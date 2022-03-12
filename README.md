@@ -23,11 +23,12 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [x] Adição da possibilidade de compartilhar as conquistas
 - [x] Adição da tela com cards de dicas
 - [x] Adição do plano de estudo do aluno
-- [ ] Adição da visualização de contéudo por matéria
+- [x] Adição da visualização de contéudo por matéria
 - [ ] Desenvolver uma imagem para a área de login
 - [ ] Adição do gráfico de tempo por área
 - [ ] Adição do QUIZ com questões cadastradas pelos professores
-- [ ] Adição da visualização de contéudo por matéria
+- [x] Adição de tipos diferentes de visualização do dashboard de acordo com a função do usuário
+- [x] Adição do formulário de criação de usuários dentro da plataforma
 
 Ele esta disponivel para a visualização por esse [link](https://ajudanois.vercel.app/).
 
