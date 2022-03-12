@@ -29,6 +29,7 @@ export const SubjectCards = styled.button`
   cursor: pointer;
   border: none;
   outline: none;
+  transition: all 0.2ms ease;
 
   :hover {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
