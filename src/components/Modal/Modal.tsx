@@ -3,6 +3,7 @@ import { BiArrowBack } from 'react-icons/bi';
 import Modal from 'react-modal';
 
 import Flex from '@components/Flex';
+import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 
@@ -45,6 +46,7 @@ export const ModalContainer = ({
             {title}
           </Text>
         </Flex>
+        <Spacing vertical={15} />
         {children}
       </Styles.Container>
     </Modal>

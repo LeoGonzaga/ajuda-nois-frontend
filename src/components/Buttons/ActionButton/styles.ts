@@ -13,7 +13,7 @@ export const Container = styled.button<ActionButtonProps>`
   font-weight: bold;
   &:hover {
     opacity: 0.8;
-    box-shadow: ${(props) => (props.color ? props.color : 'initial')} 0px 4px
-      15px;
+
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   }
 `;

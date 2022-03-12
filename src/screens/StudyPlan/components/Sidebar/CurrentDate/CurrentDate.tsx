@@ -6,7 +6,7 @@ import { COLORS } from '@themes/colors';
 
 import { Container } from './styles';
 
-export const CurrentDate: React.FC = () => {
+export const CurrentDate = (): JSX.Element => {
   const newDate = new Date();
   const day = `0${newDate.getDate()}`;
   const month = `0${newDate.getMonth() + 1}`;

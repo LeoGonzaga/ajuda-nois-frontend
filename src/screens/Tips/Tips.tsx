@@ -9,7 +9,7 @@ import Card from './components/Card';
 import SelectSubject from './components/SelectSubject';
 import { Container, WrapperCards } from './styles';
 
-export const Tips: React.FC = () => {
+export const Tips = (): JSX.Element => {
   const data = [
     {
       title: 'Titulo 1',

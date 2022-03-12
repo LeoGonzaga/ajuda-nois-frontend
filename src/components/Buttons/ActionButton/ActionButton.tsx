@@ -8,7 +8,7 @@ export type ActionButtonProps = {
   loading?: boolean;
   disabled?: boolean;
   children: React.ReactNode;
-  onClick: () => void;
+  onClick: (e: any) => void;
 };
 
 export const ActionButton = ({

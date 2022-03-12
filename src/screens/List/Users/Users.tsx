@@ -8,6 +8,7 @@ import Table from '@components/Table';
 import Title from '@components/Title';
 import { ROUTES } from 'src/routes/routes';
 
+import Form from './components/Form';
 import { Container } from './styles';
 
 export const Users = (): JSX.Element => {
@@ -21,16 +22,10 @@ export const Users = (): JSX.Element => {
     <Container>
       <ModalContainer
         open={openModal}
+        title="Criação de usuário"
         handleClose={handleToggleModalCreateUser}
       >
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
+        <Form />
       </ModalContainer>
       <div>
         <BackButton route={ROUTES.PANEL} />

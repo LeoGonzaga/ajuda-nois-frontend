@@ -6,7 +6,7 @@ import { RootState } from 'src/config/store';
 
 import { Container } from './styles';
 
-export const Weekday: React.FC = () => {
+export const Weekday = (): JSX.Element => {
   const selectedDays = useSelector((state: RootState) => state.calendar);
   return (
     <Container>
