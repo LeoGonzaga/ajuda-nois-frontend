@@ -23,8 +23,6 @@ export const Users = (): JSX.Element => {
         open={openModal}
         handleClose={handleToggleModalCreateUser}
       >
-        <h2>Hello</h2>
-        <button onClick={handleToggleModalCreateUser}>close</button>
         <div>I am a modal</div>
         <form>
           <input />

@@ -6,6 +6,14 @@ const Container = styled.div`
   height: 100%;
 `;
 
+const BackButton = styled.button`
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+`;
+
 export const Styles = {
   Container,
+  BackButton,
 };
