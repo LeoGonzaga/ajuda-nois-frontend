@@ -10,6 +10,7 @@ export const Th = styled.div`
   border-radius: 4px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 10px;
   padding: 0px 20px;
   min-width: 200px;
@@ -23,6 +24,7 @@ export const Tr = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 10px;
   padding: 0px 20px;
   transition: 100ms ease-in;
