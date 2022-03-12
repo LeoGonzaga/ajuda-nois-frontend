@@ -1,4 +1,3 @@
-import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -32,7 +31,7 @@ export const SubjectCards = styled.button`
   outline: none;
 
   :hover {
-    box-shadow: inset 0 0 2em ${COLORS.PRIMARY}, 0 0 2em ${COLORS.PRIMARY};
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
 `;
 
