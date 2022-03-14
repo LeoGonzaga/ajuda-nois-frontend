@@ -9,7 +9,7 @@ import Card from './components/Card';
 import SelectTestYear from './components/SelectTestYear';
 import { Container, WrapperCards } from './styles';
 
-export const Tests: React.FC = () => {
+export const Tests = (): JSX.Element => {
   const data = [
     {
       title: 'CADERNO Azul',

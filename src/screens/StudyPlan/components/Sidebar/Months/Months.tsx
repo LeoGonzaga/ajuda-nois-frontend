@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Collapsible from '../Collpasible';
 import { Container } from './styles';
 
-export const Months: React.FC = () => {
+export const Months = (): JSX.Element => {
   const currentMonth = new Date().getMonth();
   const [active, setActive] = useState(currentMonth);
   const [state, setState] = useState([

@@ -8,11 +8,11 @@ export type Props = {
   onHandleClick: (state: string) => void;
 };
 
-export const Buttons: React.FC<Props> = ({
+export const Buttons = ({
   status,
   prevStatus,
   onHandleClick,
-}: Props) => {
+}: Props): JSX.Element => {
   const handleStateChange = (state: string) => {
     onHandleClick(state);
   };

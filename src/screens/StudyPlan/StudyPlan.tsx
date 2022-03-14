@@ -23,7 +23,7 @@ type CardProps = {
   text?: string;
 };
 
-export const StudyPlan: React.FC = () => {
+export const StudyPlan = (): JSX.Element => {
   const [isNewCardModalOpen, setIsNewCardModalOpen] = useState(false);
   const [cards, setCards] = useState<CardProps[]>([
     {

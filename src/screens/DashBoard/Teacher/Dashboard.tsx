@@ -9,7 +9,7 @@ import ConfigurationsModal from './ConfigurationsModal';
 import { ConfigButton, Container, Controls } from './styles';
 import Subject from './Subject';
 
-export const Dashboard: React.FC = () => {
+export const Dashboard = (): JSX.Element => {
   const [isConfigurationsOpen, setIsConfigurationsOpen] = useState(false);
   const [lowRate, setLowRate] = useState(25);
   const [mediumRate, setMediumRate] = useState(60);
@@ -66,6 +66,7 @@ export const Dashboard: React.FC = () => {
           <SecondaryButton>Configurações</SecondaryButton>
         </span>
       </Controls>
+
       <Spacing vertical={5} />
       {data?.map(({ name, topics, quizRates }, index) => {
         return (
