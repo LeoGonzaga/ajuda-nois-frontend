@@ -3,7 +3,7 @@ import React from 'react';
 import Head from 'next/head';
 import Users from 'src/screens/List/Users';
 
-const SubjectPageList: React.FC = () => {
+const SubjectPageList = (): JSX.Element => {
   return (
     <>
       <Head>

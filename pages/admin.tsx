@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 import { default as AdminDashboard } from '../src/screens/DashBoard/Admin';
 
-const AdminPage: React.FC = () => {
+const AdminPage = (): JSX.Element => {
   return (
     <>
       <Head>
