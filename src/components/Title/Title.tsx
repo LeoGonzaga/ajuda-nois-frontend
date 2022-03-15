@@ -11,7 +11,7 @@ type Props = {
   subText?: string;
 };
 
-export const Title = ({ text, contrast, subText }: Props) => {
+export const Title = ({ text, contrast, subText }: Props): JSX.Element => {
   return (
     <Container>
       <span>

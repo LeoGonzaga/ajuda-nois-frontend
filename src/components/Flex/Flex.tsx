@@ -16,7 +16,7 @@ export const Flex = ({
   justify,
   align,
   width,
-}: FlexProps) => {
+}: FlexProps): JSX.Element => {
   return (
     <Container
       direction={direction}

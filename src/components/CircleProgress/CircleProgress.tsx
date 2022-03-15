@@ -12,7 +12,11 @@ type CircleProgressProps = {
   value: number;
 };
 
-export const CircleProgress = ({ area, color, value }: CircleProgressProps) => {
+export const CircleProgress = ({
+  area,
+  color,
+  value,
+}: CircleProgressProps): JSX.Element => {
   return (
     <Container>
       <div
