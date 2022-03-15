@@ -13,7 +13,12 @@ type Props = {
   onHandleClick: (id: number) => void;
 };
 
-export function Collapsible({ name, id, expanded, onHandleClick }: Props) {
+export function Collapsible({
+  name,
+  id,
+  expanded,
+  onHandleClick,
+}: Props): JSX.Element {
   const handleExpand = (id: number) => {
     onHandleClick(id);
   };

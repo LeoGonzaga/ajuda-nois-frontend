@@ -10,7 +10,7 @@ type Props = {
   url: string;
 };
 
-export const WhatsappShare = ({ url }: Props) => {
+export const WhatsappShare = ({ url }: Props): JSX.Element => {
   return (
     <span>
       <WhatsappShareButton url={url}>

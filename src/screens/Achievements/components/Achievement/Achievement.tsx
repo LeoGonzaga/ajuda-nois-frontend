@@ -20,7 +20,7 @@ export const Achievement = ({
   exp,
   achieved,
   image,
-}: AchievementProps) => {
+}: AchievementProps): JSX.Element => {
   return (
     <Container achieved={achieved}>
       <Flex direction="row">

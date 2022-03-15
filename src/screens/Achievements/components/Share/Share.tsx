@@ -18,7 +18,7 @@ type Props = {
   url: string;
 };
 
-export const Share = () => {
+export const Share = (): JSX.Element => {
   const [copySuccess, setCopySuccess] = useState('');
   const { pathname } = useRouter();
   const url = `http://localhost:3000${pathname}`;

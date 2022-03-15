@@ -26,7 +26,7 @@ function getWeekRange(date: Date) {
   };
 }
 
-export function MonthCalendar({ id }: Props) {
+export function MonthCalendar({ id }: Props): JSX.Element {
   const dispatch = useDispatch();
   const calendar = new Date();
   const [selectedDays, setSelectedDays] = useState<Date[]>([]);
