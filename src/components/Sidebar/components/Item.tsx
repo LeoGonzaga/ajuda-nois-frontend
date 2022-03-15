@@ -12,7 +12,7 @@ export type Props = {
   router?: string;
 };
 
-export const Item = ({ text, icon, router }: Props) => {
+export const Item = ({ text, icon, router }: Props): JSX.Element => {
   const { pathname } = useRouter();
   return (
     <Container active={pathname === router}>

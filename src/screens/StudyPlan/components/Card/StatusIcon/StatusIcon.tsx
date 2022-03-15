@@ -11,7 +11,7 @@ type Props = {
   status: string;
 };
 
-export const StatusIcon: React.FC<Props> = ({ status }: Props) => {
+export const StatusIcon = ({ status }: Props): JSX.Element => {
   return (
     <Container>
       {status == 'idle' ? (

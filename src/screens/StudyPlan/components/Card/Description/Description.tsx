@@ -7,7 +7,7 @@ type Props = {
   onClick: () => void;
 };
 
-export const Description: React.FC<Props> = ({ text, onClick }: Props) => {
+export const Description = ({ text, onClick }: Props): JSX.Element => {
   return (
     <Container onClick={onClick}>
       <p>{text}</p>

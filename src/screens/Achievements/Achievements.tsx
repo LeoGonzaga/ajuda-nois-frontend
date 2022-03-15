@@ -13,7 +13,7 @@ import {
   ShareContainer,
 } from './styles';
 
-export const Achievements: React.FC = () => {
+export const Achievements = (): JSX.Element => {
   const data = [
     {
       name: 'Parabéns',

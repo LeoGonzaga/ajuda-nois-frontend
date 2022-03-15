@@ -6,6 +6,7 @@ export type SpacingTypes = {
   vertical?: number;
   horizontal?: number;
 };
-export const Spacing = (props: SpacingTypes) => {
+
+export const Spacing = (props: SpacingTypes): JSX.Element => {
   return <Container {...props} />;
 };

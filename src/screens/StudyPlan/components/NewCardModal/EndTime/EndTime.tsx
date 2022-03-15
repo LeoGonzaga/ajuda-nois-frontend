@@ -10,7 +10,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export function EndTime({ showError, children }: Props) {
+export function EndTime({ showError, children }: Props): JSX.Element {
   return (
     <Container>
       <Flex direction="column" align="center" justify="flex-end">

@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 import { default as TeacherDashboard } from '../src/screens/DashBoard/Teacher';
 
-const TeacherPage: React.FC = () => {
+const TeacherPage = (): JSX.Element => {
   return (
     <>
       <Head>

@@ -10,7 +10,7 @@ type Props = {
   url: string;
 };
 
-export const TelegramShare = ({ url }: Props) => {
+export const TelegramShare = ({ url }: Props): JSX.Element => {
   return (
     <span>
       <TelegramShareButton url={url}>

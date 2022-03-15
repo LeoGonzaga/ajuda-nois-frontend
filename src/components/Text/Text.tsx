@@ -9,7 +9,13 @@ export type TextProps = {
   center?: boolean;
   children: React.ReactNode;
 };
-export const Text = ({ children, bold, size, color, center }: TextProps) => {
+export const Text = ({
+  children,
+  bold,
+  size,
+  color,
+  center,
+}: TextProps): JSX.Element => {
   return (
     <Container bold={bold} size={size} color={color} center={center}>
       {children}

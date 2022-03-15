@@ -3,7 +3,7 @@ import React from 'react';
 import Head from 'next/head';
 import Tests from 'src/screens/Tests';
 
-const TestsPage: React.FC = () => {
+const TestsPage = (): JSX.Element => {
   return (
     <>
       <Head>

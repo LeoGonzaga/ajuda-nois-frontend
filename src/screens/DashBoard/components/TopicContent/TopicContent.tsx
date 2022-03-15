@@ -54,6 +54,7 @@ export const TopicContent = ({
       },
     ],
   };
+
   return (
     <Container>
       <Text bold>Taxa de Acertos nos Quizzes</Text>

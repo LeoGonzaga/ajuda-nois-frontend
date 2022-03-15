@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 import EditorContainer from '../src/components/Editor';
 
-const EditorPage: React.FC = () => {
+const EditorPage = (): JSX.Element => {
   return (
     <>
       <Head>

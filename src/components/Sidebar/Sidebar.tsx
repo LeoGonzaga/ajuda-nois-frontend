@@ -16,7 +16,7 @@ import { ROUTES } from 'src/routes/routes';
 import Item from './components';
 import { Container } from './styles';
 
-export const Sidebar: React.FC = () => {
+export const Sidebar = (): JSX.Element => {
   return (
     <Container>
       <div>

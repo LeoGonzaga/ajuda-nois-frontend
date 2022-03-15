@@ -23,14 +23,14 @@ type Props = {
   text?: string;
 };
 
-export const Card: React.FC<Props> = ({
+export const Card = ({
   status,
   startTime,
   endTime,
   subject,
   topic,
   text,
-}: Props) => {
+}: Props): JSX.Element => {
   const [expanded, setExpanded] = useState(false);
   const [state, setState] = useState({
     currentState: status,

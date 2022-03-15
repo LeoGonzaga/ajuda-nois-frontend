@@ -14,7 +14,7 @@ import SubjectContent from '../components/SubjectContent';
 import Timeline from '../components/Timeline';
 import { Column, Container, Controls, Row } from './styles';
 
-export const Dashboard: React.FC = () => {
+export const Dashboard = (): JSX.Element => {
   const handleRedirectToPanel = () => {
     Router.push(ROUTES.PANEL);
   };

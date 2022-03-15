@@ -8,6 +8,10 @@ export type TextInputProps = {
   type?: string;
 };
 
-export const TextInput = ({ width, placeholder, type }: TextInputProps) => {
+export const TextInput = ({
+  width,
+  placeholder,
+  type,
+}: TextInputProps): JSX.Element => {
   return <Container width={width} type={type} placeholder={placeholder} />;
 };

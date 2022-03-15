@@ -10,7 +10,7 @@ type Props = {
   url: string;
 };
 
-export const LinkedinShare = ({ url }: Props) => {
+export const LinkedinShare = ({ url }: Props): JSX.Element => {
   return (
     <span>
       <LinkedinShareButton url={url}>

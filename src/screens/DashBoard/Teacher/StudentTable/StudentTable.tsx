@@ -18,12 +18,12 @@ type SimsProps = {
   sims: Array<any>;
 };
 
-export const StudentTable: React.FC<Props> = ({
+export const StudentTable = ({
   size,
   name,
   lowRate,
   mediumRate,
-}: Props) => {
+}: Props): JSX.Element => {
   const simsNames = [
     'Janeiro',
     'Fevereiro',

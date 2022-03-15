@@ -3,7 +3,7 @@ import React from 'react';
 import Head from 'next/head';
 import Tips from 'src/screens/Tips';
 
-const TipsPage: React.FC = () => {
+const TipsPage = (): JSX.Element => {
   return (
     <>
       <Head>

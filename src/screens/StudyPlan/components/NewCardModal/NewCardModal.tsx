@@ -31,7 +31,7 @@ export function NewCardModal({
   isOpen,
   onRequestClose,
   onHandleNewCard,
-}: Props) {
+}: Props): JSX.Element {
   const {
     register,
     handleSubmit,

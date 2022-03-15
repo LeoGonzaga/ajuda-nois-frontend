@@ -3,7 +3,7 @@ import React from 'react';
 import Head from 'next/head';
 import Quiz from 'src/screens/Quiz';
 
-const QuizPage: React.FC = () => {
+const QuizPage = (): JSX.Element => {
   return (
     <>
       <Head>

@@ -30,7 +30,7 @@ export function ConfigurationsModal({
   onRequestClose,
   onHandleLowRate,
   onHandleMediumRate,
-}: Props) {
+}: Props): JSX.Element {
   const { handleSubmit, control } = useForm<ConfigProps>();
 
   const onSubmit = (data: ConfigProps) => {

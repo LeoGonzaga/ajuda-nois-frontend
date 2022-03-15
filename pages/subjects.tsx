@@ -3,7 +3,7 @@ import React from 'react';
 import Head from 'next/head';
 import Subjects from 'src/screens/Subjects';
 
-const SubjectsPage: React.FC = () => {
+const SubjectsPage = (): JSX.Element => {
   return (
     <>
       <Head>
