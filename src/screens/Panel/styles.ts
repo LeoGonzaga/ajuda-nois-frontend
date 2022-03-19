@@ -1,4 +1,3 @@
-import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -18,8 +17,8 @@ type Props = {
 };
 
 export const SubjectCards = styled.button`
-  width: 250px;
-  height: 300px;
+  width: 200px;
+  height: 250px;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.NEUTRAL};
   margin: 10px;
@@ -30,15 +29,16 @@ export const SubjectCards = styled.button`
   cursor: pointer;
   border: none;
   outline: none;
+  transition: all 0.2ms ease;
 
   :hover {
-    box-shadow: inset 0 0 2em ${COLORS.PRIMARY}, 0 0 2em ${COLORS.PRIMARY};
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
 `;
 
 export const Circle = styled.div<Props>`
-  height: 180px;
-  width: 180px;
+  height: 130px;
+  width: 130px;
   border-radius: 50%;
   border: 5px solid #fff;
   background-color: ${(props) => props.background};

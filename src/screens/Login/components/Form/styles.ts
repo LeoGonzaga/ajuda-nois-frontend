@@ -9,6 +9,7 @@ export const Container = styled.div`
   align-items: center;
   border-radius: 6px;
   animation: ${FadeInAnimation} 0.5s ease-in;
+  padding: 20px;
 
   div {
     width: 350px;

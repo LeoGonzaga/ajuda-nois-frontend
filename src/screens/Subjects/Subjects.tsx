@@ -16,7 +16,7 @@ import { Container, Grid, SubjectContent, Table } from './styles';
 
 export const Subjects = (): JSX.Element => {
   const dispatch = useDispatch();
-  const selectedGenres = useSelector((state: RootState) => state.subjects);
+  const subjects = useSelector((state: RootState) => state.subjects);
 
   const [activeSubject, setActiveSubject] = useState<string>('Matemática');
 
@@ -24,8 +24,6 @@ export const Subjects = (): JSX.Element => {
     setActiveSubject(value);
     dispatch(add(value));
   };
-
-  console.log(selectedGenres);
 
   return (
     <Container>

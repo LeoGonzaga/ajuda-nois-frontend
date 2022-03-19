@@ -16,7 +16,9 @@ export const TableItem = styled.div`
   }
 `;
 
-export const TableItemContent = styled.div``;
+export const TableItemContent = styled.div`
+  cursor: pointer;
+`;
 
 export const ContentLine = styled.div`
   height: 30px;

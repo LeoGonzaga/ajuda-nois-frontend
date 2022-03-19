@@ -4,6 +4,8 @@ import { ImParagraphLeft } from 'react-icons/im';
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Spacing from '@components/Spacing';
 import Title from '@components/Title';
+import Router from 'next/router';
+import { ROUTES } from 'src/routes/routes';
 
 import ConfigurationsModal from './ConfigurationsModal';
 import { ConfigButton, Container, Controls } from './styles';
@@ -54,7 +56,9 @@ export const Dashboard = (): JSX.Element => {
   const handleMediumRate = (ratesMedium: number) => {
     setMediumRate(ratesMedium);
   };
-
+  const handleRedirectToPanel = () => {
+    Router.push(ROUTES.PANEL);
+  };
   return (
     <Container>
       <Controls>
@@ -63,7 +67,9 @@ export const Dashboard = (): JSX.Element => {
           <ConfigButton onClick={handleOpenConfigurations}>
             <ImParagraphLeft /> Medidores
           </ConfigButton>
-          <SecondaryButton>Configurações</SecondaryButton>
+          <SecondaryButton onClick={handleRedirectToPanel}>
+            Configurações
+          </SecondaryButton>
         </span>
       </Controls>
 

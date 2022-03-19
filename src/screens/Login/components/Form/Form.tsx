@@ -49,13 +49,6 @@ export const Form = (): JSX.Element => {
         </ActionButton>
         <Spacing vertical={5} />
 
-        <ActionButton
-          color={COLORS.BUTTON}
-          width="350px"
-          onClick={handleSubmit}
-        >
-          <GoogleBtn />
-        </ActionButton>
         <Spacing vertical={10} />
         <Text size={14}>Esqueci senha</Text>
       </div>

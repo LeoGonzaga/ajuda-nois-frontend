@@ -1,6 +1,12 @@
 import React from 'react';
 
+import { uuid } from 'uuidv4';
+
 import { Container, Tr, Column, Th, ScrollContainer } from './styles';
+
+const DATA = [
+  { name: 'Matemática', status: 'Ativo', type: 'Matemat. e suas tecnologias' },
+];
 
 export const Table = (): JSX.Element => {
   return (
@@ -8,74 +14,16 @@ export const Table = (): JSX.Element => {
       <ScrollContainer>
         <Th>
           <Column>Nome</Column>
-          <Column>Status</Column>
+          <Column>Tipo</Column>
           <Column>Situação</Column>
         </Th>
-        <Tr>
-          <Column>teste</Column>
-          <Column>teste</Column>
-          <Column>teste</Column>
-        </Tr>
-        <Tr>
-          <Column>teste</Column>
-          <Column>teste</Column>
-          <Column>teste</Column>
-        </Tr>
-        <Tr>
-          <Column>teste</Column>
-          <Column>teste</Column>
-          <Column>teste</Column>
-        </Tr>
-        <Tr>
-          <Column>teste</Column>
-          <Column>teste</Column>
-          <Column>teste</Column>
-        </Tr>
-        <Tr>
-          <Column>teste</Column>
-          <Column>teste</Column>
-          <Column>teste</Column>
-        </Tr>
-        <Tr>
-          <Column>teste</Column>
-          <Column>teste</Column>
-          <Column>teste</Column>
-        </Tr>
-        <Tr>
-          <Column>teste</Column>
-          <Column>teste</Column>
-          <Column>teste</Column>
-        </Tr>
-        <Tr>
-          <Column>teste</Column>
-          <Column>teste</Column>
-          <Column>teste</Column>
-        </Tr>
-        <Tr>
-          <Column>teste</Column>
-          <Column>teste</Column>
-          <Column>teste</Column>
-        </Tr>
-        <Tr>
-          <Column>teste</Column>
-          <Column>teste</Column>
-          <Column>teste</Column>
-        </Tr>
-        <Tr>
-          <Column>teste</Column>
-          <Column>teste</Column>
-          <Column>teste</Column>
-        </Tr>
-        <Tr>
-          <Column>teste</Column>
-          <Column>teste</Column>
-          <Column>teste</Column>
-        </Tr>
-        <Tr>
-          <Column>aaa</Column>
-          <Column>teste</Column>
-          <Column>teste</Column>
-        </Tr>
+        {DATA?.map((student) => (
+          <Tr key={uuid()}>
+            <Column>{student.name}</Column>
+            <Column>{student.type}</Column>
+            <Column>{student.status}</Column>
+          </Tr>
+        ))}
       </ScrollContainer>
     </Container>
   );

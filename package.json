@@ -20,6 +20,7 @@
     "@types/react-modal": "^3.13.1",
     "@types/react-redux": "^7.1.22",
     "@types/styled-components": "^5.1.20",
+    "axios": "^0.26.1",
     "moment": "^2.29.1",
     "next": "^12.1.0",
     "next-share": "^0.13.0",
@@ -35,7 +36,8 @@
     "react-redux": "^7.2.6",
     "react-slideshow-image": "^3.7.0",
     "recharts": "^2.1.8",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "uuidv4": "^6.2.12"
   },
   "devDependencies": {
     "@types/node": "17.0.9",
