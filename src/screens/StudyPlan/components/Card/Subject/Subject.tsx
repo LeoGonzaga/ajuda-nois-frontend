@@ -7,7 +7,7 @@ type Props = {
   topic: string;
 };
 
-export const Subject: React.FC<Props> = ({ subject, topic }: Props) => {
+export const Subject = ({ subject, topic }: Props): JSX.Element => {
   return (
     <Container>
       <div>

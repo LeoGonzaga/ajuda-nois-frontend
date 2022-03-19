@@ -10,7 +10,7 @@ type Props = {
   url: string;
 };
 
-export const TwitterShare = ({ url }: Props) => {
+export const TwitterShare = ({ url }: Props): JSX.Element => {
   return (
     <span>
       <TwitterShareButton url={url}>

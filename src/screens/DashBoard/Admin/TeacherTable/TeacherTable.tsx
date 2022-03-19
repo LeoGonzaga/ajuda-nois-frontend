@@ -9,7 +9,7 @@ type Props = {
   size: number;
 };
 
-export const TeacherTable: React.FC<Props> = ({ size }: Props) => {
+export const TeacherTable = ({ size }: Props): JSX.Element => {
   const data = [
     {
       name: 'Caio Rolando da Rocha',
@@ -30,6 +30,7 @@ export const TeacherTable: React.FC<Props> = ({ size }: Props) => {
       subjects: 'Matemática, Física',
     },
   ];
+
   return (
     <Container>
       <Expandable

@@ -1,9 +1,10 @@
-import type { NextPage } from 'next';
+import React from 'react';
+
 import Head from 'next/head';
 
 import StudyPlan from '../src/screens/StudyPlan';
 
-const Home: NextPage = () => {
+const StudyPlanPage = (): JSX.Element => {
   return (
     <>
       <Head>
@@ -17,4 +18,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default StudyPlanPage;

@@ -72,6 +72,7 @@ export const Dashboard = (): JSX.Element => {
           </SecondaryButton>
         </span>
       </Controls>
+
       <Spacing vertical={5} />
       {data?.map(({ name, topics, quizRates }, index) => {
         return (

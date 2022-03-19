@@ -7,7 +7,7 @@ type Props = {
   endTime: string;
 };
 
-export const Times: React.FC<Props> = ({ startTime, endTime }: Props) => {
+export const Times = ({ startTime, endTime }: Props): JSX.Element => {
   return (
     <Container>
       <div>

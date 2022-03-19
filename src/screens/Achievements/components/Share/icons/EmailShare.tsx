@@ -10,7 +10,7 @@ type Props = {
   url: string;
 };
 
-export const EmailShare = ({ url }: Props) => {
+export const EmailShare = ({ url }: Props): JSX.Element => {
   return (
     <span>
       <EmailShareButton url={url}>

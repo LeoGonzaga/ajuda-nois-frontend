@@ -3,7 +3,7 @@ import React from 'react';
 import Head from 'next/head';
 import Panel from 'src/screens/Panel';
 
-const PanelPage: React.FC = () => {
+const PanelPage = (): JSX.Element => {
   return (
     <>
       <Head>

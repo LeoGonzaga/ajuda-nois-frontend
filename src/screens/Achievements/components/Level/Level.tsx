@@ -9,7 +9,7 @@ type LevelProps = {
   exp: number;
 };
 
-export const Level = ({ exp }: LevelProps) => {
+export const Level = ({ exp }: LevelProps): JSX.Element => {
   const levelProgression = [0, 100, 500, 1000, 2000, 3500, 5000, 7500, 10000];
   let level = 0;
 

@@ -7,10 +7,15 @@ import TextInput from '@components/Inputs/TextInput';
 import Select from '@components/Select';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
+import { Options } from '@services/api';
+import { Services } from '@services/index';
 import { COLORS } from '@themes/colors';
 import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
+
+const token =
+  'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjIxZGFiZGU2OTJkMjMyZGI0YTQyYmY1IiwiaWF0IjoxNjQ2MTEzOTY2LCJleHAiOjE2NDYyMDAzNjZ9.ANPjMTfHPjJJ-jb-Yn4FFYbzCWnVZ_jJ4V7-oJg12y2tL1PaZ_3l9z7SJTEXuXerxM11_k1yMoDprGYOO8pXFY4Qt3tipdkM5LnwH0xun5o2PE9OzwR9tovX2JTdHsnnGU9osRto7uw0s2HmJfHhc0bNTMEo9jyPl3ccxcPkRR`';
 
 export const Form = (): JSX.Element => {
   const [username, setUsername] = useChangeText('');
@@ -27,9 +32,8 @@ export const Form = (): JSX.Element => {
     return re.test(email);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(email, username, usertype);
     const validEmail = validateEmail(email);
 
     if (email.length === 0 || !validEmail) {
@@ -38,6 +42,19 @@ export const Form = (): JSX.Element => {
         email: true,
       }));
     }
+
+    const options: Options = {
+      method: 'POST',
+      url: '/createUser',
+      headers: { Authorization: `Bearer ${token}` },
+      data: JSON.stringify({
+        username,
+        email,
+        password: '123456',
+        usertype,
+      }),
+    };
+    const response = await Services.users.createUser(options);
   };
 
   const handleResetErrorInput = () => {

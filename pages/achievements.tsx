@@ -3,7 +3,7 @@ import React from 'react';
 import Head from 'next/head';
 import Achievements from 'src/screens/Achievements';
 
-const AchievementsPage = () => {
+const AchievementsPage = (): JSX.Element => {
   return (
     <>
       <Head>

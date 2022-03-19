@@ -12,7 +12,7 @@ import StudentTable from './StudentTable';
 import { Column, Container, Controls, Row } from './styles';
 import TeacherTable from './TeacherTable';
 
-export const Dashboard: React.FC = () => {
+export const Dashboard = (): JSX.Element => {
   return (
     <Container>
       <Controls>

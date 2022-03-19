@@ -18,7 +18,7 @@ export const ActionButton = ({
   loading,
   width,
   onClick,
-}: ActionButtonProps) => {
+}: ActionButtonProps): JSX.Element => {
   return (
     <Container
       disabled={disabled}

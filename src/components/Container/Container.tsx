@@ -6,6 +6,6 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const Container = ({ children }: Props) => {
+export const Container = ({ children }: Props): JSX.Element => {
   return <ContainerStyled>{children}</ContainerStyled>;
 };

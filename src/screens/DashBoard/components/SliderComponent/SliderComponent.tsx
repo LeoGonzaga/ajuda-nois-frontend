@@ -25,7 +25,7 @@ export function SliderComponent({
   value,
   onHandleLowRate,
   onHandleMediumRate,
-}: Props) {
+}: Props): JSX.Element {
   return (
     <Container>
       <Slider
