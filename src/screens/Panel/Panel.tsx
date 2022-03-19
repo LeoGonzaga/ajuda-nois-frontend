@@ -19,7 +19,7 @@ export const Panel = (): JSX.Element => {
     },
 
     {
-      name: 'Alunos',
+      name: 'Usuários',
       path: ROUTES.LIST_USERS,
       quantity: 56,
     },
@@ -27,6 +27,36 @@ export const Panel = (): JSX.Element => {
       name: 'Conquistas',
       path: ROUTES.LIST_ACHIEVEMENTS,
       quantity: 56,
+    },
+    {
+      name: 'Dicas',
+      path: ROUTES.LIST_TIPS,
+      quantity: 6,
+    },
+    {
+      name: 'Questões',
+      path: ROUTES.LIST_QUESTIONS,
+      quantity: 2,
+    },
+    {
+      name: 'Provas',
+      path: ROUTES.LIST_ENEM,
+      quantity: 26,
+    },
+    {
+      name: 'Lições',
+      path: ROUTES.LIST_LESSON,
+      quantity: 6,
+    },
+    {
+      name: 'Tópicos',
+      path: ROUTES.LIST_TOPIC,
+      quantity: 16,
+    },
+    {
+      name: 'Quiz',
+      path: ROUTES.LIST_QUIZ,
+      quantity: 55,
     },
   ];
 

@@ -32,7 +32,7 @@ export const Topic = (): JSX.Element => {
           <BackButton route={ROUTES.PANEL} />
         </div>
         <Flex align="center" justify="space-between">
-          <Title text="Matérias" contrast="" subText="" />
+          <Title text="Tópicos" contrast="" subText="" />
           <SecondaryButton onClick={handleToggleModal}>
             Nova matéria
           </SecondaryButton>

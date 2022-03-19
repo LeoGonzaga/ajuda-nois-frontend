@@ -1,9 +1,7 @@
 export const ROUTES = {
   HOME: '/',
-  // remover abaixo
   TEACHER: '/teacher',
   ADMIN: '/admin',
-  // remover acima
   LOGIN: '/auth',
   STUDYPLAN: '/studyplan',
   SUBJECT: '/subjects',
@@ -18,4 +16,8 @@ export const ROUTES = {
   LIST_QUIZ: '/list/quiz',
   LIST_ACHIEVEMENTS: '/list/achievements',
   LIST_TIPS: '/list/tips',
+  LIST_QUESTIONS: '/list/questions',
+  LIST_LESSON: '/list/lesson',
+  LIST_TOPIC: '/list/topic',
+  LIST_ENEM: '/list/enem',
 };

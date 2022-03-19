@@ -17,8 +17,8 @@ type Props = {
 };
 
 export const SubjectCards = styled.button`
-  width: 250px;
-  height: 300px;
+  width: 200px;
+  height: 250px;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.NEUTRAL};
   margin: 10px;
@@ -37,8 +37,8 @@ export const SubjectCards = styled.button`
 `;
 
 export const Circle = styled.div<Props>`
-  height: 180px;
-  width: 180px;
+  height: 130px;
+  width: 130px;
   border-radius: 50%;
   border: 5px solid #fff;
   background-color: ${(props) => props.background};

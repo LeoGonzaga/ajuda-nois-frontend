@@ -5,10 +5,10 @@ import { Container } from './styles';
 export type TextInputProps = {
   width?: string;
   placeholder?: string;
-  type: string;
-  value: string;
+  type?: string;
+  value?: string;
   error?: boolean;
-  onChange: (value: any) => void;
+  onChange?: (value: any) => void;
 };
 
 export const TextInput = ({
