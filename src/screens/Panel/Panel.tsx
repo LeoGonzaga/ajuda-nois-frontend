@@ -23,6 +23,11 @@ export const Panel = (): JSX.Element => {
       path: ROUTES.LIST_USERS,
       quantity: 56,
     },
+    {
+      name: 'Conquistas',
+      path: ROUTES.LIST_ACHIEVEMENTS,
+      quantity: 56,
+    },
   ];
 
   return (

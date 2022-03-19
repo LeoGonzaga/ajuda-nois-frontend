@@ -11,7 +11,7 @@ import { ROUTES } from 'src/routes/routes';
 import Form from './components/Form';
 import { Container } from './styles';
 
-export const Subjects = (): JSX.Element => {
+export const Quiz = (): JSX.Element => {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const handleToggleModal = useCallback(() => {
@@ -22,7 +22,7 @@ export const Subjects = (): JSX.Element => {
     <Container>
       <ModalContainer
         open={openModal}
-        title="Criação de matéria"
+        title="Criação de Quiz"
         handleClose={handleToggleModal}
       >
         <Form />

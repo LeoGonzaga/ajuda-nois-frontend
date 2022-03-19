@@ -1,31 +1,17 @@
 import React from 'react';
 
-import SecondaryButton from '@components/Buttons/SecondaryButton';
-import Title from '@components/Title';
 import { COLORS } from '@themes/colors';
-import Link from 'next/link';
-import Router from 'next/router';
-import { ROUTES } from 'src/routes/routes';
 
 import Card from '../components/Card';
 import ResultsPomodoro from '../components/ResultsPomodoro';
 import ResultsTest from '../components/ResultsTest';
 import SubjectContent from '../components/SubjectContent';
 import Timeline from '../components/Timeline';
-import { Column, Container, Controls, Row } from './styles';
+import { Column, Container, Row } from './styles';
 
 export const Dashboard = (): JSX.Element => {
-  const handleRedirectToPanel = () => {
-    Router.push(ROUTES.PANEL);
-  };
   return (
     <Container>
-      <Controls>
-        <Title text="Métricas" contrast="" subText="" />
-        <SecondaryButton onClick={handleRedirectToPanel}>
-          Configurações
-        </SecondaryButton>
-      </Controls>
       <Row>
         <Column>
           <Row>

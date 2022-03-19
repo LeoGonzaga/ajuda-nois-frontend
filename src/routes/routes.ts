@@ -16,4 +16,6 @@ export const ROUTES = {
   LIST_USERS: '/list/users',
   LIST_SUBJECTS: '/list/subjects',
   LIST_QUIZ: '/list/quiz',
+  LIST_ACHIEVEMENTS: '/list/achievements',
+  LIST_TIPS: '/list/tips',
 };

@@ -7,23 +7,13 @@ import { Styles } from './styles';
 type Props = {
   value: string;
   onChange: (e: string) => void;
+  data: Array<{
+    name: string;
+    value: number | string;
+  }>;
 };
 
-const data = [
-  {
-    value: 'teacher',
-    name: 'Professor',
-  },
-  {
-    value: 'user',
-    name: 'Aluno',
-  },
-  {
-    value: 'admin',
-    name: 'Administrador',
-  },
-];
-export const Select = ({ onChange, value }: Props): JSX.Element => {
+export const Select = ({ onChange, value, data }: Props): JSX.Element => {
   return (
     <Styles.Container value={value} onChange={(e) => onChange(e.target.value)}>
       {data?.map((item) => (

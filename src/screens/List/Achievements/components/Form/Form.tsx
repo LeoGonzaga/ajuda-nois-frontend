@@ -22,7 +22,7 @@ const data = [
     name: 'Professor',
   },
   {
-    value: 'student',
+    value: 'user',
     name: 'Aluno',
   },
   {
@@ -66,13 +66,12 @@ export const Form = (): JSX.Element => {
 
     const options: Options = {
       method: 'POST',
-      url: '/createUser',
+      url: '/createSubject',
       headers: { Authorization: `Bearer ${token}` },
       data: {
-        username,
-        email,
-        password: '123456',
-        usertype,
+        name: 'string',
+        area: 'string - ara de conhecimento?',
+        teacher_id: 'string - verificar se é string mesmo',
       },
     };
     const response = await requestAPI(options);
@@ -103,24 +102,16 @@ export const Form = (): JSX.Element => {
     <Styles.Container onSubmit={handleSubmit}>
       <TextInput
         width="350px"
-        placeholder="Nome completo"
+        placeholder="Nome da conquista"
         type="text"
         value={username}
         onChange={setUsername}
         error={errors.username}
       />
       <Spacing vertical={15} />
-      <TextInput
-        width="350px"
-        placeholder="Email"
-        type="email"
-        value={email}
-        onChange={setEmail}
-        error={errors.email}
-      />
+      <textarea placeholder="Nome da conquista" />
       <Spacing vertical={15} />
-
-      <Text>Tipo de usuário:</Text>
+      <Text>Aréa do conhecimento:</Text>
       <Spacing vertical={15} />
       <Select onChange={setUserType} value={usertype} data={data} />
       <Spacing vertical={15} />

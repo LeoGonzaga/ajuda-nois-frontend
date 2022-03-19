@@ -11,7 +11,7 @@ import { ROUTES } from 'src/routes/routes';
 import Form from './components/Form';
 import { Container } from './styles';
 
-export const Subjects = (): JSX.Element => {
+export const Achievements = (): JSX.Element => {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const handleToggleModal = useCallback(() => {
@@ -22,7 +22,7 @@ export const Subjects = (): JSX.Element => {
     <Container>
       <ModalContainer
         open={openModal}
-        title="Criação de matéria"
+        title="Criação de conquista"
         handleClose={handleToggleModal}
       >
         <Form />
@@ -32,7 +32,7 @@ export const Subjects = (): JSX.Element => {
           <BackButton route={ROUTES.PANEL} />
         </div>
         <Flex align="center" justify="space-between">
-          <Title text="Matérias" contrast="" subText="" />
+          <Title text="Conquistas" contrast="" subText="" />
           <SecondaryButton onClick={handleToggleModal}>
             Nova matéria
           </SecondaryButton>

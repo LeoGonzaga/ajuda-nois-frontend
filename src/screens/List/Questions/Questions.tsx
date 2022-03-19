@@ -11,7 +11,7 @@ import { ROUTES } from 'src/routes/routes';
 import Form from './components/Form';
 import { Container } from './styles';
 
-export const Subjects = (): JSX.Element => {
+export const Questions = (): JSX.Element => {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const handleToggleModal = useCallback(() => {

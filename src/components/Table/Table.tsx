@@ -5,7 +5,7 @@ import { uuid } from 'uuidv4';
 import { Container, Tr, Column, Th, ScrollContainer } from './styles';
 
 const DATA = [
-  { name: 'Leonardo Gonzaga Silva', status: 'Ativo', type: 'Aluno' },
+  { name: 'Matemática', status: 'Ativo', type: 'Matemat. e suas tecnologias' },
 ];
 
 export const Table = (): JSX.Element => {
