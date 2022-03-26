@@ -30,7 +30,11 @@ export const Form = (): JSX.Element => {
           type="email"
           {...register('email')}
         />
-        <p>{errors.email?.message}</p>
+        <Spacing vertical={3} />
+        <Text color={COLORS.RED} center>
+          {errors.email?.message}
+        </Text>
+
         <Spacing vertical={5} />
         <input
           width="350px"
@@ -38,7 +42,10 @@ export const Form = (): JSX.Element => {
           type="password"
           {...register('password')}
         />
-        <p>{errors.password?.message}</p>
+        <Spacing vertical={3} />
+        <Text color={COLORS.RED} center>
+          {errors.password?.message}
+        </Text>
         <Wrapper>
           <label>
             <input type="checkbox" name="" id="" />
