@@ -18,18 +18,19 @@ export const Form = (): JSX.Element => {
     handleCloseNotification,
     loading,
     message,
+    apiError,
     openNotification,
   } = useFormLogin();
 
   return (
     <Container>
-      {/* <Notification
-        open={false}
+      <Notification
+        open={openNotification}
         handleClose={handleCloseNotification}
         message={message}
-        error={false}
+        error={apiError}
         autoClose={3}
-      /> */}
+      />
       <div>
         <Text color={COLORS.BLACK} center>
           Bem vindo(a) de volta!

@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Head from 'next/head';
 
 import { default as TeacherDashboard } from '../src/screens/DashBoard/Teacher';
 
 const TeacherPage = (): JSX.Element => {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const type = localStorage.getItem('usertype');
+    if (type === 'teacher') {
+      setShow(true);
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -13,7 +22,7 @@ const TeacherPage = (): JSX.Element => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <TeacherDashboard />
+      {show ? <TeacherDashboard /> : 'Você não tem permissão'}
     </>
   );
 };

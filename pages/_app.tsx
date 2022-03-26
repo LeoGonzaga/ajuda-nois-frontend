@@ -17,7 +17,7 @@ Modal.setAppElement('#__next');
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
-  console.log(pathname);
+
   const HIDE_SIDEBAR = [
     ROUTES.PANEL,
     ROUTES.LIST_ACHIEVEMENTS,

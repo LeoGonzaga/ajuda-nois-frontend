@@ -4,7 +4,6 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { requestAPI, Options } from '@services/index';
 import { handleRedirect } from '@utils/functions';
-import Router from 'next/router';
 import { ROUTES } from 'src/routes/routes';
 import * as yup from 'yup';
 
@@ -13,6 +12,10 @@ type Inputs = {
   password: string;
 };
 
+type Response = {
+  response: any;
+  error: boolean;
+};
 const schema = yup
   .object({
     email: yup.string().email().required(),
@@ -22,6 +25,7 @@ const schema = yup
 
 export const useFormLogin = () => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [apiError, setApiError] = useState<boolean>(false);
   const [openNotification, setOpenNotification] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
   const {
@@ -57,21 +61,35 @@ export const useFormLogin = () => {
         password,
       },
     };
-    const { response, error } = await requestAPI(payload);
-    console.log(response);
-    if (error) {
-      setMessage('Mensagem de erro');
+    const { response }: Response = await requestAPI(payload);
+    if (response?.status > 300) {
+      setMessage(response?.data?.message);
       setLoading(false);
+      setApiError(true);
+      setOpenNotification(true);
       return;
     }
-    const token = response?.token;
+    const token = response?.data?.token;
     localStorage.setItem('token', token);
-    const usertype = response?.user?.usertype;
-    console.log(usertype);
-    await handleRedirectUser(usertype);
-    setOpenNotification(true);
+    const usertype = response?.data?.user?.usertype;
+    localStorage.setItem('usertype', usertype);
+
+    setApiError(false);
+    switch (usertype) {
+      case 'admin':
+        handleRedirect(ROUTES.ADMIN);
+        break;
+      case 'teacher':
+        handleRedirect(ROUTES.TEACHER);
+        break;
+      case 'student':
+        handleRedirect(ROUTES.HOME);
+        break;
+
+      default:
+        break;
+    }
     setLoading(false);
-    // console.log(a);
   };
 
   return {
@@ -83,5 +101,6 @@ export const useFormLogin = () => {
     message,
     openNotification,
     handleCloseNotification,
+    apiError,
   };
 };

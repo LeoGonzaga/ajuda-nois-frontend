@@ -14,7 +14,8 @@ const Container = styled.div<Props>`
   position: absolute;
   top: 30px;
   left: 100px;
-  display: 'none';
+  display: flex;
+  visibility: ${(props) => (props.open ? 'visible' : 'hidden')};
   align-items: center;
   background-color: ${(props) => (props.error ? '#f27457' : '#47C2A6')};
   height: 52px;

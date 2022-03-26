@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import { VscChromeClose } from 'react-icons/vsc';
 
 import Text from '@components/Text';
 
@@ -14,7 +13,7 @@ type Props = {
   handleClose: () => void;
 };
 export const Notification = ({
-  open = false,
+  open,
   handleClose,
   autoClose = 0,
   error,
@@ -29,11 +28,8 @@ export const Notification = ({
   }, [open, autoClose]);
 
   return (
-    <Styles.Container open={false} error={error}>
+    <Styles.Container open={open} error={error} onClick={handleClose}>
       <Text>{message}</Text>
-      <button onClick={handleClose}>
-        <VscChromeClose size={16} color="#fff" />
-      </button>
     </Styles.Container>
   );
 };

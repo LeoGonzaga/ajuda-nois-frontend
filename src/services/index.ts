@@ -11,8 +11,8 @@ export type Options = {
 
 export const requestAPI = async (options: Options) => {
   try {
-    const { data } = await API(options);
-    return { error: false, response: data };
+    const response = await API(options);
+    return { error: false, response: response };
   } catch (error) {
     return { error: true, response: error };
   }

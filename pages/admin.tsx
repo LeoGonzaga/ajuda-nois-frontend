@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Head from 'next/head';
 
 import { default as AdminDashboard } from '../src/screens/DashBoard/Admin';
 
 const AdminPage = (): JSX.Element => {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const type = localStorage.getItem('usertype');
+    if (type === 'admin') {
+      setShow(true);
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -13,7 +22,7 @@ const AdminPage = (): JSX.Element => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <AdminDashboard />
+      {show ? <AdminDashboard /> : 'Você não tem permissão'}
     </>
   );
 };
