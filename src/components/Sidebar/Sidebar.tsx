@@ -19,7 +19,6 @@ import { Container } from './styles';
 export const Sidebar = (): JSX.Element => {
   const handlePermitions = () => {
     const type = localStorage.getItem('usertype');
-    console.log(type);
     const ACCESS: any = {
       admin: <Item text="Admin" router={ROUTES.ADMIN} icon={<BiHomeAlt />} />,
       teacher: (
