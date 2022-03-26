@@ -1,5 +1,6 @@
 import { COLORS } from '@themes/colors';
 import Router from 'next/router';
+import { ROUTES } from 'src/routes/routes';
 
 const RANDOM_COLORS = [
   COLORS.SUCCESS,

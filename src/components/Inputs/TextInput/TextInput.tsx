@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLInputTypeAttribute } from 'react';
 
 import { Container } from './styles';
 
@@ -9,6 +9,7 @@ export type TextInputProps = {
   value?: string;
   error?: boolean;
   onChange?: (value: any) => void;
+  rest?: any;
 };
 
 export const TextInput = ({
@@ -18,7 +19,9 @@ export const TextInput = ({
   value,
   onChange,
   error,
+  rest,
 }: TextInputProps): JSX.Element => {
+  console.log(rest);
   return (
     <Container
       width={width}
@@ -27,6 +30,7 @@ export const TextInput = ({
       value={value}
       onChange={onChange}
       error={error}
+      {...rest}
     />
   );
 };

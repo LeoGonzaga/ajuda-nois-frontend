@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BiHomeAlt,
   BiWorld,
@@ -17,12 +17,24 @@ import Item from './components';
 import { Container } from './styles';
 
 export const Sidebar = (): JSX.Element => {
+  const handlePermitions = () => {
+    const type = localStorage.getItem('usertype');
+    const ACCESS: any = {
+      admin: <Item text="Admin" router={ROUTES.ADMIN} icon={<BiHomeAlt />} />,
+      teacher: (
+        <Item text="Professor" router={ROUTES.TEACHER} icon={<BiHomeAlt />} />
+      ),
+      student: <Item text="Inicio" router={ROUTES.HOME} icon={<BiHomeAlt />} />,
+    };
+
+    return ACCESS[type || ''];
+  };
+
   return (
     <Container>
       <div>
-        <Item text="Inicio" router={ROUTES.HOME} icon={<BiHomeAlt />} />
-        <Item text="Professor" router={ROUTES.TEACHER} icon={<BiHomeAlt />} />
-        <Item text="Admin" router={ROUTES.ADMIN} icon={<BiHomeAlt />} />
+        {handlePermitions()}
+
         <Item text="Matérias" router={ROUTES.SUBJECT} icon={<BiRocket />} />
         <Item text="Dicas" router={ROUTES.TIPS} icon={<BiWorld />} />
         <Item active text="Provas" router={ROUTES.TESTS} icon={<BiBrain />} />

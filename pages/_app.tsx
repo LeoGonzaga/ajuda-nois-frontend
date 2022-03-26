@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { ContainerStyled } from '@components/Container/styles';
 import Content from '@components/Content';
 import Flex from '@components/Flex';
+import PrivateRoutes from '@components/PrivateRoutes/PrivateRoutes';
 import Sidebar from '@components/Sidebar';
 import { GlobalStyles, darkTheme } from '@themes/theme.config';
 import type { AppProps } from 'next/app';
@@ -16,6 +17,7 @@ Modal.setAppElement('#__next');
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
+
   const HIDE_SIDEBAR = [
     ROUTES.PANEL,
     ROUTES.LIST_ACHIEVEMENTS,
@@ -35,14 +37,16 @@ function MyApp({ Component, pageProps }: AppProps) {
         {pathname === ROUTES.LOGIN ? (
           <Component {...pageProps} />
         ) : (
-          <ContainerStyled>
-            <Flex>
-              {!HIDE_SIDEBAR.includes(pathname) && <Sidebar />}
-              <Content>
-                <Component {...pageProps} />
-              </Content>
-            </Flex>
-          </ContainerStyled>
+          <PrivateRoutes>
+            <ContainerStyled>
+              <Flex>
+                {!HIDE_SIDEBAR.includes(pathname) && <Sidebar />}
+                <Content>
+                  <Component {...pageProps} />
+                </Content>
+              </Flex>
+            </ContainerStyled>
+          </PrivateRoutes>
         )}
       </Provider>
     </ThemeProvider>

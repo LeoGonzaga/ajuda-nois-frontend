@@ -29,6 +29,7 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [ ] Adição do QUIZ com questões cadastradas pelos professores
 - [x] Adição de tipos diferentes de visualização do dashboard de acordo com a função do usuário
 - [x] Adição do formulário de criação de usuários dentro da plataforma
+- [x] Adição redirecionamento de dashboard de acordo com o tipo do usuário
 
 Ele esta disponivel para a visualização por esse [link](https://ajudanois.vercel.app/).
 

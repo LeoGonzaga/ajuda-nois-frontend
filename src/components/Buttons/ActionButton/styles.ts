@@ -11,6 +11,11 @@ export const Container = styled.button<ActionButtonProps>`
   border: 1px;
   transition: 0.1s;
   font-weight: bold;
+
+  &:disabled {
+    background-color: #dddddd;
+    cursor: not-allowed;
+  }
   &:hover {
     opacity: 0.8;
 
