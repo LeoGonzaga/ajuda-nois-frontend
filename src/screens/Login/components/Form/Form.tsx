@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ActionButton from '@components/Buttons/ActionButton';
-import TextInput from '@components/Inputs/TextInput';
+import Notification from '@components/Notification';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
@@ -10,10 +10,26 @@ import { Container, Wrapper } from './styles';
 import { useFormLogin } from './useForm';
 
 export const Form = (): JSX.Element => {
-  const { errors, handleSubmit, onSubmit, register } = useFormLogin();
-  console.log(Object.keys(errors)?.length);
+  const {
+    errors,
+    handleSubmit,
+    onSubmit,
+    register,
+    handleCloseNotification,
+    loading,
+    message,
+    openNotification,
+  } = useFormLogin();
+
   return (
     <Container>
+      {/* <Notification
+        open={false}
+        handleClose={handleCloseNotification}
+        message={message}
+        error={false}
+        autoClose={3}
+      /> */}
       <div>
         <Text color={COLORS.BLACK} center>
           Bem vindo(a) de volta!
@@ -57,7 +73,8 @@ export const Form = (): JSX.Element => {
         <ActionButton
           color={COLORS.SECONDARY}
           width="350px"
-          disabled={Object.keys(errors)?.length > 0}
+          loading={loading}
+          disabled={Object.keys(errors)?.length > 0 || loading}
           onClick={handleSubmit(onSubmit)}
         >
           Entrar

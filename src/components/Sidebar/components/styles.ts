@@ -1,7 +1,9 @@
 import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
-import { Props } from './Item';
+type Props = {
+  active: boolean;
+};
 
 export const Container = styled.div<Props>`
   background-color: ${(props) => (props.active ? COLORS.NEUTRAL : 'none')};

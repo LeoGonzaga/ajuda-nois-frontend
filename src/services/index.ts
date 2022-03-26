@@ -2,7 +2,7 @@ import { API } from './api';
 
 export type Options = {
   method: 'POST' | 'GET' | 'PUT' | 'PATCH' | 'DELETE';
-  headers: {
+  headers?: {
     Authorization: string;
   };
   data?: any;
