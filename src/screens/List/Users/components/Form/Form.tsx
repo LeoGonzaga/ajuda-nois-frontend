@@ -7,14 +7,12 @@ import TextInput from '@components/Inputs/TextInput';
 import Select from '@components/Select';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
-import { Options, requestAPI } from '@services/index';
+import { Options, requestAPI, Response } from '@services/index';
 import { COLORS } from '@themes/colors';
+import { checkError } from '@utils/functions';
 import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
-
-const token =
-  'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjIxZGFiZGU2OTJkMjMyZGI0YTQyYmY1IiwiaWF0IjoxNjQ2MTEzOTY2LCJleHAiOjE2NDYyMDAzNjZ9.ANPjMTfHPjJJ-jb-Yn4FFYbzCWnVZ_jJ4V7-oJg12y2tL1PaZ_3l9z7SJTEXuXerxM11_k1yMoDprGYOO8pXFY4Qt3tipdkM5LnwH0xun5o2PE9OzwR9tovX2JTdHsnnGU9osRto7uw0s2HmJfHhc0bNTMEo9jyPl3ccxcPkRR`';
 
 const data = [
   {
@@ -31,10 +29,15 @@ const data = [
   },
 ];
 
-export const Form = (): JSX.Element => {
+type Props = {
+  onClose: () => void;
+};
+
+export const Form = ({ onClose }: Props): JSX.Element => {
   const [username, setUsername] = useChangeText('');
   const [email, setEmail] = useChangeText('');
-  const [usertype, setUserType] = useState<string>('');
+  const [usertype, setUserType] = useState<string>('student');
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [errors, setErrors] = useState({
     username: false,
@@ -48,6 +51,8 @@ export const Form = (): JSX.Element => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
+    const token = localStorage.getItem('token');
     const validEmail = validateEmail(email);
 
     if (email.length === 0 || !validEmail) {
@@ -75,8 +80,12 @@ export const Form = (): JSX.Element => {
         usertype,
       },
     };
-    const response = await requestAPI(options);
-    console.log(response);
+    const { response }: Response = await requestAPI(options);
+
+    const responseError = checkError(response?.status);
+    console.log(responseError);
+    setLoading(false);
+    onClose();
   };
 
   const handleResetErrorInput = () => {
@@ -129,6 +138,8 @@ export const Form = (): JSX.Element => {
           color={COLORS.SECONDARY}
           width="350px"
           onClick={handleSubmit}
+          disabled={loading}
+          loading={loading}
         >
           Salvar
         </ActionButton>

@@ -1,6 +1,5 @@
 import { COLORS } from '@themes/colors';
 import Router from 'next/router';
-import { ROUTES } from 'src/routes/routes';
 
 const RANDOM_COLORS = [
   COLORS.SUCCESS,
@@ -8,6 +7,8 @@ const RANDOM_COLORS = [
   COLORS.WARNING,
   COLORS.BLUE,
 ];
+
+const STATUS_CODE = 400;
 
 export const getRandomColors = (min: number, max: number) => {
   min = Math.ceil(min);
@@ -28,4 +29,8 @@ export const getColorByTest = (color: string) => {
 
 export const handleRedirect = (route: string) => {
   Router.push(route);
+};
+
+export const checkError = (value: number) => {
+  return value > STATUS_CODE;
 };

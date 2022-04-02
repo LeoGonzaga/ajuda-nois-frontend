@@ -36,25 +36,27 @@ export const ModalContainer = ({
   title = '',
 }: Props): JSX.Element => {
   return (
-    <Modal
-      overlayClassName="modalOverlay"
-      isOpen={open}
-      onRequestClose={handleClose}
-      style={customStyles}
-    >
-      <Styles.Container>
-        <Flex justify="space-between">
-          <Styles.BackButton onClick={handleClose}>
-            <BiArrowBack size={25} />
-          </Styles.BackButton>
+    <>
+      <Modal
+        overlayClassName="modalOverlay"
+        isOpen={open}
+        onRequestClose={handleClose}
+        style={customStyles}
+      >
+        <Styles.Container>
+          <Flex justify="space-between">
+            <Styles.BackButton onClick={handleClose}>
+              <BiArrowBack size={25} />
+            </Styles.BackButton>
 
-          <Text bold size={25}>
-            {title}
-          </Text>
-        </Flex>
-        <Spacing vertical={15} />
-        {children}
-      </Styles.Container>
-    </Modal>
+            <Text bold size={25}>
+              {title}
+            </Text>
+          </Flex>
+          <Spacing vertical={15} />
+          {children}
+        </Styles.Container>
+      </Modal>
+    </>
   );
 };

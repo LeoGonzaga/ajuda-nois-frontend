@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const Container = styled.select`
   width: 100%;
   height: 45px;
-  background-color: ${COLORS.NEUTRAL};
   color: #fff;
 
   outline: none;
@@ -20,6 +19,8 @@ const Container = styled.select`
   background-size: 20px 10px;
   -webkit-appearance: none;
   background-position-x: 95%;
+  background-color: ${COLORS.NEUTRAL};
+
   &:focus {
     border: 1px solid ${COLORS.SECONDARY};
   }

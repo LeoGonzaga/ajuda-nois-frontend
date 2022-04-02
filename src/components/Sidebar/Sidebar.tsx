@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BiHomeAlt,
   BiWorld,
@@ -17,23 +17,26 @@ import Item from './components';
 import { Container } from './styles';
 
 export const Sidebar = (): JSX.Element => {
-  const handlePermitions = () => {
-    const type = localStorage.getItem('usertype');
-    const ACCESS: any = {
-      admin: <Item text="Admin" router={ROUTES.ADMIN} icon={<BiHomeAlt />} />,
-      teacher: (
-        <Item text="Professor" router={ROUTES.TEACHER} icon={<BiHomeAlt />} />
-      ),
-      student: <Item text="Inicio" router={ROUTES.HOME} icon={<BiHomeAlt />} />,
-    };
+  const [dashboard, setDashBoard] = useState<string>('');
 
-    return ACCESS[type || ''];
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    const parseUser = JSON.parse(user || '');
+    setDashBoard(parseUser.usertype);
+  }, []);
+
+  const ACCESS: any = {
+    admin: <Item text="Admin" router={ROUTES.HOME} icon={<BiHomeAlt />} />,
+    teacher: (
+      <Item text="Professor" router={ROUTES.HOME} icon={<BiHomeAlt />} />
+    ),
+    student: <Item text="Inicio" router={ROUTES.HOME} icon={<BiHomeAlt />} />,
   };
 
   return (
     <Container>
       <div>
-        {handlePermitions()}
+        {ACCESS[dashboard]}
 
         <Item text="Matérias" router={ROUTES.SUBJECT} icon={<BiRocket />} />
         <Item text="Dicas" router={ROUTES.TIPS} icon={<BiWorld />} />
