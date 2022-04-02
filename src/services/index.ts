@@ -9,6 +9,11 @@ export type Options = {
   url: string;
 };
 
+export type Response = {
+  response: any;
+  error: boolean;
+};
+
 export const requestAPI = async (options: Options) => {
   try {
     const response = await API(options);
