@@ -18,6 +18,7 @@ type Props = {
   lowRate: number;
   mediumRate: number;
   quizRates: Array<number>;
+  studentSize: number;
 };
 
 export const Subject = ({
@@ -26,35 +27,43 @@ export const Subject = ({
   quizRates,
   lowRate,
   mediumRate,
+  studentSize,
 }: Props): JSX.Element => {
+  const simData = 13;
+
   return (
     <Container>
-      <Expandable title={name} size={10} type="teacher">
+      <Expandable
+        title={name}
+        size={studentSize}
+        simSize={simData}
+        type="teacher"
+      >
         <Content>
-          <Column>
-            <Row>
+          <Row>
+            <Column>
               <MediumCard
                 color={COLORS.RED}
                 indicator={lowRate}
                 value={3}
                 icon={<MdError />}
               />
-              <Spacing horizontal={5} />
+              <Spacing horizontal={5} vertical={5} />
               <MediumCard
                 color={COLORS.YELLOW}
                 indicator={mediumRate}
                 value={10}
                 icon={<IoWarning />}
               />
-            </Row>
+            </Column>
+            <Spacing horizontal={5} />
             <TopicContent
               topics={topics}
               quizRates={quizRates}
               lowRate={lowRate}
               mediumRate={mediumRate}
             />
-          </Column>
-          <ResultsTest type="specific" />
+          </Row>
         </Content>
         <Spacing vertical={5} />
         <StudentTable
@@ -63,6 +72,7 @@ export const Subject = ({
           lowRate={lowRate}
           mediumRate={mediumRate}
         />
+        <ResultsTest type="specific" />
       </Expandable>
     </Container>
   );

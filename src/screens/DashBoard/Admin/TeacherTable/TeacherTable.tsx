@@ -37,6 +37,7 @@ export const TeacherTable = ({ size }: Props): JSX.Element => {
         title="Professores"
         subtitle="Cadastrados neste ano"
         size={size}
+        simSize={0}
         type="admin"
       >
         <Spacing vertical={10} />

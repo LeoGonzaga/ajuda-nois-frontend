@@ -19,9 +19,11 @@ export const ResultsTest = ({ type }: Props): JSX.Element => {
     <Container type={type}>
       <div>
         <Text bold color={COLORS.BLACK} size={18}>
-          Simulados
+          {type == 'specific' ? 'Acertos Por Questão' : 'Simulado'}
         </Text>
-        <Text size={14}>Mês/Período</Text>
+        <Text size={14}>
+          {type == 'specific' ? 'Simulado de Mês/Período' : 'Mês/Período'}
+        </Text>
       </div>
       <Spacing vertical={10} />
       {type === 'horizontal' ? (

@@ -8,100 +8,132 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Cell,
 } from 'recharts';
 
-const barColors = ['#6F52ED', '#00BF20', '#CA1E3C', '#FBBC05'];
+const barColor = '#6F52ED';
 
 const data = [
   {
-    name: '≤5',
-    uv: 4000,
+    name: 'Questão 1',
+    acertos: 45,
+    uv: 2780,
+    amt: 22,
+  },
+  {
+    name: 'Questão 2',
+    acertos: 23,
+    uv: 3000,
+    amt: 22,
+  },
+  {
+    name: 'Questão 3',
+    acertos: 33,
+    uv: 2000,
+    amt: 12,
+  },
+  {
+    name: 'Questão 4',
     acertos: 22,
-    amt: 45,
-  },
-  {
-    name: '≤10',
-    uv: 3000,
-    acertos: 1,
-    amt: 22,
-  },
-  {
-    name: '≤15',
-    uv: 2000,
-    acertos: 19,
-    amt: 12,
-  },
-  {
-    name: '≤20',
-    uv: 2780,
-    acertos: 2,
-    amt: 22,
-  },
-  {
-    name: '≤25',
     uv: 4000,
-    acertos: 5,
     amt: 45,
   },
   {
-    name: '≤30',
-    uv: 3000,
-    acertos: 13,
+    name: 'Questão 5',
+    acertos: 15,
+    uv: 2780,
     amt: 22,
   },
   {
-    name: '≤35',
+    name: 'Questão 6',
+    acertos: 3,
+    uv: 3000,
+    amt: 22,
+  },
+  {
+    name: 'Questão 7',
+    acertos: 43,
     uv: 2000,
-    acertos: 27,
     amt: 12,
   },
   {
-    name: '≤40',
+    name: 'Questão 8',
+    acertos: 12,
+    uv: 4000,
+    amt: 45,
+  },
+  {
+    name: 'Questão 9',
+    acertos: 5,
     uv: 2780,
-    acertos: 15,
     amt: 22,
   },
   {
-    name: '≤45',
-    uv: 2780,
-    acertos: 11,
+    name: 'Questão 10',
+    acertos: 23,
+    uv: 3000,
     amt: 22,
+  },
+  {
+    name: 'Questão 11',
+    acertos: 23,
+    uv: 2000,
+    amt: 12,
+  },
+  {
+    name: 'Questão 12',
+    acertos: 20,
+    uv: 4000,
+    amt: 45,
+  },
+  {
+    name: 'Questão 13',
+    acertos: 7,
+    uv: 4000,
+    amt: 45,
   },
 ];
 
 export class SpecificBarChartContainer extends PureComponent {
   render() {
     return (
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="100%" height={35 * data.length}>
         <BarChart
-          width={300}
-          height={300}
           data={data}
+          barSize={20}
+          layout="vertical"
           margin={{
             top: 0,
-            right: 0,
-            left: -30,
+            right: 5,
+            left: 5,
             bottom: 20,
           }}
-          barSize={10}
         >
-          <XAxis
+          <YAxis
+            type="category"
             dataKey="name"
             scale="point"
-            padding={{ left: 20, right: 20 }}
+            width={110}
+            padding={{ top: 15, bottom: 15 }}
+            dx={-100}
+            stroke="#CED4DA"
+            tick={{ fontSize: 15, textAnchor: 'start' }}
           />
-          <YAxis
+          <XAxis
             type="number"
-            domain={[0, 30]}
-            tickCount={7}
+            tickCount={16}
             interval="preserveStartEnd"
+            axisLine={false}
+            dy={-5}
+            orientation="top"
+            tick={{ fontSize: 14 }}
           />
           <Tooltip />
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
+          <CartesianGrid strokeDasharray="1 5" horizontal={false} />
           <Bar
             dataKey="acertos"
             background={{ fill: 'transparent' }}
-            fill={barColors[0]}
+            fill={barColor}
           />
         </BarChart>
       </ResponsiveContainer>

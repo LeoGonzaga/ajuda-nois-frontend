@@ -31,8 +31,7 @@ export const MediumCard = ({
             </Flex>
           </Focus>
           <Subtext>
-            com rendimento abaixo de <br />
-            {indicator}% no último simulado
+            com rendimento abaixo de {indicator}% no último simulado
           </Subtext>
         </Flex>
       </Flex>

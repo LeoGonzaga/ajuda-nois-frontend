@@ -5,7 +5,6 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
 
-  margin-top: 10px;
   padding: 10px;
 
   border-radius: 5px;
@@ -61,7 +60,7 @@ export const Center = styled.div`
 
 export const Row = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 
   width: 100%;

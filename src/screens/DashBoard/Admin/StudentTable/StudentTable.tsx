@@ -91,6 +91,7 @@ export const StudentTable = ({ size }: Props): JSX.Element => {
         title="Alunos"
         subtitle="Matriculados neste ano"
         size={size}
+        simSize={0}
         type="admin"
       >
         <Spacing vertical={10} />
