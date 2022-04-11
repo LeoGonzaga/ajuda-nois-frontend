@@ -6,11 +6,11 @@ type Props = {
 };
 
 export const Container = styled.div<Props>`
-  width: ${(props) => (props.type == 'horizontal' ? '100%' : '50%')};
-  max-height: 400px;
+  width: ${(props) => (props.type != 'vertical' ? '100%' : '50%')};
+  max-height: ${(props) => (props.type != 'specific' ? '400px' : '')};
 
-  margin-top: ${(props) => (props.type == 'specific' ? '0px' : '10px')};
-  margin-left: ${(props) => (props.type == 'specific' ? '10px' : '0px')};
+  margin-top: 10px;
+  margin-left: 0px;
   padding: 15px;
 
   border-radius: 5px;
@@ -21,8 +21,7 @@ export const Wrapper = styled.div<Props>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: ${(props) => (props.type == 'specific' ? '100%' : '')};
-  margin-top: ${(props) => (props.type == 'specific' ? '-10px' : '0px')};
+  margin-top: 0px;
 `;
 
 export const Arrow = styled.button`

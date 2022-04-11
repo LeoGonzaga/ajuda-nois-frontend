@@ -88,6 +88,7 @@ export const StudentTable = ({
         title="Alunos"
         subtitle={'Turma de ' + name}
         size={size}
+        simSize={0}
         type="admin"
       >
         <Spacing vertical={10} />

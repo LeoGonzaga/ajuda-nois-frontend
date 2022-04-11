@@ -15,7 +15,7 @@ export const Dashboard = (): JSX.Element => {
   const [isConfigurationsOpen, setIsConfigurationsOpen] = useState(false);
   const [lowRate, setLowRate] = useState(25);
   const [mediumRate, setMediumRate] = useState(60);
-  const data = [
+  const subjectData = [
     {
       name: 'Geografia',
       topics: ['Planetas', 'Minérios', 'Bacias Hidrográficas'],
@@ -40,6 +40,7 @@ export const Dashboard = (): JSX.Element => {
       quizRates: [],
     },
   ];
+  const studentSize = 10;
 
   function handleOpenConfigurations() {
     setIsConfigurationsOpen(true);
@@ -74,7 +75,7 @@ export const Dashboard = (): JSX.Element => {
       </Controls>
 
       <Spacing vertical={5} />
-      {data?.map(({ name, topics, quizRates }, index) => {
+      {subjectData?.map(({ name, topics, quizRates }, index) => {
         return (
           <>
             <Subject
@@ -84,6 +85,7 @@ export const Dashboard = (): JSX.Element => {
               lowRate={lowRate}
               mediumRate={mediumRate}
               quizRates={quizRates}
+              studentSize={studentSize}
             />
           </>
         );

@@ -13,6 +13,7 @@ export const Container = styled.div<Props>`
   justify-content: space-between;
 
   width: 100%;
+  height: 100%;
   padding: 15px 20px;
   border-radius: 5px;
   background-color: ${COLORS.NEUTRAL};
