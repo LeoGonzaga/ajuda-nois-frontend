@@ -18,6 +18,9 @@ export const PomoButton = styled.button`
   justify-content: center;
   align-items: center;
 
+  margin-top: -12px;
+  margin-left: 1px;
+
   width: 213px;
   height: 213px;
 
@@ -43,11 +46,13 @@ export const Container = styled.div`
   width: 250px;
   height: 250px;
 
+  margin-bottom: 20px;
+
   border: none;
   border-radius: 100%;
 
   .CircularProgressbar-path {
-    stroke: ${COLORS.SUBJECT_BLUE};
+    stroke: url(#grad);
     stroke-width: 7;
     stroke-linecap: round;
   }
