@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Settings from './components/Settings';
 import Timer from './components/Timer';
