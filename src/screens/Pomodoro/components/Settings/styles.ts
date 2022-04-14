@@ -19,6 +19,7 @@ export const Container = styled.div`
   padding: 5px 0;
   margin-top: 15px;
 
+  border: 1px solid ${COLORS.GRAY};
   border-radius: 125px;
 
   background-color: ${COLORS.NEUTRAL};

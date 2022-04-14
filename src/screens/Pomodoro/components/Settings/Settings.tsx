@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { setWorkTime } from 'src/config/actions/pomodoroTime';
 
 import { Container, Selected, TimeButton } from './styles';
 
 export const Settings = (): JSX.Element => {
-  const [time, setTime] = useState({
+  const dispatch = useDispatch();
+  const [timeState, setTimeState] = useState({
     left: true,
     middle: false,
     right: false,
@@ -11,23 +15,28 @@ export const Settings = (): JSX.Element => {
   });
 
   function onHandleSetTime(index: number) {
-    index == 0
-      ? setTime({ left: true, middle: false, right: false, active: 0 })
-      : index == 1
-      ? setTime({ left: false, middle: true, right: false, active: 1 })
-      : setTime({ left: false, middle: false, right: true, active: 2 });
+    if (index == 0) {
+      setTimeState({ left: true, middle: false, right: false, active: 0 });
+      dispatch(setWorkTime(15));
+    } else if (index == 1) {
+      setTimeState({ left: false, middle: true, right: false, active: 1 });
+      dispatch(setWorkTime(20));
+    } else if (index == 2) {
+      setTimeState({ left: false, middle: false, right: true, active: 2 });
+      dispatch(setWorkTime(25));
+    }
   }
 
   return (
     <Container>
-      <Selected current={time.active} />
-      <TimeButton active={time.left} onClick={() => onHandleSetTime(0)}>
+      <Selected current={timeState.active} />
+      <TimeButton active={timeState.left} onClick={() => onHandleSetTime(0)}>
         15:00
       </TimeButton>
-      <TimeButton active={time.middle} onClick={() => onHandleSetTime(1)}>
+      <TimeButton active={timeState.middle} onClick={() => onHandleSetTime(1)}>
         20:00
       </TimeButton>
-      <TimeButton active={time.right} onClick={() => onHandleSetTime(2)}>
+      <TimeButton active={timeState.right} onClick={() => onHandleSetTime(2)}>
         25:00
       </TimeButton>
     </Container>

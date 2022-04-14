@@ -1,18 +1,30 @@
 import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
+type ModeProps = {
+  mode: string;
+};
+
 export const PomoText = styled.div`
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 10px;
   font-size: 40px;
   font-weight: bold;
 `;
 
-export const PomoIcons = styled.div`
-  font-size: 40px;
+export const PomoSubText = styled.div`
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
 `;
 
-export const PomoButton = styled.button`
+export const PomoIcons = styled.div`
+  font-size: 40px;
+  margin-top: 10px;
+`;
+
+export const PomoButton = styled.button<ModeProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,7 +49,10 @@ export const PomoButton = styled.button`
 
   &:hover {
     ${PomoIcons} {
-      color: ${COLORS.SUBJECT_BLUE};
+      color: ${(props) =>
+        props.mode === 'work'
+          ? `${COLORS.SUBJECT_BLUE}`
+          : `${COLORS.SECONDARY}`};
     }
   }
 `;
@@ -52,7 +67,7 @@ export const Container = styled.div`
   border-radius: 100%;
 
   .CircularProgressbar-path {
-    stroke: url(#grad);
+    stroke: url(#pomodoro);
     stroke-width: 7;
     stroke-linecap: round;
   }
