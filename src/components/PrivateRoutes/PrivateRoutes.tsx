@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 
-import { useRouter } from 'next/router';
-import { ROUTES } from 'src/routes/routes';
+// import { useRouter } from 'next/router';
 
 type Props = {
   children: any;
 };
 
 const PrivateRoutes = ({ children }: Props) => {
-  const router = useRouter();
+  // const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
 
   const isAuth = () => {
