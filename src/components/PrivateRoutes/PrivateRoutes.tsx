@@ -9,7 +9,7 @@ type Props = {
 
 const PrivateRoutes = ({ children }: Props) => {
   const router = useRouter();
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const isAuth = () => {
     const token = localStorage.getItem('token');
@@ -23,7 +23,7 @@ const PrivateRoutes = ({ children }: Props) => {
 
   // useEffect(() => {
   //   const auth = isAuth();
-  //   console.log(auth);
+  //   console.log(auth);git 
   //   if (!auth) {
   //     router.push(ROUTES.LOGIN);
   //   } else {
