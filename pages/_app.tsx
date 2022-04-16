@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { ContainerStyled } from '@components/Container/styles';
 import Content from '@components/Content';
 import Flex from '@components/Flex';
-import PrivateRoutes from '@components/PrivateRoutes/PrivateRoutes';
+// import PrivateRoutes from '@components/PrivateRoutes/PrivateRoutes';
 import Sidebar from '@components/Sidebar';
 import { GlobalStyles, darkTheme } from '@themes/theme.config';
 import type { AppProps } from 'next/app';
@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         {pathname === ROUTES.LOGIN ? (
           <Component {...pageProps} />
         ) : (
-          <PrivateRoutes>
+          // <PrivateRoutes>
             <ContainerStyled>
               <Flex>
                 {!HIDE_SIDEBAR.includes(pathname) && <Sidebar />}
@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 </Content>
               </Flex>
             </ContainerStyled>
-          </PrivateRoutes>
+          // </PrivateRoutes>
         )}
       </Provider>
     </ThemeProvider>
