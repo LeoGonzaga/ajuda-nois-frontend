@@ -21,16 +21,16 @@ const PrivateRoutes = ({ children }: Props) => {
     return false;
   };
 
-  useEffect(() => {
-    const auth = isAuth();
-    console.log(auth);
-    if (!auth) {
-      router.push(ROUTES.LOGIN);
-    } else {
-      router.push(router.route);
-      setLoading(false);
-    }
-  }, [loading]);
+  // useEffect(() => {
+  //   const auth = isAuth();
+  //   console.log(auth);
+  //   if (!auth) {
+  //     router.push(ROUTES.LOGIN);
+  //   } else {
+  //     router.push(router.route);
+  //     setLoading(false);
+  //   }
+  // }, [loading]);
 
   return <>{loading ? 'Aguarde' : children}</>;
 };
