@@ -11,37 +11,23 @@ import {
   Cell,
 } from 'recharts';
 
-const barColors = ['#FBBC05', '#00BF20', '#CA1E3C', '#6F52ED'];
+type DataProps = {
+  name: string;
+  acertos: number;
+  uv: number;
+  amt: number;
+};
 
-const data = [
-  {
-    name: 'Ciências Humanas e suas Tecnologias',
-    acertos: 45,
-    uv: 2780,
-    amt: 22,
-  },
-  {
-    name: 'Ciências da Natureza e suas Tecnologias',
-    acertos: 23,
-    uv: 3000,
-    amt: 22,
-  },
-  {
-    name: 'Linguagens, Códigos e suas Tecnologias',
-    acertos: 33,
-    uv: 2000,
-    amt: 12,
-  },
-  {
-    name: 'Matemática e suas Tecnologias',
-    acertos: 22,
-    uv: 4000,
-    amt: 45,
-  },
-];
+type Props = {
+  data: Array<DataProps>;
+};
 
-export class HorizontalBarChartContainer extends PureComponent {
+export class HorizontalBarChartContainer extends PureComponent<Props> {
   render() {
+    const { data } = this.props;
+
+    const barColors = ['#FBBC05', '#00BF20', '#CA1E3C', '#6F52ED'];
+
     return (
       <ResponsiveContainer width="100%" height={250}>
         <BarChart
