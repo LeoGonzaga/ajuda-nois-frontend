@@ -8,94 +8,25 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Cell,
 } from 'recharts';
 
-const barColor = '#6F52ED';
+type DataProps = {
+  name: string;
+  acertos: number;
+  uv: number;
+  amt: number;
+};
 
-const data = [
-  {
-    name: 'Questão 1',
-    acertos: 45,
-    uv: 2780,
-    amt: 22,
-  },
-  {
-    name: 'Questão 2',
-    acertos: 23,
-    uv: 3000,
-    amt: 22,
-  },
-  {
-    name: 'Questão 3',
-    acertos: 33,
-    uv: 2000,
-    amt: 12,
-  },
-  {
-    name: 'Questão 4',
-    acertos: 22,
-    uv: 4000,
-    amt: 45,
-  },
-  {
-    name: 'Questão 5',
-    acertos: 15,
-    uv: 2780,
-    amt: 22,
-  },
-  {
-    name: 'Questão 6',
-    acertos: 3,
-    uv: 3000,
-    amt: 22,
-  },
-  {
-    name: 'Questão 7',
-    acertos: 43,
-    uv: 2000,
-    amt: 12,
-  },
-  {
-    name: 'Questão 8',
-    acertos: 12,
-    uv: 4000,
-    amt: 45,
-  },
-  {
-    name: 'Questão 9',
-    acertos: 5,
-    uv: 2780,
-    amt: 22,
-  },
-  {
-    name: 'Questão 10',
-    acertos: 23,
-    uv: 3000,
-    amt: 22,
-  },
-  {
-    name: 'Questão 11',
-    acertos: 23,
-    uv: 2000,
-    amt: 12,
-  },
-  {
-    name: 'Questão 12',
-    acertos: 20,
-    uv: 4000,
-    amt: 45,
-  },
-  {
-    name: 'Questão 13',
-    acertos: 7,
-    uv: 4000,
-    amt: 45,
-  },
-];
+type Props = {
+  data: Array<DataProps>;
+};
 
-export class SpecificBarChartContainer extends PureComponent {
+export class SpecificBarChartContainer extends PureComponent<Props> {
   render() {
+    const { data } = this.props;
+
+    const barColor = '#6F52ED';
+
     return (
       <ResponsiveContainer width="100%" height={35 * data.length}>
         <BarChart

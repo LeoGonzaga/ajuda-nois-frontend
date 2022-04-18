@@ -6,8 +6,8 @@ import Spacing from '@components/Spacing';
 import Title from '@components/Title';
 import { COLORS } from '@themes/colors';
 
+import AdminChart from '../components/AdminChart';
 import BigCard from '../components/BigCard';
-import ResultsTest from '../components/ResultsTest';
 import StudentTable from './StudentTable';
 import { Column, Container, Controls, Row } from './styles';
 import TeacherTable from './TeacherTable';
@@ -43,7 +43,7 @@ export const Dashboard = (): JSX.Element => {
           />
         </Row>
         <Spacing vertical={5} />
-        <ResultsTest type="horizontal" />
+        <AdminChart />
         <Spacing vertical={10} />
         <StudentTable size={10} />
         <Spacing vertical={10} />
