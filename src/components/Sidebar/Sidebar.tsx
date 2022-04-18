@@ -22,8 +22,10 @@ export const Sidebar = (): JSX.Element => {
 
   useEffect(() => {
     const user = localStorage.getItem('user');
-    const parseUser = JSON.parse(user || '');
-    setDashBoard(parseUser.usertype);
+    if (user) {
+      const parseUser = JSON.parse(user || '');
+      setDashBoard(parseUser.usertype);
+    }
   }, []);
 
   const ACCESS: any = {

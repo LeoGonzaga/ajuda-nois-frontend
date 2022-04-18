@@ -34,3 +34,22 @@ export const handleRedirect = (route: string) => {
 export const checkError = (value: number) => {
   return value > STATUS_CODE;
 };
+
+const CLOSE_NOTIFICATION = 3;
+
+export const openNotification = (message: string) => {
+  return {
+    open: true,
+    autoClose: CLOSE_NOTIFICATION,
+    message,
+  };
+};
+
+export const openErrorNotification = (message: string) => {
+  return {
+    open: true,
+    autoClose: CLOSE_NOTIFICATION,
+    message,
+    error: true,
+  };
+};

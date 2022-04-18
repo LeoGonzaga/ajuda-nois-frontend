@@ -4,11 +4,7 @@ import { uuid } from 'uuidv4';
 
 import { Container, Tr, Column, Th, ScrollContainer } from './styles';
 
-const DATA = [
-  { name: 'Matemática', status: 'Ativo', type: 'Matemat. e suas tecnologias' },
-];
-
-export const Table = (): JSX.Element => {
+export const Table = ({ data }: any): JSX.Element => {
   return (
     <Container>
       <ScrollContainer>
@@ -17,11 +13,11 @@ export const Table = (): JSX.Element => {
           <Column>Tipo</Column>
           <Column>Situação</Column>
         </Th>
-        {DATA?.map((student) => (
+        {data?.map((student: any) => (
           <Tr key={uuid()}>
-            <Column>{student.name}</Column>
-            <Column>{student.type}</Column>
-            <Column>{student.status}</Column>
+            <Column>{student.username}</Column>
+            <Column>{student.usertype}</Column>
+            <Column>{student.email}</Column>
           </Tr>
         ))}
       </ScrollContainer>

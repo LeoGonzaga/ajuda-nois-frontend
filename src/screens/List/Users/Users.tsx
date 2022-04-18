@@ -14,7 +14,8 @@ import { Container } from './styles';
 import { useUsers } from './useUsers';
 
 export const Users = (): JSX.Element => {
-  const { handleToggleModalCreateUser, openModal } = useUsers();
+  const { handleToggleModalCreateUser, openModal, data, getAllUser } =
+    useUsers();
 
   return (
     <Container>
@@ -23,7 +24,7 @@ export const Users = (): JSX.Element => {
         title="Criação de usuário"
         handleClose={handleToggleModalCreateUser}
       >
-        <Form onClose={handleToggleModalCreateUser} />
+        <Form onClose={handleToggleModalCreateUser} reload={getAllUser} />
       </ModalContainer>
       <Flex align="center">
         <div>
@@ -37,7 +38,7 @@ export const Users = (): JSX.Element => {
         </Flex>
       </Flex>
 
-      <Table />
+      <Table data={data} />
     </Container>
   );
 };

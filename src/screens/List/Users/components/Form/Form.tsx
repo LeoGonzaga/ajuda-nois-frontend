@@ -31,9 +31,10 @@ const data = [
 
 type Props = {
   onClose: () => void;
+  reload: () => void;
 };
 
-export const Form = ({ onClose }: Props): JSX.Element => {
+export const Form = ({ onClose, reload }: Props): JSX.Element => {
   const [username, setUsername] = useChangeText('');
   const [email, setEmail] = useChangeText('');
   const [usertype, setUserType] = useState<string>('student');
@@ -82,9 +83,9 @@ export const Form = ({ onClose }: Props): JSX.Element => {
     };
     const { response }: Response = await requestAPI(options);
 
-    const responseError = checkError(response?.status);
-    console.log(responseError);
+    checkError(response?.status);
     setLoading(false);
+    reload();
     onClose();
   };
 
