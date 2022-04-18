@@ -20,7 +20,7 @@ export const Level = ({ exp }: LevelProps): JSX.Element => {
     if (level < levelProgression.length - 1) {
       const levelCap = levelProgression[level + 1] - levelProgression[level];
       const currentProgress = (exp - levelProgression[level]) / levelCap;
-      return 1 - currentProgress;
+      return currentProgress;
     } else {
       return 0;
     }
@@ -33,9 +33,7 @@ export const Level = ({ exp }: LevelProps): JSX.Element => {
         idCSS="level"
         rotation={90}
       />
-      <CircularProgressbarWithChildren
-        value={100 - getProgress(exp, level) * 100}
-      >
+      <CircularProgressbarWithChildren value={getProgress(exp, level) * 100}>
         <Text size={38} bold color="#ffd054">
           Level {level}
         </Text>
