@@ -4,7 +4,7 @@ import { COLORS } from '@themes/colors';
 
 import Card from '../components/Card';
 import ResultsPomodoro from '../components/ResultsPomodoro';
-import ResultsTest from '../components/ResultsTest';
+import StudentChart from '../components/StudentChart';
 import SubjectContent from '../components/SubjectContent';
 import Timeline from '../components/Timeline';
 import { Column, Container, Row } from './styles';
@@ -30,7 +30,7 @@ export const Dashboard = (): JSX.Element => {
           </Row>
           <SubjectContent />
         </Column>
-        <ResultsTest type="vertical" />
+        <StudentChart />
       </Row>
       <Row>
         <ResultsPomodoro />

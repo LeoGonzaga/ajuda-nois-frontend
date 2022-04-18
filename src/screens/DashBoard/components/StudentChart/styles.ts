@@ -1,13 +1,8 @@
 import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
-type Props = {
-  type: string;
-};
-
-export const Container = styled.div<Props>`
-  width: ${(props) => (props.type != 'vertical' ? '100%' : '50%')};
-  max-height: ${(props) => (props.type != 'specific' ? '400px' : '')};
+export const Container = styled.div`
+  width: 50%;
 
   margin-top: 10px;
   margin-left: 0px;
@@ -17,7 +12,7 @@ export const Container = styled.div<Props>`
   background-color: ${COLORS.NEUTRAL};
 `;
 
-export const Wrapper = styled.div<Props>`
+export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
