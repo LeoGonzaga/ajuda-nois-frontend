@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import DashBoard from 'src/screens/DashBoard/Student';
+import DashBoard from 'src/screens/DashBoard';
 
 const Home: NextPage = () => {
   return (

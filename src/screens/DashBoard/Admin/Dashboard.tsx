@@ -8,7 +8,6 @@ import { COLORS } from '@themes/colors';
 
 import AdminChart from '../components/AdminChart';
 import BigCard from '../components/BigCard';
-import ResultsTest from '../components/ResultsTest';
 import StudentTable from './StudentTable';
 import { Column, Container, Controls, Row } from './styles';
 import TeacherTable from './TeacherTable';

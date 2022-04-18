@@ -7,7 +7,6 @@ import { COLORS } from '@themes/colors';
 
 import Expandable from '../../components/Expandable';
 import MediumCard from '../../components/MediumCard';
-import ResultsTest from '../../components/ResultsTest';
 import TeacherChart from '../../components/TeacherChart';
 import TopicContent from '../../components/TopicContent';
 import StudentTable from '../StudentTable';
