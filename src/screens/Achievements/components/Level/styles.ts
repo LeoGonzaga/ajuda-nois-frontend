@@ -1,37 +1,29 @@
+import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  min-width: 260px;
-  min-height: 260px;
+  width: 300px;
+  height: 300px;
   padding: 16px;
 
   border-radius: 100%;
 
-  background-image: linear-gradient(#23232c, #23232c),
-    radial-gradient(circle at top, #ffd054, #26221a);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-
-  clip-path: circle(131px);
-
-  position: relative;
-
-  /* Inverter o slider */
-  .flip {
-    -moz-transform: scale(-1, 1);
-    -webkit-transform: scale(-1, 1);
-    -o-transform: scale(-1, 1);
-    -ms-transform: scale(-1, 1);
-    transform: scale(-1, 1);
-    border-radius: 100%;
-    position: absolute;
+  .CircularProgressbar-path {
+    stroke: url(#level);
+    stroke-width: 6;
+    stroke-linecap: butt;
   }
 
-  .flip + p {
-    position: absolute;
+  .CircularProgressbar-trail {
+    stroke: ${COLORS.NEUTRAL};
+    stroke-width: 6;
+  }
+
+  .CircularProgressbar-background {
+    fill: ${COLORS.NEUTRAL};
+  }
+
+  .CircularProgressbar {
+    border-radius: 100%;
   }
 `;
