@@ -8,6 +8,7 @@ import { COLORS } from '@themes/colors';
 import Expandable from '../../components/Expandable';
 import MediumCard from '../../components/MediumCard';
 import ResultsTest from '../../components/ResultsTest';
+import TeacherChart from '../../components/TeacherChart';
 import TopicContent from '../../components/TopicContent';
 import StudentTable from '../StudentTable';
 import { Column, Container, Content, Row } from './styles';
@@ -72,7 +73,7 @@ export const Subject = ({
           lowRate={lowRate}
           mediumRate={mediumRate}
         />
-        <ResultsTest type="specific" />
+        <TeacherChart />
       </Expandable>
     </Container>
   );
