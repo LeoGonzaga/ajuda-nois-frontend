@@ -10,6 +10,7 @@ import {
   BiBook,
   BiEdit,
 } from 'react-icons/bi';
+import { BsClockHistory } from 'react-icons/bs';
 
 import { ROUTES } from 'src/routes/routes';
 
@@ -51,6 +52,7 @@ export const Sidebar = (): JSX.Element => {
           icon={<BiAward />}
         />
         <Item text="Editor" router={ROUTES.EDITOR} icon={<BiEdit />} />
+        <Item text="Pomodoro" router={ROUTES.POMODORO} icon={<BsClockHistory />} />
       </div>
       <Item text="Sair" router={ROUTES.LOGIN} />
     </Container>

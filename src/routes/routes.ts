@@ -11,6 +11,7 @@ export const ROUTES = {
   ACHIEVEMENTS: '/achievements',
   EDITOR: '/editor',
   PANEL: '/panel',
+  POMODORO: '/pomodoro',
   LIST_USERS: '/list/users',
   LIST_SUBJECTS: '/list/subjects',
   LIST_QUIZ: '/list/quiz',

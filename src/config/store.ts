@@ -4,10 +4,17 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import calendar from './actions/calendar';
 import notification from './actions/notification';
+import pomodoroTime from './actions/pomodoroTime';
 import subjects from './actions/subjects';
 import user from './actions/user';
 
-const reducer = combineReducers({ subjects, calendar, user, notification });
+const reducer = combineReducers({
+  subjects,
+  calendar,
+  user,
+  notification,
+  pomodoroTime,
+});
 const store = configureStore({ reducer });
 
 export type RootState = ReturnType<typeof store.getState>;
