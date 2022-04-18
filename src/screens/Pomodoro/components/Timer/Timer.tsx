@@ -114,7 +114,7 @@ export const Timer = (): JSX.Element => {
       }
 
       tickTimer();
-    }, 10);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [selectedTime.workTime, selectedTime.breakTime]);
