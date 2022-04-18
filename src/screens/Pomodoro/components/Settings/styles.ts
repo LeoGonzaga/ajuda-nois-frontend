@@ -12,6 +12,49 @@ type SelectedProps = {
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  height: 45px;
+  padding: 5px 0;
+  margin-top: 15px;
+
+  border-radius: 125px;
+
+  position: relative;
+  z-index: 1;
+`;
+
+export const Lock = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 90px;
+  height: 45px;
+
+  padding: 5px 0;
+  margin-top: 15px;
+  margin-right: -62px;
+
+  border: 1px solid ${COLORS.GRAY};
+  border-radius: 125px;
+
+  background-color: ${COLORS.GRAY};
+
+  position: relative;
+  z-index: 1;
+
+  svg {
+    margin-right: 52px;
+    font-size: 18px;
+    color: ${COLORS.TEXT};
+  }
+`;
+
+export const Toggle = styled.div`
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 
@@ -19,7 +62,7 @@ export const Container = styled.div`
   padding: 5px 0;
   margin-top: 15px;
 
-  border: 1px solid ${COLORS.GRAY};
+  border: 2px solid ${COLORS.GRAY};
   border-radius: 125px;
 
   background-color: ${COLORS.NEUTRAL};
@@ -29,7 +72,7 @@ export const Container = styled.div`
 `;
 
 export const Selected = styled.div<SelectedProps>`
-  width: 90px;
+  width: 80px;
   height: inherit;
 
   background-color: ${COLORS.SUBJECT_BLUE};
@@ -38,7 +81,7 @@ export const Selected = styled.div<SelectedProps>`
   position: absolute;
   z-index: 2;
   left: 0px;
-  transform: translateX(${(props) => props.current * 90}px);
+  transform: translateX(${(props) => props.current * 80}px);
 
   transition: 200ms;
 `;
@@ -48,7 +91,7 @@ export const TimeButton = styled.button<TimeProps>`
   justify-content: center;
   align-items: center;
 
-  width: 90px;
+  width: 80px;
   height: inherit;
   padding: 0 20px;
 

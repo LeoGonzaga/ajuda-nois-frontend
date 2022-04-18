@@ -4,7 +4,12 @@ import { BsFillPlayFill, BsFillPauseFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 
 import GradientCircularProgressBar from '@components/GradientCircularProgressBar';
-import { setBreakTime } from 'src/config/actions/pomodoroTime';
+import {
+  setBreakTime,
+  setIsIdle,
+  setIsPaused,
+  setModeType,
+} from 'src/config/actions/pomodoroTime';
 import { RootState } from 'src/config/store';
 
 import {
@@ -46,15 +51,20 @@ export const Timer = (): JSX.Element => {
     if (idle) {
       setIdle(false);
       idleRef.current = false;
+      dispatch(setIsIdle(false));
     } else {
       setPause(!pause);
       pauseRef.current = !pauseRef.current;
+      dispatch(setIsPaused(!pause));
     }
   }
 
   function changeMode() {
     let nextMode;
     let nextTimer;
+    setIdle(true);
+    idleRef.current = true;
+    dispatch(setIsIdle(true));
 
     if (ciclesRef.current % 4 === 0) {
       dispatch(setBreakTime(15));
@@ -73,6 +83,7 @@ export const Timer = (): JSX.Element => {
 
     setMode(nextMode);
     modeRef.current = nextMode;
+    dispatch(setModeType(nextMode));
 
     setSecondsLeft(nextTimer);
     secondsLeftRef.current = nextTimer;
@@ -103,10 +114,11 @@ export const Timer = (): JSX.Element => {
       }
 
       tickTimer();
-    }, 1);
+    }, 10);
 
     return () => clearInterval(interval);
-  }, [selectedTime]);
+  }, [selectedTime.workTime, selectedTime.breakTime]);
+
   return (
     <Container>
       <GradientCircularProgressBar

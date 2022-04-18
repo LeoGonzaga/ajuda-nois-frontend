@@ -5,6 +5,9 @@ const slice = createSlice({
   initialState: {
     workTime: 15,
     breakTime: 5,
+    isIdle: true,
+    isPaused: false,
+    modeType: 'work',
   },
   reducers: {
     setWorkTime(state, data) {
@@ -13,8 +16,23 @@ const slice = createSlice({
     setBreakTime(state, data) {
       state.breakTime = data.payload;
     },
+    setIsIdle(state, data) {
+      state.isIdle = data.payload;
+    },
+    setIsPaused(state, data) {
+      state.isPaused = data.payload;
+    },
+    setModeType(state, data) {
+      state.modeType = data.payload;
+    },
   },
 });
 
-export const { setWorkTime, setBreakTime } = slice.actions;
+export const {
+  setWorkTime,
+  setBreakTime,
+  setIsIdle,
+  setIsPaused,
+  setModeType,
+} = slice.actions;
 export default slice.reducer;

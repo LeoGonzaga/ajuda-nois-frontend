@@ -7,7 +7,6 @@ import { Container } from './styles';
 export const Pomodoro = (): JSX.Element => {
   return (
     <Container>
-      <p>Pomodoro</p>
       <Timer />
       <Settings />
     </Container>
