@@ -5,6 +5,8 @@ import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Spacing from '@components/Spacing';
 import Title from '@components/Title';
 import { COLORS } from '@themes/colors';
+import Router from 'next/router';
+import { ROUTES } from 'src/routes/routes';
 
 import AdminChart from '../components/AdminChart';
 import BigCard from '../components/BigCard';
@@ -13,11 +15,17 @@ import { Column, Container, Controls, Row } from './styles';
 import TeacherTable from './TeacherTable';
 
 export const Dashboard = (): JSX.Element => {
+  const handleRedirectToPanel = () => {
+    Router.push(ROUTES.PANEL);
+  };
+
   return (
     <Container>
       <Controls>
         <Title text="Dashboard" contrast="" subText="" />
-        <SecondaryButton>Configurações</SecondaryButton>
+        <SecondaryButton onClick={handleRedirectToPanel}>
+          Configurações
+        </SecondaryButton>
       </Controls>
       <Column>
         <Row>

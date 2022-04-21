@@ -44,15 +44,17 @@ export const Sidebar = (): JSX.Element => {
         <Item text="Matérias" router={ROUTES.SUBJECT} icon={<BiRocket />} />
         <Item text="Dicas" router={ROUTES.TIPS} icon={<BiWorld />} />
         <Item active text="Provas" router={ROUTES.TESTS} icon={<BiBrain />} />
-        <Item text="Quiz" router={ROUTES.QUIZ} icon={<BiBulb />} />
         <Item text="Cronograma" router={ROUTES.STUDYPLAN} icon={<BiBook />} />
         <Item
           text="Conquistas"
           router={ROUTES.ACHIEVEMENTS}
           icon={<BiAward />}
         />
-        <Item text="Editor" router={ROUTES.EDITOR} icon={<BiEdit />} />
-        <Item text="Pomodoro" router={ROUTES.POMODORO} icon={<BsClockHistory />} />
+        <Item
+          text="Pomodoro"
+          router={ROUTES.POMODORO}
+          icon={<BsClockHistory />}
+        />
       </div>
       <Item text="Sair" router={ROUTES.LOGIN} />
     </Container>
