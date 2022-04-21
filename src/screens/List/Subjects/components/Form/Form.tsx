@@ -18,49 +18,42 @@ const token =
 
 const data = [
   {
-    value: 'teacher',
-    name: 'Professor',
+    value: 'matematic',
+    name: 'Matemática e suas tecnologias',
   },
   {
-    value: 'user',
-    name: 'Aluno',
+    value: 'humanScience',
+    name: 'Ciencias humanas e suas tecnologias',
   },
   {
-    value: 'admin',
-    name: 'Administrador',
+    value: 'language',
+    name: 'Linguagens e suas tecnologias',
+  },
+  {
+    value: 'naturalScience',
+    name: 'Ciências da Natureza',
   },
 ];
 
-export const Form = (): JSX.Element => {
-  const [username, setUsername] = useChangeText('');
-  const [email, setEmail] = useChangeText('');
-  const [usertype, setUserType] = useState<string>('');
-
+export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
+  const [name, setName] = useChangeText('');
+  const [area, setArea] = useState<string>(data[0].value);
+  const [teacher, setTeacher] = useState<string>(teachers[0].value);
+  console.log(teacher, name, area);
   const [errors, setErrors] = useState({
-    username: false,
-    email: false,
+    name: false,
+    area: false,
+    teacher: false,
   });
-
-  const validateEmail = (email: string) => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const validEmail = validateEmail(email);
+    const token = localStorage.getItem('token');
 
-    if (email.length === 0 || !validEmail) {
+    if (name.length === 0) {
       setErrors((prevState) => ({
         ...prevState,
-        email: true,
-      }));
-    }
-
-    if (username.length === 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        username: true,
+        name: true,
       }));
     }
 
@@ -69,34 +62,29 @@ export const Form = (): JSX.Element => {
       url: '/createSubject',
       headers: { Authorization: `Bearer ${token}` },
       data: {
-        name: 'string',
-        area: 'string - ara de conhecimento?',
-        teacher_id: 'string - verificar se é string mesmo',
+        name,
+        area,
+        teacher_id: teacher,
       },
     };
     const response = await requestAPI(options);
     console.log(response);
+    reload();
+    onClose();
   };
 
   const handleResetErrorInput = () => {
-    if (email.length > 0) {
+    if (name.length > 0) {
       setErrors((prevState) => ({
         ...prevState,
-        email: false,
-      }));
-    }
-
-    if (username.length > 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        username: false,
+        name: false,
       }));
     }
   };
 
   useEffect(() => {
     handleResetErrorInput();
-  }, [email, username]);
+  }, [name]);
 
   return (
     <Styles.Container onSubmit={handleSubmit}>
@@ -104,14 +92,18 @@ export const Form = (): JSX.Element => {
         width="350px"
         placeholder="Nome da matéria"
         type="text"
-        value={username}
-        onChange={setUsername}
-        error={errors.username}
+        value={name}
+        onChange={setName}
+        error={errors.name}
       />
       <Spacing vertical={15} />
       <Text>Aréa do conhecimento:</Text>
       <Spacing vertical={15} />
-      <Select onChange={setUserType} value={usertype} data={data} />
+      <Select onChange={setArea} value={area} data={data} />
+      <Spacing vertical={15} />
+      <Text>Professor(a):</Text>
+      <Spacing vertical={15} />
+      <Select onChange={setTeacher} value={teacher} data={teachers} />
       <Spacing vertical={15} />
       <Flex width="19%">
         <ActionButton

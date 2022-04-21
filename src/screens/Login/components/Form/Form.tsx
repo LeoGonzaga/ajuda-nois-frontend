@@ -36,10 +36,9 @@ export const Form = (): JSX.Element => {
           Bem vindo(a) de volta!
         </Text>
 
-        <Text bold size={26}>
+        <Text bold size={22}>
           Acessar com a minha conta
         </Text>
-        <Spacing vertical={10} />
         <Spacing vertical={5} />
         <input
           width="350px"
@@ -63,12 +62,6 @@ export const Form = (): JSX.Element => {
         <Text color={COLORS.RED} center>
           {errors.password?.message}
         </Text>
-        <Wrapper>
-          <label>
-            <input type="checkbox" name="" id="" />
-            <Text size={14}>Lembrar senha</Text>
-          </label>
-        </Wrapper>
 
         <Spacing vertical={10} />
         <ActionButton
