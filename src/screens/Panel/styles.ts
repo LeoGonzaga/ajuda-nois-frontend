@@ -42,4 +42,8 @@ export const Circle = styled.div<Props>`
   border-radius: 50%;
   border: 5px solid #fff;
   background-color: ${(props) => props.background};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
