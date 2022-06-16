@@ -36,7 +36,7 @@ export const Content = styled.div`
 export const AchievementsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 80vh;
+  height: 90vh;
   flex: 1;
   padding: 10px;
 

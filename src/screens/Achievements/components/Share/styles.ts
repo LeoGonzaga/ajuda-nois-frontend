@@ -84,10 +84,10 @@ export const ShareIcons = styled.div`
   }
 
   button:hover & {
-    background-color: #88e0ad50;
+    background-color: #ffc13a;
 
     svg {
-      color: ${COLORS.SECONDARY};
+      color: ${COLORS.NEUTRAL};
     }
   }
 `;

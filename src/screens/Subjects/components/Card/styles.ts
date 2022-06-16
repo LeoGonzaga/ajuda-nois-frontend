@@ -5,7 +5,7 @@ export const Container = styled.div<{ color: string; active: boolean }>`
   height: 200px;
   border-radius: 8px;
   border: 1px solid
-    ${({ theme, active }) => (active ? theme.PRIMARY : theme.TEXT)};
+    ${({ theme, active, color }) => (active ? color : theme.TEXT)};
 
   display: flex;
   flex-direction: column;
@@ -14,9 +14,9 @@ export const Container = styled.div<{ color: string; active: boolean }>`
   margin: 10px;
 
   transition: 0.2s;
-
+  cursor: pointer;
   &:hover {
-    border-color: ${({ theme }) => theme.PRIMARY};
+    border-color: ${({ color }) => color};
   }
 
   h1 {

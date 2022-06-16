@@ -21,7 +21,7 @@ export const Achievements = (): JSX.Element => {
       exp: 1000,
       achieved: true,
       image:
-        'https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/344/external-achievement-professional-mentorship-inipagistudio-mixed-inipagistudio.png',
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
     },
     {
       name: 'Teste',
@@ -29,7 +29,7 @@ export const Achievements = (): JSX.Element => {
       exp: 2000,
       achieved: true,
       image:
-        'https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/344/external-achievement-professional-mentorship-inipagistudio-mixed-inipagistudio.png',
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
     },
     {
       name: 'Ainda não',
@@ -37,7 +37,7 @@ export const Achievements = (): JSX.Element => {
       exp: 1000,
       achieved: false,
       image:
-        'https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/344/external-achievement-professional-mentorship-inipagistudio-mixed-inipagistudio.png',
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
     },
     {
       name: 'Secreto',
@@ -45,7 +45,7 @@ export const Achievements = (): JSX.Element => {
       exp: 10000,
       achieved: false,
       image:
-        'https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/344/external-achievement-professional-mentorship-inipagistudio-mixed-inipagistudio.png',
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
     },
     {
       name: 'Texto Curto',
@@ -53,7 +53,7 @@ export const Achievements = (): JSX.Element => {
       exp: 689,
       achieved: true,
       image:
-        'https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/344/external-achievement-professional-mentorship-inipagistudio-mixed-inipagistudio.png',
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
     },
     {
       name: 'Texto Longo',
@@ -62,7 +62,7 @@ export const Achievements = (): JSX.Element => {
       exp: 666,
       achieved: false,
       image:
-        'https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/344/external-achievement-professional-mentorship-inipagistudio-mixed-inipagistudio.png',
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
     },
     {
       name: 'Pikachu',
@@ -70,7 +70,7 @@ export const Achievements = (): JSX.Element => {
       exp: 890,
       achieved: true,
       image:
-        'https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/344/external-achievement-professional-mentorship-inipagistudio-mixed-inipagistudio.png',
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
     },
     {
       name: 'Front end',
@@ -78,7 +78,7 @@ export const Achievements = (): JSX.Element => {
       exp: 100,
       achieved: true,
       image:
-        'https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/344/external-achievement-professional-mentorship-inipagistudio-mixed-inipagistudio.png',
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
     },
     {
       name: '???',
@@ -86,7 +86,7 @@ export const Achievements = (): JSX.Element => {
       exp: 1000,
       achieved: false,
       image:
-        'https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/344/external-achievement-professional-mentorship-inipagistudio-mixed-inipagistudio.png',
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
     },
     {
       name: 'Lorem Ipsum',
@@ -95,7 +95,7 @@ export const Achievements = (): JSX.Element => {
       exp: 10000,
       achieved: false,
       image:
-        'https://img.icons8.com/external-inipagistudio-mixed-inipagistudio/344/external-achievement-professional-mentorship-inipagistudio-mixed-inipagistudio.png',
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
     },
   ];
   let totalExp = 0;

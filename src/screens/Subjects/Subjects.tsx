@@ -3,12 +3,11 @@ import { AiOutlineCalculator } from 'react-icons/ai';
 import { BsChatLeftQuote } from 'react-icons/bs';
 import { GiGreekTemple } from 'react-icons/gi';
 import { IoTelescopeOutline } from 'react-icons/io5';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Text from '@components/Text';
 import Title from '@components/Title';
 import { add } from 'src/config/actions/subjects';
-import { RootState } from 'src/config/store';
 
 import Card from './components/Card';
 import SubjectItem from './components/SubjectItem';
@@ -16,7 +15,6 @@ import { Container, Grid, SubjectContent, Table } from './styles';
 
 export const Subjects = (): JSX.Element => {
   const dispatch = useDispatch();
-  const subjects = useSelector((state: RootState) => state.subjects);
 
   const [activeSubject, setActiveSubject] = useState<string>('Matemática');
 

@@ -27,14 +27,14 @@ export const ImageContainer = styled.div<Props>`
   justify-content: center;
   align-items: center;
 
-  min-width: 80px;
-  min-height: 80px;
+  min-width: 100px;
+  min-height: 100px;
 
   margin-right: 10px;
 
   padding: 6px;
 
-  border-radius: 100%;
+  border-radius: 50%;
 
   background-image: ${(props) =>
       props.achieved
@@ -45,8 +45,6 @@ export const ImageContainer = styled.div<Props>`
   background-clip: content-box, border-box;
 
   img {
-    max-width: 50px;
-    max-height: 50px;
-    border-radius: 100%;
+    max-width: 100px;
   }
 `;

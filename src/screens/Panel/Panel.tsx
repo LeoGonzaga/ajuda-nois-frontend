@@ -15,39 +15,57 @@ export const Panel = (): JSX.Element => {
     {
       name: 'Matérias',
       path: ROUTES.LIST_SUBJECTS,
+      image:
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Materias.png',
     },
 
     {
       name: 'Usuários',
       path: ROUTES.LIST_USERS,
+      image:
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Usuario Feminino.png',
     },
     {
       name: 'Conquistas',
       path: ROUTES.LIST_ACHIEVEMENTS,
+      image:
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Winner.png',
     },
     {
       name: 'Dicas',
       path: ROUTES.LIST_TIPS,
+      image:
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Dicas.png',
     },
     {
       name: 'Questões',
       path: ROUTES.LIST_QUESTIONS,
+      image:
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Questões.png',
     },
     {
       name: 'Provas',
       path: ROUTES.LIST_ENEM,
+      image:
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Enem.png',
     },
     {
       name: 'Lições',
       path: ROUTES.LIST_LESSON,
+      image:
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Lições.png',
     },
     {
       name: 'Tópicos',
       path: ROUTES.LIST_TOPIC,
+      image:
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Topicos.png',
     },
     {
       name: 'Quiz',
       path: ROUTES.LIST_QUIZ,
+      image:
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Quiz.png',
     },
   ];
 
@@ -64,7 +82,9 @@ export const Panel = (): JSX.Element => {
       <Content>
         {items?.map((elem, index) => (
           <SubjectCards key={index} onClick={() => handleRedirect(elem.path)}>
-            <Circle background={COLORS.PRIMARY} />
+            <Circle background={COLORS.SECONDARY}>
+              <img width={140} src={elem?.image} alt="" />
+            </Circle>
             <div>
               <Text bold size={18}>
                 {elem.name}
