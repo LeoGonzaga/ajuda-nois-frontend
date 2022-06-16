@@ -45,8 +45,7 @@ export const ImageContainer = styled.div<Props>`
   background-clip: content-box, border-box;
 
   img {
-    max-width: 50px;
-    max-height: 50px;
+    max-width: 90px;
     border-radius: 100%;
   }
 `;

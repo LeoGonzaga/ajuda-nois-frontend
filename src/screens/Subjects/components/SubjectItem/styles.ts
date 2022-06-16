@@ -18,6 +18,7 @@ export const TableItem = styled.div`
 
 export const TableItemContent = styled.div`
   cursor: pointer;
+  padding: 5px 0px;
 `;
 
 export const ContentLine = styled.div`
@@ -25,7 +26,8 @@ export const ContentLine = styled.div`
   margin-bottom: 10px;
   display: flex;
   align-items: center;
-
+  border-radius: 5px;
+  border-bottom: 1px solid #ccc;
   &:hover {
     background-color: ${({ theme }) => theme.PRIMARY};
   }
