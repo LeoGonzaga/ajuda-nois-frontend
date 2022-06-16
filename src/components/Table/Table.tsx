@@ -56,7 +56,7 @@ export const Table = ({ data, reload }: any): JSX.Element => {
                 <ButtonsContainer
                   onClick={() => handleRemoveUser(element?._id)}
                 >
-                  <BiTrash size={25} color="#00BF20" />
+                  <BiTrash size={25} color="#fff" />
                 </ButtonsContainer>
               </Column>
             </Tr>

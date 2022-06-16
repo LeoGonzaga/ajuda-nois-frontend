@@ -32,7 +32,7 @@ export const Subjects = (): JSX.Element => {
           <SecondaryButton onClick={setOpen}>Nova matéria</SecondaryButton>
         </Flex>
       </Flex>
-      <Table data={data} />
+      <Table data={data} reload={getAllSubjects} />
     </Container>
   );
 };
