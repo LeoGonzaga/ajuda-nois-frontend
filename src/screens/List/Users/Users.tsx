@@ -4,7 +4,6 @@ import BackButton from '@components/BackButton';
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Flex from '@components/Flex';
 import ModalContainer from '@components/Modal';
-import Notification from '@components/Notification';
 import Table from '@components/Table';
 import Title from '@components/Title';
 import { ROUTES } from 'src/routes/routes';
@@ -38,7 +37,7 @@ export const Users = (): JSX.Element => {
         </Flex>
       </Flex>
 
-      <Table data={data} />
+      <Table data={data} reload={getAllUser} />
     </Container>
   );
 };
