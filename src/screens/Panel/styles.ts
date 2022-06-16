@@ -9,7 +9,8 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin: 10px;
+  justify-content: flex-start;
 `;
 
 type Props = {
@@ -17,7 +18,7 @@ type Props = {
 };
 
 export const SubjectCards = styled.button`
-  width: 200px;
+  width: 190px;
   height: 250px;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.NEUTRAL};

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BiTrash } from 'react-icons/bi';
 
+import EmptyState from '@components/EmptyState';
 import { Options, Response, requestAPI } from '@services/index';
 import { uuid } from 'uuidv4';
 
@@ -61,6 +62,10 @@ export const Table = ({ data, reload }: any): JSX.Element => {
             </Column>
           </Tr>
         ))}
+
+        {data?.length === 0 && (
+          <EmptyState text="Não há matérias cadastradas até o momento" />
+        )}
       </ScrollContainer>
     </Container>
   );

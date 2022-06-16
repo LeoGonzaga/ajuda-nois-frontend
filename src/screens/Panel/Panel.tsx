@@ -82,7 +82,7 @@ export const Panel = (): JSX.Element => {
       <Content>
         {items?.map((elem, index) => (
           <SubjectCards key={index} onClick={() => handleRedirect(elem.path)}>
-            <Circle background={COLORS.PRIMARY}>
+            <Circle background={COLORS.SECONDARY}>
               <img width={140} src={elem?.image} alt="" />
             </Circle>
             <div>
