@@ -15,48 +15,39 @@ export const Panel = (): JSX.Element => {
     {
       name: 'Matérias',
       path: ROUTES.LIST_SUBJECTS,
-      quantity: 2,
     },
 
     {
       name: 'Usuários',
       path: ROUTES.LIST_USERS,
-      quantity: 56,
     },
     {
       name: 'Conquistas',
       path: ROUTES.LIST_ACHIEVEMENTS,
-      quantity: 56,
     },
     {
       name: 'Dicas',
       path: ROUTES.LIST_TIPS,
-      quantity: 6,
     },
     {
       name: 'Questões',
       path: ROUTES.LIST_QUESTIONS,
-      quantity: 2,
     },
     {
       name: 'Provas',
       path: ROUTES.LIST_ENEM,
-      quantity: 26,
     },
     {
       name: 'Lições',
       path: ROUTES.LIST_LESSON,
-      quantity: 6,
     },
     {
       name: 'Tópicos',
       path: ROUTES.LIST_TOPIC,
-      quantity: 16,
     },
     {
       name: 'Quiz',
       path: ROUTES.LIST_QUIZ,
-      quantity: 55,
     },
   ];
 
@@ -78,7 +69,6 @@ export const Panel = (): JSX.Element => {
               <Text bold size={18}>
                 {elem.name}
               </Text>
-              <Text size={14}>{elem.quantity} cadastrados</Text>
             </div>
           </SubjectCards>
         ))}

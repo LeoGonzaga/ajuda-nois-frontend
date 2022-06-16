@@ -27,6 +27,7 @@ export const useSubjects = () => {
 
   const getAllTeachers = async () => {
     const token = localStorage.getItem('token');
+
     const payload: Options = {
       method: 'GET',
       url: '/getUsers',
@@ -37,7 +38,10 @@ export const useSubjects = () => {
     if (error) {
       return;
     }
-    const allTeachers = response?.data?.teachers;
+
+    const allTeachers = response?.data?.teachers?.filter(
+      (teacher: any) => teacher?.usertype !== 'admin'
+    );
     const value = allTeachers?.map((teacher: any) => {
       return {
         name: teacher.username,
