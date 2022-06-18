@@ -37,8 +37,8 @@ const data = [
 
 export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
   const [name, setName] = useChangeText('');
-  const [area, setArea] = useState<string>(data[0].value);
-  const [teacher, setTeacher] = useState<string>(teachers[0].value);
+  const [area, setArea] = useState<string>(data[0]?.value);
+  const [teacher, setTeacher] = useState<string>(teachers[0]?.value);
   console.log(teacher, name, area);
   const [errors, setErrors] = useState({
     name: false,

@@ -42,10 +42,11 @@ export const useSubjects = () => {
     const allTeachers = response?.data?.teachers?.filter(
       (teacher: any) => teacher?.usertype !== 'admin'
     );
+
     const value = allTeachers?.map((teacher: any) => {
       return {
         name: teacher.username,
-        value: teacher._id,
+        value: teacher?.teacher_info?._id,
       };
     });
     setTeachers(value);
