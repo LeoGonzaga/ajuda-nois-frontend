@@ -47,7 +47,7 @@ export const useSubjects = () => {
     const value = allTeachers?.map((teacher: any) => {
       return {
         name: teacher.username,
-        value: teacher?.teacher_info?._id,
+        value: teacher?._id,
       };
     });
     setTeachers(value);

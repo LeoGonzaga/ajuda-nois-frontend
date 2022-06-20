@@ -13,16 +13,13 @@ import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
-const token =
-  'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjIxZGFiZGU2OTJkMjMyZGI0YTQyYmY1IiwiaWF0IjoxNjQ2MTEzOTY2LCJleHAiOjE2NDYyMDAzNjZ9.ANPjMTfHPjJJ-jb-Yn4FFYbzCWnVZ_jJ4V7-oJg12y2tL1PaZ_3l9z7SJTEXuXerxM11_k1yMoDprGYOO8pXFY4Qt3tipdkM5LnwH0xun5o2PE9OzwR9tovX2JTdHsnnGU9osRto7uw0s2HmJfHhc0bNTMEo9jyPl3ccxcPkRR`';
-
 const data = [
   {
-    value: 'matematic',
+    value: 'mathematics',
     name: 'Matemática e suas tecnologias',
   },
   {
-    value: 'humanScience',
+    value: 'human_science',
     name: 'Ciencias humanas e suas tecnologias',
   },
   {
@@ -30,7 +27,7 @@ const data = [
     name: 'Linguagens e suas tecnologias',
   },
   {
-    value: 'naturalScience',
+    value: 'natural_science',
     name: 'Ciências da Natureza',
   },
 ];
@@ -39,7 +36,6 @@ export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
   const [name, setName] = useChangeText('');
   const [area, setArea] = useState<string>(data[0]?.value);
   const [teacher, setTeacher] = useState<string>(teachers[0]?.value);
-  console.log(teacher, name, area);
   const [errors, setErrors] = useState({
     name: false,
     area: false,
@@ -64,11 +60,10 @@ export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
       data: {
         name,
         area,
-        teacher_id: teacher,
+        user_id: teacher,
       },
     };
-    const response = await requestAPI(options);
-    console.log(response);
+    await requestAPI(options);
     reload();
     onClose();
   };
