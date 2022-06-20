@@ -43,6 +43,7 @@ export const useSubjects = () => {
       (teacher: any) => teacher?.usertype !== 'admin'
     );
 
+    console.log(response?.data?.teachers);
     const value = allTeachers?.map((teacher: any) => {
       return {
         name: teacher.username,
