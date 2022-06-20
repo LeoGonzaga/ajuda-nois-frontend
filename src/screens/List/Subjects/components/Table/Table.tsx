@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BiTrash } from 'react-icons/bi';
 
 import EmptyState from '@components/EmptyState';
@@ -14,16 +14,19 @@ import {
   ButtonsContainer,
 } from './styles';
 
+const AREAS: any = {
+  humanScience: 'Ciências Humanas',
+  naturalScience: 'Ciências da Natureza',
+  matematic: 'Matemática',
+  language: 'Linguagens',
+};
+
 export const Table = ({ data, reload }: any): JSX.Element => {
-  const AREAS: any = {
-    humanScience: 'Ciências Humanas',
-    naturalScience: 'Ciências da Natureza',
-    matematic: 'Matemática',
-    language: 'Linguagens',
-  };
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleRemoveSubject = async (id: string) => {
     const token = localStorage.getItem('token');
+    setLoading(true);
     const payload: Options = {
       method: 'DELETE',
       url: '/deleteSubject',
@@ -37,6 +40,7 @@ export const Table = ({ data, reload }: any): JSX.Element => {
       return;
     }
     reload();
+    setLoading(false);
   };
 
   return (
@@ -54,11 +58,13 @@ export const Table = ({ data, reload }: any): JSX.Element => {
             <Column>{AREAS[element.area]}</Column>
             <Column>{element.teacher_id}</Column>
             <Column>
-              <ButtonsContainer
-                onClick={() => handleRemoveSubject(element._id)}
-              >
-                <BiTrash size={25} />
-              </ButtonsContainer>
+              {!loading && (
+                <ButtonsContainer
+                  onClick={() => handleRemoveSubject(element._id)}
+                >
+                  <BiTrash size={25} />
+                </ButtonsContainer>
+              )}
             </Column>
           </Tr>
         ))}

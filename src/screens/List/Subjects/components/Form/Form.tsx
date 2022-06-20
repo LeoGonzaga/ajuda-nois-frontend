@@ -19,15 +19,15 @@ const data = [
     name: 'Matemática e suas tecnologias',
   },
   {
-    value: 'human_science',
+    value: 'human_sciences',
     name: 'Ciencias humanas e suas tecnologias',
   },
   {
-    value: 'language',
+    value: 'languages',
     name: 'Linguagens e suas tecnologias',
   },
   {
-    value: 'natural_science',
+    value: 'natural_sciences',
     name: 'Ciências da Natureza',
   },
 ];
@@ -42,8 +42,12 @@ export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
     teacher: false,
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    if (loading) return;
+    setLoading(true);
     const token = localStorage.getItem('token');
 
     if (name.length === 0) {
@@ -65,6 +69,7 @@ export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
     };
     await requestAPI(options);
     reload();
+    setLoading(false);
     onClose();
   };
 
@@ -105,6 +110,8 @@ export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
           color={COLORS.SECONDARY}
           width="350px"
           onClick={handleSubmit}
+          loading={loading}
+          disabled={loading}
         >
           Salvar
         </ActionButton>
