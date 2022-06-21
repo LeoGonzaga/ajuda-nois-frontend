@@ -45,14 +45,14 @@ export const Subject = ({
               <MediumCard
                 color={COLORS.RED}
                 indicator={lowRate}
-                value={3}
+                value={5}
                 icon={<MdError />}
               />
               <Spacing horizontal={5} vertical={5} />
               <MediumCard
                 color={COLORS.YELLOW}
                 indicator={mediumRate}
-                value={10}
+                value={2}
                 icon={<IoWarning />}
               />
             </Column>
