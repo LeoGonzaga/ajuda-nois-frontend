@@ -16,12 +16,14 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   width: 100%;
+  max-width: 1490px;
   overflow-x: scroll;
   display: flex;
   justify-content: space-between;
 
   table {
     width: 100%;
+    max-width: 1490px;
     border-spacing: 0 3px;
 
     font-size: 13px;
