@@ -13,19 +13,14 @@ import { Container } from './styles';
 import { useAchievements } from './useAchievements';
 
 export const Achievements = (): JSX.Element => {
-  const { data, getAllAchievements } = useAchievements();
-  const [openModal, setOpenModal] = useState<boolean>(false);
-
-  const handleToggleModal = useCallback(() => {
-    setOpenModal(!openModal);
-  }, [openModal]);
+  const { data, getAllAchievements, open, setOpen } = useAchievements();
 
   return (
     <Container>
       <ModalContainer
-        open={openModal}
+        open={open}
         title="Criação de conquista"
-        handleClose={handleToggleModal}
+        handleClose={setOpen}
       >
         <Form />
       </ModalContainer>
@@ -35,9 +30,7 @@ export const Achievements = (): JSX.Element => {
         </div>
         <Flex align="center" justify="space-between">
           <Title text="Conquistas" contrast="" subText="" />
-          <SecondaryButton onClick={handleToggleModal}>
-            Nova matéria
-          </SecondaryButton>
+          <SecondaryButton onClick={setOpen}>Nova conquista</SecondaryButton>
         </Flex>
       </Flex>
       <Table data={data} reload={getAllAchievements} />

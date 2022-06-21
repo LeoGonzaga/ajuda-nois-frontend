@@ -4,15 +4,15 @@ import { Options, requestAPI, Response } from '@services/index';
 import { checkError } from '@utils/functions';
 import useToggle from 'src/hooks/useToggle';
 
-export const useAchievements = () => {
+export const useTips = () => {
   const [open, setOpen] = useToggle();
   const [data, setData] = useState<any>([]);
 
-  const getAllAchievements = async () => {
-    const token = await localStorage.getItem('token');
+  const getAllTips = async () => {
+    const token = localStorage.getItem('token');
     const payload: Options = {
       method: 'GET',
-      url: '/getAchievements',
+      url: '/getTips',
       headers: { Authorization: `Bearer ${token}` },
     };
     const { response }: Response = await requestAPI(payload);
@@ -25,8 +25,8 @@ export const useAchievements = () => {
   };
 
   useEffect(() => {
-    getAllAchievements();
+    getAllTips();
   }, []);
 
-  return { open, setOpen, data, getAllAchievements };
+  return { open, setOpen, data, getAllTips };
 };

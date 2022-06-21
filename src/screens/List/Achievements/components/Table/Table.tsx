@@ -42,16 +42,18 @@ export const Table = ({ data, reload }: any): JSX.Element => {
   return (
     <Container>
       <ScrollContainer>
-        <Th>
-          <Column>Nome</Column>
-          <Column>Tipo</Column>
-          <Column>Email</Column>
-          <Column></Column>
-        </Th>
         {data &&
           data?.map((element: any) => (
             <Tr key={uuidv4()}>
-              <img src={element.icon} alt="" width={100} />
+              <img
+                src={
+                  element?.icon
+                    ? element.icon
+                    : 'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png'
+                }
+                alt=""
+                width={100}
+              />
               <Text bold> {element.name}</Text>
               <Column>{element.description}</Column>
               <Spacing vertical={5} />

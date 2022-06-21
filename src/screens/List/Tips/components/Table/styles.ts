@@ -20,42 +20,37 @@ export const Th = styled.div`
 export const Tr = styled.div`
   background-color: ${({ theme }) => theme.NEUTRAL};
   border-radius: 4px;
-  width: 200px;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 20px 10px;
-  margin: 10px;
-  img {
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    margin-bottom: 15px;
-  }
-
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 0px 20px;
+  transition: 100ms ease-in;
   :hover {
     background-color: ${({ theme }) => theme.SECONDARY};
   }
 `;
 
 export const Column = styled.div`
-  color: #ccc;
+  width: 33%;
+  padding: 10px;
+
+  button {
+    background: red;
+    width: 100%;
+  }
 `;
 
 export const ScrollContainer = styled.div`
-  display: flex;
+  height: 90vh;
   overflow-y: auto;
 `;
 
 export const ButtonsContainer = styled.div`
-  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 20px;
   cursor: pointer;
-  &:hover {
-    svg {
-      path {
-        fill: #fff;
-      }
-    }
-  }
 `;
