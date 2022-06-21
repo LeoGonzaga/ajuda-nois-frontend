@@ -4,27 +4,20 @@ import BackButton from '@components/BackButton';
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Flex from '@components/Flex';
 import ModalContainer from '@components/Modal';
-import Table from '@components/Table';
 import Title from '@components/Title';
 import { ROUTES } from 'src/routes/routes';
 
 import Form from './components/Form';
+import Table from './components/Table';
 import { Container } from './styles';
+import { useTips } from './useTips';
 
 export const Tips = (): JSX.Element => {
-  const [openModal, setOpenModal] = useState<boolean>(false);
-
-  const handleToggleModal = useCallback(() => {
-    setOpenModal(!openModal);
-  }, [openModal]);
+  const { data, getAllTips, open, setOpen } = useTips();
 
   return (
     <Container>
-      <ModalContainer
-        open={openModal}
-        title="Criação de matéria"
-        handleClose={handleToggleModal}
-      >
+      <ModalContainer open={open} title="Criação de dica" handleClose={setOpen}>
         <Form />
       </ModalContainer>
       <Flex align="center">
@@ -33,12 +26,10 @@ export const Tips = (): JSX.Element => {
         </div>
         <Flex align="center" justify="space-between">
           <Title text="Dicas" contrast="" subText="" />
-          <SecondaryButton onClick={handleToggleModal}>
-            Nova matéria
-          </SecondaryButton>
+          <SecondaryButton onClick={setOpen}>Nova dica</SecondaryButton>
         </Flex>
       </Flex>
-      <Table />
+      <Table data={data} reload={getAllTips} />
     </Container>
   );
 };

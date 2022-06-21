@@ -14,13 +14,6 @@ import {
   ButtonsContainer,
 } from './styles';
 
-const AREAS: any = {
-  humanScience: 'Ciências Humanas',
-  naturalScience: 'Ciências da Natureza',
-  matematic: 'Matemática',
-  language: 'Linguagens',
-};
-
 export const Table = ({ data, reload }: any): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -29,7 +22,7 @@ export const Table = ({ data, reload }: any): JSX.Element => {
     setLoading(true);
     const payload: Options = {
       method: 'DELETE',
-      url: '/deleteSubject',
+      url: '/deleteTip',
       data: {
         id,
       },
@@ -47,16 +40,14 @@ export const Table = ({ data, reload }: any): JSX.Element => {
     <Container>
       <ScrollContainer>
         <Th>
-          <Column>Nome</Column>
-          <Column>Área</Column>
-          <Column>Professor</Column>
+          <Column>Tópico</Column>
+          <Column>Dica</Column>
           <Column></Column>
         </Th>
         {data?.map((element: any) => (
           <Tr key={uuid()}>
-            <Column>{element.name}</Column>
-            <Column>{AREAS[element.area]}</Column>
-            <Column>{element.teacher_id}</Column>
+            <Column>{element.topic}</Column>
+            <Column>{element.information}</Column>
             <Column>
               {!loading && (
                 <ButtonsContainer

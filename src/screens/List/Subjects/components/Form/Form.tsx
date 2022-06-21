@@ -13,41 +13,41 @@ import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
-const token =
-  'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjIxZGFiZGU2OTJkMjMyZGI0YTQyYmY1IiwiaWF0IjoxNjQ2MTEzOTY2LCJleHAiOjE2NDYyMDAzNjZ9.ANPjMTfHPjJJ-jb-Yn4FFYbzCWnVZ_jJ4V7-oJg12y2tL1PaZ_3l9z7SJTEXuXerxM11_k1yMoDprGYOO8pXFY4Qt3tipdkM5LnwH0xun5o2PE9OzwR9tovX2JTdHsnnGU9osRto7uw0s2HmJfHhc0bNTMEo9jyPl3ccxcPkRR`';
-
 const data = [
   {
-    value: 'matematic',
+    value: 'mathematics',
     name: 'Matemática e suas tecnologias',
   },
   {
-    value: 'humanScience',
+    value: 'human_sciences',
     name: 'Ciencias humanas e suas tecnologias',
   },
   {
-    value: 'language',
+    value: 'languages',
     name: 'Linguagens e suas tecnologias',
   },
   {
-    value: 'naturalScience',
+    value: 'natural_sciences',
     name: 'Ciências da Natureza',
   },
 ];
 
 export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
   const [name, setName] = useChangeText('');
-  const [area, setArea] = useState<string>(data[0].value);
-  const [teacher, setTeacher] = useState<string>(teachers[0].value);
-  console.log(teacher, name, area);
+  const [area, setArea] = useState<string>(data[0]?.value);
+  const [teacher, setTeacher] = useState<string>(teachers[0]?.value);
   const [errors, setErrors] = useState({
     name: false,
     area: false,
     teacher: false,
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    if (loading) return;
+    setLoading(true);
     const token = localStorage.getItem('token');
 
     if (name.length === 0) {
@@ -64,12 +64,12 @@ export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
       data: {
         name,
         area,
-        teacher_id: teacher,
+        user_id: teacher,
       },
     };
-    const response = await requestAPI(options);
-    console.log(response);
+    await requestAPI(options);
     reload();
+    setLoading(false);
     onClose();
   };
 
@@ -110,6 +110,8 @@ export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
           color={COLORS.SECONDARY}
           width="350px"
           onClick={handleSubmit}
+          loading={loading}
+          disabled={loading}
         >
           Salvar
         </ActionButton>

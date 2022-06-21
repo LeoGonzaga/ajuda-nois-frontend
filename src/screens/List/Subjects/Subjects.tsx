@@ -23,13 +23,16 @@ export const Subjects = (): JSX.Element => {
       >
         <Form teachers={teachers} reload={getAllSubjects} onClose={setOpen} />
       </ModalContainer>
+
       <Flex align="center">
         <div>
           <BackButton route={ROUTES.PANEL} />
         </div>
         <Flex align="center" justify="space-between">
           <Title text="Matérias" contrast="" subText="" />
-          <SecondaryButton onClick={setOpen}>Nova matéria</SecondaryButton>
+          {teachers?.length > 0 && (
+            <SecondaryButton onClick={setOpen}>Nova matéria</SecondaryButton>
+          )}
         </Flex>
       </Flex>
       <Table data={data} reload={getAllSubjects} />

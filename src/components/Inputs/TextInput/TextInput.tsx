@@ -21,7 +21,6 @@ export const TextInput = ({
   error,
   rest,
 }: TextInputProps): JSX.Element => {
-  console.log(rest);
   return (
     <Container
       width={width}

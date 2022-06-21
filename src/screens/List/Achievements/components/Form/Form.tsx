@@ -13,9 +13,6 @@ import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
-const token =
-  'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjIxZGFiZGU2OTJkMjMyZGI0YTQyYmY1IiwiaWF0IjoxNjQ2MTEzOTY2LCJleHAiOjE2NDYyMDAzNjZ9.ANPjMTfHPjJJ-jb-Yn4FFYbzCWnVZ_jJ4V7-oJg12y2tL1PaZ_3l9z7SJTEXuXerxM11_k1yMoDprGYOO8pXFY4Qt3tipdkM5LnwH0xun5o2PE9OzwR9tovX2JTdHsnnGU9osRto7uw0s2HmJfHhc0bNTMEo9jyPl3ccxcPkRR`';
-
 const data = [
   {
     value: 'teacher',
@@ -32,46 +29,37 @@ const data = [
 ];
 
 export const Form = (): JSX.Element => {
-  const [username, setUsername] = useChangeText('');
-  const [email, setEmail] = useChangeText('');
+  const [name, setName] = useChangeText('');
+  const [descriptions, setDescription] = useChangeText('');
   const [usertype, setUserType] = useState<string>('');
 
   const [errors, setErrors] = useState({
-    username: false,
-    email: false,
+    name: false,
+    description: false,
+    icon_base64: false,
+    experience: false,
   });
-
-  const validateEmail = (email: string) => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const validEmail = validateEmail(email);
+    const token = await localStorage.getItem('token');
 
-    if (email.length === 0 || !validEmail) {
+    if (name.length === 0) {
       setErrors((prevState) => ({
         ...prevState,
-        email: true,
-      }));
-    }
-
-    if (username.length === 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        username: true,
+        name: true,
       }));
     }
 
     const options: Options = {
       method: 'POST',
-      url: '/createSubject',
+      url: '/createAchievement',
       headers: { Authorization: `Bearer ${token}` },
       data: {
+        icon_base64: '',
         name: 'string',
-        area: 'string - ara de conhecimento?',
-        teacher_id: 'string - verificar se é string mesmo',
+        description: 'string - ara de conhecimento?',
+        experience: 'string - verificar se é string mesmo',
       },
     };
     const response = await requestAPI(options);
@@ -79,24 +67,24 @@ export const Form = (): JSX.Element => {
   };
 
   const handleResetErrorInput = () => {
-    if (email.length > 0) {
+    if (descriptions.length > 0) {
       setErrors((prevState) => ({
         ...prevState,
-        email: false,
+        descriptions: false,
       }));
     }
 
-    if (username.length > 0) {
+    if (name.length > 0) {
       setErrors((prevState) => ({
         ...prevState,
-        username: false,
+        name: false,
       }));
     }
   };
 
   useEffect(() => {
     handleResetErrorInput();
-  }, [email, username]);
+  }, [name, descriptions]);
 
   return (
     <Styles.Container onSubmit={handleSubmit}>
@@ -104,9 +92,9 @@ export const Form = (): JSX.Element => {
         width="350px"
         placeholder="Nome da conquista"
         type="text"
-        value={username}
-        onChange={setUsername}
-        error={errors.username}
+        value={name}
+        onChange={setName}
+        error={errors.name}
       />
       <Spacing vertical={15} />
       <textarea placeholder="Nome da conquista" />
