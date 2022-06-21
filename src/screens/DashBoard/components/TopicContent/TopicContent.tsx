@@ -27,10 +27,10 @@ export const TopicContent = ({
     autoplay: false,
     indicators: false,
     transitionDuration: 500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
-    canSwipe: topics.length > 4 ? true : false,
-    arrows: topics.length > 4 ? true : false,
+    canSwipe: topics.length > 5 ? true : false,
+    arrows: topics.length > 5 ? true : false,
     prevArrow: (
       <IoIosArrowBack size={30} color={COLORS.TEXT} className="arrow" />
     ),
@@ -41,7 +41,7 @@ export const TopicContent = ({
       {
         breakpoint: 1140,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 5,
           slidesToScroll: 1,
         },
       },
@@ -60,7 +60,7 @@ export const TopicContent = ({
       <Text bold>Taxa de Acertos nos Quizzes</Text>
       <Flex direction="row" align="center" justify="center">
         <Row>
-          {topics.length > 4 ? (
+          {topics.length > 5 ? (
             <Slide {...properties}>
               {topics?.map((_topic, index) => {
                 return (
@@ -75,6 +75,7 @@ export const TopicContent = ({
                           : COLORS.RED
                       }
                       value={quizRates[index]}
+                      size={150}
                     />
                   </div>
                 );
@@ -95,6 +96,7 @@ export const TopicContent = ({
                           : COLORS.RED
                       }
                       value={quizRates[index]}
+                      size={150}
                     />
                   </div>
                 );

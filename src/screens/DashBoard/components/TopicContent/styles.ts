@@ -11,7 +11,7 @@ export const Container = styled.div`
   background-color: ${COLORS.NEUTRAL};
 
   .react-slideshow-container {
-    max-width: 580px;
+    max-width: 940px;
     display: flex;
     justify-content: space-between;
   }
@@ -47,11 +47,12 @@ export const Center = styled.div`
   align-items: center;
 
   width: 100%;
+  max-width: 940px;
   height: 100%;
 
   .each-slide {
     margin-right: 20px;
-
+    padding-bottom: 30px;
     &:last-child {
       margin-right: 0;
     }
