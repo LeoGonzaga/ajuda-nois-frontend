@@ -9,6 +9,7 @@ import Text from '@components/Text';
 import Title from '@components/Title';
 import { add } from 'src/config/actions/subjects';
 
+import SelectSubject from '../Tips/components/SelectSubject';
 import Card from './components/Card';
 import SubjectItem from './components/SubjectItem';
 import { Container, Grid, SubjectContent, Table } from './styles';
@@ -30,41 +31,39 @@ export const Subjects = (): JSX.Element => {
         <div>
           <Card
             onClick={() => handleToggleToShowContent('Matemática')}
-            title={'Matemática e suas Tecnologias'}
+            title={'Matemática'}
             color="#6F52ED"
-            icon={<AiOutlineCalculator />}
+            icon={<AiOutlineCalculator size={30} />}
             active={'Matemática' == activeSubject}
           />
           <Card
             onClick={() => handleToggleToShowContent('Humanas')}
             title={'Ciencias Humanas'}
             color="#FBBC05"
-            icon={<GiGreekTemple />}
+            icon={<GiGreekTemple size={30} />}
             active={'Humanas' == activeSubject}
           />
           <Card
             onClick={() => handleToggleToShowContent('Natureza')}
             title={'Ciências da natureza'}
             color="#00BF20"
-            icon={<IoTelescopeOutline />}
+            icon={<IoTelescopeOutline size={30} />}
             active={'Natureza' == activeSubject}
           />
           <Card
             onClick={() => handleToggleToShowContent('Linguagens')}
             title={'Linguagens e códigos'}
             color="#CA1E3C"
-            icon={<BsChatLeftQuote />}
+            icon={<BsChatLeftQuote size={30} />}
             active={'Linguagens' == activeSubject}
           />
         </div>
         {activeSubject && (
           <SubjectContent>
-            <Text bold size={30}>
-              {activeSubject}
-            </Text>
+            <SelectSubject active={true} />
             <Table>
-              <SubjectItem />
-              <SubjectItem />
+              <SubjectItem topic="Revolução industrial" check />
+              <SubjectItem topic="Revolução Francesa" />
             </Table>
           </SubjectContent>
         )}

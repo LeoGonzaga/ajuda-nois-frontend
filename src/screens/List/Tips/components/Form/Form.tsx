@@ -96,7 +96,7 @@ export const Form = ({ onClose, reload }: any): JSX.Element => {
     <Styles.Container onSubmit={handleSubmit}>
       <TextInput
         width="350px"
-        placeholder="Nome do topico"
+        placeholder="Nome da dica"
         type="text"
         value={topic}
         onChange={setTopic}
@@ -104,7 +104,7 @@ export const Form = ({ onClose, reload }: any): JSX.Element => {
       />
       <Spacing vertical={15} />
       <textarea
-        placeholder="Nome do topico"
+        placeholder="Descrição"
         value={information}
         onChange={setInformation}
       />

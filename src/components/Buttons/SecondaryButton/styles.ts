@@ -1,11 +1,14 @@
 import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
-export const Container = styled.button`
+export const Container = styled.button<{
+  active?: boolean;
+}>`
   border: none;
   outline: none;
   height: 51px;
-  background-color: ${COLORS.SECONDARY};
+  background-color: ${(props) =>
+    props?.active ? COLORS.SECONDARY : COLORS.GRAY};
   padding: 10px 20px;
   border-radius: 10px;
   margin: 5px;

@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 import { ContentLine, TableItem, TableItemContent } from './styles';
 
-export const SubjectItem = (): JSX.Element => {
+export const SubjectItem = ({ topic, check }: any): JSX.Element => {
   const [expand, setExpand] = useState<boolean>(false);
 
   const handleToggle = useCallback(() => {
@@ -17,21 +17,21 @@ export const SubjectItem = (): JSX.Element => {
   return (
     <>
       <TableItem onClick={handleToggle}>
-        <Text>Equação do 1º Grau</Text>
-        <BsFillCheckCircleFill color={COLORS.SECONDARY} />
+        <Text>{topic}</Text>
+        {check && <BsFillCheckCircleFill color={COLORS.SECONDARY} />}
       </TableItem>
       {expand && (
         <TableItemContent>
           <Link href="/subject/math">
             <ContentLine>
-              <Text>Função</Text>
+              <Text>Exemplo 1</Text>
             </ContentLine>
           </Link>
           <ContentLine>
-            <Text>Função</Text>
+            <Text>Exemplo 2</Text>
           </ContentLine>
           <ContentLine>
-            <Text>Função</Text>
+            <Text>Exemplo 3</Text>
           </ContentLine>
         </TableItemContent>
       )}
