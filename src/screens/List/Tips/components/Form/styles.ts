@@ -7,6 +7,7 @@ const Container = styled.form`
     border-radius: 9px;
     padding: 10px;
     background-color: #23232c;
+    color: #fff;
   }
 `;
 
