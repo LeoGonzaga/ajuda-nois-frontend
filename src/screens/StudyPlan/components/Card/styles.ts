@@ -14,8 +14,7 @@ export const Container = styled.div<ContainerProps>`
   flex-direction: row;
 
   width: 100%;
-  max-width: 600px;
-  height: 100%;
+  max-width: 1000px;
 
   padding: 8px;
   margin-bottom: 10px;
@@ -36,7 +35,7 @@ export const ExpandableContent = styled.div<ExpandedProps>`
   flex-direction: column;
   align-items: center;
 
-  width: 550px;
+  width: 100%;
   max-height: ${(props) => (props.expanded ? '250px' : '50px')};
 
   padding: 5px 20px 5px 10px;
@@ -62,7 +61,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  width: 550px;
+  width: 100%;
 
   padding: 0px 20px 0px 10px;
 

@@ -12,6 +12,7 @@ import {
   VerticalContainer,
   TitleWrapper,
   CardsWrapper,
+  HorizontalContainer,
 } from './styles';
 
 type CardProps = {
@@ -77,20 +78,22 @@ export const StudyPlan = (): JSX.Element => {
             <BsPlusLg /> Criar novo plano
           </button>
         </TitleWrapper>
-        <Weekday />
-        <CardsWrapper>
-          {cards.map((card, index) => (
-            <Card
-              key={index}
-              status={card.status}
-              startTime={card.startTime}
-              endTime={card.endTime}
-              subject={card.subject}
-              topic={card.topic}
-              text={card.text}
-            />
-          ))}
-        </CardsWrapper>
+        <HorizontalContainer>
+          <Weekday />
+          <CardsWrapper>
+            {cards.map((card, index) => (
+              <Card
+                key={index}
+                status={card.status}
+                startTime={card.startTime}
+                endTime={card.endTime}
+                subject={card.subject}
+                topic={card.topic}
+                text={card.text}
+              />
+            ))}
+          </CardsWrapper>
+        </HorizontalContainer>
       </VerticalContainer>
       <Sidebar />
 

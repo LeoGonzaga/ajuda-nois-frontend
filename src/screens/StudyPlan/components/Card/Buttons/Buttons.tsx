@@ -24,7 +24,6 @@ export const Buttons = ({
       ) : (
         <div onClick={() => handleStateChange('completed')}>Concluir</div>
       )}
-      {status == 'completed' ? ' ' : <div>Editar</div>}
       <div>Deletar</div>
     </Container>
   );

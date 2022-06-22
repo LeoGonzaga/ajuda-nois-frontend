@@ -11,14 +11,29 @@ export const Container = styled.div<Props>`
   justify-content: flex-start;
 
   span {
+    display: flex;
+    justify-content: center;
+    padding: 2px;
     cursor: pointer;
+
+    border: 1px solid ${COLORS.TEXT}35;
+    border-color: ${(props) =>
+      props.expanded ? `${COLORS.GREEN}` : `${COLORS.TEXT}55`};
+    background-color: ${COLORS.GRAY}25;
+    border-top-left-radius: ${(props) => (props.expanded ? '5px' : '0px')};
+    border-top-right-radius: ${(props) => (props.expanded ? '5px' : '0px')};
+
+    transition: all 0.2s;
 
     p {
       color: ${(props) => (props.expanded ? '#00BF20' : '#B4B4B4')};
-
       transition: color 0.2s;
+    }
 
-      &:hover {
+    &:hover {
+      border-color: ${COLORS.GREEN};
+      background-color: ${COLORS.GRAY}25;
+      p {
         color: ${COLORS.SECONDARY};
       }
     }
@@ -34,9 +49,11 @@ export const ExpandableContent = styled.div<Props>`
 
   padding: ${(props) => (props.expanded ? '5px 10px' : '0px 10px')};
   margin-bottom: ${(props) => (props.expanded ? '10px' : '0px')};
+  margin-top: ${(props) => (props.expanded ? '-4px' : '0px')};
 
   background-color: ${COLORS.NEUTRAL};
-  border-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 
   overflow: hidden;
 
