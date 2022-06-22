@@ -4,12 +4,21 @@ import BackButton from '@components/BackButton';
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Flex from '@components/Flex';
 import ModalContainer from '@components/Modal';
-import Table from '@components/Table';
 import Title from '@components/Title';
 import { ROUTES } from 'src/routes/routes';
 
 import Form from './components/Form';
+import Table from './components/Table';
 import { Container } from './styles';
+
+const data = [
+  {
+    year: '2021',
+    questions: '',
+    awnsers: '',
+    color: 'Azul',
+  },
+];
 
 export const Enem = (): JSX.Element => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -22,7 +31,7 @@ export const Enem = (): JSX.Element => {
     <Container>
       <ModalContainer
         open={openModal}
-        title="Criação de matéria"
+        title="Criação de prova"
         handleClose={handleToggleModal}
       >
         <Form />
@@ -34,11 +43,11 @@ export const Enem = (): JSX.Element => {
         <Flex align="center" justify="space-between">
           <Title text="Provas" contrast="" subText="" />
           <SecondaryButton onClick={handleToggleModal}>
-            Nova matéria
+            Nova prova
           </SecondaryButton>
         </Flex>
       </Flex>
-      <Table />
+      <Table data={data} />
     </Container>
   );
 };

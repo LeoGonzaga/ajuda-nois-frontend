@@ -19,6 +19,6 @@ export const ROUTES = {
   LIST_TIPS: '/list/tips',
   LIST_QUESTIONS: '/list/questions',
   LIST_LESSON: '/list/lesson',
-  LIST_TOPIC: '/list/topic',
+  LIST_TOPIC: '/list/topics',
   LIST_ENEM: '/list/enem',
 };

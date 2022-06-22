@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 import ActionButton from '@components/Buttons/ActionButton';
+import EditorContainer from '@components/Editor';
 import Flex from '@components/Flex';
 import TextInput from '@components/Inputs/TextInput';
 import Select from '@components/Select';
@@ -10,6 +11,7 @@ import Text from '@components/Text';
 import { Options, requestAPI } from '@services/index';
 import { COLORS } from '@themes/colors';
 import { useChangeText } from 'src/hooks/useChangeText';
+import { Row } from 'src/screens/DashBoard/Admin/styles';
 
 import { Styles } from './styles';
 
@@ -100,18 +102,18 @@ export const Form = (): JSX.Element => {
 
   return (
     <Styles.Container onSubmit={handleSubmit}>
-      <TextInput
-        width="350px"
-        placeholder="Nome da matéria"
-        type="text"
-        value={username}
-        onChange={setUsername}
-        error={errors.username}
-      />
+      <EditorContainer showControls />
       <Spacing vertical={15} />
-      <Text>Aréa do conhecimento:</Text>
+      <Styles.AddQuestion>Adicionar alternativas </Styles.AddQuestion>
       <Spacing vertical={15} />
-      <Select onChange={setUserType} value={usertype} data={data} />
+      <Styles.Flex>
+        <input type="checkbox" name="" id="" />
+        <textarea placeholder="Digite uma resposta" />
+      </Styles.Flex>
+      <Styles.Flex>
+        <input type="checkbox" name="" id="" />
+        <textarea placeholder="Digite uma resposta" />
+      </Styles.Flex>
       <Spacing vertical={15} />
       <Flex width="19%">
         <ActionButton

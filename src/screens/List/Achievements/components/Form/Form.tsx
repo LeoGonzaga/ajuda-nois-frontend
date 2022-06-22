@@ -13,18 +13,17 @@ import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
-const data = [
+const type = [
   {
     value: 'teacher',
-    name: 'Professor',
+    name: 'Level',
   },
+];
+
+const area = [
   {
-    value: 'user',
-    name: 'Aluno',
-  },
-  {
-    value: 'admin',
-    name: 'Administrador',
+    value: 'teacher',
+    name: 'Geral',
   },
 ];
 
@@ -97,11 +96,23 @@ export const Form = (): JSX.Element => {
         error={errors.name}
       />
       <Spacing vertical={15} />
-      <textarea placeholder="Nome da conquista" />
+
+      <input type="file" />
+
+      <Spacing vertical={15} />
+      <textarea placeholder="Descrição da conquista" />
+      <Spacing vertical={15} />
+      <Text bold>Condições de desbloqueio:</Text>
+      <Spacing vertical={15} />
+      <Text>Tipo de conquista:</Text>
+      <Spacing vertical={15} />
+      <Select onChange={setUserType} value={usertype} data={type} />
       <Spacing vertical={15} />
       <Text>Aréa do conhecimento:</Text>
       <Spacing vertical={15} />
-      <Select onChange={setUserType} value={usertype} data={data} />
+      <Select onChange={setUserType} value={usertype} data={area} />
+      <Spacing vertical={15} />
+      <input type="number" placeholder="Valor" />
       <Spacing vertical={15} />
       <Flex width="19%">
         <ActionButton

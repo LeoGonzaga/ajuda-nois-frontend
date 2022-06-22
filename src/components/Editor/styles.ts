@@ -16,10 +16,10 @@ export const EditorArea = styled.div`
 
   padding: 10px 4px;
   border-radius: 4px;
-
+  border: 1px solid #ccc;
   div {
     outline: none;
-    min-height: 80vh;
+    min-height: 50vh;
     padding: 0px 10px;
   }
 `;

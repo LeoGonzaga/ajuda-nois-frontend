@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 import ActionButton from '@components/Buttons/ActionButton';
+import EditorContainer from '@components/Editor';
 import Flex from '@components/Flex';
 import TextInput from '@components/Inputs/TextInput';
 import Select from '@components/Select';
@@ -19,7 +20,7 @@ const token =
 const data = [
   {
     value: 'teacher',
-    name: 'Professor',
+    name: 'Equação do 1º grau',
   },
   {
     value: 'user',
@@ -102,14 +103,16 @@ export const Form = (): JSX.Element => {
     <Styles.Container onSubmit={handleSubmit}>
       <TextInput
         width="350px"
-        placeholder="Nome da matéria"
+        placeholder="Nome da lição"
         type="text"
         value={username}
         onChange={setUsername}
         error={errors.username}
       />
       <Spacing vertical={15} />
-      <Text>Aréa do conhecimento:</Text>
+      <EditorContainer showControls />
+      <Spacing vertical={15} />
+      <Text>Associar a um tópico:</Text>
       <Spacing vertical={15} />
       <Select onChange={setUserType} value={usertype} data={data} />
       <Spacing vertical={15} />
