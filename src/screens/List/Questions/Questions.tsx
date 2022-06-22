@@ -22,7 +22,7 @@ export const Questions = (): JSX.Element => {
     <Container>
       <ModalContainer
         open={openModal}
-        title="Criação de matéria"
+        title="Criação de questão"
         handleClose={handleToggleModal}
       >
         <Form />
@@ -32,9 +32,9 @@ export const Questions = (): JSX.Element => {
           <BackButton route={ROUTES.PANEL} />
         </div>
         <Flex align="center" justify="space-between">
-          <Title text="Matérias" contrast="" subText="" />
+          <Title text="Questões" contrast="" subText="" />
           <SecondaryButton onClick={handleToggleModal}>
-            Nova matéria
+            Nova questão
           </SecondaryButton>
         </Flex>
       </Flex>
