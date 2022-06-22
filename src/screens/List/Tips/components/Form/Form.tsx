@@ -102,16 +102,18 @@ export const Form = (): JSX.Element => {
     <Styles.Container onSubmit={handleSubmit}>
       <TextInput
         width="350px"
-        placeholder="Nome da matéria"
+        placeholder="Nome do topico"
         type="text"
         value={username}
         onChange={setUsername}
         error={errors.username}
       />
       <Spacing vertical={15} />
-      <Text>Aréa do conhecimento:</Text>
-      <Spacing vertical={15} />
-      <Select onChange={setUserType} value={usertype} data={data} />
+      <textarea
+        placeholder="Nome do topico"
+        value={username}
+        onChange={setUsername}
+      />
       <Spacing vertical={15} />
       <Flex width="19%">
         <ActionButton
