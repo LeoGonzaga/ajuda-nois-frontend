@@ -18,7 +18,7 @@ export const Tips = (): JSX.Element => {
   return (
     <Container>
       <ModalContainer open={open} title="Criação de dica" handleClose={setOpen}>
-        <Form />
+        <Form reload={getAllTips} onClose={setOpen} />
       </ModalContainer>
       <Flex align="center">
         <div>
