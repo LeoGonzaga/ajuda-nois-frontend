@@ -29,16 +29,16 @@ export const Achievement = ({
         </ImageContainer>
         <Flex direction="column" justify="center">
           <NoHeightFlex>
-            <Text size={22} bold color={COLORS.QUATERNARY}>
+            <Text size={25} bold color={COLORS.QUATERNARY}>
               {name}
             </Text>
             {!!achieved && (
-              <Text size={13} color={COLORS.TEXT}>
+              <Text size={14} color={COLORS.TEXT}>
                 + {exp} exp
               </Text>
             )}
           </NoHeightFlex>
-          <Text size={13} color={COLORS.QUATERNARY}>
+          <Text size={14} color={COLORS.QUATERNARY}>
             {description}
           </Text>
         </Flex>

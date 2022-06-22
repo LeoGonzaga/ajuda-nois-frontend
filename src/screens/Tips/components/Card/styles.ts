@@ -4,13 +4,15 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 220px;
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.TEXT};
+  /* border: 1px solid ${({ theme }) => theme.TEXT}; */
 
   display: flex;
   flex-direction: column;
 
   padding: 15px;
   margin: 10px;
+
+  background-color: ${({ color }) => color}25;
 
   transition: 0.2s;
   animation: ${FadeInAnimation} 0.5s ease-in;

@@ -15,11 +15,11 @@ export const TelegramShare = ({ url }: Props): JSX.Element => {
     <span>
       <TelegramShareButton url={url}>
         <ShareIcons>
-          <FaRegPaperPlane size={20} title="Share with Telegram" />
+          <FaRegPaperPlane size={30} title="Share with Telegram" />
         </ShareIcons>
       </TelegramShareButton>
       <Spacing vertical={3} />
-      <Text size={12}>Telegram</Text>
+      <Text size={14}>Telegram</Text>
     </span>
   );
 };

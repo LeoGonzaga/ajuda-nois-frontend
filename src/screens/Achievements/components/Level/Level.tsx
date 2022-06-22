@@ -34,7 +34,7 @@ export const Level = ({ exp }: LevelProps): JSX.Element => {
         rotation={90}
       />
       <CircularProgressbarWithChildren value={getProgress(exp, level) * 100}>
-        <Text size={38} bold color="#ffd054">
+        <Text size={48} bold color="#ffd054">
           Level {level}
         </Text>
       </CircularProgressbarWithChildren>

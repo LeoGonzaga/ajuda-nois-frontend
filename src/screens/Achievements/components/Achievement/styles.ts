@@ -7,6 +7,7 @@ type Props = {
 export const Container = styled.div<Props>`
   opacity: ${(props) => (props.achieved ? 1 : 0.2)};
   margin-bottom: 30px;
+  margin-left: 30px;
 
   div {
     div {
@@ -27,12 +28,12 @@ export const ImageContainer = styled.div<Props>`
   justify-content: center;
   align-items: center;
 
-  min-width: 100px;
-  min-height: 100px;
+  min-width: 120px;
+  min-height: 120px;
 
   margin-right: 10px;
 
-  padding: 6px;
+  padding: 8px;
 
   border-radius: 50%;
 
@@ -45,6 +46,6 @@ export const ImageContainer = styled.div<Props>`
   background-clip: content-box, border-box;
 
   img {
-    max-width: 100px;
+    max-width: 120px;
   }
 `;

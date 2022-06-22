@@ -15,11 +15,11 @@ export const TwitterShare = ({ url }: Props): JSX.Element => {
     <span>
       <TwitterShareButton url={url}>
         <ShareIcons>
-          <FiTwitter size={20} title="Share with Telegram" />
+          <FiTwitter size={35} title="Share with Telegram" />
         </ShareIcons>
       </TwitterShareButton>
       <Spacing vertical={3} />
-      <Text size={12}>Twitter</Text>
+      <Text size={14}>Twitter</Text>
     </span>
   );
 };
