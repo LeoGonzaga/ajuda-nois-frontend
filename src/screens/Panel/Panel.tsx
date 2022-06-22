@@ -13,13 +13,6 @@ import { Circle, Container, Content, SubjectCards } from './styles';
 export const Panel = (): JSX.Element => {
   const items = [
     {
-      name: 'Matérias',
-      path: ROUTES.LIST_SUBJECTS,
-      image:
-        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Materias.png',
-    },
-
-    {
       name: 'Usuários',
       path: ROUTES.LIST_USERS,
       image:
@@ -31,6 +24,13 @@ export const Panel = (): JSX.Element => {
       image:
         'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Winner.png',
     },
+
+    {
+      name: 'Provas',
+      path: ROUTES.LIST_ENEM,
+      image:
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Enem.png',
+    },
     {
       name: 'Dicas',
       path: ROUTES.LIST_TIPS,
@@ -38,16 +38,16 @@ export const Panel = (): JSX.Element => {
         'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Dicas.png',
     },
     {
-      name: 'Questões',
-      path: ROUTES.LIST_QUESTIONS,
+      name: 'Matérias',
+      path: ROUTES.LIST_SUBJECTS,
       image:
-        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Questões.png',
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Materias.png',
     },
     {
-      name: 'Provas',
-      path: ROUTES.LIST_ENEM,
+      name: 'Tópicos',
+      path: ROUTES.LIST_TOPIC,
       image:
-        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Enem.png',
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Topicos.png',
     },
     {
       name: 'Lições',
@@ -56,10 +56,10 @@ export const Panel = (): JSX.Element => {
         'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Lições.png',
     },
     {
-      name: 'Tópicos',
-      path: ROUTES.LIST_TOPIC,
+      name: 'Questões',
+      path: ROUTES.LIST_QUESTIONS,
       image:
-        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Topicos.png',
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Questões.png',
     },
     {
       name: 'Quiz',

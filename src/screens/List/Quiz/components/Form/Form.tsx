@@ -19,7 +19,7 @@ const token =
 const data = [
   {
     value: 'teacher',
-    name: 'Professor',
+    name: 'Equação do 1º grau',
   },
   {
     value: 'user',
@@ -101,17 +101,62 @@ export const Form = (): JSX.Element => {
   return (
     <Styles.Container onSubmit={handleSubmit}>
       <TextInput
-        width="350px"
-        placeholder="Nome da matéria"
+        width="100%"
+        placeholder="Nome do quiz"
         type="text"
         value={username}
         onChange={setUsername}
         error={errors.username}
       />
       <Spacing vertical={15} />
-      <Text>Aréa do conhecimento:</Text>
+      <Text>Associar ao tópico:</Text>
       <Spacing vertical={15} />
       <Select onChange={setUserType} value={usertype} data={data} />
+      <Spacing vertical={15} />
+      <Styles.List>
+        <Styles.Row>
+          <input type="checkbox" />
+          Resolva a equação fracionária, sendo x ≠ 0:
+        </Styles.Row>
+        <Styles.Row>
+          <input type="checkbox" />
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with
+          the release of Letraset sheets containing Lorem Ipsum passages, and
+          mor
+        </Styles.Row>
+        <Styles.Row>
+          <input type="checkbox" />
+          Resolva a equação fracionária, sendo x ≠ 0:
+        </Styles.Row>
+        <Styles.Row>
+          <input type="checkbox" />
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with
+          the release of Letraset sheets containing Lorem Ipsum passages, and
+          mor
+        </Styles.Row>
+        <Styles.Row>
+          <input type="checkbox" />
+          Resolva a equação fracionária, sendo x ≠ 0:
+        </Styles.Row>
+        <Styles.Row>
+          <input type="checkbox" />
+          Resolva a equação fracionária, sendo x ≠ 0:
+        </Styles.Row>
+        <Styles.Row>
+          <input type="checkbox" />
+          Resolva a equação fracionária, sendo x ≠ 0:
+        </Styles.Row>
+      </Styles.List>
       <Spacing vertical={15} />
       <Flex width="19%">
         <ActionButton

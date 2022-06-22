@@ -21,7 +21,7 @@ export const useAchievements = () => {
       return;
     }
 
-    setData(response?.data);
+    setData(response?.data?.achievement);
   };
 
   useEffect(() => {

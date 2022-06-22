@@ -22,7 +22,7 @@ export const Topic = (): JSX.Element => {
     <Container>
       <ModalContainer
         open={openModal}
-        title="Criação de matéria"
+        title="Criação de tópico"
         handleClose={handleToggleModal}
       >
         <Form />
@@ -34,7 +34,7 @@ export const Topic = (): JSX.Element => {
         <Flex align="center" justify="space-between">
           <Title text="Tópicos" contrast="" subText="" />
           <SecondaryButton onClick={handleToggleModal}>
-            Nova matéria
+            Novo tópico
           </SecondaryButton>
         </Flex>
       </Flex>

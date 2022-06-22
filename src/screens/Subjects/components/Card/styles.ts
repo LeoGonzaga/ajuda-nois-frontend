@@ -2,13 +2,12 @@ import styled from 'styled-components';
 
 export const Container = styled.div<{ color: string; active: boolean }>`
   width: 200px;
-  height: 200px;
   border-radius: 8px;
   border: 1px solid
     ${({ theme, active, color }) => (active ? color : theme.TEXT)};
 
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
   padding: 15px;
   margin: 10px;
@@ -24,6 +23,7 @@ export const Container = styled.div<{ color: string; active: boolean }>`
     margin-bottom: 5px;
     text-transform: uppercase;
     color: ${({ color }) => color};
+    margin-left: 10px;
   }
 
   span {

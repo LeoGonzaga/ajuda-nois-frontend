@@ -26,7 +26,7 @@ export const Table = ({ data, reload }: any): JSX.Element => {
     const token = localStorage.getItem('token');
     const payload: Options = {
       method: 'DELETE',
-      url: '/deleteUser',
+      url: '/deleteAchievement',
       data: {
         id,
       },
