@@ -1,63 +1,63 @@
 import React, { useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
-import BarChartContainer from '@components/BarChart';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 
 import { Arrow, Container, Wrapper } from './styles';
+import HorizontalBarChartContainer from '@components/HorizontalBarChart';
 
 export const StudentChart = (): JSX.Element => {
   const simData = ['Janeiro de 2022', 'Fevereiro de 2022', 'Março de 2022'];
   const data = [
     [
       {
-        name: 'Exatas',
-        uv: 4000,
-        acertos: 45,
-        amt: 45,
+        name: 'Ciências Humanas e suas Tecnologias',
+        uv: 2780,
+        acertos: 22,
+        amt: 22,
       },
       {
-        name: 'Natureza',
+        name: 'Ciências da Natureza e suas Tecnologias',
         uv: 3000,
         acertos: 23,
         amt: 22,
       },
       {
-        name: 'Linguagem',
+        name: 'Linguagens, Códigos e suas Tecnologias',
         uv: 2000,
         acertos: 33,
         amt: 12,
       },
       {
-        name: 'Humanas',
-        uv: 2780,
-        acertos: 22,
-        amt: 22,
+        name: 'Matemática e suas Tecnologias',
+        uv: 4000,
+        acertos: 45,
+        amt: 45,
       },
     ],
     [
       {
-        name: 'Exatas',
+        name: 'Ciências Humanas e suas Tecnologias',
         uv: 4000,
         acertos: 35,
         amt: 45,
       },
       {
-        name: 'Natureza',
+        name: 'Ciências da Natureza e suas Tecnologias',
         uv: 3000,
         acertos: 3,
         amt: 22,
       },
       {
-        name: 'Linguagem',
+        name: 'Linguagens, Códigos e suas Tecnologias',
         uv: 2000,
         acertos: 23,
         amt: 12,
       },
       {
-        name: 'Humanas',
+        name: 'Matemática e suas Tecnologias',
         uv: 2780,
         acertos: 42,
         amt: 22,
@@ -65,25 +65,25 @@ export const StudentChart = (): JSX.Element => {
     ],
     [
       {
-        name: 'Exatas',
+        name: 'Ciências Humanas e suas Tecnologias',
         uv: 4000,
         acertos: 40,
         amt: 45,
       },
       {
-        name: 'Natureza',
+        name: 'Ciências da Natureza e suas Tecnologias',
         uv: 3000,
         acertos: 27,
         amt: 22,
       },
       {
-        name: 'Linguagem',
+        name: 'Linguagens, Códigos e suas Tecnologias',
         uv: 2000,
         acertos: 30,
         amt: 12,
       },
       {
-        name: 'Humanas',
+        name: 'Matemática e suas Tecnologias',
         uv: 2780,
         acertos: 12,
         amt: 22,
@@ -114,7 +114,7 @@ export const StudentChart = (): JSX.Element => {
         <Arrow onClick={() => prevSim()}>
           <IoIosArrowBack />
         </Arrow>
-        <BarChartContainer data={data[index]} />
+        <HorizontalBarChartContainer data={data[index]} />
         <Arrow onClick={() => nextSim()}>
           <IoIosArrowForward />
         </Arrow>

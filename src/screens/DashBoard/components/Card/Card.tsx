@@ -1,12 +1,13 @@
 import React from 'react';
 
+import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 
 import { Container, Circle, Wrapper } from './styles';
 
 type Props = {
   indicator: string;
-  value: string;
+  value: number;
   text: string;
   color: string;
 };
@@ -18,10 +19,11 @@ export const Card = ({ color, indicator, value, text }: Props): JSX.Element => {
         <p>{indicator}</p>
       </Circle>
       <Wrapper>
-        <Text size={24} bold>
-          {value}%
+        <Text size={36} bold>
+          {value}
         </Text>
-        <Text size={12}>{text}</Text>
+        <Spacing horizontal={5} />
+        <Text size={16}>{text}</Text>
       </Wrapper>
     </Container>
   );

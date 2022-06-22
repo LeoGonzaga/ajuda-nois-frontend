@@ -9,7 +9,7 @@ export const ResultsPomodoro = (): JSX.Element => {
   return (
     <Container>
       <div>
-        <Text bold color={COLORS.WHITE}>
+        <Text bold color={COLORS.BLACK} size={18}>
           Pomodoro
         </Text>
         <Text size={14}>Por área do conhecimento</Text>

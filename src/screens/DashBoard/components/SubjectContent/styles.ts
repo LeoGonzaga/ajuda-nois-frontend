@@ -12,9 +12,9 @@ export const Container = styled.div`
 
 export const Row = styled.div`
   display: flex;
-  height: 80%;
+  height: 100%;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  padding-top: 10px;
+  padding: 10px 20px 50px 20px;
 `;
