@@ -4,12 +4,27 @@ import BackButton from '@components/BackButton';
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Flex from '@components/Flex';
 import ModalContainer from '@components/Modal';
-import Table from '@components/Table';
 import Title from '@components/Title';
 import { ROUTES } from 'src/routes/routes';
 
 import Form from './components/Form';
+import Table from './components/Table';
 import { Container } from './styles';
+
+const data = [
+  {
+    name: 'Quiz 1',
+  },
+  {
+    name: 'Quiz 2',
+  },
+  {
+    name: 'Quiz 3',
+  },
+  {
+    name: 'Quiz 4',
+  },
+];
 
 export const Quiz = (): JSX.Element => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -32,13 +47,13 @@ export const Quiz = (): JSX.Element => {
           <BackButton route={ROUTES.PANEL} />
         </div>
         <Flex align="center" justify="space-between">
-          <Title text="Matérias" contrast="" subText="" />
+          <Title text="Quiz" contrast="" subText="" />
           <SecondaryButton onClick={handleToggleModal}>
-            Nova matéria
+            Novo quiz
           </SecondaryButton>
         </Flex>
       </Flex>
-      <Table />
+      <Table data={data} />
     </Container>
   );
 };

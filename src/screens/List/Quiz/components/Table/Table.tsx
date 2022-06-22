@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BiTrash } from 'react-icons/bi';
 
+import EmptyState from '@components/EmptyState';
 import { Options, Response, requestAPI } from '@services/index';
-import { v4 as uuidv4 } from 'uuid';
+import { uuid } from 'uuidv4';
 
 import {
   Container,
@@ -14,17 +15,14 @@ import {
 } from './styles';
 
 export const Table = ({ data, reload }: any): JSX.Element => {
-  const USERTYPE: any = {
-    student: 'Aluno(a)',
-    teacher: 'Professor(a)',
-    admin: 'Admin',
-  };
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleRemoveUser = async (id: string) => {
+  const handleRemoveSubject = async (id: string) => {
     const token = localStorage.getItem('token');
+    setLoading(true);
     const payload: Options = {
       method: 'DELETE',
-      url: '/deleteUser',
+      url: '/deleteTip',
       data: {
         id,
       },
@@ -35,31 +33,34 @@ export const Table = ({ data, reload }: any): JSX.Element => {
       return;
     }
     reload();
+    setLoading(false);
   };
 
   return (
     <Container>
       <ScrollContainer>
         <Th>
-          <Column>Ano</Column>
-          <Column>Caderno de questões</Column>
-          <Column>Gabarito</Column>
+          <Column>Nome</Column>
           <Column></Column>
         </Th>
-        {data &&
-          data?.map((element: any) => (
-            <Tr key={uuidv4()}>
-              <Column>{element.username}</Column>
-              <Column>{element.email}</Column>
-              <Column>
+        {data?.map((element: any) => (
+          <Tr key={uuid()}>
+            <Column>{element.name}</Column>
+            <Column>
+              {!loading && (
                 <ButtonsContainer
-                  onClick={() => handleRemoveUser(element?._id)}
+                  onClick={() => handleRemoveSubject(element._id)}
                 >
-                  <BiTrash size={25} color="#fff" />
+                  <BiTrash size={25} />
                 </ButtonsContainer>
-              </Column>
-            </Tr>
-          ))}
+              )}
+            </Column>
+          </Tr>
+        ))}
+
+        {data?.length === 0 && (
+          <EmptyState text="Não há matérias cadastradas até o momento" />
+        )}
       </ScrollContainer>
     </Container>
   );

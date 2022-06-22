@@ -21,10 +21,6 @@ export const Card = ({
     <Container color={color} onClick={onClick} active={active}>
       <p>{icon}</p>
       <h1>{title}</h1>
-      <span>
-        Matemática, Geometria Linear, Geometria Espacial,Matemática, Geometria
-        Linear, Geometria Espacial
-      </span>
     </Container>
   );
 };

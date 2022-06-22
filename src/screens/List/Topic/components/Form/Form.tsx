@@ -19,7 +19,7 @@ const token =
 const data = [
   {
     value: 'teacher',
-    name: 'Professor',
+    name: 'Matemática',
   },
   {
     value: 'user',
@@ -102,14 +102,14 @@ export const Form = (): JSX.Element => {
     <Styles.Container onSubmit={handleSubmit}>
       <TextInput
         width="350px"
-        placeholder="Nome da matéria"
+        placeholder="Nome do tópico"
         type="text"
         value={username}
         onChange={setUsername}
         error={errors.username}
       />
       <Spacing vertical={15} />
-      <Text>Aréa do conhecimento:</Text>
+      <Text>Matéria:</Text>
       <Spacing vertical={15} />
       <Select onChange={setUserType} value={usertype} data={data} />
       <Spacing vertical={15} />
