@@ -13,7 +13,7 @@ import { Container } from './styles';
 import { useSubjects } from './useSubjects';
 
 export const Subjects = (): JSX.Element => {
-  const { data, getAllSubjects, open, setOpen, teachers } = useSubjects();
+  const { data, getAll, open, setOpen, teachers, loading } = useSubjects();
   return (
     <Container>
       <ModalContainer
@@ -21,7 +21,7 @@ export const Subjects = (): JSX.Element => {
         title="Criação de matéria"
         handleClose={setOpen}
       >
-        <Form teachers={teachers} reload={getAllSubjects} onClose={setOpen} />
+        <Form teachers={teachers} reload={getAll} onClose={setOpen} />
       </ModalContainer>
 
       <Flex align="center">
@@ -35,7 +35,7 @@ export const Subjects = (): JSX.Element => {
           )}
         </Flex>
       </Flex>
-      <Table data={data} reload={getAllSubjects} />
+      <Table data={data} reload={getAll} loading={loading} />
     </Container>
   );
 };
