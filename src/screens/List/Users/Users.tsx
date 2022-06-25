@@ -13,14 +13,8 @@ import { Container } from './styles';
 import { useUsers } from './useUsers';
 
 export const Users = (): JSX.Element => {
-  const {
-    handleToggleModalCreateUser,
-    openModal,
-    data,
-    getAllUser,
-    setData,
-    loading,
-  } = useUsers();
+  const { handleToggleModalCreateUser, openModal, data, getAllUser, loading } =
+    useUsers();
 
   return (
     <Container>
@@ -43,12 +37,7 @@ export const Users = (): JSX.Element => {
         </Flex>
       </Flex>
 
-      <Table
-        data={data}
-        reload={getAllUser}
-        reset={setData}
-        loading={loading}
-      />
+      <Table data={data} reload={getAllUser} loading={loading} />
     </Container>
   );
 };

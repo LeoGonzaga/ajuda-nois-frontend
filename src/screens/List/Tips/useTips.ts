@@ -7,8 +7,10 @@ import useToggle from 'src/hooks/useToggle';
 export const useTips = () => {
   const [open, setOpen] = useToggle();
   const [data, setData] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
 
-  const getAllTips = async () => {
+  const getAll = async () => {
+    setLoading(true);
     const token = localStorage.getItem('token');
     const payload: Options = {
       method: 'GET',
@@ -22,11 +24,12 @@ export const useTips = () => {
     }
 
     setData(response?.data);
+    setLoading(false);
   };
 
   useEffect(() => {
-    getAllTips();
+    getAll();
   }, []);
 
-  return { open, setOpen, data, getAllTips };
+  return { open, setOpen, data, getAll, loading };
 };
