@@ -1,19 +1,22 @@
+import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  width: 90vw;
+`;
 
 export const Button = styled.button`
-  background-color: #fff;
-  border: 2px solid #000;
+  background-color: ${COLORS.SECONDARY};
+  border: 2px solid #fff;
   border-radius: 4px;
-  padding: 4px;
+  padding: 10px;
   margin-right: 5px;
-  color: #000;
+  color: #fff;
 `;
 
 export const EditorArea = styled.div`
-  /* border: 1px solid ${({ theme }) => theme.BLACK}; */
-
+  overflow-y: auto;
+  height: 50vh;
   padding: 10px 4px;
   border-radius: 4px;
   border: 1px solid #ccc;
@@ -37,5 +40,7 @@ export const UploadImageContainer = styled.div`
 
 export const Header = styled.div`
   border-radius: 4px;
-  padding: 4px 0px;
+  padding: 4px;
+  background-color: gray;
+  display: flex;
 `;

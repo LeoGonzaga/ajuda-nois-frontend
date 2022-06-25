@@ -4,10 +4,12 @@ const Container = styled.div`
   max-height: 90vh;
 
   margin: 10px;
-  background-color: red;
-  background-size: cover;
   input {
     width: 100%;
+  }
+
+  img {
+    max-width: 1000px;
   }
 `;
 

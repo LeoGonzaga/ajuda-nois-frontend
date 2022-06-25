@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   background-color: ${COLORS.GRAY};
-  height: 100%;
 `;
 
 const BackButton = styled.button`

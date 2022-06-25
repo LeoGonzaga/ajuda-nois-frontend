@@ -202,7 +202,6 @@ export const EditorContainer = ({ showControls, data }: Props) => {
       <EditorArea>
         <EditorContent editor={editor} />
       </EditorArea>
-      <Spacing vertical={10} />
     </Container>
   );
 };
