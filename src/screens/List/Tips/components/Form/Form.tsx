@@ -11,21 +11,6 @@ import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
-const data = [
-  {
-    value: 'teacher',
-    name: 'Professor',
-  },
-  {
-    value: 'user',
-    name: 'Aluno',
-  },
-  {
-    value: 'admin',
-    name: 'Administrador',
-  },
-];
-
 export const Form = ({ onClose, reload }: any): JSX.Element => {
   const [topic, setTopic] = useChangeText('');
   const [information, setInformation] = useChangeText('');
