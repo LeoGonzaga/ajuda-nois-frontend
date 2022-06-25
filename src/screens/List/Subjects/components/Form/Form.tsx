@@ -64,7 +64,7 @@ export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
       data: {
         name,
         area,
-        user_id: teacher,
+        teacher_id: teacher,
       },
     };
     await requestAPI(options);

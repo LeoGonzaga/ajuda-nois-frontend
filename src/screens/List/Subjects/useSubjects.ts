@@ -8,8 +8,10 @@ export const useSubjects = () => {
   const [open, setOpen] = useToggle();
   const [data, setData] = useState<any>([]);
   const [teachers, setTeachers] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const getAllSubjects = async () => {
+  const getAll = async () => {
+    setLoading(true);
     const token = localStorage.getItem('token');
     const payload: Options = {
       method: 'GET',
@@ -23,6 +25,7 @@ export const useSubjects = () => {
     }
 
     setData(response?.data);
+    setLoading(false);
   };
 
   const getAllTeachers = async () => {
@@ -53,8 +56,8 @@ export const useSubjects = () => {
   };
 
   useEffect(() => {
-    Promise.all([getAllSubjects(), getAllTeachers()]);
+    Promise.all([getAll(), getAllTeachers()]);
   }, []);
 
-  return { open, setOpen, data, getAllSubjects, teachers };
+  return { open, setOpen, data, getAll, teachers, loading };
 };
