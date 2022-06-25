@@ -34,9 +34,23 @@ const data = [
 
 export const Form = (): JSX.Element => {
   const [year, setYear] = useChangeText('');
-  const [examBase64, setExamBase64] = useState<string>('');
+  const [examBase64, setExamBase64] = useState<any>('');
   const [templateBase64, setTemplateBase64] = useState<string>('');
   const [color, setColor] = useState('blue');
+
+  const toBase64 = (file: any) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+  const handleUploadFile = async (e: any) => {
+    console.log(await toBase64(e.target.files[0]));
+    const base = await toBase64(e.target.files[0]);
+    setExamBase64(base);
+  };
 
   const [errors, setErrors] = useState({
     year: false,
@@ -110,7 +124,7 @@ export const Form = (): JSX.Element => {
       <Spacing vertical={15} />
       <Text>Caderno de questões:</Text>
       <Spacing vertical={5} />
-      <input type="file" name="" id="" />
+      <input type="file" name="" id="" onChange={handleUploadFile} />
       <Spacing vertical={15} />
       <Text>Gabarito:</Text>
       <Spacing vertical={5} />
