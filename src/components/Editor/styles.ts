@@ -14,9 +14,22 @@ export const Button = styled.button`
   color: #fff;
 `;
 
+export const SaveChanges = styled.button`
+  padding: 10px;
+  display: flex;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: ${COLORS.SECONDARY};
+  }
+`;
+
 export const EditorArea = styled.div`
   overflow-y: auto;
-  height: 50vh;
+  height: 40vh;
   padding: 10px 4px;
   border-radius: 4px;
   border: 1px solid #ccc;

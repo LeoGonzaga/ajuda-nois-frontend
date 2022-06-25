@@ -41,8 +41,8 @@ export const Table = ({ data, reload }: any): JSX.Element => {
       <ScrollContainer>
         <Th>
           <Column>Tópico</Column>
+          <Column>Titúlo</Column>
           <Column>Data de criação</Column>
-          <Column>Conteudo</Column>
           <Column></Column>
         </Th>
         {data?.map((element: any) => (

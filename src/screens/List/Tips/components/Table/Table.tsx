@@ -44,7 +44,11 @@ export const Table = ({ data, reload, loading }: any): JSX.Element => {
         {data?.map((element: any) => (
           <Tr key={uuid()}>
             <Column>{element?.name}</Column>
-            <Column>{element?.information}</Column>
+            <Column>
+              {element?.information.length >= 150
+                ? `${element?.information.substring(0, 150)}...`
+                : element?.information}
+            </Column>
             <Column>
               {!loading && (
                 <ButtonsContainer

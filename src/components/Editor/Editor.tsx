@@ -14,8 +14,6 @@ import { GoListOrdered } from 'react-icons/go';
 import { GrBlockQuote } from 'react-icons/gr';
 import { MdFormatListBulleted } from 'react-icons/md';
 
-import Spacing from '@components/Spacing';
-import { COLORS } from '@themes/colors';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
 import Paragraph from '@tiptap/extension-paragraph';
@@ -29,11 +27,13 @@ import {
   EditorArea,
   UploadImageContainer,
   Header,
+  SaveChanges,
 } from './styles';
 
 type Props = {
   showControls: boolean;
   data?: string;
+  onChange: (e: any) => void;
 };
 
 const MenuBar = ({ editor }: any) => {
@@ -170,7 +170,7 @@ const MenuBar = ({ editor }: any) => {
   );
 };
 
-export const EditorContainer = ({ showControls, data }: Props) => {
+export const EditorContainer = ({ showControls, data, onChange }: Props) => {
   const editor = useEditor({
     extensions: [StarterKit, Image, Link, Paragraph, Text],
     content: data
@@ -189,19 +189,15 @@ export const EditorContainer = ({ showControls, data }: Props) => {
     }
   }, [editor, showControls]);
 
-  const handleSaveContent = () => {
-    if (editor) {
-      const html = editor.getHTML();
-      console.log(html);
-    }
-  };
-
   return (
     <Container>
       {showControls && <MenuBar editor={editor} />}
       <EditorArea>
         <EditorContent editor={editor} />
       </EditorArea>
+      <SaveChanges onClick={() => onChange(editor)}>
+        Salvar alterações
+      </SaveChanges>
     </Container>
   );
 };
