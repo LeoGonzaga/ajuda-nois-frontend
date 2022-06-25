@@ -7,9 +7,9 @@ import TextInput from '@components/Inputs/TextInput';
 import Select from '@components/Select';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
-import { Options, requestAPI } from '@services/index';
+import { Options, requestAPI, Response } from '@services/index';
 import { COLORS } from '@themes/colors';
-import { toBase64 } from '@utils/functions';
+import { checkError, toBase64 } from '@utils/functions';
 import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
@@ -31,13 +31,23 @@ const data = [
     value: 'pink',
     name: 'Rosa',
   },
+  {
+    value: 'gray',
+    name: 'Cinza',
+  },
 ];
 
-export const Form = (): JSX.Element => {
+type Props = {
+  onClose: () => void;
+  reload: () => void;
+};
+
+export const Form = ({ onClose, reload }: Props): JSX.Element => {
   const [year, setYear] = useChangeText('');
   const [examBase64, setExamBase64] = useState<any>('');
   const [templateBase64, setTemplateBase64] = useState<any>('');
   const [color, setColor] = useState('blue');
+  const [loading, setLoading] = useState<boolean>(false);
 
   const formatBaseToRequest = (base: any) => {
     return base.split('base64,');
@@ -62,7 +72,7 @@ export const Form = (): JSX.Element => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
+    setLoading(true);
     if (year.length === 0) {
       setErrors((prevState) => ({
         ...prevState,
@@ -83,8 +93,11 @@ export const Form = (): JSX.Element => {
         color,
       },
     };
-    const response = await requestAPI(options);
-    console.log(response);
+    const { response }: Response = await requestAPI(options);
+    checkError(response?.status);
+    await reload();
+    setLoading(false);
+    onClose();
   };
 
   const handleResetErrorInput = () => {
@@ -113,7 +126,13 @@ export const Form = (): JSX.Element => {
       <Spacing vertical={15} />
       <Text>Caderno de questões:</Text>
       <Spacing vertical={5} />
-      <input type="file" name="exame" id="" onChange={handleUploadExameFile} />
+      <input
+        type="file"
+        name="exame"
+        id=""
+        onChange={handleUploadExameFile}
+        accept="application/pdf"
+      />
       <Spacing vertical={15} />
       <Text>Gabarito:</Text>
       <Spacing vertical={5} />
@@ -122,6 +141,7 @@ export const Form = (): JSX.Element => {
         name="template"
         id=""
         onChange={handleUploaTemplateFile}
+        accept="application/pdf"
       />
       <Spacing vertical={15} />
       <Select onChange={setColor} value={color} data={data} />
@@ -131,6 +151,8 @@ export const Form = (): JSX.Element => {
           color={COLORS.SECONDARY}
           width="350px"
           onClick={handleSubmit}
+          loading={loading}
+          disabled={loading}
         >
           Salvar
         </ActionButton>
