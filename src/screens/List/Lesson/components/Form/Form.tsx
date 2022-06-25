@@ -102,7 +102,7 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
         >
           Salvar
         </ActionButton>
-        <Spacing vertical={5} />
+        <Spacing vertical={15} />
       </Flex>
     </Styles.Container>
   );
