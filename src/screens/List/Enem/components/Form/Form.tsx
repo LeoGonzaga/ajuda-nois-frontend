@@ -9,6 +9,7 @@ import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { Options, requestAPI } from '@services/index';
 import { COLORS } from '@themes/colors';
+import { toBase64 } from '@utils/functions';
 import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
@@ -35,21 +36,23 @@ const data = [
 export const Form = (): JSX.Element => {
   const [year, setYear] = useChangeText('');
   const [examBase64, setExamBase64] = useState<any>('');
-  const [templateBase64, setTemplateBase64] = useState<string>('');
+  const [templateBase64, setTemplateBase64] = useState<any>('');
   const [color, setColor] = useState('blue');
 
-  const toBase64 = (file: any) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
+  const formatBaseToRequest = (base: any) => {
+    return base.split('base64,');
+  };
 
-  const handleUploadFile = async (e: any) => {
-    console.log(await toBase64(e.target.files[0]));
+  const handleUploadExameFile = async (e: any) => {
     const base = await toBase64(e.target.files[0]);
-    setExamBase64(base);
+    const splitBase = formatBaseToRequest(base);
+    setExamBase64(splitBase[1]);
+  };
+
+  const handleUploaTemplateFile = async (e: any) => {
+    const base = await toBase64(e.target.files[0]);
+    const splitBase = formatBaseToRequest(base);
+    setTemplateBase64(splitBase[1]);
   };
 
   const [errors, setErrors] = useState({
@@ -64,13 +67,6 @@ export const Form = (): JSX.Element => {
       setErrors((prevState) => ({
         ...prevState,
         email: true,
-      }));
-    }
-
-    if (examBase64.length === 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        examBase64: true,
       }));
     }
 
@@ -98,13 +94,6 @@ export const Form = (): JSX.Element => {
         year: false,
       }));
     }
-
-    if (examBase64.length > 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        examBase64: false,
-      }));
-    }
   };
 
   useEffect(() => {
@@ -124,11 +113,16 @@ export const Form = (): JSX.Element => {
       <Spacing vertical={15} />
       <Text>Caderno de questões:</Text>
       <Spacing vertical={5} />
-      <input type="file" name="" id="" onChange={handleUploadFile} />
+      <input type="file" name="exame" id="" onChange={handleUploadExameFile} />
       <Spacing vertical={15} />
       <Text>Gabarito:</Text>
       <Spacing vertical={5} />
-      <input type="file" name="" id="" />
+      <input
+        type="file"
+        name="template"
+        id=""
+        onChange={handleUploaTemplateFile}
+      />
       <Spacing vertical={15} />
       <Select onChange={setColor} value={color} data={data} />
       <Spacing vertical={15} />
