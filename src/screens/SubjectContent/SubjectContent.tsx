@@ -13,7 +13,6 @@ import {
 } from './styles';
 
 export const SubjectContent = ({ details }: any): JSX.Element => {
-  console.log(details);
   return (
     <Container>
       <EditorWrapper>
