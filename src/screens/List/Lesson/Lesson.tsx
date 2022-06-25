@@ -10,6 +10,7 @@ import { ROUTES } from 'src/routes/routes';
 import Form from './components/Form';
 import Table from './components/Table';
 import { Container } from './styles';
+import { useLesson } from './useLesson';
 
 const data = [
   {
@@ -21,11 +22,8 @@ const data = [
 ];
 
 export const Lesson = (): JSX.Element => {
-  const [openModal, setOpenModal] = useState<boolean>(false);
-
-  const handleToggleModal = useCallback(() => {
-    setOpenModal(!openModal);
-  }, [openModal]);
+  const { data, getAll, handleToggleModal, loading, openModal, topics } =
+    useLesson();
 
   return (
     <Container>
@@ -34,7 +32,7 @@ export const Lesson = (): JSX.Element => {
         title="Criação de lições"
         handleClose={handleToggleModal}
       >
-        <Form />
+        <Form onClose={handleToggleModal} reload={getAll} topics={topics} />
       </ModalContainer>
       <Flex align="center">
         <div>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Container = styled.form`
+const Container = styled.div`
   input {
     width: 100%;
   }
