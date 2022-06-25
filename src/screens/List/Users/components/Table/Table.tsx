@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BiTrash } from 'react-icons/bi';
 
 import EmptyState from '@components/EmptyState';
@@ -21,7 +21,7 @@ const USERTYPE: any = {
   admin: 'Admin',
 };
 
-export const Table = ({ data, reload, reset, loading }: any): JSX.Element => {
+export const Table = ({ data, reload, loading }: any): JSX.Element => {
   const handleRemoveSubject = async (id: string) => {
     if (loading) return;
     const token = localStorage.getItem('token');

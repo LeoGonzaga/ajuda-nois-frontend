@@ -13,65 +13,64 @@ import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
-const token =
-  'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjIxZGFiZGU2OTJkMjMyZGI0YTQyYmY1IiwiaWF0IjoxNjQ2MTEzOTY2LCJleHAiOjE2NDYyMDAzNjZ9.ANPjMTfHPjJJ-jb-Yn4FFYbzCWnVZ_jJ4V7-oJg12y2tL1PaZ_3l9z7SJTEXuXerxM11_k1yMoDprGYOO8pXFY4Qt3tipdkM5LnwH0xun5o2PE9OzwR9tovX2JTdHsnnGU9osRto7uw0s2HmJfHhc0bNTMEo9jyPl3ccxcPkRR`';
-
 const data = [
   {
-    value: 'teacher',
+    value: 'blue',
     name: 'Azul',
   },
   {
-    value: 'user',
-    name: 'Aluno',
+    value: 'yellow',
+    name: 'Amarelo',
   },
   {
-    value: 'admin',
-    name: 'Administrador',
+    value: 'white',
+    name: 'Branco',
+  },
+  {
+    value: 'pink',
+    name: 'Rosa',
   },
 ];
 
 export const Form = (): JSX.Element => {
-  const [username, setUsername] = useChangeText('');
-  const [email, setEmail] = useChangeText('');
-  const [usertype, setUserType] = useState<string>('');
+  const [year, setYear] = useChangeText('');
+  const [examBase64, setExamBase64] = useState<string>('');
+  const [templateBase64, setTemplateBase64] = useState<string>('');
+  const [color, setColor] = useState('blue');
 
   const [errors, setErrors] = useState({
-    username: false,
-    email: false,
+    year: false,
+    examBase64: false,
   });
-
-  const validateEmail = (email: string) => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const validEmail = validateEmail(email);
 
-    if (email.length === 0 || !validEmail) {
+    if (year.length === 0) {
       setErrors((prevState) => ({
         ...prevState,
         email: true,
       }));
     }
 
-    if (username.length === 0) {
+    if (examBase64.length === 0) {
       setErrors((prevState) => ({
         ...prevState,
-        username: true,
+        examBase64: true,
       }));
     }
 
+    const token = localStorage.getItem('token');
+
     const options: Options = {
       method: 'POST',
-      url: '/createSubject',
+      url: '/createEnem',
       headers: { Authorization: `Bearer ${token}` },
       data: {
-        name: 'string',
-        area: 'string - ara de conhecimento?',
-        teacher_id: 'string - verificar se é string mesmo',
+        year,
+        exam_base64: examBase64,
+        template_base64: templateBase64,
+        color,
       },
     };
     const response = await requestAPI(options);
@@ -79,24 +78,24 @@ export const Form = (): JSX.Element => {
   };
 
   const handleResetErrorInput = () => {
-    if (email.length > 0) {
+    if (year.length > 0) {
       setErrors((prevState) => ({
         ...prevState,
-        email: false,
+        year: false,
       }));
     }
 
-    if (username.length > 0) {
+    if (examBase64.length > 0) {
       setErrors((prevState) => ({
         ...prevState,
-        username: false,
+        examBase64: false,
       }));
     }
   };
 
   useEffect(() => {
     handleResetErrorInput();
-  }, [email, username]);
+  }, [year, examBase64]);
 
   return (
     <Styles.Container onSubmit={handleSubmit}>
@@ -104,9 +103,9 @@ export const Form = (): JSX.Element => {
         width="350px"
         placeholder="Ano da prova"
         type="text"
-        value={username}
-        onChange={setUsername}
-        error={errors.username}
+        value={year}
+        onChange={setYear}
+        error={errors.year}
       />
       <Spacing vertical={15} />
       <Text>Caderno de questões:</Text>
@@ -117,7 +116,7 @@ export const Form = (): JSX.Element => {
       <Spacing vertical={5} />
       <input type="file" name="" id="" />
       <Spacing vertical={15} />
-      <Select onChange={setUserType} value={usertype} data={data} />
+      <Select onChange={setColor} value={color} data={data} />
       <Spacing vertical={15} />
       <Flex width="19%">
         <ActionButton
