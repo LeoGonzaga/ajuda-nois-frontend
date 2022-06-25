@@ -60,13 +60,11 @@ export const Form = ({ onClose, reload }: any): JSX.Element => {
       url: '/createTip',
       headers: { Authorization: `Bearer ${token}` },
       data: {
-        topic,
+        name: topic,
         information,
-        user_id: '62ae2d6fabe82f0dd524cc25',
-        color: 'red',
       },
     };
-    const response = await requestAPI(options);
+    await requestAPI(options);
     reload();
     onClose();
     setLoading(false);
