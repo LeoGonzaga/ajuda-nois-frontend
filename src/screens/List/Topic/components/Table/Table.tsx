@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BiTrash } from 'react-icons/bi';
 
 import EmptyState from '@components/EmptyState';
@@ -20,7 +20,7 @@ export const Table = ({ data, reload, loading }: any): JSX.Element => {
     const token = localStorage.getItem('token');
     const payload: Options = {
       method: 'DELETE',
-      url: '/deleteTip',
+      url: '/deleteTopic',
       data: {
         id,
       },

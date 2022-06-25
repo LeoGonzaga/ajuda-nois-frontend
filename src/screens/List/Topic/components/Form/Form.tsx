@@ -14,24 +14,6 @@ import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
-const token =
-  'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjIxZGFiZGU2OTJkMjMyZGI0YTQyYmY1IiwiaWF0IjoxNjQ2MTEzOTY2LCJleHAiOjE2NDYyMDAzNjZ9.ANPjMTfHPjJJ-jb-Yn4FFYbzCWnVZ_jJ4V7-oJg12y2tL1PaZ_3l9z7SJTEXuXerxM11_k1yMoDprGYOO8pXFY4Qt3tipdkM5LnwH0xun5o2PE9OzwR9tovX2JTdHsnnGU9osRto7uw0s2HmJfHhc0bNTMEo9jyPl3ccxcPkRR`';
-
-const data = [
-  {
-    value: 'teacher',
-    name: 'Matemática',
-  },
-  {
-    value: 'user',
-    name: 'Aluno',
-  },
-  {
-    value: 'admin',
-    name: 'Administrador',
-  },
-];
-
 type Props = {
   onClose: () => void;
   reload: () => void;
@@ -49,8 +31,9 @@ export const Form = ({ onClose, reload, subjects }: Props): JSX.Element => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setLoading(true);
 
+    setLoading(true);
+    const token = localStorage.getItem('token');
     if (name.length === 0) {
       setErrors((prevState) => ({
         ...prevState,
@@ -60,11 +43,11 @@ export const Form = ({ onClose, reload, subjects }: Props): JSX.Element => {
 
     const options: Options = {
       method: 'POST',
-      url: '/createSubject',
+      url: '/createTopic',
       headers: { Authorization: `Bearer ${token}` },
       data: {
-        name: 'string',
-        subject_id: 'string - ara de conhecimento?',
+        name,
+        subject_id: subject,
       },
     };
     const { response }: Response = await requestAPI(options);
