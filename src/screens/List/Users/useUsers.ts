@@ -5,14 +5,16 @@ import { Options, requestAPI, Response } from '@services/index';
 export const useUsers = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [data, setData] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
 
   const handleToggleModalCreateUser = useCallback(() => {
     setOpenModal(!openModal);
   }, [openModal]);
 
   const getAllUser = async () => {
+    setLoading(true);
     const token = localStorage.getItem('token');
-    console.log(token);
+
     const payload: Options = {
       method: 'GET',
       url: '/getUsers',
@@ -26,11 +28,20 @@ export const useUsers = () => {
     const allUsers = [...response.data.students, ...response.data.teachers];
 
     setData(allUsers);
+    setLoading(false);
+    return allUsers;
   };
 
   useEffect(() => {
     getAllUser();
   }, []);
 
-  return { openModal, handleToggleModalCreateUser, data, getAllUser };
+  return {
+    openModal,
+    handleToggleModalCreateUser,
+    data,
+    getAllUser,
+    setData,
+    loading,
+  };
 };

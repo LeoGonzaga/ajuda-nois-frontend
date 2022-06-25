@@ -84,8 +84,8 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
     const { response }: Response = await requestAPI(options);
 
     checkError(response?.status);
+    await reload();
     setLoading(false);
-    reload();
     onClose();
   };
 

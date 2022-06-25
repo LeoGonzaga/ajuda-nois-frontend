@@ -4,17 +4,23 @@ import BackButton from '@components/BackButton';
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Flex from '@components/Flex';
 import ModalContainer from '@components/Modal';
-import Table from '@components/Table';
 import Title from '@components/Title';
 import { ROUTES } from 'src/routes/routes';
 
 import Form from './components/Form';
+import Table from './components/Table';
 import { Container } from './styles';
 import { useUsers } from './useUsers';
 
 export const Users = (): JSX.Element => {
-  const { handleToggleModalCreateUser, openModal, data, getAllUser } =
-    useUsers();
+  const {
+    handleToggleModalCreateUser,
+    openModal,
+    data,
+    getAllUser,
+    setData,
+    loading,
+  } = useUsers();
 
   return (
     <Container>
@@ -37,7 +43,12 @@ export const Users = (): JSX.Element => {
         </Flex>
       </Flex>
 
-      <Table data={data} reload={getAllUser} />
+      <Table
+        data={data}
+        reload={getAllUser}
+        reset={setData}
+        loading={loading}
+      />
     </Container>
   );
 };
