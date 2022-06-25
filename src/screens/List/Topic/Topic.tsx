@@ -4,19 +4,17 @@ import BackButton from '@components/BackButton';
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Flex from '@components/Flex';
 import ModalContainer from '@components/Modal';
-import Table from '@components/Table';
 import Title from '@components/Title';
 import { ROUTES } from 'src/routes/routes';
 
 import Form from './components/Form';
+import Table from './components/Table';
 import { Container } from './styles';
+import { useTopic } from './useTopic';
 
 export const Topic = (): JSX.Element => {
-  const [openModal, setOpenModal] = useState<boolean>(false);
-
-  const handleToggleModal = useCallback(() => {
-    setOpenModal(!openModal);
-  }, [openModal]);
+  const { handleToggleModal, openModal, data, getAll, loading, subjects } =
+    useTopic();
 
   return (
     <Container>
@@ -25,7 +23,7 @@ export const Topic = (): JSX.Element => {
         title="Criação de tópico"
         handleClose={handleToggleModal}
       >
-        <Form />
+        <Form onClose={handleToggleModal} reload={getAll} subjects={subjects} />
       </ModalContainer>
       <Flex align="center">
         <div>
@@ -38,7 +36,7 @@ export const Topic = (): JSX.Element => {
           </SecondaryButton>
         </Flex>
       </Flex>
-      <Table />
+      <Table data={data} reload={getAll} loading={loading} />
     </Container>
   );
 };

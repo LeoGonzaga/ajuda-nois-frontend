@@ -7,8 +7,9 @@ import TextInput from '@components/Inputs/TextInput';
 import Select from '@components/Select';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
-import { Options, requestAPI } from '@services/index';
+import { Options, requestAPI, Response } from '@services/index';
 import { COLORS } from '@themes/colors';
+import { checkError } from '@utils/functions';
 import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
@@ -31,36 +32,29 @@ const data = [
   },
 ];
 
-export const Form = (): JSX.Element => {
-  const [username, setUsername] = useChangeText('');
-  const [email, setEmail] = useChangeText('');
-  const [usertype, setUserType] = useState<string>('');
+type Props = {
+  onClose: () => void;
+  reload: () => void;
+  subjects: Array<any>;
+};
+
+export const Form = ({ onClose, reload, subjects }: Props): JSX.Element => {
+  const [name, setName] = useChangeText('');
+  const [subject, setSubject] = useState(subjects[0]?.value);
+  const [loading, setLoading] = useState(false);
 
   const [errors, setErrors] = useState({
-    username: false,
-    email: false,
+    name: false,
   });
-
-  const validateEmail = (email: string) => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const validEmail = validateEmail(email);
+    setLoading(true);
 
-    if (email.length === 0 || !validEmail) {
+    if (name.length === 0) {
       setErrors((prevState) => ({
         ...prevState,
-        email: true,
-      }));
-    }
-
-    if (username.length === 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        username: true,
+        name: true,
       }));
     }
 
@@ -70,33 +64,28 @@ export const Form = (): JSX.Element => {
       headers: { Authorization: `Bearer ${token}` },
       data: {
         name: 'string',
-        area: 'string - ara de conhecimento?',
-        teacher_id: 'string - verificar se é string mesmo',
+        subject_id: 'string - ara de conhecimento?',
       },
     };
-    const response = await requestAPI(options);
-    console.log(response);
+    const { response }: Response = await requestAPI(options);
+    checkError(response?.status);
+    await reload();
+    onClose();
+    setLoading(false);
   };
 
   const handleResetErrorInput = () => {
-    if (email.length > 0) {
+    if (name.length > 0) {
       setErrors((prevState) => ({
         ...prevState,
-        email: false,
-      }));
-    }
-
-    if (username.length > 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        username: false,
+        name: false,
       }));
     }
   };
 
   useEffect(() => {
     handleResetErrorInput();
-  }, [email, username]);
+  }, [name]);
 
   return (
     <Styles.Container onSubmit={handleSubmit}>
@@ -104,20 +93,22 @@ export const Form = (): JSX.Element => {
         width="350px"
         placeholder="Nome do tópico"
         type="text"
-        value={username}
-        onChange={setUsername}
-        error={errors.username}
+        value={name}
+        onChange={setName}
+        error={errors.name}
       />
       <Spacing vertical={15} />
       <Text>Matéria:</Text>
       <Spacing vertical={15} />
-      <Select onChange={setUserType} value={usertype} data={data} />
+      <Select onChange={setSubject} value={subject} data={subjects} />
       <Spacing vertical={15} />
       <Flex width="19%">
         <ActionButton
           color={COLORS.SECONDARY}
           width="350px"
           onClick={handleSubmit}
+          disabled={loading}
+          loading={loading}
         >
           Salvar
         </ActionButton>
