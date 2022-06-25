@@ -27,6 +27,7 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
     const token = localStorage.getItem('token');
 
     if (title.length === 0) {
@@ -53,13 +54,6 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
   };
 
   const handleResetErrorInput = () => {
-    if (content.length > 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        content: false,
-      }));
-    }
-
     if (title.length > 0) {
       setErrors((prevState) => ({
         ...prevState,
@@ -77,7 +71,7 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
 
   useEffect(() => {
     handleResetErrorInput();
-  }, [content, title]);
+  }, [title]);
 
   return (
     <Styles.Container>
@@ -101,6 +95,8 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
           color={COLORS.SECONDARY}
           width="350px"
           onClick={handleSubmit}
+          disabled={loading}
+          loading={loading}
         >
           Salvar
         </ActionButton>

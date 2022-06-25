@@ -45,7 +45,7 @@ export const Lesson = (): JSX.Element => {
           </SecondaryButton>
         </Flex>
       </Flex>
-      <Table data={data} />
+      <Table data={data} reload={getAll} loading={loading} />
     </Container>
   );
 };

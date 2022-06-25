@@ -92,12 +92,6 @@ export const Tests = (): JSX.Element => {
             />
           ))}
         </div>
-      </WrapperCards>
-
-      <WrapperCards>
-        <Text size={20} bold>
-          2021
-        </Text>
         <div>
           {data?.map((elem, index) => (
             <Card
@@ -113,7 +107,7 @@ export const Tests = (): JSX.Element => {
 
       <WrapperCards>
         <Text size={20} bold>
-          2021
+          2020
         </Text>
         <div>
           {data?.map((elem, index) => (
@@ -126,13 +120,6 @@ export const Tests = (): JSX.Element => {
             />
           ))}
         </div>
-      </WrapperCards>
-
-      <WrapperCards>
-        <Text size={20} bold>
-          2021
-        </Text>
-
         <div>
           {data?.map((elem, index) => (
             <Card
