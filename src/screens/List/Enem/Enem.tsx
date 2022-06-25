@@ -10,22 +10,10 @@ import { ROUTES } from 'src/routes/routes';
 import Form from './components/Form';
 import Table from './components/Table';
 import { Container } from './styles';
-
-const data = [
-  {
-    year: '2021',
-    questions: '',
-    awnsers: '',
-    color: 'Azul',
-  },
-];
+import { useEnem } from './useEnem';
 
 export const Enem = (): JSX.Element => {
-  const [openModal, setOpenModal] = useState<boolean>(false);
-
-  const handleToggleModal = useCallback(() => {
-    setOpenModal(!openModal);
-  }, [openModal]);
+  const { data, getAll, handleToggleModal, openModal, loading } = useEnem();
 
   return (
     <Container>
@@ -34,7 +22,7 @@ export const Enem = (): JSX.Element => {
         title="Criação de prova"
         handleClose={handleToggleModal}
       >
-        <Form />
+        <Form onClose={handleToggleModal} reload={getAll} />
       </ModalContainer>
       <Flex align="center">
         <div>
@@ -47,7 +35,7 @@ export const Enem = (): JSX.Element => {
           </SecondaryButton>
         </Flex>
       </Flex>
-      <Table data={data} />
+      <Table data={data} reload={getAll} loading={loading} />
     </Container>
   );
 };
