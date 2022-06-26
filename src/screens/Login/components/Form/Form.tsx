@@ -81,7 +81,7 @@ export const Form = (): JSX.Element => {
 
         <Link href={ROUTES.RECOVERY}>
           <Button>
-            <Text size={14}>Esqueci senha</Text>
+            <Text size={14}>Esqueci minha senha</Text>
           </Button>
         </Link>
       </div>
