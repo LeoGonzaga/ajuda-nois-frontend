@@ -24,6 +24,7 @@ export const ActionButton = ({
       disabled={disabled}
       color={color}
       width={width}
+      onSubmit={onClick}
       onClick={onClick}
     >
       {loading ? <p>Carregando</p> : children}
