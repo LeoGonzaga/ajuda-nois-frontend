@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react';
 
 import EditorContainer from '@components/Editor';
@@ -13,11 +14,14 @@ import {
 } from './styles';
 
 export const SubjectContent = ({ details }: any): JSX.Element => {
-  console.log(details);
   return (
     <Container>
       <EditorWrapper>
-        <EditorContainer showControls={false} data={details.html} />
+        <EditorContainer
+          showControls={false}
+          data={details.html}
+          onChange={() => {}}
+        />
       </EditorWrapper>
       <SideBarSubjects>
         <Text bold size={20}>

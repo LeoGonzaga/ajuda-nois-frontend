@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 
 import ActionButton from '@components/Buttons/ActionButton';
 import EditorContainer from '@components/Editor';
@@ -11,115 +12,157 @@ import Text from '@components/Text';
 import { Options, requestAPI } from '@services/index';
 import { COLORS } from '@themes/colors';
 import { useChangeText } from 'src/hooks/useChangeText';
-import { Row } from 'src/screens/DashBoard/Admin/styles';
 
 import { Styles } from './styles';
 
-const token =
-  'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjIxZGFiZGU2OTJkMjMyZGI0YTQyYmY1IiwiaWF0IjoxNjQ2MTEzOTY2LCJleHAiOjE2NDYyMDAzNjZ9.ANPjMTfHPjJJ-jb-Yn4FFYbzCWnVZ_jJ4V7-oJg12y2tL1PaZ_3l9z7SJTEXuXerxM11_k1yMoDprGYOO8pXFY4Qt3tipdkM5LnwH0xun5o2PE9OzwR9tovX2JTdHsnnGU9osRto7uw0s2HmJfHhc0bNTMEo9jyPl3ccxcPkRR`';
-
-const data = [
-  {
-    value: 'teacher',
-    name: 'Professor',
-  },
-  {
-    value: 'user',
-    name: 'Aluno',
-  },
-  {
-    value: 'admin',
-    name: 'Administrador',
-  },
-];
-
-export const Form = (): JSX.Element => {
-  const [username, setUsername] = useChangeText('');
-  const [email, setEmail] = useChangeText('');
-  const [usertype, setUserType] = useState<string>('');
+export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
+  const [content, setContent] = useState<string>('');
+  const [name, setName] = useChangeText('');
+  const [topic, setTopic] = useState(topics[0]?.value);
+  const [loading, setLoading] = useState(false);
 
   const [errors, setErrors] = useState({
-    username: false,
-    email: false,
+    name: false,
   });
 
-  const validateEmail = (email: string) => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
+  const [awnsers, setAwnsers] = useState([
+    {
+      check: false,
+      value: '',
+    },
+    {
+      check: false,
+      value: '',
+    },
+    {
+      check: false,
+      value: '',
+    },
+    {
+      check: false,
+      value: '',
+    },
+    {
+      check: false,
+      value: '',
+    },
+  ]);
+
+  const handleResetErrorInput = () => {
+    if (name.length > 0) {
+      setErrors((prevState) => ({
+        ...prevState,
+        name: false,
+      }));
+    }
+  };
+
+  const handleCheck = (index: number) => {
+    const items = [...awnsers];
+    const disabledCheck = items?.map((elem) => {
+      return {
+        check: false,
+        value: elem.value,
+      };
+    });
+
+    disabledCheck[index].check = true;
+    setAwnsers(disabledCheck);
+  };
+
+  const handleChangeTextAwnser = (
+    index: number,
+    { target }: ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const items = [...awnsers];
+    items[index].value = target.value;
+    setAwnsers(items);
+  };
+
+  const handleChangeEditor = (editor: any) => {
+    if (editor) {
+      const html = editor.getHTML();
+      setContent(html);
+    }
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const validEmail = validateEmail(email);
 
-    if (email.length === 0 || !validEmail) {
-      setErrors((prevState) => ({
-        ...prevState,
-        email: true,
-      }));
-    }
+    setLoading(true);
+    const token = localStorage.getItem('token');
 
-    if (username.length === 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        username: true,
-      }));
-    }
+    const alternatives = awnsers?.filter((awnser) => {
+      return awnser.value.length > 0;
+    });
 
+    const formatAlternatives = alternatives?.map(
+      (alternative) => alternative.value
+    );
+    const correctAwnser: any = awnsers?.filter((awnser) => awnser.check);
     const options: Options = {
       method: 'POST',
-      url: '/createSubject',
+      url: '/createQuestion',
       headers: { Authorization: `Bearer ${token}` },
       data: {
-        name: 'string',
-        area: 'string - ara de conhecimento?',
-        teacher_id: 'string - verificar se é string mesmo',
+        questionHtml: content,
+        alternatives: formatAlternatives,
+        answer: correctAwnser[0]?.value,
+        topic_id: topic,
+        name,
       },
     };
-    const response = await requestAPI(options);
-    console.log(response);
-  };
-
-  const handleResetErrorInput = () => {
-    if (email.length > 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        email: false,
-      }));
-    }
-
-    if (username.length > 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        username: false,
-      }));
-    }
+    await requestAPI(options);
+    await reload();
+    onClose();
+    setLoading(false);
   };
 
   useEffect(() => {
     handleResetErrorInput();
-  }, [email, username]);
+  }, [name]);
 
   return (
-    <Styles.Container onSubmit={handleSubmit}>
-      <EditorContainer showControls />
+    <Styles.Container>
+      <TextInput
+        width="350px"
+        placeholder="Nome da matéria"
+        type="text"
+        value={name}
+        onChange={setName}
+        error={errors.name}
+      />
       <Spacing vertical={15} />
-      <Styles.AddQuestion>Adicionar alternativas </Styles.AddQuestion>
-      <Spacing vertical={15} />
-      <Styles.Flex>
-        <input type="checkbox" name="" id="" />
-        <textarea placeholder="Digite uma resposta" />
-      </Styles.Flex>
-      <Styles.Flex>
-        <input type="checkbox" name="" id="" />
-        <textarea placeholder="Digite uma resposta" />
-      </Styles.Flex>
-      <Spacing vertical={15} />
+      <Text>Associar a um tópico:</Text>
+      <Spacing vertical={5} />
+      <Select onChange={setTopic} value={topic} data={topics} />
+      <EditorContainer showControls onChange={handleChangeEditor} />
+      <Spacing vertical={4} />
+      <Styles.Content>
+        {awnsers?.map((awnser, index) => (
+          <Styles.Flex key={index}>
+            <input
+              type="checkbox"
+              name=""
+              id=""
+              checked={awnser.check}
+              onChange={() => handleCheck(index)}
+            />
+            <textarea
+              placeholder="Digite uma resposta"
+              value={awnser.value}
+              onChange={(event) => handleChangeTextAwnser(index, event)}
+            />
+          </Styles.Flex>
+        ))}
+      </Styles.Content>
       <Flex width="19%">
         <ActionButton
           color={COLORS.SECONDARY}
           width="350px"
           onClick={handleSubmit}
+          loading={loading}
+          disabled={loading}
         >
           Salvar
         </ActionButton>

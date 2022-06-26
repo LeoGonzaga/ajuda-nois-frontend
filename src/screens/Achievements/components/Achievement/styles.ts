@@ -8,6 +8,7 @@ export const Container = styled.div<Props>`
   opacity: ${(props) => (props.achieved ? 1 : 0.2)};
   margin-bottom: 30px;
   margin-left: 30px;
+  background-size: cover;
 
   div {
     div {
@@ -23,6 +24,12 @@ export const NoHeightFlex = styled.div`
   align-items: center;
 `;
 
+export const Wrapper = styled.div`
+  img {
+    border-radius: 50%;
+  }
+`;
+
 export const ImageContainer = styled.div<Props>`
   display: flex;
   justify-content: center;
@@ -31,11 +38,17 @@ export const ImageContainer = styled.div<Props>`
   min-width: 120px;
   min-height: 120px;
 
-  margin-right: 10px;
-
   padding: 8px;
 
+  margin-right: 10px;
+
+  padding: 6px;
   border-radius: 50%;
+
+  img {
+    width: 120px;
+    height: 120px;
+  }
 
   background-image: ${(props) =>
       props.achieved
@@ -48,4 +61,5 @@ export const ImageContainer = styled.div<Props>`
   img {
     max-width: 120px;
   }
+  background-color: red;
 `;

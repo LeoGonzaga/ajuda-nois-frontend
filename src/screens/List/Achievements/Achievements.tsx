@@ -13,7 +13,8 @@ import { Container } from './styles';
 import { useAchievements } from './useAchievements';
 
 export const Achievements = (): JSX.Element => {
-  const { data, getAllAchievements, open, setOpen } = useAchievements();
+  const { data, getAllAchievements, open, setOpen, loading } =
+    useAchievements();
 
   return (
     <Container>
@@ -22,7 +23,7 @@ export const Achievements = (): JSX.Element => {
         title="Criação de conquista"
         handleClose={setOpen}
       >
-        <Form />
+        <Form onClose={setOpen} reload={getAllAchievements} loading={loading} />
       </ModalContainer>
       <Flex align="center">
         <div>
@@ -33,7 +34,7 @@ export const Achievements = (): JSX.Element => {
           <SecondaryButton onClick={setOpen}>Nova conquista</SecondaryButton>
         </Flex>
       </Flex>
-      <Table data={data} reload={getAllAchievements} />
+      <Table data={data} reload={getAllAchievements} loading={loading} />
     </Container>
   );
 };

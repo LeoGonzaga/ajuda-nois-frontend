@@ -13,9 +13,11 @@ import SelectSubject from '../Tips/components/SelectSubject';
 import Card from './components/Card';
 import SubjectItem from './components/SubjectItem';
 import { Container, Grid, SubjectContent, Table } from './styles';
+import useSubject from './useSubject';
 
 export const Subjects = (): JSX.Element => {
   const dispatch = useDispatch();
+  const { data } = useSubject();
 
   const [activeSubject, setActiveSubject] = useState<string>('Matemática');
 
@@ -62,8 +64,15 @@ export const Subjects = (): JSX.Element => {
           <SubjectContent>
             <SelectSubject active={true} />
             <Table>
-              <SubjectItem topic="Revolução industrial" check />
-              <SubjectItem topic="Revolução Francesa" />
+              {data?.length > 0 &&
+                data?.map((topic: any, index) => (
+                  <SubjectItem
+                    topic={topic.name}
+                    topic_id={topic?._id}
+                    check
+                    key={index}
+                  />
+                ))}
             </Table>
           </SubjectContent>
         )}

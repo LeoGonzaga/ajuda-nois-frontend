@@ -17,7 +17,9 @@ export const Th = styled.div`
   width: 100%;
 `;
 
-export const Tr = styled.div`
+export const Tr = styled.div<{
+  color: string;
+}>`
   background-color: ${({ theme }) => theme.NEUTRAL};
   border-radius: 4px;
   width: 100%;
@@ -27,6 +29,7 @@ export const Tr = styled.div`
   margin-bottom: 10px;
   padding: 0px 20px;
   transition: 100ms ease-in;
+  border-left: 10px solid ${({ color }) => color};
   :hover {
     background-color: ${({ theme }) => theme.SECONDARY};
   }

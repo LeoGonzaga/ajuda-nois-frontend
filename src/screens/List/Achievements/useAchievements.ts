@@ -7,8 +7,10 @@ import useToggle from 'src/hooks/useToggle';
 export const useAchievements = () => {
   const [open, setOpen] = useToggle();
   const [data, setData] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
 
   const getAllAchievements = async () => {
+    setLoading(true);
     const token = await localStorage.getItem('token');
     const payload: Options = {
       method: 'GET',
@@ -22,11 +24,12 @@ export const useAchievements = () => {
     }
 
     setData(response?.data?.achievement);
+    setLoading(false);
   };
 
   useEffect(() => {
     getAllAchievements();
   }, []);
 
-  return { open, setOpen, data, getAllAchievements };
+  return { open, setOpen, data, getAllAchievements, loading };
 };

@@ -64,11 +64,12 @@ export const useFormLogin = () => {
       setOpenNotification(true);
       return;
     }
+    handleRedirect(ROUTES.HOME);
+
     const token = response?.data?.token;
     localStorage.setItem('token', token);
     const user = response?.data?.user;
     localStorage.setItem('user', JSON.stringify(user));
-    handleRedirect(ROUTES.HOME);
     setLoading(false);
   };
 

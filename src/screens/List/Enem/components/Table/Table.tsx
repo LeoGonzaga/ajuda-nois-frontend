@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { BiTrash } from 'react-icons/bi';
 
 import EmptyState from '@components/EmptyState';
+import LoadingTable from '@components/LoadingTable';
 import { Options, Response, requestAPI } from '@services/index';
+import { getColorByTest } from '@utils/functions';
 import { uuid } from 'uuidv4';
 
 import {
@@ -14,15 +16,30 @@ import {
   ButtonsContainer,
 } from './styles';
 
-export const Table = ({ data, reload }: any): JSX.Element => {
-  const [loading, setLoading] = useState<boolean>(false);
+const COLORS_BOOK: any = {
+  blue: 'Azul',
+  yellow: 'Amarelo',
+  white: 'Branco',
+  pink: 'Rosa',
+  gray: 'Cinza',
+};
 
+const DAY: any = {
+  fisrt: '1º dia',
+  second: '2º dia',
+};
+
+type Props = {
+  data: Array<any>;
+  reload: () => void;
+  loading: boolean;
+};
+export const Table = ({ data, reload, loading }: Props): JSX.Element => {
   const handleRemoveSubject = async (id: string) => {
     const token = localStorage.getItem('token');
-    setLoading(true);
     const payload: Options = {
       method: 'DELETE',
-      url: '/deleteTip',
+      url: '/deleteEnem',
       data: {
         id,
       },
@@ -33,7 +50,6 @@ export const Table = ({ data, reload }: any): JSX.Element => {
       return;
     }
     reload();
-    setLoading(false);
   };
 
   return (
@@ -44,18 +60,24 @@ export const Table = ({ data, reload }: any): JSX.Element => {
           <Column>Caderno de questões</Column>
           <Column>Gabarito</Column>
           <Column>Cor</Column>
+          <Column>Dia de prova</Column>
           <Column></Column>
         </Th>
         {data?.map((element: any) => (
-          <Tr key={uuid()}>
+          <Tr key={uuid()} color={getColorByTest(element.color)}>
             <Column>{element.year}</Column>
             <Column>
-              <a href={element.questions}>Download</a>
+              <a href={element.exam} target="_blank" rel="noreferrer">
+                Download
+              </a>
             </Column>
             <Column>
-              <a href={element.awnsers}>Download</a>
+              <a target="_blank" href={element.template} rel="noreferrer">
+                Download
+              </a>
             </Column>
-            <Column>Azul</Column>
+            <Column>Caderno {COLORS_BOOK[element.color]}</Column>
+            <Column>{DAY[element.day] || 'Não informado'}</Column>
             <Column>
               {!loading && (
                 <ButtonsContainer
@@ -68,8 +90,10 @@ export const Table = ({ data, reload }: any): JSX.Element => {
           </Tr>
         ))}
 
-        {data?.length === 0 && (
-          <EmptyState text="Não há matérias cadastradas até o momento" />
+        {loading && <LoadingTable />}
+
+        {data?.length === 0 && !loading && (
+          <EmptyState text="Não há provas cadastradas até o momento" />
         )}
       </ScrollContainer>
     </Container>

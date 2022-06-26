@@ -41,11 +41,6 @@ export const AchievementsContainer = styled.div`
   padding: 10px;
   overflow-y: auto;
   scroll-behavior: smooth;
-  -ms-overflow-style: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 export const LevelContainer = styled.div`

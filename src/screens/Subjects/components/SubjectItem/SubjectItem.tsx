@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 
 import Text from '@components/Text';
@@ -6,12 +6,13 @@ import { COLORS } from '@themes/colors';
 import Link from 'next/link';
 
 import { ContentLine, TableItem, TableItemContent } from './styles';
+import useSubjectItem from './useSubjectItem';
 
-export const SubjectItem = ({ topic, check }: any): JSX.Element => {
-  const [expand, setExpand] = useState<boolean>(false);
+export const SubjectItem = ({ topic, check, topic_id }: any): JSX.Element => {
+  const { data, expand, getLessonsByTopic, handleToggle } = useSubjectItem();
 
-  const handleToggle = useCallback(() => {
-    setExpand(!expand);
+  useEffect(() => {
+    if (expand) getLessonsByTopic(topic_id);
   }, [expand]);
 
   return (
@@ -22,17 +23,24 @@ export const SubjectItem = ({ topic, check }: any): JSX.Element => {
       </TableItem>
       {expand && (
         <TableItemContent>
-          <Link href="/subject/math">
-            <ContentLine>
-              <Text>Exemplo 1</Text>
-            </ContentLine>
-          </Link>
-          <ContentLine>
-            <Text>Exemplo 2</Text>
-          </ContentLine>
-          <ContentLine>
-            <Text>Exemplo 3</Text>
-          </ContentLine>
+          {data?.length > 0 &&
+            data?.map((elem: any, index) => {
+              return elem?.lessons?.map((lesson: any) => {
+                return (
+                  <Link
+                    href={{
+                      pathname: '/subject/[id]/',
+                      query: { id: lesson._id },
+                    }}
+                    key={index}
+                  >
+                    <ContentLine>
+                      <Text>{lesson.title}</Text>
+                    </ContentLine>
+                  </Link>
+                );
+              });
+            })}
         </TableItemContent>
       )}
     </>

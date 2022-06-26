@@ -10,22 +10,11 @@ import { ROUTES } from 'src/routes/routes';
 import Form from './components/Form';
 import Table from './components/Table';
 import { Container } from './styles';
-
-const data = [
-  {
-    topic: 'Equação do 1º grau',
-    content:
-      'Em resumo, equação de 1º grau com uma incógnita é uma expressão algébrica que segue o formato ax + b = 0...',
-    date: '12/04/22',
-  },
-];
+import { useLesson } from './useLesson';
 
 export const Lesson = (): JSX.Element => {
-  const [openModal, setOpenModal] = useState<boolean>(false);
-
-  const handleToggleModal = useCallback(() => {
-    setOpenModal(!openModal);
-  }, [openModal]);
+  const { data, getAll, handleToggleModal, loading, openModal, topics } =
+    useLesson();
 
   return (
     <Container>
@@ -34,7 +23,7 @@ export const Lesson = (): JSX.Element => {
         title="Criação de lições"
         handleClose={handleToggleModal}
       >
-        <Form />
+        <Form onClose={handleToggleModal} reload={getAll} topics={topics} />
       </ModalContainer>
       <Flex align="center">
         <div>
@@ -47,7 +36,7 @@ export const Lesson = (): JSX.Element => {
           </SecondaryButton>
         </Flex>
       </Flex>
-      <Table data={data} />
+      <Table data={data} reload={getAll} loading={loading} />
     </Container>
   );
 };

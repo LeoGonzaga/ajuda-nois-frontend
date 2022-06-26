@@ -8,58 +8,10 @@ import { getRandomColors } from '@utils/functions';
 import Card from './components/Card';
 import SelectSubject from './components/SelectSubject';
 import { Container, WrapperCards } from './styles';
+import useTips from './useTips';
 
 export const Tips = (): JSX.Element => {
-  const data = [
-    {
-      title: 'Titulo 1',
-      text: 'orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has beentandard dummy text ever sin',
-    },
-    {
-      title: 'Titulo 2',
-      text: 'orem Ipsum is simply dummy text of the  the printing and text of the pri the printing and text of the pri the printing and text of the pri the printing and text of the pri the printing and text of the pri the printing and text of the prindard dummy text ever sin',
-    },
-    {
-      title: 'Titulo 3',
-      text: 'orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has beentandard dummy text ever sin',
-    },
-    {
-      title: 'Titulo 4',
-      text: 'orem Ipsum is simply dummy text of the printing and text of the printing and text of the printing and typesetting industry. Lorem Ipsum has beentandard dummy text ever sin',
-    },
-    {
-      title: 'Titulo 1',
-      text: 'orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has beentandard dummy text ever sin',
-    },
-    {
-      title: 'Titulo 2',
-      text: 'orem Ipsum is simply dummy text of the  the printing and text of the pri the printing and text of the pri the printing and text of the pri the printing and text of the pri the printing and text of the pri the printing and text of the prindard dummy text ever sin',
-    },
-    {
-      title: 'Titulo 3',
-      text: 'orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has beentandard dummy text ever sin',
-    },
-    {
-      title: 'Titulo 4',
-      text: 'orem Ipsum is simply dummy text of the printing and text of the printing and text of the printing and typesetting industry. Lorem Ipsum has beentandard dummy text ever sin',
-    },
-    {
-      title: 'Titulo 1',
-      text: 'orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has beentandard dummy text ever sin',
-    },
-    {
-      title: 'Titulo 2',
-      text: 'orem Ipsum is simply dummy text of the  the printing and text of the pri the printing and text of the pri the printing and text of the pri the printing and text of the pri the printing and text of the pri the printing and text of the prindard dummy text ever sin',
-    },
-    {
-      title: 'Titulo 3',
-      text: 'orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has beentandard dummy text ever sin',
-    },
-    {
-      title: 'Titulo 4',
-      text: 'orem Ipsum is simply dummy text of the printing and text of the printing and text of the printing and typesetting industry. Lorem Ipsum has beentandard dummy text ever sin',
-    },
-  ];
+  const { data } = useTips();
   return (
     <Container>
       <Title
@@ -68,13 +20,12 @@ export const Tips = (): JSX.Element => {
         subText="Selecione a matéria abaixo para filtrar"
       />
       <Spacing vertical={10} />
-      <SelectSubject />
       <WrapperCards>
-        {data?.map(({ title, text }) => (
+        {data?.map(({ name, information }) => (
           <Card
-            text={text}
-            title={title}
-            key={title}
+            name={name}
+            information={information}
+            key={name}
             color={getRandomColors(0, 3)}
           />
         ))}

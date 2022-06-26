@@ -9,22 +9,17 @@ import EnemLogo from 'assets/enem.svg';
 import { Container } from './styles';
 
 type Props = {
-  test: string;
-  result: string;
+  exam: string;
+  template: string;
 };
 type CardProps = {
   title?: string;
-  first?: Props;
-  second?: Props;
+  test?: Props;
   color: string;
+  day: number;
 };
 
-export const Card = ({
-  first,
-  second,
-  title,
-  color,
-}: CardProps): JSX.Element => {
+export const Card = ({ test, title, color, day }: CardProps): JSX.Element => {
   return (
     <Container color={color}>
       <EnemLogo />
@@ -33,31 +28,20 @@ export const Card = ({
       </Flex>
       <Spacing vertical={5} />
       <div>
-        <Flex direction="column">
+        <Flex>
           <Text size={16} bold color={COLORS.TERTIARY}>
-            1º Dia
+            {day}º Dia
           </Text>
-          <Spacing vertical={2} />
-          <a target="_blank" href={first?.test} rel="noreferrer">
+          <Spacing horizontal={10} />
+          <a target="_blank" href={test?.exam} rel="noreferrer">
             <p>Prova</p>
           </a>
-          <a target="_blank" href={first?.result} rel="noreferrer">
+          <Spacing horizontal={5} />
+          <a target="_blank" href={test?.template} rel="noreferrer">
             <p>Gabarito</p>
           </a>
         </Flex>
         <Spacing vertical={5} />
-        <Flex direction="column">
-          <Text size={16} bold color={COLORS.TERTIARY}>
-            2º Dia
-          </Text>
-          <Spacing vertical={2} />
-          <a target="_blank" href={first?.test} rel="noreferrer">
-            <p>Prova</p>
-          </a>
-          <a target="_blank" href={first?.result} rel="noreferrer">
-            <p>Gabarito</p>
-          </a>
-        </Flex>
       </div>
     </Container>
   );

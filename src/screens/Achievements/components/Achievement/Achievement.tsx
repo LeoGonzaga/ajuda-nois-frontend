@@ -4,7 +4,7 @@ import Flex from '@components/Flex';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 
-import { Container, ImageContainer, NoHeightFlex } from './styles';
+import { Container, ImageContainer, NoHeightFlex, Wrapper } from './styles';
 
 type AchievementProps = {
   name: string;
@@ -24,9 +24,11 @@ export const Achievement = ({
   return (
     <Container achieved={achieved}>
       <Flex direction="row">
-        <ImageContainer achieved={achieved}>
-          {!!achieved && <img src={image} alt="imagem" />}
-        </ImageContainer>
+        <Wrapper>
+          <ImageContainer achieved={achieved}>
+            {<img src={image} alt="imagem" />}
+          </ImageContainer>
+        </Wrapper>
         <Flex direction="column" justify="center">
           <NoHeightFlex>
             <Text size={25} bold color={COLORS.QUATERNARY}>

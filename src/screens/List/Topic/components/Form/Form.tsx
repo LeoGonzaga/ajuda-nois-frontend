@@ -7,96 +7,68 @@ import TextInput from '@components/Inputs/TextInput';
 import Select from '@components/Select';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
-import { Options, requestAPI } from '@services/index';
+import { Options, requestAPI, Response } from '@services/index';
 import { COLORS } from '@themes/colors';
+import { checkError } from '@utils/functions';
 import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
-const token =
-  'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjIxZGFiZGU2OTJkMjMyZGI0YTQyYmY1IiwiaWF0IjoxNjQ2MTEzOTY2LCJleHAiOjE2NDYyMDAzNjZ9.ANPjMTfHPjJJ-jb-Yn4FFYbzCWnVZ_jJ4V7-oJg12y2tL1PaZ_3l9z7SJTEXuXerxM11_k1yMoDprGYOO8pXFY4Qt3tipdkM5LnwH0xun5o2PE9OzwR9tovX2JTdHsnnGU9osRto7uw0s2HmJfHhc0bNTMEo9jyPl3ccxcPkRR`';
+type Props = {
+  onClose: () => void;
+  reload: () => void;
+  subjects: Array<any>;
+};
 
-const data = [
-  {
-    value: 'teacher',
-    name: 'Matemática',
-  },
-  {
-    value: 'user',
-    name: 'Aluno',
-  },
-  {
-    value: 'admin',
-    name: 'Administrador',
-  },
-];
-
-export const Form = (): JSX.Element => {
-  const [username, setUsername] = useChangeText('');
-  const [email, setEmail] = useChangeText('');
-  const [usertype, setUserType] = useState<string>('');
+export const Form = ({ onClose, reload, subjects }: Props): JSX.Element => {
+  const [name, setName] = useChangeText('');
+  const [subject, setSubject] = useState(subjects[0]?.value);
+  const [loading, setLoading] = useState(false);
 
   const [errors, setErrors] = useState({
-    username: false,
-    email: false,
+    name: false,
   });
-
-  const validateEmail = (email: string) => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const validEmail = validateEmail(email);
 
-    if (email.length === 0 || !validEmail) {
+    setLoading(true);
+    const token = localStorage.getItem('token');
+    if (name.length === 0) {
       setErrors((prevState) => ({
         ...prevState,
-        email: true,
-      }));
-    }
-
-    if (username.length === 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        username: true,
+        name: true,
       }));
     }
 
     const options: Options = {
       method: 'POST',
-      url: '/createSubject',
+      url: '/createTopic',
       headers: { Authorization: `Bearer ${token}` },
       data: {
-        name: 'string',
-        area: 'string - ara de conhecimento?',
-        teacher_id: 'string - verificar se é string mesmo',
+        name,
+        subject_id: subject,
       },
     };
-    const response = await requestAPI(options);
-    console.log(response);
+    const { response }: Response = await requestAPI(options);
+    checkError(response?.status);
+    await reload();
+    onClose();
+    setLoading(false);
   };
 
   const handleResetErrorInput = () => {
-    if (email.length > 0) {
+    if (name.length > 0) {
       setErrors((prevState) => ({
         ...prevState,
-        email: false,
-      }));
-    }
-
-    if (username.length > 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        username: false,
+        name: false,
       }));
     }
   };
 
   useEffect(() => {
     handleResetErrorInput();
-  }, [email, username]);
+  }, [name]);
 
   return (
     <Styles.Container onSubmit={handleSubmit}>
@@ -104,20 +76,22 @@ export const Form = (): JSX.Element => {
         width="350px"
         placeholder="Nome do tópico"
         type="text"
-        value={username}
-        onChange={setUsername}
-        error={errors.username}
+        value={name}
+        onChange={setName}
+        error={errors.name}
       />
       <Spacing vertical={15} />
       <Text>Matéria:</Text>
       <Spacing vertical={15} />
-      <Select onChange={setUserType} value={usertype} data={data} />
+      <Select onChange={setSubject} value={subject} data={subjects} />
       <Spacing vertical={15} />
       <Flex width="19%">
         <ActionButton
           color={COLORS.SECONDARY}
           width="350px"
           onClick={handleSubmit}
+          disabled={loading}
+          loading={loading}
         >
           Salvar
         </ActionButton>

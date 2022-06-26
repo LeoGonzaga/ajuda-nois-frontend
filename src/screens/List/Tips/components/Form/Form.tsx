@@ -11,21 +11,6 @@ import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
-const data = [
-  {
-    value: 'teacher',
-    name: 'Professor',
-  },
-  {
-    value: 'user',
-    name: 'Aluno',
-  },
-  {
-    value: 'admin',
-    name: 'Administrador',
-  },
-];
-
 export const Form = ({ onClose, reload }: any): JSX.Element => {
   const [topic, setTopic] = useChangeText('');
   const [information, setInformation] = useChangeText('');
@@ -60,13 +45,11 @@ export const Form = ({ onClose, reload }: any): JSX.Element => {
       url: '/createTip',
       headers: { Authorization: `Bearer ${token}` },
       data: {
-        topic,
-        information,
-        user_id: '62ae2d6fabe82f0dd524cc25',
-        color: 'red',
+        name: topic,
+        content: information,
       },
     };
-    const response = await requestAPI(options);
+    await requestAPI(options);
     reload();
     onClose();
     setLoading(false);

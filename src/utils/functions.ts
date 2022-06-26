@@ -21,6 +21,7 @@ const colors = {
   pink: COLORS.PINK,
   white: COLORS.WHITE,
   yellow: COLORS.QUATERNARY,
+  gray: COLORS.GRAY,
 };
 
 export const getColorByTest = (color: string) => {
@@ -52,4 +53,18 @@ export const openErrorNotification = (message: string) => {
     message,
     error: true,
   };
+};
+
+export const toBase64 = (file: any) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+
+export const formatBaseToRequest = (base: any) => {
+  if (base) {
+    return base?.split('base64,');
+  }
 };

@@ -10,28 +10,18 @@ import { ROUTES } from 'src/routes/routes';
 import Form from './components/Form';
 import Table from './components/Table';
 import { Container } from './styles';
-
-const data = [
-  {
-    name: 'Quiz 1',
-  },
-  {
-    name: 'Quiz 2',
-  },
-  {
-    name: 'Quiz 3',
-  },
-  {
-    name: 'Quiz 4',
-  },
-];
+import { useQuiz } from './useQuiz';
 
 export const Quiz = (): JSX.Element => {
-  const [openModal, setOpenModal] = useState<boolean>(false);
-
-  const handleToggleModal = useCallback(() => {
-    setOpenModal(!openModal);
-  }, [openModal]);
+  const {
+    data,
+    getAll,
+    handleToggleModal,
+    loading,
+    openModal,
+    setData,
+    topics,
+  } = useQuiz();
 
   return (
     <Container>
@@ -40,7 +30,7 @@ export const Quiz = (): JSX.Element => {
         title="Criação de Quiz"
         handleClose={handleToggleModal}
       >
-        <Form />
+        <Form onClose={handleToggleModal} reload={getAll} topics={topics} />
       </ModalContainer>
       <Flex align="center">
         <div>
@@ -53,7 +43,7 @@ export const Quiz = (): JSX.Element => {
           </SecondaryButton>
         </Flex>
       </Flex>
-      <Table data={data} />
+      <Table data={data} reload={getAll} loading={loading} />
     </Container>
   );
 };
