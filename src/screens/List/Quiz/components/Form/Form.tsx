@@ -5,6 +5,7 @@ import ActionButton from '@components/Buttons/ActionButton';
 import EmptyState from '@components/EmptyState';
 import Flex from '@components/Flex';
 import TextInput from '@components/Inputs/TextInput';
+import LoadingTable from '@components/LoadingTable';
 import Select from '@components/Select';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
@@ -19,6 +20,8 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
   const [topic, setTopic] = useState(topics[0]?.value);
   const [questions, setQuestions] = useState<any>([]);
   const [selectedQuestions, setSelectedQuestions] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [loadingTopic, setLoadingTopic] = useState(false);
 
   const [errors, setErrors] = useState({
     name: false,
@@ -32,6 +35,7 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
   };
 
   const getQuestionsByTopic = async (topicId: string) => {
+    setLoadingTopic(true);
     const token = localStorage.getItem('token');
     const options: Options = {
       method: 'POST',
@@ -43,11 +47,12 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
     };
     const { response }: Response = await requestAPI(options);
     setQuestions(response?.data);
+    setLoadingTopic(false);
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
+    setLoading(true);
     if (name.length > 0) {
       setErrors((prevState) => ({
         ...prevState,
@@ -61,12 +66,15 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
       url: '/createQuiz',
       headers: { Authorization: `Bearer ${token}` },
       data: {
-        name: 'string',
-        subject_id: 'string - ara de conhecimento?',
-        questions_ids: 'string - verificar se é string mesmo',
+        name,
+        topic_id: topic,
+        questions_ids: selectedQuestions,
       },
     };
-    const response = await requestAPI(options);
+    await requestAPI(options);
+    await reload();
+    onClose();
+    setLoading(false);
   };
 
   const handleResetErrorInput = () => {
@@ -105,16 +113,18 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
         {questions?.length > 0 &&
           questions?.map((element: any, index: number) => (
             <Styles.Row key={index}>
-              <input
-                type="checkbox"
-                checked={selectedQuestions.includes(element?._id)}
-                onChange={() => handleSelectedQuestions(element?._id)}
-              />
-              {element?.name}
+              <div onClick={() => handleSelectedQuestions(element?._id)}>
+                <input
+                  type="checkbox"
+                  checked={selectedQuestions.includes(element?._id)}
+                />
+                {element?.name}
+              </div>
             </Styles.Row>
           ))}
 
-        {questions?.length === 0 && (
+        {loadingTopic && questions?.length === 0 && <LoadingTable />}
+        {!loadingTopic && questions?.length === 0 && (
           <EmptyState text="Não há questões cadastradas para esse tópcio" />
         )}
       </Styles.List>
@@ -124,6 +134,10 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
           color={COLORS.SECONDARY}
           width="350px"
           onClick={handleSubmit}
+          loading={loading}
+          disabled={
+            loading || selectedQuestions?.length === 0 || name?.length === 0
+          }
         >
           Salvar
         </ActionButton>

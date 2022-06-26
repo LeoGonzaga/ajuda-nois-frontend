@@ -5,18 +5,26 @@ import React, { useState, useEffect, ChangeEvent } from 'react';
 import ActionButton from '@components/Buttons/ActionButton';
 import EditorContainer from '@components/Editor';
 import Flex from '@components/Flex';
+import TextInput from '@components/Inputs/TextInput';
 import Select from '@components/Select';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { Options, requestAPI } from '@services/index';
 import { COLORS } from '@themes/colors';
+import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
 export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
   const [content, setContent] = useState<string>('');
+  const [name, setName] = useChangeText('');
   const [topic, setTopic] = useState(topics[0]?.value);
   const [loading, setLoading] = useState(false);
+
+  const [errors, setErrors] = useState({
+    name: false,
+  });
+
   const [awnsers, setAwnsers] = useState([
     {
       check: false,
@@ -39,6 +47,15 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
       value: '',
     },
   ]);
+
+  const handleResetErrorInput = () => {
+    if (name.length > 0) {
+      setErrors((prevState) => ({
+        ...prevState,
+        name: false,
+      }));
+    }
+  };
 
   const handleCheck = (index: number) => {
     const items = [...awnsers];
@@ -92,6 +109,7 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
         alternatives: formatAlternatives,
         answer: correctAwnser[0]?.value,
         topic_id: topic,
+        name,
       },
     };
     await requestAPI(options);
@@ -100,8 +118,20 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
     setLoading(false);
   };
 
+  useEffect(() => {
+    handleResetErrorInput();
+  }, [name]);
+
   return (
     <Styles.Container>
+      <TextInput
+        width="350px"
+        placeholder="Nome da matéria"
+        type="text"
+        value={name}
+        onChange={setName}
+        error={errors.name}
+      />
       <Spacing vertical={15} />
       <Text>Associar a um tópico:</Text>
       <Spacing vertical={5} />

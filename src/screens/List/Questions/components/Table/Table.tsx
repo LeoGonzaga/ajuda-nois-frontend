@@ -37,6 +37,7 @@ export const Table = ({ data, reload, loading }: any): JSX.Element => {
     <Container>
       <ScrollContainer>
         <Th>
+          <Column>Nome</Column>
           <Column>Tópico</Column>
           <Column>Conteudo</Column>
           <Column>Resposta</Column>
@@ -44,6 +45,7 @@ export const Table = ({ data, reload, loading }: any): JSX.Element => {
         </Th>
         {data?.map((element: any) => (
           <Tr key={uuid()}>
+            <Column>{element?.name}</Column>
             <Column>{element.topic_info?.name}</Column>
             <Column>
               {element.question.replace(new RegExp('<[^>]*>', 'g'), '')}
