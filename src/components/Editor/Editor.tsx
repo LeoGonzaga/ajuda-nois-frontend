@@ -14,12 +14,14 @@ import { GoListOrdered } from 'react-icons/go';
 import { GrBlockQuote } from 'react-icons/gr';
 import { MdFormatListBulleted } from 'react-icons/md';
 
+import { Options, Response, requestAPI } from '@services/index';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
 import Paragraph from '@tiptap/extension-paragraph';
 import Text from '@tiptap/extension-text';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import { formatBaseToRequest, toBase64 } from '@utils/functions';
 
 import {
   Button,
@@ -53,10 +55,30 @@ const MenuBar = ({ editor }: any) => {
     }
   };
 
-  const uploadImage = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleSubmit = async (file: any) => {
+    const token = localStorage.getItem('token');
+
+    const convertToBase = await toBase64(file);
+    const base64 = formatBaseToRequest(convertToBase)[1];
+
+    const options: Options = {
+      method: 'POST',
+      url: '/uploadImage',
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        base64,
+        font: 'question',
+      },
+    };
+    const { response }: Response = await requestAPI(options);
+    return response.data?.imageUrl;
+  };
+
+  const uploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const url = event.target.files![0];
-    const link = URL.createObjectURL(url);
+
+    const link = await handleSubmit(url);
     editor.chain().focus().setImage({ src: link }).run();
   };
 
@@ -157,7 +179,12 @@ const MenuBar = ({ editor }: any) => {
           <label htmlFor="file-input">
             <FaImages />
           </label>
-          <input type={'file'} id="file-input" onChange={uploadImage} />
+          <input
+            type={'file'}
+            id="file-input"
+            onChange={uploadImage}
+            accept="image/png, image/gif, image/jpeg"
+          />
         </UploadImageContainer>
       </Button>
       <Button onClick={() => editor.chain().focus().undo().run()}>

@@ -62,3 +62,9 @@ export const toBase64 = (file: any) =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
+
+export const formatBaseToRequest = (base: any) => {
+  if (base) {
+    return base?.split('base64,');
+  }
+};

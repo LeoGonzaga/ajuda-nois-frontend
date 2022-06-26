@@ -19,7 +19,7 @@ const data = [
   },
 ];
 export const Questions = (): JSX.Element => {
-  const { data, getAll, loading, open, setOpen } = useQuestions();
+  const { data, getAll, loading, open, setOpen, topics } = useQuestions();
   return (
     <Container>
       <ModalContainer
@@ -27,7 +27,7 @@ export const Questions = (): JSX.Element => {
         title="Criação de questão"
         handleClose={setOpen}
       >
-        <Form />
+        <Form onClose={setOpen} reload={getAll} topics={topics} />
       </ModalContainer>
       <Flex align="center">
         <div>
@@ -38,7 +38,7 @@ export const Questions = (): JSX.Element => {
           <SecondaryButton onClick={setOpen}>Nova questão</SecondaryButton>
         </Flex>
       </Flex>
-      <Table data={data} />
+      <Table data={data} reload={getAll} loading={loading} />
     </Container>
   );
 };
