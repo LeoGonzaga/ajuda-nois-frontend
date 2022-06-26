@@ -37,16 +37,19 @@ export const Table = ({ data, reload, loading }: any): JSX.Element => {
     <Container>
       <ScrollContainer>
         <Th>
-          <Column>Tópico</Column>
           <Column>Titúlo</Column>
-          <Column>Data de criação</Column>
+          <Column>Tópico</Column>
+          <Column>Conteúdo</Column>
           <Column></Column>
         </Th>
         {data?.map((element: any) => (
           <Tr key={uuid()}>
-            <Column>{element.topic}</Column>
-            <Column>{element.date}</Column>
-            <Column>{element.date}</Column>
+            <Column>{element.title}</Column>
+            <Column>{element.topic_id}</Column>
+            <Column>
+              {element.content.replace(new RegExp('<[^>]*>', 'g'), '')}
+            </Column>
+
             <Column>
               {!loading && (
                 <ButtonsContainer
