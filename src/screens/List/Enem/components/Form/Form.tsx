@@ -37,17 +37,48 @@ const data = [
   },
 ];
 
+const DAY_TEST = [
+  {
+    value: 'first',
+    name: '1º dia',
+  },
+  {
+    value: 'second',
+    name: '2º dia',
+  },
+];
+
 type Props = {
   onClose: () => void;
   reload: () => void;
 };
 
 export const Form = ({ onClose, reload }: Props): JSX.Element => {
-  const [year, setYear] = useChangeText('');
+  const [year, setYear] = useState<any>(new Date().getFullYear());
   const [examBase64, setExamBase64] = useState<any>('');
   const [templateBase64, setTemplateBase64] = useState<any>('');
   const [color, setColor] = useState('blue');
   const [loading, setLoading] = useState<boolean>(false);
+  const [allYears, setAllYears] = useState<any>([]);
+  const [day, setDay] = useState(DAY_TEST[0].value);
+
+  const handleCreateEnemYears = () => {
+    const atualYear = new Date().getFullYear();
+    const FIRST_ENEM = 1999;
+    const totalTests = atualYear - FIRST_ENEM;
+    const arrayTests = [];
+
+    for (let index = 0; index <= totalTests; index++) {
+      const enem_year = atualYear - index;
+      const payload = {
+        value: enem_year,
+        name: enem_year,
+      };
+      arrayTests.push(payload);
+    }
+
+    setAllYears(arrayTests);
+  };
 
   const formatBaseToRequest = (base: any) => {
     return base.split('base64,');
@@ -73,12 +104,6 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    if (year.length === 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        email: true,
-      }));
-    }
 
     const token = localStorage.getItem('token');
 
@@ -91,6 +116,7 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
         exam_base64: examBase64,
         template_base64: templateBase64,
         color,
+        day,
       },
     };
     const { response }: Response = await requestAPI(options);
@@ -100,29 +126,13 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
     onClose();
   };
 
-  const handleResetErrorInput = () => {
-    if (year.length > 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        year: false,
-      }));
-    }
-  };
-
   useEffect(() => {
-    handleResetErrorInput();
-  }, [year, examBase64]);
+    handleCreateEnemYears();
+  }, []);
 
   return (
     <Styles.Container onSubmit={handleSubmit}>
-      <TextInput
-        width="350px"
-        placeholder="Ano da prova"
-        type="text"
-        value={year}
-        onChange={setYear}
-        error={errors.year}
-      />
+      <Select onChange={setYear} value={year} data={allYears} />
       <Spacing vertical={15} />
       <Text>Caderno de questões:</Text>
       <Spacing vertical={5} />
@@ -144,7 +154,14 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
         accept="application/pdf"
       />
       <Spacing vertical={15} />
+      <Spacing vertical={15} />
+      <Text>Cor do caderno:</Text>
+      <Spacing vertical={5} />
       <Select onChange={setColor} value={color} data={data} />
+      <Spacing vertical={15} />
+      <Text>Dia de prova:</Text>
+      <Spacing vertical={5} />
+      <Select onChange={setDay} value={day} data={DAY_TEST} />
       <Spacing vertical={15} />
       <Flex width="19%">
         <ActionButton

@@ -8,66 +8,11 @@ import { getColorByTest, getRandomColors } from '@utils/functions';
 import Card from './components/Card';
 import SelectTestYear from './components/SelectTestYear';
 import { Container, WrapperCards } from './styles';
+import useTests from './useTests';
 
 export const Tests = (): JSX.Element => {
-  const data = [
-    {
-      title: 'CADERNO Azul',
-      color: 'blue',
-      firstDay: {
-        test: 'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_PV_reaplicacao_PPL_D1_CD1.pdf',
-        result:
-          'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_GB_reaplicacao_PPL_D1_CD1.pdf',
-      },
-      secondDay: {
-        test: 'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_PV_reaplicacao_PPL_D1_CD1.pdf',
-        result:
-          'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_GB_reaplicacao_PPL_D1_CD1.pdf',
-      },
-    },
-    {
-      title: 'CADERNO Amarelo',
-      color: 'yellow',
-      firstDay: {
-        test: 'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_PV_reaplicacao_PPL_D1_CD1.pdf',
-        result:
-          'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_GB_reaplicacao_PPL_D1_CD1.pdf',
-      },
-      secondDay: {
-        test: 'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_PV_reaplicacao_PPL_D1_CD1.pdf',
-        result:
-          'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_GB_reaplicacao_PPL_D1_CD1.pdf',
-      },
-    },
-    {
-      title: 'CADERNO Branco',
-      color: 'white',
-      firstDay: {
-        test: 'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_PV_reaplicacao_PPL_D1_CD1.pdf',
-        result:
-          'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_GB_reaplicacao_PPL_D1_CD1.pdf',
-      },
-      secondDay: {
-        test: 'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_PV_reaplicacao_PPL_D1_CD1.pdf',
-        result:
-          'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_GB_reaplicacao_PPL_D1_CD1.pdf',
-      },
-    },
-    {
-      title: 'CADERNO Rosa',
-      color: 'pink',
-      firstDay: {
-        test: 'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_PV_reaplicacao_PPL_D1_CD1.pdf',
-        result:
-          'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_GB_reaplicacao_PPL_D1_CD1.pdf',
-      },
-      secondDay: {
-        test: 'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_PV_reaplicacao_PPL_D1_CD1.pdf',
-        result:
-          'https://download.inep.gov.br/enem/provas_e_gabaritos/2021_GB_reaplicacao_PPL_D1_CD1.pdf',
-      },
-    },
-  ];
+  const { data } = useTests();
+
   return (
     <Container>
       <Title
@@ -76,62 +21,44 @@ export const Tests = (): JSX.Element => {
         subText="Selecione o ano abaixo para filtrar"
       />
       <SelectTestYear />
+      {data?.map((item: any, index) => {
+        return (
+          <>
+            <WrapperCards>
+              <Text size={20} bold>
+                {item.year}
+              </Text>
+              {item?.colors?.map((enem: any) => {
+                if (enem?.days.first) {
+                  return (
+                    <Card
+                      color={getColorByTest(enem.color)}
+                      title={enem.title}
+                      key={index}
+                      test={enem.days?.first}
+                      day={1}
+                    />
+                  );
+                }
+              })}
 
-      <WrapperCards>
-        <Text size={20} bold>
-          2021
-        </Text>
-        <div>
-          {data?.map((elem, index) => (
-            <Card
-              color={getColorByTest(elem.color)}
-              title={elem.title}
-              key={index}
-              first={elem.firstDay}
-              second={elem.secondDay}
-            />
-          ))}
-        </div>
-        <div>
-          {data?.map((elem, index) => (
-            <Card
-              color={getColorByTest(elem.color)}
-              title={elem.title}
-              key={index}
-              first={elem.firstDay}
-              second={elem.secondDay}
-            />
-          ))}
-        </div>
-      </WrapperCards>
-
-      <WrapperCards>
-        <Text size={20} bold>
-          2020
-        </Text>
-        <div>
-          {data?.map((elem, index) => (
-            <Card
-              color={getColorByTest(elem.color)}
-              title={elem.title}
-              key={index}
-              first={elem.firstDay}
-              second={elem.secondDay}
-            />
-          ))}
-        </div>
-        <div>
-          {data?.map((elem, index) => (
-            <Card
-              color={getColorByTest(elem.color)}
-              title={elem.title}
-              key={index}
-              first={elem.firstDay}
-              second={elem.secondDay}
-            />
-          ))}
-        </div>
-      </WrapperCards>
+              {item?.colors?.map((enem: any) => {
+                if (enem?.days.second) {
+                  return (
+                    <Card
+                      color={getColorByTest(enem.color)}
+                      title={enem.title}
+                      key={index}
+                      test={enem.days?.second}
+                      day={2}
+                    />
+                  );
+                }
+              })}
+            </WrapperCards>
+          </>
+        );
+      })}
     </Container>
   );
 };

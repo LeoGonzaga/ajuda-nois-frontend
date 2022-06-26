@@ -21,6 +21,7 @@ const colors = {
   pink: COLORS.PINK,
   white: COLORS.WHITE,
   yellow: COLORS.QUATERNARY,
+  gray: COLORS.GRAY,
 };
 
 export const getColorByTest = (color: string) => {
