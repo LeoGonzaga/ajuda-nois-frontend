@@ -12,15 +12,6 @@ import Table from './components/Table';
 import { Container } from './styles';
 import { useLesson } from './useLesson';
 
-const data = [
-  {
-    topic: 'Equação do 1º grau',
-    content:
-      'Em resumo, equação de 1º grau com uma incógnita é uma expressão algébrica que segue o formato ax + b = 0...',
-    date: '12/04/22',
-  },
-];
-
 export const Lesson = (): JSX.Element => {
   const { data, getAll, handleToggleModal, loading, openModal, topics } =
     useLesson();
