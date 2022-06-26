@@ -2,71 +2,56 @@
 import React, { useState, useEffect } from 'react';
 
 import ActionButton from '@components/Buttons/ActionButton';
+import EmptyState from '@components/EmptyState';
 import Flex from '@components/Flex';
 import TextInput from '@components/Inputs/TextInput';
 import Select from '@components/Select';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
-import { Options, requestAPI } from '@services/index';
+import { Options, requestAPI, Response } from '@services/index';
 import { COLORS } from '@themes/colors';
 import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
-const token =
-  'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjIxZGFiZGU2OTJkMjMyZGI0YTQyYmY1IiwiaWF0IjoxNjQ2MTEzOTY2LCJleHAiOjE2NDYyMDAzNjZ9.ANPjMTfHPjJJ-jb-Yn4FFYbzCWnVZ_jJ4V7-oJg12y2tL1PaZ_3l9z7SJTEXuXerxM11_k1yMoDprGYOO8pXFY4Qt3tipdkM5LnwH0xun5o2PE9OzwR9tovX2JTdHsnnGU9osRto7uw0s2HmJfHhc0bNTMEo9jyPl3ccxcPkRR`';
-
-const data = [
-  {
-    value: 'teacher',
-    name: 'Equação do 1º grau',
-  },
-  {
-    value: 'user',
-    name: 'Aluno',
-  },
-  {
-    value: 'admin',
-    name: 'Administrador',
-  },
-];
-
-export const Form = (): JSX.Element => {
-  const [username, setUsername] = useChangeText('');
-  const [email, setEmail] = useChangeText('');
-  const [usertype, setUserType] = useState<string>('');
+export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
+  const [name, setName] = useChangeText('');
+  const [topic, setTopic] = useState(topics[0]?.value);
+  const [questions, setQuestions] = useState([]);
 
   const [errors, setErrors] = useState({
-    username: false,
-    email: false,
+    name: false,
   });
 
-  const validateEmail = (email: string) => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
+  const getQuestionsByTopic = async (topicId: string) => {
+    const token = localStorage.getItem('token');
+    const options: Options = {
+      method: 'POST',
+      url: '/getQuestionsByTopic',
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        topic_id: topicId,
+      },
+    };
+    const { response }: Response = await requestAPI(options);
+    console.log(response.data);
+    setQuestions(response?.data);
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const validEmail = validateEmail(email);
 
-    if (email.length === 0 || !validEmail) {
+    if (name.length > 0) {
       setErrors((prevState) => ({
         ...prevState,
-        email: true,
+        name: false,
       }));
     }
 
-    if (username.length === 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        username: true,
-      }));
-    }
-
+    const token = localStorage.getItem('token');
     const options: Options = {
       method: 'POST',
-      url: '/createSubject',
+      url: '/createQuiz',
       headers: { Authorization: `Bearer ${token}` },
       data: {
         name: 'string',
@@ -75,28 +60,24 @@ export const Form = (): JSX.Element => {
       },
     };
     const response = await requestAPI(options);
-    console.log(response);
   };
 
   const handleResetErrorInput = () => {
-    if (email.length > 0) {
+    if (name.length > 0) {
       setErrors((prevState) => ({
         ...prevState,
-        email: false,
-      }));
-    }
-
-    if (username.length > 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        username: false,
+        name: false,
       }));
     }
   };
 
   useEffect(() => {
     handleResetErrorInput();
-  }, [email, username]);
+  }, [name]);
+
+  useEffect(() => {
+    getQuestionsByTopic(topic);
+  }, [topic]);
 
   return (
     <Styles.Container onSubmit={handleSubmit}>
@@ -104,58 +85,27 @@ export const Form = (): JSX.Element => {
         width="100%"
         placeholder="Nome do quiz"
         type="text"
-        value={username}
-        onChange={setUsername}
-        error={errors.username}
+        value={name}
+        onChange={setName}
+        error={errors.name}
       />
       <Spacing vertical={15} />
       <Text>Associar ao tópico:</Text>
       <Spacing vertical={15} />
-      <Select onChange={setUserType} value={usertype} data={data} />
+      <Select onChange={setTopic} value={topic} data={topics} />
       <Spacing vertical={15} />
       <Styles.List>
-        <Styles.Row>
-          <input type="checkbox" />
-          Resolva a equação fracionária, sendo x ≠ 0:
-        </Styles.Row>
-        <Styles.Row>
-          <input type="checkbox" />
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          mor
-        </Styles.Row>
-        <Styles.Row>
-          <input type="checkbox" />
-          Resolva a equação fracionária, sendo x ≠ 0:
-        </Styles.Row>
-        <Styles.Row>
-          <input type="checkbox" />
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          mor
-        </Styles.Row>
-        <Styles.Row>
-          <input type="checkbox" />
-          Resolva a equação fracionária, sendo x ≠ 0:
-        </Styles.Row>
-        <Styles.Row>
-          <input type="checkbox" />
-          Resolva a equação fracionária, sendo x ≠ 0:
-        </Styles.Row>
-        <Styles.Row>
-          <input type="checkbox" />
-          Resolva a equação fracionária, sendo x ≠ 0:
-        </Styles.Row>
+        {questions?.length > 0 &&
+          questions?.map((element: any, index) => (
+            <Styles.Row key={index}>
+              <input type="checkbox" />
+              {element?.name}
+            </Styles.Row>
+          ))}
+
+        {questions?.length === 0 && (
+          <EmptyState text="Não há questões cadastradas para esse tópcio" />
+        )}
       </Styles.List>
       <Spacing vertical={15} />
       <Flex width="19%">
