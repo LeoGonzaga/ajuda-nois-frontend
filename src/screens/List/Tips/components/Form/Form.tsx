@@ -46,7 +46,7 @@ export const Form = ({ onClose, reload }: any): JSX.Element => {
       headers: { Authorization: `Bearer ${token}` },
       data: {
         name: topic,
-        information,
+        content: information,
       },
     };
     await requestAPI(options);

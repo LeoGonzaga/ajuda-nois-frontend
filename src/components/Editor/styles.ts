@@ -29,7 +29,7 @@ export const SaveChanges = styled.button`
 
 export const EditorArea = styled.div`
   overflow-y: auto;
-  height: 40vh;
+  height: 30vh;
   padding: 10px 4px;
   border-radius: 4px;
   border: 1px solid #ccc;
