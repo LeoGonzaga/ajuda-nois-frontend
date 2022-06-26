@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BiTrash } from 'react-icons/bi';
 
 import EmptyState from '@components/EmptyState';
+import LoadingTable from '@components/LoadingTable';
 import { Options, Response, requestAPI } from '@services/index';
 import { uuid } from 'uuidv4';
 
@@ -14,12 +15,9 @@ import {
   ButtonsContainer,
 } from './styles';
 
-export const Table = ({ data, reload }: any): JSX.Element => {
-  const [loading, setLoading] = useState<boolean>(false);
-
+export const Table = ({ data, reload, loading }: any): JSX.Element => {
   const handleRemoveSubject = async (id: string) => {
     const token = localStorage.getItem('token');
-    setLoading(true);
     const payload: Options = {
       method: 'DELETE',
       url: '/deleteTip',
@@ -33,7 +31,6 @@ export const Table = ({ data, reload }: any): JSX.Element => {
       return;
     }
     reload();
-    setLoading(false);
   };
 
   return (
@@ -41,11 +38,13 @@ export const Table = ({ data, reload }: any): JSX.Element => {
       <ScrollContainer>
         <Th>
           <Column>Nome</Column>
+          <Column>Tópico</Column>
           <Column></Column>
         </Th>
         {data?.map((element: any) => (
           <Tr key={uuid()}>
             <Column>{element.name}</Column>
+            <Column>{element?.topic_info?.name}</Column>
             <Column>
               {!loading && (
                 <ButtonsContainer
@@ -58,8 +57,10 @@ export const Table = ({ data, reload }: any): JSX.Element => {
           </Tr>
         ))}
 
-        {data?.length === 0 && (
-          <EmptyState text="Não há matérias cadastradas até o momento" />
+        {loading && <LoadingTable />}
+
+        {data?.length === 0 && !loading && (
+          <EmptyState text="Não há quizzes cadastradas até o momento" />
         )}
       </ScrollContainer>
     </Container>
