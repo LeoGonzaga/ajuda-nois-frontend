@@ -4,6 +4,7 @@ import { BiTrash } from 'react-icons/bi';
 import EmptyState from '@components/EmptyState';
 import LoadingTable from '@components/LoadingTable';
 import { Options, Response, requestAPI } from '@services/index';
+import { getColorByTest } from '@utils/functions';
 import { uuid } from 'uuidv4';
 
 import {
@@ -21,6 +22,11 @@ const COLORS_BOOK: any = {
   white: 'Branco',
   pink: 'Rosa',
   gray: 'Cinza',
+};
+
+const DAY: any = {
+  fisrt: '1º dia',
+  second: '2º dia',
 };
 
 type Props = {
@@ -54,10 +60,11 @@ export const Table = ({ data, reload, loading }: Props): JSX.Element => {
           <Column>Caderno de questões</Column>
           <Column>Gabarito</Column>
           <Column>Cor</Column>
+          <Column>Dia de prova</Column>
           <Column></Column>
         </Th>
         {data?.map((element: any) => (
-          <Tr key={uuid()}>
+          <Tr key={uuid()} color={getColorByTest(element.color)}>
             <Column>{element.year}</Column>
             <Column>
               <a href={element.exam} target="_blank" rel="noreferrer">
@@ -70,6 +77,7 @@ export const Table = ({ data, reload, loading }: Props): JSX.Element => {
               </a>
             </Column>
             <Column>Caderno {COLORS_BOOK[element.color]}</Column>
+            <Column>{DAY[element.day] || 'Não informado'}</Column>
             <Column>
               {!loading && (
                 <ButtonsContainer
