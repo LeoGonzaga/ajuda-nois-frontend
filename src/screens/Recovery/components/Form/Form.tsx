@@ -8,7 +8,7 @@ import { COLORS } from '@themes/colors';
 import Link from 'next/link';
 import { ROUTES } from 'src/routes/routes';
 
-import { Button, Container, Wrapper } from './styles';
+import { Container, Wrapper } from './styles';
 import { useFormLogin } from './useForm';
 
 export const Form = (): JSX.Element => {
@@ -34,35 +34,20 @@ export const Form = (): JSX.Element => {
         autoClose={3}
       />
       <div>
-        <Text color={COLORS.BLACK} center>
-          Bem vindo(a) de volta!
-        </Text>
-
         <Text bold size={22}>
-          Acessar com a minha conta
+          Calma! Vamos recuperar sua senha :p
         </Text>
         <Spacing vertical={5} />
         <input
           width="350px"
-          placeholder="Email"
+          placeholder="Digite seu email"
           type="email"
           {...register('email')}
         />
+
         <Spacing vertical={3} />
         <Text color={COLORS.RED} center>
           {errors.email?.message}
-        </Text>
-
-        <Spacing vertical={5} />
-        <input
-          width="350px"
-          placeholder="Senha"
-          type="password"
-          {...register('password')}
-        />
-        <Spacing vertical={3} />
-        <Text color={COLORS.RED} center>
-          {errors.password?.message}
         </Text>
 
         <Spacing vertical={10} />
@@ -70,20 +55,13 @@ export const Form = (): JSX.Element => {
           color={COLORS.SECONDARY}
           width="350px"
           loading={loading}
-          disabled={Object.keys(errors)?.length > 0 || loading}
+          disabled={loading}
           onClick={handleSubmit(onSubmit)}
         >
-          Entrar
+          Enviar
         </ActionButton>
         <Spacing vertical={5} />
-
-        <Spacing vertical={10} />
-
-        <Link href={ROUTES.RECOVERY}>
-          <Button>
-            <Text size={14}>Esqueci minha senha</Text>
-          </Button>
-        </Link>
+        <Link href={ROUTES.LOGIN}>Voltar</Link>
       </div>
     </Container>
   );

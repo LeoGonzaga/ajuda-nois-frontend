@@ -3,7 +3,6 @@ import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 445px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,8 +11,12 @@ export const Container = styled.div`
   animation: ${FadeInAnimation} 0.5s ease-in;
   padding: 20px;
 
+  a {
+    color: #fff;
+    margin-top: 20px;
+    text-decoration: none;
+  }
   div {
-    width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -57,20 +60,6 @@ export const Wrapper = styled.div`
       &:checked {
         background-color: ${COLORS.SECONDARY};
       }
-    }
-  }
-`;
-
-export const Button = styled.button`
-  background-color: transparent;
-  border: none;
-  margin-top: 10px;
-
-  cursor: pointer;
-
-  &:hover {
-    p {
-      color: #fff;
     }
   }
 `;

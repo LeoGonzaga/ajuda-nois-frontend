@@ -21,7 +21,6 @@ type Response = {
 const schema = yup
   .object({
     email: yup.string().email().required(),
-    password: yup.string().min(6).required(),
   })
   .required();
 
@@ -43,17 +42,16 @@ export const useFormLogin = () => {
     setOpenNotification(false);
   };
 
-  const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
+  const onSubmit: SubmitHandler<Inputs> = async ({ email }) => {
     setLoading(true);
     setOpenNotification(false);
     setApiError(false);
 
     const payload: Options = {
       method: 'POST',
-      url: 'login',
+      url: '/recoverPassword',
       data: {
         email,
-        password,
       },
     };
     const { response }: Response = await requestAPI(payload);
@@ -64,12 +62,11 @@ export const useFormLogin = () => {
       setOpenNotification(true);
       return;
     }
-    handleRedirect(ROUTES.HOME);
-
     const token = response?.data?.token;
     localStorage.setItem('token', token);
     const user = response?.data?.user;
     localStorage.setItem('user', JSON.stringify(user));
+    handleRedirect(ROUTES.LOGIN);
     setLoading(false);
   };
 

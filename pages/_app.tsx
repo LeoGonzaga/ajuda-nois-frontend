@@ -30,11 +30,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     ROUTES.LIST_TOPIC,
     ROUTES.LIST_USERS,
   ];
+
+  const PUBLIC_ROUTES = [ROUTES.LOGIN, ROUTES.RECOVERY, ROUTES.PASSWORD];
   return (
     <ThemeProvider theme={darkTheme}>
       <GlobalStyles />
       <Provider store={store}>
-        {pathname === ROUTES.LOGIN ? (
+        {PUBLIC_ROUTES.includes(pathname) ? (
           <Component {...pageProps} />
         ) : (
           <PrivateRoutes>
