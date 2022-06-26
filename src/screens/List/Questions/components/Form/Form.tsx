@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 
@@ -102,7 +103,7 @@ export const Form = (): JSX.Element => {
 
   return (
     <Styles.Container onSubmit={handleSubmit}>
-      <EditorContainer showControls />
+      <EditorContainer showControls onChange={() => {}} />
       <Spacing vertical={15} />
       <Styles.AddQuestion>Adicionar alternativas </Styles.AddQuestion>
       <Spacing vertical={15} />
