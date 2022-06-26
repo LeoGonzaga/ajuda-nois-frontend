@@ -17,11 +17,19 @@ import { Styles } from './styles';
 export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
   const [name, setName] = useChangeText('');
   const [topic, setTopic] = useState(topics[0]?.value);
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<any>([]);
+  const [selectedQuestions, setSelectedQuestions] = useState<string[]>([]);
 
   const [errors, setErrors] = useState({
     name: false,
   });
+
+  const handleSelectedQuestions = (id: string) => {
+    const array = [...selectedQuestions];
+    const index = array.indexOf(id);
+    index > -1 ? array.splice(index, 1) : array.push(id);
+    setSelectedQuestions(array);
+  };
 
   const getQuestionsByTopic = async (topicId: string) => {
     const token = localStorage.getItem('token');
@@ -34,7 +42,6 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
       },
     };
     const { response }: Response = await requestAPI(options);
-    console.log(response.data);
     setQuestions(response?.data);
   };
 
@@ -55,8 +62,8 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
       headers: { Authorization: `Bearer ${token}` },
       data: {
         name: 'string',
-        area: 'string - ara de conhecimento?',
-        teacher_id: 'string - verificar se é string mesmo',
+        subject_id: 'string - ara de conhecimento?',
+        questions_ids: 'string - verificar se é string mesmo',
       },
     };
     const response = await requestAPI(options);
@@ -96,9 +103,13 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
       <Spacing vertical={15} />
       <Styles.List>
         {questions?.length > 0 &&
-          questions?.map((element: any, index) => (
+          questions?.map((element: any, index: number) => (
             <Styles.Row key={index}>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={selectedQuestions.includes(element?._id)}
+                onChange={() => handleSelectedQuestions(element?._id)}
+              />
               {element?.name}
             </Styles.Row>
           ))}
