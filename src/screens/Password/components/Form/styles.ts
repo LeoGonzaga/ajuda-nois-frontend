@@ -16,7 +16,6 @@ export const Container = styled.div`
     margin-top: 20px;
     text-decoration: none;
   }
-
   div {
     display: flex;
     flex-direction: column;

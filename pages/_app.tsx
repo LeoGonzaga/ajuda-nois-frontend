@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     ROUTES.LIST_USERS,
   ];
 
-  const PUBLIC_ROUTES = [ROUTES.LOGIN, ROUTES.RECOVERY];
+  const PUBLIC_ROUTES = [ROUTES.LOGIN, ROUTES.RECOVERY, ROUTES.PASSWORD];
   return (
     <ThemeProvider theme={darkTheme}>
       <GlobalStyles />

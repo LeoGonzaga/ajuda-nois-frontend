@@ -60,3 +60,17 @@ export const Wrapper = styled.div`
     }
   }
 `;
+
+export const Button = styled.button`
+  background-color: transparent;
+  border: none;
+  margin-top: 10px;
+
+  cursor: pointer;
+
+  &:hover {
+    p {
+      color: #fff;
+    }
+  }
+`;

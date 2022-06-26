@@ -5,6 +5,8 @@ import Notification from '@components/Notification';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
+import Link from 'next/link';
+import { ROUTES } from 'src/routes/routes';
 
 import { Container, Wrapper } from './styles';
 import { useFormLogin } from './useForm';
@@ -59,6 +61,7 @@ export const Form = (): JSX.Element => {
           Enviar
         </ActionButton>
         <Spacing vertical={5} />
+        <Link href={ROUTES.LOGIN}>Voltar</Link>
       </div>
     </Container>
   );
