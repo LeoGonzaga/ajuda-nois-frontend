@@ -23,7 +23,7 @@ export const Sidebar = (): JSX.Element => {
   useEffect(() => {
     const user = localStorage.getItem('user');
     if (user) {
-      const parseUser = JSON.parse(user || '');
+      const parseUser = JSON?.parse(user || '');
       setDashBoard(parseUser.usertype);
     }
   }, []);

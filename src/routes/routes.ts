@@ -3,6 +3,7 @@ export const ROUTES = {
   TEACHER: '/teacher',
   ADMIN: '/admin',
   LOGIN: '/auth',
+  RECOVERY: '/recovery',
   STUDYPLAN: '/studyplan',
   SUBJECT: '/subjects',
   TIPS: '/tips',
