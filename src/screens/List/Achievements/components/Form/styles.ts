@@ -5,6 +5,7 @@ const Container = styled.form`
     width: 100%;
     background-color: #23232c;
     padding: 10px;
+    color: #fff;
   }
 
   input {

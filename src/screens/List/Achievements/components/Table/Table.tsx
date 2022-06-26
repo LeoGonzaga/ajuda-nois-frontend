@@ -1,8 +1,8 @@
 import React from 'react';
 import { BiTrash } from 'react-icons/bi';
 
-import Spacing from '@components/Spacing';
-import Text from '@components/Text';
+import EmptyState from '@components/EmptyState';
+import LoadingTable from '@components/LoadingTable';
 import { Options, Response, requestAPI } from '@services/index';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -15,14 +15,8 @@ import {
   ButtonsContainer,
 } from './styles';
 
-export const Table = ({ data, reload }: any): JSX.Element => {
-  const USERTYPE: any = {
-    student: 'Aluno(a)',
-    teacher: 'Professor(a)',
-    admin: 'Admin',
-  };
-
-  const handleRemoveUser = async (id: string) => {
+export const Table = ({ data, reload, loading }: any): JSX.Element => {
+  const handleRemove = async (id: string) => {
     const token = localStorage.getItem('token');
     const payload: Options = {
       method: 'DELETE',
@@ -42,29 +36,34 @@ export const Table = ({ data, reload }: any): JSX.Element => {
   return (
     <Container>
       <ScrollContainer>
-        {data &&
-          data?.map((element: any) => (
-            <Tr key={uuidv4()}>
-              <img
-                src={
-                  element?.icon
-                    ? element.icon
-                    : 'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png'
-                }
-                alt=""
-                width={100}
-              />
-              <Text bold> {element.name}</Text>
-              <Column>{element.description}</Column>
-              <Spacing vertical={5} />
-              <Text bold size={20}>
-                {element.experience} XP
-              </Text>
-              <ButtonsContainer onClick={() => handleRemoveUser(element?._id)}>
-                <BiTrash size={25} color="#fff" />
+        <Th>
+          <Column></Column>
+          <Column>Nome da conquista</Column>
+          <Column>Descrição</Column>
+          <Column>Experiência</Column>
+          <Column></Column>
+        </Th>
+        {data?.map((element: any) => (
+          <Tr key={uuidv4()}>
+            <Column>
+              <img src={element.icon} width="40px" alt="" />
+            </Column>
+            <Column>{element.name}</Column>
+            <Column>{element.description}</Column>
+            <Column>{element.experience} pontos</Column>
+            <Column>
+              <ButtonsContainer onClick={() => handleRemove(element._id)}>
+                <BiTrash size={25} />
               </ButtonsContainer>
-            </Tr>
-          ))}
+            </Column>
+          </Tr>
+        ))}
+
+        {loading && <LoadingTable />}
+
+        {data?.length === 0 && !loading && (
+          <EmptyState text="Não há provas cadastradas até o momento" />
+        )}
       </ScrollContainer>
     </Container>
   );

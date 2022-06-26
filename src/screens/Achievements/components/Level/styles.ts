@@ -2,8 +2,8 @@ import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   padding: 16px;
 
   border-radius: 100%;
