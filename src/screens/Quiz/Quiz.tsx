@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react';
 
 import EditorContainer from '@components/Editor';
@@ -13,7 +14,7 @@ export const Quiz = (): JSX.Element => {
     <Container>
       <Title text="Iniciar" contrast="quiz" />
       <Spacing vertical={5} />
-      <EditorContainer showControls />
+      <EditorContainer showControls onChange={() => {}} />
       <Spacing vertical={15} />
       <Text>Marque o checkbox para validar a resposta verdadeira.</Text>
       <Spacing vertical={15} />

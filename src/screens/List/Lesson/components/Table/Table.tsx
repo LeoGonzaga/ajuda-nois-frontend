@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BiTrash } from 'react-icons/bi';
 
 import EmptyState from '@components/EmptyState';
+import LoadingTable from '@components/LoadingTable';
 import { Options, Response, requestAPI } from '@services/index';
 import { uuid } from 'uuidv4';
 
@@ -14,12 +15,9 @@ import {
   ButtonsContainer,
 } from './styles';
 
-export const Table = ({ data, reload }: any): JSX.Element => {
-  const [loading, setLoading] = useState<boolean>(false);
-
+export const Table = ({ data, reload, loading }: any): JSX.Element => {
   const handleRemoveSubject = async (id: string) => {
     const token = localStorage.getItem('token');
-    setLoading(true);
     const payload: Options = {
       method: 'DELETE',
       url: '/deleteTip',
@@ -33,23 +31,25 @@ export const Table = ({ data, reload }: any): JSX.Element => {
       return;
     }
     reload();
-    setLoading(false);
   };
 
   return (
     <Container>
       <ScrollContainer>
         <Th>
+          <Column>Titúlo</Column>
           <Column>Tópico</Column>
-          <Column>Data de criação</Column>
-          <Column>Conteudo</Column>
+          <Column>Conteúdo</Column>
           <Column></Column>
         </Th>
         {data?.map((element: any) => (
           <Tr key={uuid()}>
-            <Column>{element.topic}</Column>
-            <Column>{element.date}</Column>
-            <Column>{element.content}</Column>
+            <Column>{element.title}</Column>
+            <Column>{element.topic_id}</Column>
+            <Column>
+              {element.content.replace(new RegExp('<[^>]*>', 'g'), '')}
+            </Column>
+
             <Column>
               {!loading && (
                 <ButtonsContainer
@@ -62,7 +62,9 @@ export const Table = ({ data, reload }: any): JSX.Element => {
           </Tr>
         ))}
 
-        {data?.length === 0 && (
+        {loading && <LoadingTable />}
+
+        {data?.length === 0 && !loading && (
           <EmptyState text="Não há matérias cadastradas até o momento" />
         )}
       </ScrollContainer>

@@ -14,117 +14,93 @@ import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
-const token =
-  'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjIxZGFiZGU2OTJkMjMyZGI0YTQyYmY1IiwiaWF0IjoxNjQ2MTEzOTY2LCJleHAiOjE2NDYyMDAzNjZ9.ANPjMTfHPjJJ-jb-Yn4FFYbzCWnVZ_jJ4V7-oJg12y2tL1PaZ_3l9z7SJTEXuXerxM11_k1yMoDprGYOO8pXFY4Qt3tipdkM5LnwH0xun5o2PE9OzwR9tovX2JTdHsnnGU9osRto7uw0s2HmJfHhc0bNTMEo9jyPl3ccxcPkRR`';
-
-const data = [
-  {
-    value: 'teacher',
-    name: 'Equação do 1º grau',
-  },
-  {
-    value: 'user',
-    name: 'Aluno',
-  },
-  {
-    value: 'admin',
-    name: 'Administrador',
-  },
-];
-
-export const Form = (): JSX.Element => {
-  const [username, setUsername] = useChangeText('');
-  const [email, setEmail] = useChangeText('');
-  const [usertype, setUserType] = useState<string>('');
+export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
+  const [title, setTitle] = useChangeText('');
+  const [content, setContent] = useState('');
+  const [topic, setTopic] = useState(topics[0]?.value);
+  const [loading, setLoading] = useState(false);
 
   const [errors, setErrors] = useState({
-    username: false,
-    email: false,
+    title: false,
+    content: false,
   });
-
-  const validateEmail = (email: string) => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const validEmail = validateEmail(email);
+    setLoading(true);
+    const token = localStorage.getItem('token');
 
-    if (email.length === 0 || !validEmail) {
+    if (title.length === 0) {
       setErrors((prevState) => ({
         ...prevState,
-        email: true,
-      }));
-    }
-
-    if (username.length === 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        username: true,
+        title: true,
       }));
     }
 
     const options: Options = {
       method: 'POST',
-      url: '/createSubject',
+      url: '/createLesson',
       headers: { Authorization: `Bearer ${token}` },
       data: {
-        name: 'string',
-        area: 'string - ara de conhecimento?',
-        teacher_id: 'string - verificar se é string mesmo',
+        title,
+        content,
+        topic_id: topic,
       },
     };
-    const response = await requestAPI(options);
-    console.log(response);
+    await requestAPI(options);
+    await reload();
+    onClose();
+    setLoading(false);
   };
 
   const handleResetErrorInput = () => {
-    if (email.length > 0) {
+    if (title.length > 0) {
       setErrors((prevState) => ({
         ...prevState,
-        email: false,
+        title: false,
       }));
     }
+  };
 
-    if (username.length > 0) {
-      setErrors((prevState) => ({
-        ...prevState,
-        username: false,
-      }));
+  const handleChangeEditor = (editor: any) => {
+    if (editor) {
+      const html = editor.getHTML();
+      setContent(html);
     }
   };
 
   useEffect(() => {
     handleResetErrorInput();
-  }, [email, username]);
+  }, [title]);
 
   return (
-    <Styles.Container onSubmit={handleSubmit}>
+    <Styles.Container>
       <TextInput
         width="350px"
         placeholder="Nome da lição"
         type="text"
-        value={username}
-        onChange={setUsername}
-        error={errors.username}
+        value={title}
+        onChange={setTitle}
+        error={errors.title}
       />
       <Spacing vertical={15} />
-      <EditorContainer showControls />
+      <EditorContainer showControls onChange={handleChangeEditor} />
       <Spacing vertical={15} />
       <Text>Associar a um tópico:</Text>
       <Spacing vertical={15} />
-      <Select onChange={setUserType} value={usertype} data={data} />
+      <Select onChange={setTopic} value={topic} data={topics} />
       <Spacing vertical={15} />
       <Flex width="19%">
         <ActionButton
           color={COLORS.SECONDARY}
           width="350px"
           onClick={handleSubmit}
+          disabled={loading}
+          loading={loading}
         >
           Salvar
         </ActionButton>
-        <Spacing vertical={5} />
+        <Spacing vertical={15} />
       </Flex>
     </Styles.Container>
   );

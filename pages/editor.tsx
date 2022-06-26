@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react';
 
 import Head from 'next/head';
@@ -14,7 +15,7 @@ const EditorPage = (): JSX.Element => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <EditorContainer showControls />
+      <EditorContainer showControls onChange={() => {}} />
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Text from '@components/Text';
 import Title from '@components/Title';
 
 import Achievement from './components/Achievement';
@@ -12,96 +13,15 @@ import {
   LevelContainer,
   ShareContainer,
 } from './styles';
+import useAchievements from './useAchievements';
 
 export const Achievements = (): JSX.Element => {
-  const data = [
-    {
-      name: 'Parabéns',
-      description: 'Você conseguiu resolver todos os exercícios essa semana!',
-      exp: 1000,
-      achieved: true,
-      image:
-        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
-    },
-    {
-      name: 'Teste',
-      description: 'Este é um teste',
-      exp: 2000,
-      achieved: true,
-      image:
-        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
-    },
-    {
-      name: 'Ainda não',
-      description: 'Esse ainda não aparece',
-      exp: 1000,
-      achieved: false,
-      image:
-        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
-    },
-    {
-      name: 'Secreto',
-      description: 'Essa conquista é secreta até mesmo para os devs',
-      exp: 10000,
-      achieved: false,
-      image:
-        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
-    },
-    {
-      name: 'Texto Curto',
-      description: 'POG',
-      exp: 689,
-      achieved: true,
-      image:
-        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
-    },
-    {
-      name: 'Texto Longo',
-      description:
-        'Esse é um texto mais longo só pra ver até onde o texto deveria ir e ver se o texto não vai quebrar o layout',
-      exp: 666,
-      achieved: false,
-      image:
-        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
-    },
-    {
-      name: 'Pikachu',
-      description: 'Use choque do trovão!',
-      exp: 890,
-      achieved: true,
-      image:
-        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
-    },
-    {
-      name: 'Front end',
-      description: 'É melhor que back-end',
-      exp: 100,
-      achieved: true,
-      image:
-        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
-    },
-    {
-      name: '???',
-      description: '???',
-      exp: 1000,
-      achieved: false,
-      image:
-        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
-    },
-    {
-      name: 'Lorem Ipsum',
-      description:
-        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has beentandard dummy text ever sin',
-      exp: 10000,
-      achieved: false,
-      image:
-        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Conquistas.png',
-    },
-  ];
+  const { data, loading, enabled } = useAchievements();
+
   let totalExp = 0;
 
   // Ordena o array de data para mostrar as conquistas desbloqueadas primeiro
-  data.sort((a, b) => (a.achieved === b.achieved ? 0 : a.achieved ? -1 : 1));
+  // data.sort((a, b) => (a.achieved === b.achieved ? 0 : a.achieved ? -1 : 1));
 
   return (
     <Container>
@@ -115,30 +35,26 @@ export const Achievements = (): JSX.Element => {
 
       <Content>
         <AchievementsContainer>
-          {data?.map(
-            ({ name, description, exp, achieved, image }) => (
-              achieved ? (totalExp += exp) : (totalExp += 0),
-              (
+          {data.length > 0 &&
+            data?.map(({ _id, name, description, experience, icon }) => {
+              totalExp += experience;
+              return (
                 <Achievement
                   name={name}
                   description={description}
-                  exp={exp}
-                  achieved={achieved}
+                  exp={experience}
+                  achieved={enabled.includes(_id)}
                   key={name}
-                  image={image}
+                  image={icon}
                 />
-              )
-            )
-          )}
+              );
+            })}
         </AchievementsContainer>
 
         <Container>
           <LevelContainer>
             <Level exp={totalExp} />
           </LevelContainer>
-          <ShareContainer>
-            <Share />
-          </ShareContainer>
         </Container>
       </Content>
     </Container>

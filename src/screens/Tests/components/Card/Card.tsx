@@ -33,31 +33,20 @@ export const Card = ({
       </Flex>
       <Spacing vertical={5} />
       <div>
-        <Flex direction="column">
+        <Flex>
           <Text size={16} bold color={COLORS.TERTIARY}>
             1º Dia
           </Text>
-          <Spacing vertical={2} />
+          <Spacing horizontal={10} />
           <a target="_blank" href={first?.test} rel="noreferrer">
             <p>Prova</p>
           </a>
+          <Spacing horizontal={5} />
           <a target="_blank" href={first?.result} rel="noreferrer">
             <p>Gabarito</p>
           </a>
         </Flex>
         <Spacing vertical={5} />
-        <Flex direction="column">
-          <Text size={16} bold color={COLORS.TERTIARY}>
-            2º Dia
-          </Text>
-          <Spacing vertical={2} />
-          <a target="_blank" href={first?.test} rel="noreferrer">
-            <p>Prova</p>
-          </a>
-          <a target="_blank" href={first?.result} rel="noreferrer">
-            <p>Gabarito</p>
-          </a>
-        </Flex>
       </div>
     </Container>
   );
