@@ -46,8 +46,8 @@ export const Table = ({ data, reload }: any): JSX.Element => {
         </Th>
         {data?.map((element: any) => (
           <Tr key={uuid()}>
-            <Column>{element.content}</Column>
-            <Column>{element.awnser}</Column>
+            <Column>{element.question}</Column>
+            <Column>{element.answer}</Column>
             <Column>
               {!loading && (
                 <ButtonsContainer
