@@ -45,7 +45,7 @@ export const Table = ({ data, reload, loading }: any): JSX.Element => {
         {data?.map((element: any) => (
           <Tr key={uuid()}>
             <Column>{element.title}</Column>
-            <Column>{element.topic_id}</Column>
+            <Column>{element.topic_info?.name || 'Não informado'}</Column>
             <Column>
               {element.content.replace(new RegExp('<[^>]*>', 'g'), '')}
             </Column>
