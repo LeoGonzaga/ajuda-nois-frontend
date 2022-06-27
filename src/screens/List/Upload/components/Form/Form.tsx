@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 
 import ActionButton from '@components/Buttons/ActionButton';
 import Flex from '@components/Flex';
@@ -11,17 +11,6 @@ import { checkError, toBase64 } from '@utils/functions';
 import moment from 'moment';
 
 import { Styles } from './styles';
-
-const DAY_TEST = [
-  {
-    value: 'first',
-    name: '1º dia',
-  },
-  {
-    value: 'second',
-    name: '2º dia',
-  },
-];
 
 type Props = {
   onClose: () => void;

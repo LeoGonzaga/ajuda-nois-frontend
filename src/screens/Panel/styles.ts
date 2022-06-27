@@ -11,6 +11,8 @@ export const Content = styled.div`
   flex-wrap: wrap;
   margin: 10px;
   justify-content: flex-start;
+  overflow-y: auto;
+  height: 90vh;
 `;
 
 type Props = {
