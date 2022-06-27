@@ -25,21 +25,25 @@ export const SubjectItem = ({ topic, check, topic_id }: any): JSX.Element => {
         <TableItemContent>
           {data?.length > 0 &&
             data?.map((elem: any, index) => {
-              return elem?.lessons?.map((lesson: any) => {
-                return (
-                  <Link
-                    href={{
-                      pathname: '/subject/[id]/',
-                      query: { id: lesson._id },
-                    }}
-                    key={index}
-                  >
-                    <ContentLine>
-                      <Text>{lesson.title}</Text>
-                    </ContentLine>
-                  </Link>
-                );
-              });
+              return elem?.lessons?.length === 0 ? (
+                <p>nao há</p>
+              ) : (
+                elem?.lessons?.map((lesson: any) => {
+                  return (
+                    <Link
+                      href={{
+                        pathname: '/subject/[id]/',
+                        query: { id: lesson._id },
+                      }}
+                      key={index}
+                    >
+                      <ContentLine>
+                        <Text>{lesson.title}</Text>
+                      </ContentLine>
+                    </Link>
+                  );
+                })
+              );
             })}
         </TableItemContent>
       )}

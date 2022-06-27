@@ -5,7 +5,6 @@ import { GiGreekTemple } from 'react-icons/gi';
 import { IoTelescopeOutline } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
 
-import Text from '@components/Text';
 import Title from '@components/Title';
 import { add } from 'src/config/actions/subjects';
 
@@ -17,7 +16,7 @@ import useSubject from './useSubject';
 
 export const Subjects = (): JSX.Element => {
   const dispatch = useDispatch();
-  const { data } = useSubject();
+  const { data, allSubjects } = useSubject();
 
   const [activeSubject, setActiveSubject] = useState<string>('Matemática');
 
@@ -32,37 +31,42 @@ export const Subjects = (): JSX.Element => {
       <Grid>
         <div>
           <Card
-            onClick={() => handleToggleToShowContent('Matemática')}
+            onClick={() => handleToggleToShowContent('mathematics')}
             title={'Matemática'}
             color="#6F52ED"
             icon={<AiOutlineCalculator size={30} />}
-            active={'Matemática' == activeSubject}
+            active={'mathematics' == activeSubject}
           />
           <Card
-            onClick={() => handleToggleToShowContent('Humanas')}
+            onClick={() => handleToggleToShowContent('human_sciences')}
             title={'Ciencias Humanas'}
             color="#FBBC05"
             icon={<GiGreekTemple size={30} />}
-            active={'Humanas' == activeSubject}
+            active={'human_sciences' == activeSubject}
           />
           <Card
-            onClick={() => handleToggleToShowContent('Natureza')}
+            onClick={() => handleToggleToShowContent('natural_sciences')}
             title={'Ciências da natureza'}
             color="#00BF20"
             icon={<IoTelescopeOutline size={30} />}
-            active={'Natureza' == activeSubject}
+            active={'natural_sciences' == activeSubject}
           />
           <Card
-            onClick={() => handleToggleToShowContent('Linguagens')}
+            onClick={() => handleToggleToShowContent('languages')}
             title={'Linguagens e códigos'}
             color="#CA1E3C"
             icon={<BsChatLeftQuote size={30} />}
-            active={'Linguagens' == activeSubject}
+            active={'languages' == activeSubject}
           />
         </div>
         {activeSubject && (
           <SubjectContent>
-            <SelectSubject active={true} />
+            {allSubjects?.map((subject: any, index) => {
+              if (subject.area === activeSubject) {
+                return <button key={index}>{subject.name}</button>;
+              }
+            })}
+
             <Table>
               {data?.length > 0 &&
                 data?.map((topic: any, index) => (
