@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { Options, Response, requestAPI } from '@services/index';
 

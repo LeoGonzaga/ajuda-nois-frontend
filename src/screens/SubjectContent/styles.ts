@@ -1,3 +1,4 @@
+import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -6,14 +7,30 @@ export const Container = styled.div`
   height: 100vh;
 `;
 
+export const Item = styled.button<{ active: boolean }>`
+  color: ${(props) => (props.active ? COLORS.PRIMARY : 'white')};
+  height: 40px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.PRIMARY};
+  }
+`;
+
 export const SideBarSubjects = styled.div`
   padding: 10px;
   background-color: ${({ theme }) => theme.NEUTRAL};
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export const EditorWrapper = styled.div`
   overflow-x: hidden;
   padding: 0px 20px;
+  cursor: pointer;
 `;
 
 export const ContentLine = styled.div`
@@ -26,4 +43,8 @@ export const ContentLine = styled.div`
   &:hover {
     background-color: ${({ theme }) => theme.PRIMARY};
   }
+`;
+
+export const Wrapper = styled.div`
+  padding: 20px;
 `;

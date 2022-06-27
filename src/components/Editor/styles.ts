@@ -1,8 +1,12 @@
 import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  width: 90vw;
+export const Container = styled.div<{ width?: string }>`
+  width: ${(props) => (props.width ? props.width : '90vw')};
+
+  img {
+    width: 100%;
+  }
 `;
 
 export const Button = styled.button`
@@ -27,12 +31,14 @@ export const SaveChanges = styled.button`
   }
 `;
 
-export const EditorArea = styled.div`
+export const EditorArea = styled.div<{
+  height?: string;
+}>`
   overflow-y: auto;
-  height: 30vh;
+  height: ${(props) => (props.height ? props.height : '30vh')};
   padding: 10px 4px;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: ${(props) => (props?.height ? 'none' : ' 1px solid #ccc')};
   div {
     outline: none;
     min-height: 50vh;
