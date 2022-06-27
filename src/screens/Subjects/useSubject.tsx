@@ -12,9 +12,11 @@ const useSubject = () => {
   const [allSubjects, setAllSubjects] = useState([]);
   const [activeArea, setActiveArea] = useState<string>('mathematics');
   const [activeSubject, setActiveSubject] = useState('');
+  const [activeSubjectName, setActiveSubjectName] = useState('');
 
-  const handleChangeActiveSubject = (id: string) => {
+  const handleChangeActiveSubject = (id: string, name: string) => {
     setActiveSubject(id);
+    setActiveSubjectName(name);
   };
 
   const handleToggleToShowContent = (value: string) => {
@@ -38,6 +40,7 @@ const useSubject = () => {
     const content = response?.data;
     setAllSubjects(content);
     setActiveSubject(content[0]?._id);
+    setActiveSubjectName(content[0].name);
   };
 
   const getTopicBySubject = async () => {
@@ -70,6 +73,7 @@ const useSubject = () => {
     activeArea,
     handleToggleToShowContent,
     handleChangeActiveSubject,
+    activeSubjectName,
   };
 };
 

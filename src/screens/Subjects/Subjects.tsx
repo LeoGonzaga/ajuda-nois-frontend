@@ -8,7 +8,13 @@ import Title from '@components/Title';
 
 import Card from './components/Card';
 import SubjectItem from './components/SubjectItem';
-import { Container, Grid, SubjectContent, Table } from './styles';
+import {
+  Container,
+  Grid,
+  SubjectContent,
+  SubjectItemButton,
+  Table,
+} from './styles';
 import useSubject from './useSubject';
 
 export const Subjects = (): JSX.Element => {
@@ -18,6 +24,7 @@ export const Subjects = (): JSX.Element => {
     activeArea,
     handleToggleToShowContent,
     handleChangeActiveSubject,
+    activeSubjectName,
   } = useSubject();
 
   return (
@@ -59,12 +66,15 @@ export const Subjects = (): JSX.Element => {
             {allSubjects?.map((subject: any, index) => {
               if (subject.area === activeArea) {
                 return (
-                  <button
+                  <SubjectItemButton
+                    active={subject.name === activeSubjectName}
                     key={index}
-                    onClick={() => handleChangeActiveSubject(subject?._id)}
+                    onClick={() =>
+                      handleChangeActiveSubject(subject?._id, subject.name)
+                    }
                   >
                     {subject.name}
-                  </button>
+                  </SubjectItemButton>
                 );
               }
             })}
@@ -75,7 +85,7 @@ export const Subjects = (): JSX.Element => {
                   <SubjectItem
                     topic={topic.name}
                     topic_id={topic?._id}
-                    check
+                    check={false}
                     key={index}
                   />
                 ))}
