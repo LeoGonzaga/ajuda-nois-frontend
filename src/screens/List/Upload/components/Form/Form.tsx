@@ -80,7 +80,7 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
 
   return (
     <Styles.Container onSubmit={handleSubmit}>
-      <div>
+      <Styles.Wrapper>
         <p>
           - Preencha as planilhas com os emails dos alunos e matérias como estão
           cadastradas no sistema
@@ -105,20 +105,39 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
           - No gabarito do estudante é só colocado 180 questões respondidas, as
           de lingua estrageiras da opção não escolhida devem deixadas em branco
         </p>
-      </div>
+        <Spacing vertical={10} />
+        <Flex>
+          <p>
+            <Styles.Download
+              href="https://storage.googleapis.com/ajuda-nois.appspot.com/Modelo_Gabarito_Oficial.xlsx"
+              download
+            >
+              Gabarito oficial
+            </Styles.Download>
+          </p>
+          <p>
+            <Styles.Download
+              href="https://storage.googleapis.com/ajuda-nois.appspot.com/Modelo_Gabarito_Estudantes.xlsx"
+              download
+            >
+              Gabarito Estudantes
+            </Styles.Download>
+          </p>
+        </Flex>
+      </Styles.Wrapper>
       <Spacing vertical={5} />
       <Text>Dia da prova:</Text>
       <Spacing vertical={5} />
       <input type="date" value={date} onChange={handleChageDate} />
       <Spacing vertical={15} />
-      <Text>Caderno de questões:</Text>
+      <Text>Arquivo dos alunos:</Text>
       <Spacing vertical={5} />
       <input
         type="file"
         name="exame"
         id=""
         onChange={handleUploadExameFile}
-        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
       />
       <Spacing vertical={15} />
       <Text>Gabarito:</Text>
@@ -128,7 +147,7 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
         name="template"
         id=""
         onChange={handleUploaTemplateFile}
-        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
       />
       <Spacing vertical={15} />
       <Flex width="19%">

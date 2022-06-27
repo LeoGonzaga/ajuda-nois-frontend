@@ -35,11 +35,11 @@ type Props = {
   loading: boolean;
 };
 export const Table = ({ data, reload, loading }: Props): JSX.Element => {
-  const handleRemoveSubject = async (id: string) => {
+  const handleRemoveExam = async (id: string) => {
     const token = localStorage.getItem('token');
     const payload: Options = {
       method: 'DELETE',
-      url: '/deleteEnem',
+      url: '/deleteMockExam',
       data: {
         id,
       },
@@ -56,33 +56,16 @@ export const Table = ({ data, reload, loading }: Props): JSX.Element => {
     <Container>
       <ScrollContainer>
         <Th>
-          <Column>Ano</Column>
-          <Column>Caderno de questões</Column>
-          <Column>Gabarito</Column>
-          <Column>Cor</Column>
           <Column>Dia de prova</Column>
           <Column></Column>
         </Th>
         {data?.map((element: any) => (
           <Tr key={uuid()} color={getColorByTest(element.color)}>
-            <Column>{element.year}</Column>
-            <Column>
-              <a href={element.exam} target="_blank" rel="noreferrer">
-                Download
-              </a>
-            </Column>
-            <Column>
-              <a target="_blank" href={element.template} rel="noreferrer">
-                Download
-              </a>
-            </Column>
-            <Column>Caderno {COLORS_BOOK[element.color]}</Column>
-            <Column>{DAY[element.day] || 'Não informado'}</Column>
+            <Column>{element.date?.split('-').reverse().join('-')}</Column>
+
             <Column>
               {!loading && (
-                <ButtonsContainer
-                  onClick={() => handleRemoveSubject(element._id)}
-                >
+                <ButtonsContainer onClick={() => handleRemoveExam(element._id)}>
                   <BiTrash size={25} />
                 </ButtonsContainer>
               )}
