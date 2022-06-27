@@ -29,6 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     ROUTES.LIST_TIPS,
     ROUTES.LIST_TOPIC,
     ROUTES.LIST_USERS,
+    ROUTES.LIST_UPLOAD,
   ];
 
   const PUBLIC_ROUTES = [ROUTES.LOGIN, ROUTES.RECOVERY, ROUTES.PASSWORD];

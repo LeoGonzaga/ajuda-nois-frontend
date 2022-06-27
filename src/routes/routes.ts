@@ -23,4 +23,5 @@ export const ROUTES = {
   LIST_LESSON: '/list/lesson',
   LIST_TOPIC: '/list/topics',
   LIST_ENEM: '/list/enem',
+  LIST_UPLOAD: '/list/upload',
 };
