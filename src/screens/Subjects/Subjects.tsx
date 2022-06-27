@@ -3,27 +3,22 @@ import { AiOutlineCalculator } from 'react-icons/ai';
 import { BsChatLeftQuote } from 'react-icons/bs';
 import { GiGreekTemple } from 'react-icons/gi';
 import { IoTelescopeOutline } from 'react-icons/io5';
-import { useDispatch } from 'react-redux';
 
 import Title from '@components/Title';
-import { add } from 'src/config/actions/subjects';
 
-import SelectSubject from '../Tips/components/SelectSubject';
 import Card from './components/Card';
 import SubjectItem from './components/SubjectItem';
 import { Container, Grid, SubjectContent, Table } from './styles';
 import useSubject from './useSubject';
 
 export const Subjects = (): JSX.Element => {
-  const dispatch = useDispatch();
-  const { data, allSubjects } = useSubject();
-
-  const [activeSubject, setActiveSubject] = useState<string>('Matemática');
-
-  const handleToggleToShowContent = (value: string) => {
-    setActiveSubject(value);
-    dispatch(add(value));
-  };
+  const {
+    data,
+    allSubjects,
+    activeArea,
+    handleToggleToShowContent,
+    handleChangeActiveSubject,
+  } = useSubject();
 
   return (
     <Container>
@@ -35,35 +30,42 @@ export const Subjects = (): JSX.Element => {
             title={'Matemática'}
             color="#6F52ED"
             icon={<AiOutlineCalculator size={30} />}
-            active={'mathematics' == activeSubject}
+            active={'mathematics' == activeArea}
           />
           <Card
             onClick={() => handleToggleToShowContent('human_sciences')}
             title={'Ciencias Humanas'}
             color="#FBBC05"
             icon={<GiGreekTemple size={30} />}
-            active={'human_sciences' == activeSubject}
+            active={'human_sciences' == activeArea}
           />
           <Card
             onClick={() => handleToggleToShowContent('natural_sciences')}
             title={'Ciências da natureza'}
             color="#00BF20"
             icon={<IoTelescopeOutline size={30} />}
-            active={'natural_sciences' == activeSubject}
+            active={'natural_sciences' == activeArea}
           />
           <Card
             onClick={() => handleToggleToShowContent('languages')}
             title={'Linguagens e códigos'}
             color="#CA1E3C"
             icon={<BsChatLeftQuote size={30} />}
-            active={'languages' == activeSubject}
+            active={'languages' == activeArea}
           />
         </div>
-        {activeSubject && (
+        {activeArea && (
           <SubjectContent>
             {allSubjects?.map((subject: any, index) => {
-              if (subject.area === activeSubject) {
-                return <button key={index}>{subject.name}</button>;
+              if (subject.area === activeArea) {
+                return (
+                  <button
+                    key={index}
+                    onClick={() => handleChangeActiveSubject(subject?._id)}
+                  >
+                    {subject.name}
+                  </button>
+                );
               }
             })}
 

@@ -1,14 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useState } from 'react';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { ContentLine, TableItem, TableItemContent } from './styles';
 import useSubjectItem from './useSubjectItem';
 
 export const SubjectItem = ({ topic, check, topic_id }: any): JSX.Element => {
+  const router = useRouter();
   const { data, expand, getLessonsByTopic, handleToggle } = useSubjectItem();
 
   useEffect(() => {
@@ -32,8 +35,8 @@ export const SubjectItem = ({ topic, check, topic_id }: any): JSX.Element => {
                   return (
                     <Link
                       href={{
-                        pathname: '/subject/[id]/',
-                        query: { id: lesson._id },
+                        pathname: '/view/[id]',
+                        query: { id: lesson?._id },
                       }}
                       key={index}
                     >

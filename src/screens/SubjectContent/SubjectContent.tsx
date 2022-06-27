@@ -19,23 +19,23 @@ export const SubjectContent = ({ details }: any): JSX.Element => {
       <EditorWrapper>
         <EditorContainer
           showControls={false}
-          data={details.html}
+          data={details.content}
           onChange={() => {}}
         />
       </EditorWrapper>
       <SideBarSubjects>
         <Text bold size={20}>
-          Eq. de 2º grau
+          {details?.topic_id}
         </Text>
         <Spacing vertical={5} />
-        {details &&
+        {/* {details &&
           details?.sidebar.map((element: any) => (
             <Link href={`/subject/${element.name}`} key={element.name}>
               <ContentLine>
                 <Text>{element.name}</Text>
               </ContentLine>
             </Link>
-          ))}
+          ))} */}
       </SideBarSubjects>
     </Container>
   );

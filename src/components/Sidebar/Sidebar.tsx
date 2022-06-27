@@ -26,7 +26,6 @@ export const Sidebar = (): JSX.Element => {
   };
 
   useEffect(() => {
-    console.log(user);
     if (!user) { handleRedirect(ROUTES.LOGIN); }
     else {
       const parseUser = JSON?.parse(user || '');
