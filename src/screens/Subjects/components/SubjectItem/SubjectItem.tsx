@@ -14,6 +14,10 @@ export const SubjectItem = ({ topic, check, topic_id }: any): JSX.Element => {
   const router = useRouter();
   const { data, expand, getLessonsByTopic, handleToggle } = useSubjectItem();
 
+  const handleRedirect = (id: string) => {
+    router.replace('/view?id=' + id);
+  };
+
   useEffect(() => {
     if (expand) getLessonsByTopic(topic_id);
   }, [expand]);
@@ -33,17 +37,14 @@ export const SubjectItem = ({ topic, check, topic_id }: any): JSX.Element => {
               ) : (
                 elem?.lessons?.map((lesson: any) => {
                   return (
-                    <Link
-                      href={{
-                        pathname: '/view/[id]',
-                        query: { id: lesson?._id },
-                      }}
+                    <button
+                      onClick={() => handleRedirect(lesson?._id)}
                       key={index}
                     >
                       <ContentLine>
                         <Text>{lesson.title}</Text>
                       </ContentLine>
-                    </Link>
+                    </button>
                   );
                 })
               );
