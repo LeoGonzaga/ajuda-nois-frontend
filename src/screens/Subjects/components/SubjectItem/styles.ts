@@ -16,9 +16,24 @@ export const TableItem = styled.div`
   }
 `;
 
+export const Empty = styled.div`
+  padding-left: 15px;
+`;
+
 export const TableItemContent = styled.div`
   cursor: pointer;
   padding: 5px 0px;
+
+  border: none;
+
+  display: flex;
+  flex-direction: column;
+  button {
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-bottom: 1px solid #ccc;
+  }
 `;
 
 export const ContentLine = styled.div`

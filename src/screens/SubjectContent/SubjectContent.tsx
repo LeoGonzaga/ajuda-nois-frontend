@@ -3,6 +3,7 @@ import React from 'react';
 
 import BackButton from '@components/BackButton';
 import EditorContainer from '@components/Editor';
+import Flex from '@components/Flex';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { ROUTES } from 'src/routes/routes';
@@ -20,8 +21,10 @@ export const SubjectContent = (): JSX.Element => {
   const { data, topics, handleRedirect } = useSubjectContent();
   return (
     <Wrapper>
-      <BackButton route={ROUTES.SUBJECT} />
-
+      <Flex align="center">
+        <BackButton route={ROUTES.SUBJECT} />
+        {data?.title}
+      </Flex>
       <Container>
         <EditorWrapper>
           {data?._id && (

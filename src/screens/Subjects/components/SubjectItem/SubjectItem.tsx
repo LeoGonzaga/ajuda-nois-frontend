@@ -1,13 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { ContentLine, TableItem, TableItemContent } from './styles';
+import { Empty, TableItem, TableItemContent } from './styles';
 import useSubjectItem from './useSubjectItem';
 
 export const SubjectItem = ({ topic, check, topic_id }: any): JSX.Element => {
@@ -33,7 +32,7 @@ export const SubjectItem = ({ topic, check, topic_id }: any): JSX.Element => {
           {data?.length > 0 &&
             data?.map((elem: any, index) => {
               return elem?.lessons?.length === 0 ? (
-                <p>nao há</p>
+                <Empty>Não há lições cadastradas por enquanto.</Empty>
               ) : (
                 elem?.lessons?.map((lesson: any) => {
                   return (
@@ -41,9 +40,7 @@ export const SubjectItem = ({ topic, check, topic_id }: any): JSX.Element => {
                       onClick={() => handleRedirect(lesson?._id)}
                       key={index}
                     >
-                      <ContentLine>
-                        <Text>{lesson.title}</Text>
-                      </ContentLine>
+                      <Text>{lesson.title}</Text>
                     </button>
                   );
                 })
