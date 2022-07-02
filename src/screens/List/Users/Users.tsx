@@ -13,8 +13,15 @@ import { Container } from './styles';
 import { useUsers } from './useUsers';
 
 export const Users = (): JSX.Element => {
-  const { handleToggleModalCreateUser, openModal, data, getAllUser, loading } =
-    useUsers();
+  const {
+    handleToggleModalCreateUser,
+    openModal,
+    data,
+    getAllUser,
+    loading,
+    editabledContent,
+    handleSelectedValue,
+  } = useUsers();
 
   return (
     <Container>

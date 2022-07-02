@@ -6,6 +6,12 @@ export const useUsers = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState(false);
+  const [editabledContent, setEditabledContent] = useState({});
+
+  const handleSelectedValue = (value: any) => {
+    setEditabledContent(value);
+    setOpenModal(true);
+  };
 
   const handleToggleModalCreateUser = useCallback(() => {
     setOpenModal(!openModal);
@@ -36,6 +42,10 @@ export const useUsers = () => {
     getAllUser();
   }, []);
 
+  useEffect(() => {
+    if (!openModal) setEditabledContent({});
+  }, [openModal]);
+
   return {
     openModal,
     handleToggleModalCreateUser,
@@ -43,5 +53,7 @@ export const useUsers = () => {
     getAllUser,
     setData,
     loading,
+    handleSelectedValue,
+    editabledContent,
   };
 };

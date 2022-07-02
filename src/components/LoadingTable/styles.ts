@@ -17,9 +17,11 @@ const SSkeletonPulse = styled.div`
   @keyframes pulse {
     0% {
       background-position: 0% 0%;
+      opacity: 0.2;
     }
     100% {
       background-position: -105% 0%;
+      opacity: 1;
     }
   }
 `;

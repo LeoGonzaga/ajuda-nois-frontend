@@ -85,6 +85,7 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
         usertype,
       },
     };
+
     const { response }: Response = await requestAPI(options);
 
     const error = checkError(response?.status);
@@ -144,6 +145,7 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
       <Spacing vertical={15} />
 
       <Text>Tipo de usuário:</Text>
+
       <Spacing vertical={15} />
       <Select onChange={setUserType} value={usertype} data={data} />
       <Spacing vertical={15} />
