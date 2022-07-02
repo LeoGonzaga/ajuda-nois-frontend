@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import { Options, requestAPI, Response } from '@services/index';
-import { checkError } from '@utils/functions';
 import useToggle from 'src/hooks/useToggle';
 
 export const useAchievements = () => {
@@ -18,10 +17,6 @@ export const useAchievements = () => {
       headers: { Authorization: `Bearer ${token}` },
     };
     const { response }: Response = await requestAPI(payload);
-    const error = checkError(response.status);
-    if (error) {
-      return;
-    }
 
     setData(response?.data?.achievement);
     setLoading(false);
