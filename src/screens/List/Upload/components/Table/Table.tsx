@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import { BiTrash } from 'react-icons/bi';
+import { useDispatch } from 'react-redux';
 
 import EmptyState from '@components/EmptyState';
 import LoadingTable from '@components/LoadingTable';
 import { Options, Response, requestAPI } from '@services/index';
-import { getColorByTest } from '@utils/functions';
+import {
+  checkError,
+  getColorByTest,
+  openErrorNotification,
+  openNotification,
+} from '@utils/functions';
+import { setNotification } from 'src/config/actions/notification';
 import { uuid } from 'uuidv4';
 
 import {
@@ -35,6 +42,7 @@ type Props = {
   loading: boolean;
 };
 export const Table = ({ data, reload, loading }: Props): JSX.Element => {
+  const dispatch = useDispatch();
   const handleRemoveExam = async (id: string) => {
     const token = localStorage.getItem('token');
     const payload: Options = {
@@ -46,9 +54,14 @@ export const Table = ({ data, reload, loading }: Props): JSX.Element => {
       headers: { Authorization: `Bearer ${token}` },
     };
     const { response }: Response = await requestAPI(payload);
-    if (response?.status > 300) {
+    const error = checkError(response?.status);
+    if (error) {
+      dispatch(setNotification(openErrorNotification(response?.data?.error)));
       return;
     }
+    dispatch(
+      setNotification(openNotification('Simulado removido com sucesso!'))
+    );
     reload();
   };
 
@@ -76,7 +89,7 @@ export const Table = ({ data, reload, loading }: Props): JSX.Element => {
         {loading && <LoadingTable />}
 
         {data?.length === 0 && !loading && (
-          <EmptyState text="Não há simulaods cadastrados até o momento" />
+          <EmptyState text="Não há simulados cadastrados até o momento" />
         )}
       </ScrollContainer>
     </Container>

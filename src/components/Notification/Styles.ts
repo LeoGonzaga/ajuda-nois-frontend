@@ -13,7 +13,7 @@ const Container = styled.div<Props>`
   z-index: 21 !important;
   position: absolute;
   top: 30px;
-  left: 100px;
+  left: 50px;
   display: flex;
   visibility: ${(props) => (props.open ? 'visible' : 'hidden')};
   align-items: center;

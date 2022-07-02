@@ -41,7 +41,7 @@ export const useQuiz = () => {
 
     const payload: Options = {
       method: 'GET',
-      url: '/getQuizes',
+      url: '/getQuizzes',
       headers: { Authorization: `Bearer ${token}` },
     };
     const { response }: Response = await requestAPI(payload);

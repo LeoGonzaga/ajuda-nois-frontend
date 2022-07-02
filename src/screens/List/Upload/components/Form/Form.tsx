@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, ChangeEvent } from 'react';
+import { useDispatch } from 'react-redux';
 
 import ActionButton from '@components/Buttons/ActionButton';
 import Flex from '@components/Flex';
@@ -7,8 +8,14 @@ import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { Options, requestAPI, Response } from '@services/index';
 import { COLORS } from '@themes/colors';
-import { checkError, toBase64 } from '@utils/functions';
+import {
+  checkError,
+  openErrorNotification,
+  openNotification,
+  toBase64,
+} from '@utils/functions';
 import moment from 'moment';
+import { setNotification } from 'src/config/actions/notification';
 
 import { Styles } from './styles';
 
@@ -19,6 +26,7 @@ type Props = {
 
 export const Form = ({ onClose, reload }: Props): JSX.Element => {
   const today = moment();
+  const dispatch = useDispatch();
   const [date, setDate] = useState<any>(today.format('YYYY-MM-DD'));
   const [examBase64, setExamBase64] = useState<any>('');
   const [templateBase64, setTemplateBase64] = useState<any>('');
@@ -57,7 +65,14 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
       },
     };
     const { response }: Response = await requestAPI(options);
-    checkError(response?.status);
+    const error = checkError(response?.status);
+
+    if (error) {
+      dispatch(setNotification(openErrorNotification(response?.data?.error)));
+      setLoading(false);
+      return;
+    }
+    dispatch(setNotification(openNotification('Simulado criado com sucesso!')));
     await reload();
     setLoading(false);
     onClose();
