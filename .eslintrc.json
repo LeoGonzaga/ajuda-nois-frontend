@@ -25,12 +25,14 @@
     "node": true
   },
   "rules": {
-    "comma-dangle": [
-      "error",
-      "always-multiline"
-    ],
+    "comma-dangle": ["error", "always-multiline"],
     "semi": "error",
-    "prettier/prettier": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/react-in-jsx-scope": 0,
@@ -55,10 +57,7 @@
     "no-console": [
       "warn",
       {
-        "allow": [
-          "warn",
-          "error"
-        ]
+        "allow": ["warn", "error"]
       }
     ],
     "import/no-duplicates": [
@@ -72,20 +71,10 @@
       {
         "newlinesBetween": "always",
         "groups": [
-          [
-            "/^react/"
-          ],
-          [
-            "module"
-          ],
-          [
-            "/^~//"
-          ],
-          [
-            "parent",
-            "sibling",
-            "index"
-          ]
+          ["/^react/"],
+          ["module"],
+          ["/^~//"],
+          ["parent", "sibling", "index"]
         ],
         "alphabetize": {
           "order": "asc",

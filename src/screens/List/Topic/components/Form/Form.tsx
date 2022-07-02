@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import ActionButton from '@components/Buttons/ActionButton';
 import Flex from '@components/Flex';
@@ -9,7 +10,12 @@ import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { Options, requestAPI, Response } from '@services/index';
 import { COLORS } from '@themes/colors';
-import { checkError } from '@utils/functions';
+import {
+  checkError,
+  openErrorNotification,
+  openNotification,
+} from '@utils/functions';
+import { setNotification } from 'src/config/actions/notification';
 import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
@@ -21,6 +27,7 @@ type Props = {
 };
 
 export const Form = ({ onClose, reload, subjects }: Props): JSX.Element => {
+  const dispatch = useDispatch();
   const [name, setName] = useChangeText('');
   const [subject, setSubject] = useState(subjects[0]?.value);
   const [loading, setLoading] = useState(false);
@@ -51,7 +58,16 @@ export const Form = ({ onClose, reload, subjects }: Props): JSX.Element => {
       },
     };
     const { response }: Response = await requestAPI(options);
-    checkError(response?.status);
+
+    const error = checkError(response?.status);
+
+    if (error) {
+      dispatch(setNotification(openErrorNotification(response?.data?.error)));
+      setLoading(false);
+      return;
+    }
+    dispatch(setNotification(openNotification('Tópico criado com sucesso!')));
+
     await reload();
     onClose();
     setLoading(false);
