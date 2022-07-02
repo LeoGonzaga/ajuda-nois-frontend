@@ -1,17 +1,50 @@
+import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 95vh;
-  padding: 20px 10px;
-  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 0.8fr 0.2fr;
+  height: 100vh;
 `;
 
-export const AwnserContainer = styled.div`
+export const Item = styled.button<{ active: boolean }>`
+  color: ${(props) => (props.active ? COLORS.PRIMARY : 'white')};
+  height: 40px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.PRIMARY};
+  }
+`;
+
+export const SideBarSubjects = styled.div`
+  padding: 10px;
+  background-color: ${({ theme }) => theme.NEUTRAL};
+
   display: flex;
   flex-direction: column;
-  max-width: 80%;
-  margin-top: 10px;
-  input {
-    margin-bottom: 10px;
+`;
+
+export const EditorWrapper = styled.div`
+  overflow-x: hidden;
+  padding: 0px 20px;
+  cursor: pointer;
+`;
+
+export const ContentLine = styled.div`
+  height: 30px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.PRIMARY};
   }
+`;
+
+export const Wrapper = styled.div`
+  padding: 20px;
 `;

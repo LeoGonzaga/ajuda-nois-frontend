@@ -33,7 +33,7 @@ export const handleRedirect = (route: string) => {
 };
 
 export const checkError = (value: number) => {
-  return value > STATUS_CODE;
+  return value >= STATUS_CODE;
 };
 
 const CLOSE_NOTIFICATION = 3;
