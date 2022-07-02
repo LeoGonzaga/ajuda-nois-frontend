@@ -56,17 +56,22 @@ export const useFormLogin = () => {
     };
     const { response }: Response = await requestAPI(payload);
     if (response?.status > 300) {
-      setMessage(response?.data?.message);
+      setMessage(response?.data?.error);
       setLoading(false);
       setApiError(true);
       setOpenNotification(true);
       return;
     }
-    const token = response?.data?.token;
-    localStorage.setItem('token', token);
-    const user = response?.data?.user;
-    localStorage.setItem('user', JSON.stringify(user));
-    handleRedirect(ROUTES.LOGIN);
+
+    setMessage(
+      'Enviamos um email, da uma conferida lá pra gente poder continuar, ok?'
+    );
+    setApiError(false);
+    setOpenNotification(true);
+
+    setTimeout(() => {
+      handleRedirect(ROUTES.LOGIN);
+    }, 2000);
     setLoading(false);
   };
 

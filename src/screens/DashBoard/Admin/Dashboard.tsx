@@ -24,7 +24,7 @@ export const Dashboard = (): JSX.Element => {
       <Controls>
         <Title text="Dashboard" contrast="" subText="" />
         <SecondaryButton onClick={handleRedirectToPanel}>
-          Configurações
+          Painel de controle
         </SecondaryButton>
       </Controls>
       <Column>
