@@ -1,30 +1,60 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react';
 
+import BackButton from '@components/BackButton';
 import EditorContainer from '@components/Editor';
-import TextInput from '@components/Inputs/TextInput';
+import Flex from '@components/Flex';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
-import Title from '@components/Title';
+import { ROUTES } from 'src/routes/routes';
 
-import { AwnserContainer, Container } from './styles';
+import {
+  Container,
+  EditorWrapper,
+  Item,
+  SideBarSubjects,
+  Wrapper,
+} from './styles';
+import useQuiz from './useQuiz';
 
 export const Quiz = (): JSX.Element => {
+  const { data, topics, handleRedirect } = useQuiz();
   return (
-    <Container>
-      <Title text="Iniciar" contrast="quiz" />
-      <Spacing vertical={5} />
-      <EditorContainer showControls onChange={() => {}} />
-      <Spacing vertical={15} />
-      <Text>Marque o checkbox para validar a resposta verdadeira.</Text>
-      <Spacing vertical={15} />
-      <AwnserContainer>
-        <TextInput placeholder="Digite uma reposta" />
-        <TextInput placeholder="Digite uma reposta" />
-        <TextInput placeholder="Digite uma reposta" />
-        <TextInput placeholder="Digite uma reposta" />
-        <TextInput placeholder="Digite uma reposta" />
-      </AwnserContainer>
-    </Container>
+    <Wrapper>
+      <Flex align="center">
+        <BackButton route={ROUTES.SUBJECT} />
+        {data?.title}
+      </Flex>
+      <Container>
+        <EditorWrapper>
+          {data?._id && (
+            <EditorContainer
+              showControls={false}
+              data={data.content}
+              onChange={() => {}}
+              height="100%"
+              width="100%"
+              hide
+            />
+          )}
+        </EditorWrapper>
+        <SideBarSubjects>
+          <Text bold size={20}>
+            {data?.topic_info?.name}
+          </Text>
+          <Spacing vertical={5} />
+          {topics &&
+            topics?.map((element: any, index) => (
+              <Item
+                active={element.title === data?.title}
+                onClick={() => handleRedirect(element?._id)}
+                key={index}
+              >
+                <p>{element.title}</p>
+              </Item>
+            ))}
+        </SideBarSubjects>
+      </Container>
+    </Wrapper>
   );
 };

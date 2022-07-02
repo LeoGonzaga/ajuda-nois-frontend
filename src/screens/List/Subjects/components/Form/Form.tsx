@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import ActionButton from '@components/Buttons/ActionButton';
 import Flex from '@components/Flex';
@@ -7,8 +8,14 @@ import TextInput from '@components/Inputs/TextInput';
 import Select from '@components/Select';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
-import { Options, requestAPI } from '@services/index';
+import { Options, requestAPI, Response } from '@services/index';
 import { COLORS } from '@themes/colors';
+import {
+  checkError,
+  openErrorNotification,
+  openNotification,
+} from '@utils/functions';
+import { setNotification } from 'src/config/actions/notification';
 import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
@@ -33,6 +40,7 @@ const data = [
 ];
 
 export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
+  const dispatch = useDispatch();
   const [name, setName] = useChangeText('');
   const [area, setArea] = useState<string>(data[0]?.value);
   const [teacher, setTeacher] = useState<string>(teachers[0]?.value);
@@ -67,8 +75,18 @@ export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
         teacher_id: teacher,
       },
     };
-    await requestAPI(options);
-    reload();
+    const { response }: Response = await requestAPI(options);
+
+    const error = checkError(response?.status);
+
+    if (error) {
+      dispatch(setNotification(openErrorNotification(response?.data?.error)));
+      setLoading(false);
+      return;
+    }
+    dispatch(setNotification(openNotification('Matéria criada com sucesso!')));
+
+    await reload();
     setLoading(false);
     onClose();
   };

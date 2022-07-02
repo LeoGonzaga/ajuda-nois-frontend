@@ -1,17 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import ActionButton from '@components/Buttons/ActionButton';
 import Flex from '@components/Flex';
 import TextInput from '@components/Inputs/TextInput';
 import Spacing from '@components/Spacing';
-import { Options, requestAPI } from '@services/index';
+import { Options, requestAPI, Response } from '@services/index';
 import { COLORS } from '@themes/colors';
+import {
+  checkError,
+  openErrorNotification,
+  openNotification,
+} from '@utils/functions';
+import { setNotification } from 'src/config/actions/notification';
 import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
 export const Form = ({ onClose, reload }: any): JSX.Element => {
+  const dispatch = useDispatch();
   const [topic, setTopic] = useChangeText('');
   const [information, setInformation] = useChangeText('');
   const [loading, setLoading] = useState(false);
@@ -49,10 +57,19 @@ export const Form = ({ onClose, reload }: any): JSX.Element => {
         content: information,
       },
     };
-    await requestAPI(options);
-    reload();
-    onClose();
+    const { response }: Response = await requestAPI(options);
+
+    const error = checkError(response?.status);
+
+    if (error) {
+      dispatch(setNotification(openErrorNotification(response?.data?.error)));
+      setLoading(false);
+      return;
+    }
+    dispatch(setNotification(openNotification('Dica criada com sucesso!')));
+    await reload();
     setLoading(false);
+    onClose();
   };
 
   const handleResetErrorInput = () => {

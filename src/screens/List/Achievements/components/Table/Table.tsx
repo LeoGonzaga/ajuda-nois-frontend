@@ -1,9 +1,16 @@
 import React from 'react';
 import { BiTrash } from 'react-icons/bi';
+import { useDispatch } from 'react-redux';
 
 import EmptyState from '@components/EmptyState';
 import LoadingTable from '@components/LoadingTable';
 import { Options, Response, requestAPI } from '@services/index';
+import {
+  checkError,
+  openErrorNotification,
+  openNotification,
+} from '@utils/functions';
+import { setNotification } from 'src/config/actions/notification';
 import { v4 as uuidv4 } from 'uuid';
 
 import {
@@ -16,6 +23,8 @@ import {
 } from './styles';
 
 export const Table = ({ data, reload, loading }: any): JSX.Element => {
+  const dispatch = useDispatch();
+
   const handleRemove = async (id: string) => {
     const token = localStorage.getItem('token');
     const payload: Options = {
@@ -27,9 +36,15 @@ export const Table = ({ data, reload, loading }: any): JSX.Element => {
       headers: { Authorization: `Bearer ${token}` },
     };
     const { response }: Response = await requestAPI(payload);
-    if (response?.status > 300) {
+    const error = checkError(response?.status);
+
+    if (error) {
+      dispatch(setNotification(openErrorNotification(response?.data?.error)));
       return;
     }
+    dispatch(
+      setNotification(openNotification('Conquista removida com sucesso!'))
+    );
     reload();
   };
 
@@ -62,7 +77,7 @@ export const Table = ({ data, reload, loading }: any): JSX.Element => {
         {loading && <LoadingTable />}
 
         {data?.length === 0 && !loading && (
-          <EmptyState text="Não há provas cadastradas até o momento" />
+          <EmptyState text="Não há conquistas cadastradas até o momento" />
         )}
       </ScrollContainer>
     </Container>
