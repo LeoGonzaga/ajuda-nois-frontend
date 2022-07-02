@@ -93,7 +93,6 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
     if (error) {
       dispatch(setNotification(openErrorNotification(response?.data?.error)));
       setLoading(false);
-      onClose();
       return;
     }
     dispatch(setNotification(openNotification('Usuário criado com sucesso!')));

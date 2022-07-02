@@ -1,16 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import ActionButton from '@components/Buttons/ActionButton';
 import Flex from '@components/Flex';
-import TextInput from '@components/Inputs/TextInput';
 import Select from '@components/Select';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { Options, requestAPI, Response } from '@services/index';
 import { COLORS } from '@themes/colors';
-import { checkError, toBase64 } from '@utils/functions';
-import { useChangeText } from 'src/hooks/useChangeText';
+import {
+  checkError,
+  openErrorNotification,
+  openNotification,
+  toBase64,
+} from '@utils/functions';
+import { setNotification } from 'src/config/actions/notification';
 
 import { Styles } from './styles';
 
@@ -54,6 +59,7 @@ type Props = {
 };
 
 export const Form = ({ onClose, reload }: Props): JSX.Element => {
+  const dispatch = useDispatch();
   const [year, setYear] = useState<any>(new Date().getFullYear());
   const [examBase64, setExamBase64] = useState<any>('');
   const [templateBase64, setTemplateBase64] = useState<any>('');
@@ -96,11 +102,6 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
     setTemplateBase64(splitBase[1]);
   };
 
-  const [errors, setErrors] = useState({
-    year: false,
-    examBase64: false,
-  });
-
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
@@ -120,7 +121,14 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
       },
     };
     const { response }: Response = await requestAPI(options);
-    checkError(response?.status);
+    const error = checkError(response?.status);
+
+    if (error) {
+      dispatch(setNotification(openErrorNotification(response?.data?.error)));
+      setLoading(false);
+      return;
+    }
+    dispatch(setNotification(openNotification('Prova criada com sucesso!')));
     await reload();
     setLoading(false);
     onClose();

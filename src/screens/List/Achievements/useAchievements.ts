@@ -7,6 +7,7 @@ export const useAchievements = () => {
   const [open, setOpen] = useToggle();
   const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState(false);
+  const [editabled, setEditabled] = useState({});
 
   const getAllAchievements = async () => {
     setLoading(true);
@@ -25,6 +26,10 @@ export const useAchievements = () => {
   useEffect(() => {
     getAllAchievements();
   }, []);
+
+  useEffect(() => {
+    if (!open) setEditabled({});
+  }, [open]);
 
   return { open, setOpen, data, getAllAchievements, loading };
 };
