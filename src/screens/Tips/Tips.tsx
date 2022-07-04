@@ -14,17 +14,13 @@ export const Tips = (): JSX.Element => {
   const { data } = useTips();
   return (
     <Container>
-      <Title
-        text="Buscar"
-        contrast="dicas"
-        subText="Selecione a matéria abaixo para filtrar"
-      />
+      <Title text="Buscar" contrast="dicas" subText="" />
       <Spacing vertical={10} />
       <WrapperCards>
-        {data?.map(({ name, information }) => (
+        {data?.map(({ name, content }) => (
           <Card
             name={name}
-            information={information}
+            information={content}
             key={name}
             color={getRandomColors(0, 3)}
           />
