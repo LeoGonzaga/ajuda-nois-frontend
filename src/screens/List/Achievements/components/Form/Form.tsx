@@ -28,7 +28,7 @@ const types = [
   },
   {
     value: 'level',
-    name: 'Level',
+    name: 'Nível',
   },
   {
     value: 'quiz_completed',

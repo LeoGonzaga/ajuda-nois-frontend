@@ -27,7 +27,6 @@ export const Tr = styled.div`
   margin-bottom: 10px;
   padding: 0px 20px;
   transition: 100ms ease-in;
-  cursor: pointer;
   :hover {
     background-color: ${({ theme }) => theme.SECONDARY};
   }
@@ -63,5 +62,6 @@ export const ButtonsContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin-right: 20px;
+  background-color: red;
   cursor: pointer;
 `;

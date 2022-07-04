@@ -78,7 +78,9 @@ export const Table = ({ data, reload, loading }: Props): JSX.Element => {
               <ButtonsContainer
                 onClick={() => handleRemoveSubject(element._id)}
               >
-                <BiTrash size={25} />
+                <button>
+                  <BiTrash size={25} />
+                </button>
               </ButtonsContainer>
             </Column>
           </Tr>
