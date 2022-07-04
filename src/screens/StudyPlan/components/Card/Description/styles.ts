@@ -2,9 +2,11 @@ import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  max-width: 500px;
+  width: 100%;
+  /* max-width: 500px; */
   max-height: 120px;
 
+  padding: 5px;
   margin-bottom: 20px;
 
   font-size: 13px;

@@ -61,10 +61,10 @@ export const Container = styled.div`
     text-align: center;
 
     padding-bottom: 6px;
-    min-width: 40px;
+    min-width: 53px;
 
     color: #8b9898;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .DayPicker-Body {
@@ -83,7 +83,7 @@ export const Container = styled.div`
     padding: 5px;
 
     border-radius: 100px;
-
+    font-size: 18px;
     cursor: pointer;
 
     transition: background-color 0.3s ease;

@@ -7,6 +7,7 @@ type Props = {
 export const Container = styled.div<Props>`
   opacity: ${(props) => (props.achieved ? 1 : 0.2)};
   margin-bottom: 30px;
+  margin-left: 30px;
   background-size: cover;
 
   div {
@@ -34,6 +35,11 @@ export const ImageContainer = styled.div<Props>`
   justify-content: center;
   align-items: center;
 
+  min-width: 120px;
+  min-height: 120px;
+
+  padding: 8px;
+
   margin-right: 10px;
 
   padding: 6px;
@@ -51,5 +57,9 @@ export const ImageContainer = styled.div<Props>`
     radial-gradient(circle at top left, #ffd054, #37332b);
   background-origin: border-box;
   background-clip: content-box, border-box;
+
+  img {
+    max-width: 120px;
+  }
   background-color: red;
 `;

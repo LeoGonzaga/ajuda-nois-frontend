@@ -15,11 +15,11 @@ export const FacebookShare = ({ url }: Props): JSX.Element => {
     <span>
       <FacebookShareButton url={url}>
         <ShareIcons>
-          <FiFacebook size={20} title="Share with Facebook" />
+          <FiFacebook size={35} title="Share with Facebook" />
         </ShareIcons>
       </FacebookShareButton>
       <Spacing vertical={3} />
-      <Text size={12}>Facebook</Text>
+      <Text size={14}>Facebook</Text>
     </span>
   );
 };

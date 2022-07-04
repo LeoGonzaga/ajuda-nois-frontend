@@ -11,7 +11,7 @@ export const Timeline = (): JSX.Element => {
   return (
     <Container>
       <div>
-        <Text bold color={COLORS.WHITE}>
+        <Text bold color={COLORS.BLACK} size={18}>
           Tempo de estudo
         </Text>
         <Text size={14}>Pomorodo total mensal</Text>

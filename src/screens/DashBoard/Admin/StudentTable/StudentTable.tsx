@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Spacing from '@components/Spacing';
 
@@ -10,80 +10,82 @@ type Props = {
 };
 
 export const StudentTable = ({ size }: Props): JSX.Element => {
-  const data = [
+  const [data, setData] = useState([
     {
-      name: 'Alan Bedoura de Pinto',
-      email: 'l337g4m3r@hotmail.com',
+      name: 'Fulano de Souza',
+      email: 'fulanosouza@hotmail.com',
       humanScore: '27/45',
       natureScore: '32/45',
       languageScore: '35/45',
       mathScore: '33/45',
     },
     {
-      name: 'Botelho Kunavara',
-      email: 'ex.ample@yahoo.com.br',
+      name: 'Bryan Fortunato de Souza',
+      email: 'azuosbryan@yahoo.com.br',
       humanScore: '40/45',
       natureScore: '40/45',
       languageScore: '40/45',
       mathScore: '40/45',
     },
     {
-      name: 'Yasmin Asbolla',
-      email: 'ligma@gmail.com',
+      name: 'Breno Fortunato de Souza',
+      email: 'brenofortunato@gmail.com',
       humanScore: '15/45',
       natureScore: '25/45',
       languageScore: '35/45',
       mathScore: '45/45',
     },
     {
-      name: 'Alan Bedoura de Pinto',
-      email: 'l337g4m3r@hotmail.com',
+      name: 'Renan Rodriguez Bizarri',
+      email: 'rrb@hotmail.com',
       humanScore: '27/45',
       natureScore: '32/45',
       languageScore: '35/45',
       mathScore: '33/45',
     },
     {
-      name: 'Botelho Kunavara',
-      email: 'ex.ample@yahoo.com.br',
+      name: 'Renan Rodrigues Bizarri',
+      email: 'renanbiz@yahoo.com.br',
       humanScore: '40/45',
       natureScore: '40/45',
       languageScore: '40/45',
       mathScore: '40/45',
     },
     {
-      name: 'Yasmin Asbolla',
-      email: 'ligma@gmail.com',
+      name: 'Beltrano da Silva',
+      email: 'bds@gmail.com',
       humanScore: '15/45',
       natureScore: '25/45',
       languageScore: '35/45',
       mathScore: '45/45',
     },
     {
-      name: 'Alan Bedoura de Pinto',
-      email: 'l337g4m3r@hotmail.com',
+      name: 'Cicrano Pinto',
+      email: 'cicpinto@hotmail.com',
       humanScore: '27/45',
       natureScore: '32/45',
       languageScore: '35/45',
       mathScore: '33/45',
     },
     {
-      name: 'Botelho Kunavara',
-      email: 'ex.ample@yahoo.com.br',
+      name: 'Leonardo Gonzaga Silva',
+      email: 'lgs@yahoo.com.br',
       humanScore: '40/45',
       natureScore: '40/45',
       languageScore: '40/45',
       mathScore: '40/45',
     },
     {
-      name: 'Yasmin Asbolla',
-      email: 'ligma@gmail.com',
+      name: 'Desenvolvedor Pleno Senior',
+      email: 'develper@gmail.com',
       humanScore: '15/45',
       natureScore: '25/45',
       languageScore: '35/45',
       mathScore: '45/45',
     },
-  ];
+  ]);
+
+  const dataSorted = data.sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <Container>
@@ -125,7 +127,7 @@ export const StudentTable = ({ size }: Props): JSX.Element => {
             </thead>
 
             <tbody>
-              {data?.map(
+              {dataSorted?.map(
                 (
                   {
                     name,

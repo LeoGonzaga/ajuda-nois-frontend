@@ -35,11 +35,7 @@ export const BigCard = ({
           </Wrapper>
         </Flex>
       </Content>
-      <button>
-        <FaForward />
-        {indicator === 'Simulados' ? 'Gráficos dos ' : 'Lista de '}
-        {indicator}
-      </button>
+      <div></div>
     </Container>
   );
 };

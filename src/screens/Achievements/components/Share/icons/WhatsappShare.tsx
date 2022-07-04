@@ -15,11 +15,11 @@ export const WhatsappShare = ({ url }: Props): JSX.Element => {
     <span>
       <WhatsappShareButton url={url}>
         <ShareIcons>
-          <FaWhatsapp size={20} title="Share with Telegram" />
+          <FaWhatsapp size={35} title="Share with Telegram" />
         </ShareIcons>
       </WhatsappShareButton>
       <Spacing vertical={3} />
-      <Text size={12}>Whatsapp</Text>
+      <Text size={14}>Whatsapp</Text>
     </span>
   );
 };

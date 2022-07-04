@@ -15,11 +15,11 @@ export const LinkedinShare = ({ url }: Props): JSX.Element => {
     <span>
       <LinkedinShareButton url={url}>
         <ShareIcons>
-          <FiLinkedin size={20} title="Share with Telegram" />
+          <FiLinkedin size={35} title="Share with Telegram" />
         </ShareIcons>
       </LinkedinShareButton>
       <Spacing vertical={3} />
-      <Text size={12}>LinkedIn</Text>
+      <Text size={14}>LinkedIn</Text>
     </span>
   );
 };

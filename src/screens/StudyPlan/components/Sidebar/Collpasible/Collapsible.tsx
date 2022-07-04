@@ -26,7 +26,7 @@ export function Collapsible({
   return (
     <Container expanded={expanded}>
       <span onClick={() => handleExpand(id)}>
-        <Text size={16}>{name}</Text>
+        <Text size={20}>{name}</Text>
       </span>
       <Spacing vertical={2} />
       <ExpandableContent expanded={expanded}>

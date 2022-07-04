@@ -15,11 +15,11 @@ export const EmailShare = ({ url }: Props): JSX.Element => {
     <span>
       <EmailShareButton url={url}>
         <ShareIcons>
-          <MdAlternateEmail size={20} title="Share with Telegram" />
+          <MdAlternateEmail size={35} title="Share with Telegram" />
         </ShareIcons>
       </EmailShareButton>
       <Spacing vertical={3} />
-      <Text size={12}>Email</Text>
+      <Text size={14}>Email</Text>
     </span>
   );
 };

@@ -6,6 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   margin-top: 10px;
   margin-bottom: 20px;
+  margin-right: 30px;
 
   width: 100%;
   height: 100%;
@@ -45,7 +46,7 @@ export const Container = styled.div`
     cursor: pointer;
 
     margin-top: 10px;
-    padding: 10px 15px;
+    padding: 15px 15px;
 
     border: none;
     border-radius: 10px;
@@ -70,8 +71,8 @@ export const ShareIcons = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   border-radius: 100%;
   background-color: ${COLORS.NEUTRAL};
 

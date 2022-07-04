@@ -6,6 +6,11 @@ type Props = {
   type?: string;
 };
 
+export const Content = styled.div`
+  width: 100%;
+  padding: 15px 20px 5px 20px;
+`;
+
 export const Container = styled.div<Props>`
   display: flex;
   flex-direction: column;
@@ -17,13 +22,13 @@ export const Container = styled.div<Props>`
   border-radius: 5px;
   background-color: ${COLORS.NEUTRAL};
 
-  button {
+  ${Content} + div {
     display: flex;
     justify-content: center;
     align-items: center;
 
     width: 100%;
-    padding: 3px 0;
+    padding: 11px 0;
 
     font-weight: bold;
     color: ${COLORS.WHITE};
@@ -34,23 +39,10 @@ export const Container = styled.div<Props>`
 
     background-color: ${(props) => props.color};
 
-    cursor: pointer;
-
-    transition: all 0.3s ease;
-
     svg {
       margin-right: 5px;
     }
-
-    &:hover {
-      filter: brightness(0.8);
-    }
   }
-`;
-
-export const Content = styled.div`
-  width: 100%;
-  padding: 15px 20px 5px 20px;
 `;
 
 export const Focus = styled.p<Props>`

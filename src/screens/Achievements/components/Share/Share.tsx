@@ -34,7 +34,7 @@ export const Share = (): JSX.Element => {
 
   return (
     <Container>
-      <Text size={14} bold color={COLORS.TEXT}>
+      <Text size={16} bold color={COLORS.TEXT}>
         Compartilhar com
       </Text>
 
@@ -51,14 +51,14 @@ export const Share = (): JSX.Element => {
       </span>
 
       <Flex direction="column">
-        <Text size={12} color={COLORS.TEXT} center>
+        <Text size={13} color={COLORS.TEXT} center>
           Ou compartilhe com um link
         </Text>
         <button onClick={() => copyToClipBoard({ url })}>
-          <Text size={14} color={COLORS.TEXT}>
+          <Text size={16} color={COLORS.TEXT}>
             {url}
           </Text>
-          <IoMdCopy size={22} />
+          <IoMdCopy size={28} />
         </button>
       </Flex>
     </Container>

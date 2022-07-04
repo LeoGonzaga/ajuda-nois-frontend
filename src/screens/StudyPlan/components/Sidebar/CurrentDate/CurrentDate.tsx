@@ -16,9 +16,9 @@ export const CurrentDate = (): JSX.Element => {
 
   return (
     <Container>
-      <BsCalendar4 size={20} color={COLORS.SECONDARY} />
+      <BsCalendar4 size={26} color={COLORS.SECONDARY} />
       <Spacing horizontal={10} />
-      <Text size={18} color={COLORS.TEXT} bold>
+      <Text size={24} color={COLORS.TEXT} bold>
         {currentDate}
       </Text>
     </Container>

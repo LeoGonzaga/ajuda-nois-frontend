@@ -13,10 +13,14 @@ export const Container = styled.div`
 export const VerticalContainer = styled.div`
   display: flex;
   flex-direction: column;
-
   width: 100%;
-
   padding: 20px;
+`;
+
+export const HorizontalContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 `;
 
 export const TitleWrapper = styled.div`
@@ -65,7 +69,7 @@ export const CardsWrapper = styled.div`
   margin-top: 10px;
 
   width: 100%;
-  max-height: 500px;
+  max-height: 85vh;
 
   overflow-y: scroll;
   scroll-behavior: smooth;

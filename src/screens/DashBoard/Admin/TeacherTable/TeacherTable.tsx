@@ -12,20 +12,20 @@ type Props = {
 export const TeacherTable = ({ size }: Props): JSX.Element => {
   const data = [
     {
-      name: 'Caio Rolando da Rocha',
-      email: 'crrocha@hotmail.com',
+      name: 'Professor de Humanas',
+      email: 'prof_human@hotmail.com',
       fields: 'Humanas',
       subjects: 'Geografia, História',
     },
     {
-      name: 'Kagaro Kamiyamoto',
-      email: 'kakami@yahoo.com.jp',
+      name: 'English Teacher',
+      email: 'english@gmail.com',
       fields: 'Linguagens',
       subjects: 'Inglês',
     },
     {
-      name: 'Jana Ina',
-      email: 'janaina@gmail.com',
+      name: 'Professor de Cálculos',
+      email: 'calc_prof@gmail.com.br',
       fields: 'Matemática, Natureza',
       subjects: 'Matemática, Física',
     },

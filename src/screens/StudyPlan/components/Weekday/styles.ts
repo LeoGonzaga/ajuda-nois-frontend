@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
 
-  width: 100%;
+  max-width: 100px;
+  height: 100%;
 
   margin-top: 5px;
 `;

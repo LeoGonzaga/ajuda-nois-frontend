@@ -3,21 +3,23 @@ import React, { PureComponent } from 'react';
 import { COLORS } from '@themes/colors';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 
-const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
-const COLORSR = [COLORS.GREEN, COLORS.SUBJECT_BLUE, COLORS.RED, COLORS.YELLOW];
+type DataProps = {
+  name: string;
+  value: number;
+};
 
-export default class PieGraph extends PureComponent {
-  static demoUrl =
-    'https://codesandbox.io/s/pie-chart-with-padding-angle-7ux0o';
+type Props = {
+  data: Array<DataProps>;
+};
 
+const barColors = ['#6F52ED', '#FBBC05', '#CA1E3C', '#00BF20'];
+
+export default class PieGraph extends PureComponent<Props> {
   render() {
+    const { data } = this.props;
+
     return (
-      <PieChart width={300} height={200}>
+      <PieChart width={350} height={200}>
         <Pie
           data={data}
           cx={160}
@@ -29,10 +31,7 @@ export default class PieGraph extends PureComponent {
           dataKey="value"
         >
           {data.map((entry, index) => (
-            <Cell
-              key={`cell-${index}`}
-              fill={COLORSR[index % COLORSR.length]}
-            />
+            <Cell key={`cell-${index}`} fill={barColors[index]} />
           ))}
         </Pie>
       </PieChart>

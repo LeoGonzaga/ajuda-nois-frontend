@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Spacing from '@components/Spacing';
 
@@ -24,7 +24,9 @@ export const StudentTable = ({
   lowRate,
   mediumRate,
 }: Props): JSX.Element => {
-  const simsNames = [
+  const [redNames, setRedNames] = useState(0);
+  const [yellowNames, setYellowNames] = useState(0);
+  const [simsNames, setSimsNames] = useState([
     'Janeiro',
     'Fevereiro',
     'Março',
@@ -32,55 +34,61 @@ export const StudentTable = ({
     'Maio',
     'Junho',
     'Julho',
-  ];
-  const simsQuestions = [45, 45, 45, 30, 30, 40, 45];
-  const data: Array<SimsProps> = [
+  ]);
+  const [simsQuestions, setSimsQuestions] = useState([
+    45, 45, 45, 30, 30, 40, 45,
+  ]);
+  const [data, setDate] = useState<SimsProps[]>([
     {
-      name: 'Alan Bedoura de Pinto',
+      name: 'Fulano de Souza',
       quizAverage: 69,
       sims: [30, 45, 12, 24, 28, '-', 7],
     },
     {
-      name: 'Botelho Kunavara',
+      name: 'Bryan Fortunato de Souza',
       quizAverage: 88,
-      sims: ['-', 5, 2, 14, 18, '-', 11],
+      sims: [42, 5, 12, 14, 28, 45, 41],
     },
     {
-      name: 'Yasmin Asbolla',
+      name: 'Breno Fortunato de Souza',
       quizAverage: 28,
-      sims: [30, 45, 12, 24, 28, '-', 7],
+      sims: [10, 45, 19, 19, 28, '-', 7],
     },
     {
-      name: 'Alan Bedoura de Pinto',
+      name: 'Renan Rodriguez Bizarri',
       quizAverage: 69,
       sims: [30, 45, 12, 24, 28, '-', 25],
     },
     {
-      name: 'Botelho Kunavara',
+      name: 'Renan Rodrigues Bizarri',
       quizAverage: 88,
-      sims: [30, 45, 12, 24, 28, '-', 7],
+      sims: [42, 45, 12, 24, 2, '-', 7],
     },
     {
-      name: 'Yasmin Asbolla',
+      name: 'Beltrano da Silva',
       quizAverage: 28,
-      sims: [30, 45, 12, 24, 28, '-', 7],
+      sims: [3, 40, 17, 24, 29, '-', 7],
     },
     {
-      name: 'Alan Bedoura de Pinto',
+      name: 'Cicrano Pinto',
       quizAverage: 69,
-      sims: [30, 45, 12, 24, 28, '-', 7],
+      sims: [30, 45, 35, 24, 28, '-', 7],
     },
     {
-      name: 'Botelho Kunavara',
+      name: 'Leonardo Gonzaga Silva',
       quizAverage: 88,
-      sims: [30, 45, 12, 24, 28, '-', 7],
+      sims: [30, 45, 15, 24, 28, 19, 27],
     },
     {
-      name: 'Yasmin Asbolla',
+      name: 'Desenvolvedor Pleno Senior',
       quizAverage: 28,
       sims: [30, 45, 12, 24, 28, '-', 42],
     },
-  ];
+  ]);
+
+  const dataSorted: SimsProps[] = data.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
 
   return (
     <Container>
@@ -115,7 +123,7 @@ export const StudentTable = ({
             </thead>
 
             <tbody>
-              {data?.map(({ name, quizAverage, sims }, index) => {
+              {dataSorted?.map(({ name, quizAverage, sims }, index) => {
                 return (
                   <tr key={index}>
                     <ColorTD

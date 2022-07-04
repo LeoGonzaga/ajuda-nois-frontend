@@ -39,7 +39,6 @@ export const AchievementsContainer = styled.div`
   height: 90vh;
   flex: 1;
   padding: 10px;
-
   overflow-y: auto;
   scroll-behavior: smooth;
 `;
