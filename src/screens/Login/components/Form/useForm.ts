@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { requestAPI, Options } from '@services/index';
 import { handleRedirect } from '@utils/functions';
-import { setUserInfo } from 'src/config/actions/user';
 import { ROUTES } from 'src/routes/routes';
 import * as yup from 'yup';
 
@@ -26,7 +24,6 @@ const schema = yup
   .required();
 
 export const useFormLogin = () => {
-  const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
   const [apiError, setApiError] = useState<boolean>(false);
   const [openNotification, setOpenNotification] = useState<boolean>(false);
