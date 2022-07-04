@@ -70,6 +70,7 @@ export const useFormLogin = () => {
     localStorage.setItem('token', token);
     const user = response?.data?.user;
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('role', user.usertype);
   };
 
   return {
