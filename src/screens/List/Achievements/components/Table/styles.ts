@@ -62,6 +62,10 @@ export const ButtonsContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin-right: 20px;
-  background-color: red;
-  cursor: pointer;
+  button {
+    cursor: pointer;
+    width: 50px;
+    background-color: transparent;
+    border: none;
+  }
 `;

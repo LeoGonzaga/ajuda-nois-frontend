@@ -75,10 +75,8 @@ export const Table = ({ data, reload, loading }: Props): JSX.Element => {
             <Column>{USERTYPE[element.usertype]}</Column>
             <Column>{element.email}</Column>
             <Column>
-              <ButtonsContainer
-                onClick={() => handleRemoveSubject(element._id)}
-              >
-                <button>
+              <ButtonsContainer>
+                <button onClick={() => handleRemoveSubject(element._id)}>
                   <BiTrash size={25} />
                 </button>
               </ButtonsContainer>

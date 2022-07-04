@@ -93,10 +93,10 @@ export const Table = ({ data, reload, loading }: Props): JSX.Element => {
             <Column>{DAY[element.day] || 'Não informado'}</Column>
             <Column>
               {!loading && (
-                <ButtonsContainer
-                  onClick={() => handleRemoveSubject(element._id)}
-                >
-                  <BiTrash size={25} />
+                <ButtonsContainer>
+                  <button onClick={() => handleRemoveSubject(element._id)}>
+                    <BiTrash size={25} />
+                  </button>
                 </ButtonsContainer>
               )}
             </Column>
