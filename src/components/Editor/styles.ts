@@ -44,6 +44,10 @@ export const EditorArea = styled.div<{
     min-height: 50vh;
     padding: 0px 10px;
   }
+
+  a {
+    color: ${({ theme }) => theme.PRIMARY};
+  }
 `;
 
 export const UploadImageContainer = styled.div`

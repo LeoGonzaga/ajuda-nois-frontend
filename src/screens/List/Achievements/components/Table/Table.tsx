@@ -67,8 +67,10 @@ export const Table = ({ data, reload, loading }: any): JSX.Element => {
             <Column>{element.description}</Column>
             <Column>{element.experience} pontos</Column>
             <Column>
-              <ButtonsContainer onClick={() => handleRemove(element._id)}>
-                <BiTrash size={25} />
+              <ButtonsContainer>
+                <button onClick={() => handleRemove(element._id)}>
+                  <BiTrash size={25} />
+                </button>
               </ButtonsContainer>
             </Column>
           </Tr>

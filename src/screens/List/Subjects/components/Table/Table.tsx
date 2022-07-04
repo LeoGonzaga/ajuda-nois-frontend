@@ -70,10 +70,10 @@ export const Table = ({ data, reload, loading }: any): JSX.Element => {
             <Column>{element.user_info?.username}</Column>
             <Column>
               {!loading && (
-                <ButtonsContainer
-                  onClick={() => handleRemoveSubject(element._id)}
-                >
-                  <BiTrash size={25} />
+                <ButtonsContainer>
+                  <button onClick={() => handleRemoveSubject(element._id)}>
+                    <BiTrash size={25} />
+                  </button>
                 </ButtonsContainer>
               )}
             </Column>

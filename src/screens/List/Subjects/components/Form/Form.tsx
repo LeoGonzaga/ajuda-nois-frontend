@@ -35,7 +35,7 @@ const data = [
   },
   {
     value: 'natural_sciences',
-    name: 'Ciências da Natureza',
+    name: 'Ciências da natureza e suas tecnologias',
   },
 ];
 

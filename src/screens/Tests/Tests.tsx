@@ -24,10 +24,10 @@ export const Tests = (): JSX.Element => {
       {data?.map((item: any, index) => {
         return (
           <>
+            <Text size={20} bold>
+              {item.year}
+            </Text>
             <WrapperCards>
-              <Text size={20} bold>
-                {item.year}
-              </Text>
               {item?.colors?.map((enem: any) => {
                 if (enem?.days.first) {
                   return (

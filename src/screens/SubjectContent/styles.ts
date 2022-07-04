@@ -29,7 +29,7 @@ export const SideBarSubjects = styled.div`
 
 export const EditorWrapper = styled.div`
   overflow-x: hidden;
-  padding: 0px 20px;
+  padding: 20px;
   cursor: pointer;
 `;
 
