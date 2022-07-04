@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
 import { Options, requestAPI, Response } from '@services/index';
-import { checkError } from '@utils/functions';
 import useToggle from 'src/hooks/useToggle';
 
 export const useAchievements = () => {
   const [open, setOpen] = useToggle();
   const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState(false);
+  const [editabled, setEditabled] = useState({});
 
   const getAllAchievements = async () => {
     setLoading(true);
@@ -18,10 +18,6 @@ export const useAchievements = () => {
       headers: { Authorization: `Bearer ${token}` },
     };
     const { response }: Response = await requestAPI(payload);
-    const error = checkError(response.status);
-    if (error) {
-      return;
-    }
 
     setData(response?.data?.achievement);
     setLoading(false);
@@ -30,6 +26,10 @@ export const useAchievements = () => {
   useEffect(() => {
     getAllAchievements();
   }, []);
+
+  useEffect(() => {
+    if (!open) setEditabled({});
+  }, [open]);
 
   return { open, setOpen, data, getAllAchievements, loading };
 };

@@ -67,6 +67,12 @@ export const Panel = (): JSX.Element => {
       image:
         'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Quiz.png',
     },
+    {
+      name: 'Simulados',
+      path: ROUTES.LIST_UPLOAD,
+      image:
+        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Check.png',
+    },
   ];
 
   return (

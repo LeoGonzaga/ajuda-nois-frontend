@@ -69,7 +69,7 @@ export const Dashboard = (): JSX.Element => {
             <ImParagraphLeft /> Medidores
           </ConfigButton>
           <SecondaryButton onClick={handleRedirectToPanel}>
-            Configurações
+            Painel de controle
           </SecondaryButton>
         </span>
       </Controls>

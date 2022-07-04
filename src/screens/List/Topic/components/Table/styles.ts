@@ -27,6 +27,7 @@ export const Tr = styled.div`
   margin-bottom: 10px;
   padding: 0px 20px;
   transition: 100ms ease-in;
+  cursor: pointer;
   :hover {
     background-color: ${({ theme }) => theme.SECONDARY};
   }

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, ChangeEvent } from 'react';
+import { useDispatch } from 'react-redux';
 
 import ActionButton from '@components/Buttons/ActionButton';
 import EditorContainer from '@components/Editor';
@@ -9,13 +10,20 @@ import TextInput from '@components/Inputs/TextInput';
 import Select from '@components/Select';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
-import { Options, requestAPI } from '@services/index';
+import { Options, requestAPI, Response } from '@services/index';
 import { COLORS } from '@themes/colors';
+import {
+  checkError,
+  openErrorNotification,
+  openNotification,
+} from '@utils/functions';
+import { setNotification } from 'src/config/actions/notification';
 import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
 export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
+  const dispatch = useDispatch();
   const [content, setContent] = useState<string>('');
   const [name, setName] = useChangeText('');
   const [topic, setTopic] = useState(topics[0]?.value);
@@ -27,7 +35,7 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
 
   const [awnsers, setAwnsers] = useState([
     {
-      check: false,
+      check: true,
       value: '',
     },
     {
@@ -112,7 +120,16 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
         name,
       },
     };
-    await requestAPI(options);
+    const { response }: Response = await requestAPI(options);
+
+    const error = checkError(response?.status);
+
+    if (error) {
+      dispatch(setNotification(openErrorNotification(response?.data?.error)));
+      setLoading(false);
+      return;
+    }
+    dispatch(setNotification(openNotification('Questão criada com sucesso!')));
     await reload();
     onClose();
     setLoading(false);

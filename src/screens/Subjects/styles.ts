@@ -19,3 +19,11 @@ export const Table = styled.div`
   overflow-y: auto;
   height: 80vh;
 `;
+
+export const SubjectItemButton = styled.button<{ active: boolean }>`
+  background-color: ${(props) =>
+    props.active ? props.theme.SECONDARY : 'gray'};
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+`;

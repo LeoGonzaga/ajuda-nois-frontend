@@ -36,6 +36,9 @@ type Props = {
   showControls: boolean;
   data?: string;
   onChange: (e: any) => void;
+  height?: string;
+  width?: string;
+  hide?: boolean;
 };
 
 const MenuBar = ({ editor }: any) => {
@@ -197,7 +200,14 @@ const MenuBar = ({ editor }: any) => {
   );
 };
 
-export const EditorContainer = ({ showControls, data, onChange }: Props) => {
+export const EditorContainer = ({
+  showControls,
+  data,
+  onChange,
+  height,
+  width,
+  hide,
+}: Props) => {
   const editor = useEditor({
     extensions: [StarterKit, Image, Link, Paragraph, Text],
     content: data
@@ -217,14 +227,16 @@ export const EditorContainer = ({ showControls, data, onChange }: Props) => {
   }, [editor, showControls]);
 
   return (
-    <Container>
+    <Container width={width}>
       {showControls && <MenuBar editor={editor} />}
-      <EditorArea>
+      <EditorArea height={height}>
         <EditorContent editor={editor} />
       </EditorArea>
-      <SaveChanges onClick={() => onChange(editor)}>
-        Salvar alterações
-      </SaveChanges>
+      {!hide && (
+        <SaveChanges onClick={() => onChange(editor)}>
+          Salvar alterações
+        </SaveChanges>
+      )}
     </Container>
   );
 };

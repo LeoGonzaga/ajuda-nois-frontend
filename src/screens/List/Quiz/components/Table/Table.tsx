@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BiTrash } from 'react-icons/bi';
+import { useDispatch } from 'react-redux';
 
 import EmptyState from '@components/EmptyState';
 import LoadingTable from '@components/LoadingTable';
 import { Options, Response, requestAPI } from '@services/index';
+import {
+  checkError,
+  openErrorNotification,
+  openNotification,
+} from '@utils/functions';
+import { setNotification } from 'src/config/actions/notification';
 import { uuid } from 'uuidv4';
 
 import {
@@ -16,20 +23,27 @@ import {
 } from './styles';
 
 export const Table = ({ data, reload, loading }: any): JSX.Element => {
-  const handleRemoveSubject = async (id: string) => {
+  const dispatch = useDispatch();
+
+  const handleRemove = async (id: string) => {
     const token = localStorage.getItem('token');
     const payload: Options = {
       method: 'DELETE',
-      url: '/deleteTip',
+      url: '/deleteQuiz',
       data: {
         id,
       },
       headers: { Authorization: `Bearer ${token}` },
     };
     const { response }: Response = await requestAPI(payload);
-    if (response?.status > 300) {
+    const error = checkError(response?.status);
+    if (error) {
+      dispatch(setNotification(openErrorNotification(response?.data?.error)));
       return;
     }
+    dispatch(
+      setNotification(openNotification('Questão removida com sucesso!'))
+    );
     reload();
   };
 
@@ -47,9 +61,7 @@ export const Table = ({ data, reload, loading }: any): JSX.Element => {
             <Column>{element?.topic_info?.name}</Column>
             <Column>
               {!loading && (
-                <ButtonsContainer
-                  onClick={() => handleRemoveSubject(element._id)}
-                >
+                <ButtonsContainer onClick={() => handleRemove(element._id)}>
                   <BiTrash size={25} />
                 </ButtonsContainer>
               )}
