@@ -16,28 +16,6 @@ export const Dashboard = (): JSX.Element => {
     <Container>
       <Row>
         <Column>
-          <Row>
-            <Card
-              color={COLORS.RED}
-              indicator="X"
-              value={redCards}
-              text={
-                redCards == 1
-                  ? 'Card do plano de estudos atrasado'
-                  : 'Cards do plano de estudos atrasados'
-              }
-            />
-            <Card
-              color={COLORS.PRIMARY}
-              indicator="P"
-              value={greyCards}
-              text={
-                greyCards == 1
-                  ? 'Card do plano de estudos preparado para hoje'
-                  : 'Cards do plano de estudos preparados para hoje'
-              }
-            />
-          </Row>
           <SubjectContent />
         </Column>
         <StudentChart />
