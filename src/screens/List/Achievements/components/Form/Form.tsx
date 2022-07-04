@@ -181,7 +181,11 @@ export const Form = ({ onClose, reload }: any): JSX.Element => {
       />
       <Spacing vertical={15} />
 
-      <input type="file" onChange={handleUploadIcon} />
+      <input
+        type="file"
+        onChange={handleUploadIcon}
+        accept="image/png, image/gif, image/jpeg"
+      />
 
       <Spacing vertical={15} />
       <textarea
