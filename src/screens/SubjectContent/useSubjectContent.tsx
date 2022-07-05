@@ -11,6 +11,7 @@ const useSubjectContent = () => {
   const [data, setData] = useState<any>([]);
   const [topics, setTopics] = useState([]);
   const [expand, setExpand] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
   const handleToggle = useCallback(() => {
     setExpand(!expand);
@@ -38,6 +39,7 @@ const useSubjectContent = () => {
 
   const getLesson = async () => {
     const token = localStorage.getItem('token');
+    setLoading(true);
     setData([]);
     setTopicId('');
     const payload: Options = {
@@ -55,6 +57,8 @@ const useSubjectContent = () => {
       setData(value);
       setTopicId(value?.topic_id);
     }
+
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -78,7 +82,7 @@ const useSubjectContent = () => {
     }
   }, [topicId]);
 
-  return { data, handleToggle, expand, topics, handleRedirect };
+  return { data, handleToggle, expand, loading, topics, handleRedirect };
 };
 
 export default useSubjectContent;

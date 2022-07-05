@@ -4,6 +4,7 @@ import React from 'react';
 import BackButton from '@components/BackButton';
 import EditorContainer from '@components/Editor';
 import Flex from '@components/Flex';
+import LoadingTable from '@components/LoadingTable';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { ROUTES } from 'src/routes/routes';
@@ -19,7 +20,7 @@ import {
 import useSubjectContent from './useSubjectContent';
 
 export const SubjectContent = (): JSX.Element => {
-  const { data, topics, handleRedirect } = useSubjectContent();
+  const { data, topics, handleRedirect, loading } = useSubjectContent();
   return (
     <Wrapper>
       <Flex align="center">
@@ -27,18 +28,23 @@ export const SubjectContent = (): JSX.Element => {
         {data?.title}
       </Flex>
       <Container>
-        <EditorWrapper>
-          {data?._id && (
-            <EditorContainer
-              showControls={false}
-              data={data.content}
-              onChange={() => {}}
-              height="100%"
-              width="100%"
-              hide
-            />
-          )}
-        </EditorWrapper>
+        {loading ? (
+          <LoadingTable />
+        ) : (
+          <EditorWrapper>
+            {data?._id && (
+              <EditorContainer
+                showControls={false}
+                data={data.content}
+                onChange={() => {}}
+                height="100%"
+                width="100%"
+                hide
+              />
+            )}
+          </EditorWrapper>
+        )}
+
         <SideBarSubjects>
           <Text bold size={20}>
             {data?.topic_info?.name}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { AiOutlineCalculator } from 'react-icons/ai';
 import { BsChatLeftQuote } from 'react-icons/bs';
 import { GiGreekTemple } from 'react-icons/gi';
@@ -25,6 +25,7 @@ export const Subjects = (): JSX.Element => {
     handleToggleToShowContent,
     handleChangeActiveSubject,
     activeSubjectName,
+    loading,
   } = useSubject();
 
   return (
@@ -87,6 +88,7 @@ export const Subjects = (): JSX.Element => {
                     topic_id={topic?._id}
                     check={false}
                     key={index}
+                    loading={loading}
                   />
                 ))}
             </Table>

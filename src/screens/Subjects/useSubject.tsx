@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Options, Response, requestAPI } from '@services/index';
@@ -13,6 +13,7 @@ const useSubject = () => {
   const [activeArea, setActiveArea] = useState<string>('mathematics');
   const [activeSubject, setActiveSubject] = useState('');
   const [activeSubjectName, setActiveSubjectName] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleChangeActiveSubject = (id: string, name: string) => {
     setActiveSubject(id);
@@ -39,13 +40,11 @@ const useSubject = () => {
     }
     const content = response?.data;
     setAllSubjects(content);
-    setActiveSubject(content[0]?._id);
-    setActiveSubjectName(content[0].name);
   };
 
   const getTopicBySubject = async () => {
     const token = localStorage.getItem('token');
-
+    setLoading(true);
     const payload: Options = {
       method: 'POST',
       url: '/getTopicsBySubject',
@@ -57,6 +56,7 @@ const useSubject = () => {
     const { response }: Response = await requestAPI(payload);
 
     setData(response?.data);
+    setLoading(true);
   };
 
   useEffect(() => {
@@ -74,6 +74,7 @@ const useSubject = () => {
     handleToggleToShowContent,
     handleChangeActiveSubject,
     activeSubjectName,
+    loading,
   };
 };
 
