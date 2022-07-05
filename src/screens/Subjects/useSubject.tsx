@@ -14,6 +14,12 @@ const useSubject = () => {
   const [activeSubject, setActiveSubject] = useState('');
   const [activeSubjectName, setActiveSubjectName] = useState('');
   const [loading, setLoading] = useState(false);
+  const [permissions, setPermissions] = useState({
+    natural_sciences: false,
+    human_sciences: false,
+    mathematics: false,
+    languages: false,
+  });
 
   const handleChangeActiveSubject = (id: string, name: string) => {
     setActiveSubject(id);
@@ -24,6 +30,34 @@ const useSubject = () => {
     setActiveArea(value);
     dispatch(add(value));
     setData([]);
+  };
+
+  const checkExistingSubject = (data) => {
+    return data.length > 0;
+  };
+
+  const handleGetTeacherSubject = async () => {
+    const token = localStorage.getItem('token');
+    const payload: Options = {
+      method: 'GET',
+      url: '/getTeacher',
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const { response }: Response = await requestAPI(payload);
+    const error = checkError(response.status);
+
+    const value = response?.data;
+    console.log(response.data);
+    setPermissions({
+      human_sciences: checkExistingSubject(value?.human_sciences),
+      languages: checkExistingSubject(value?.languages),
+      mathematics: checkExistingSubject(value?.mathematics),
+      natural_sciences: checkExistingSubject(value?.natural_sciences),
+    });
+
+    if (error) {
+      return;
+    }
   };
 
   const getAll = async () => {
@@ -60,6 +94,7 @@ const useSubject = () => {
   };
 
   useEffect(() => {
+    handleGetTeacherSubject();
     getAll();
   }, []);
 
@@ -75,6 +110,7 @@ const useSubject = () => {
     handleChangeActiveSubject,
     activeSubjectName,
     loading,
+    permissions,
   };
 };
 

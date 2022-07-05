@@ -26,41 +26,54 @@ export const Subjects = (): JSX.Element => {
     handleChangeActiveSubject,
     activeSubjectName,
     loading,
+    permissions,
   } = useSubject();
 
+  console.log(permissions);
   return (
     <Container>
       <Title text="Escolher" contrast="matéria" />
       <Grid>
         <div>
-          <Card
-            onClick={() => handleToggleToShowContent('mathematics')}
-            title={'Matemática'}
-            color="#6F52ED"
-            icon={<AiOutlineCalculator size={30} />}
-            active={'mathematics' == activeArea}
-          />
-          <Card
-            onClick={() => handleToggleToShowContent('human_sciences')}
-            title={'Ciencias Humanas'}
-            color="#FBBC05"
-            icon={<GiGreekTemple size={30} />}
-            active={'human_sciences' == activeArea}
-          />
-          <Card
-            onClick={() => handleToggleToShowContent('natural_sciences')}
-            title={'Ciências da natureza'}
-            color="#00BF20"
-            icon={<IoTelescopeOutline size={30} />}
-            active={'natural_sciences' == activeArea}
-          />
-          <Card
-            onClick={() => handleToggleToShowContent('languages')}
-            title={'Linguagens e códigos'}
-            color="#CA1E3C"
-            icon={<BsChatLeftQuote size={30} />}
-            active={'languages' == activeArea}
-          />
+          {permissions?.mathematics && (
+            <Card
+              onClick={() => handleToggleToShowContent('mathematics')}
+              title={'Matemática'}
+              color="#6F52ED"
+              icon={<AiOutlineCalculator size={30} />}
+              active={'mathematics' == activeArea}
+            />
+          )}
+
+          {permissions?.human_sciences && (
+            <Card
+              onClick={() => handleToggleToShowContent('human_sciences')}
+              title={'Ciencias Humanas'}
+              color="#FBBC05"
+              icon={<GiGreekTemple size={30} />}
+              active={'human_sciences' == activeArea}
+            />
+          )}
+
+          {permissions?.natural_sciences && (
+            <Card
+              onClick={() => handleToggleToShowContent('natural_sciences')}
+              title={'Ciências da natureza'}
+              color="#00BF20"
+              icon={<IoTelescopeOutline size={30} />}
+              active={'natural_sciences' == activeArea}
+            />
+          )}
+
+          {permissions?.languages && (
+            <Card
+              onClick={() => handleToggleToShowContent('languages')}
+              title={'Linguagens e códigos'}
+              color="#CA1E3C"
+              icon={<BsChatLeftQuote size={30} />}
+              active={'languages' == activeArea}
+            />
+          )}
         </div>
         {activeArea && (
           <SubjectContent>

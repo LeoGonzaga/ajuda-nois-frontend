@@ -51,7 +51,13 @@ export const Table = ({ data, reload, loading }: Props): JSX.Element => {
     const error = checkError(response?.status);
 
     if (error) {
-      dispatch(setNotification(openErrorNotification(response?.data?.error)));
+      dispatch(
+        setNotification(
+          openErrorNotification(
+            response?.data?.error || response?.data?.message
+          )
+        )
+      );
       return;
     }
     dispatch(
