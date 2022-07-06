@@ -7,19 +7,19 @@ import { Container } from './styles';
 
 type LevelProps = {
   exp: number;
+  progression: Array<number>;
 };
 
-export const Level = ({ exp }: LevelProps): JSX.Element => {
-  const levelProgression = [0, 100, 500, 1000, 2000, 3500, 5000, 7500, 10000];
+export const Level = ({ exp, progression }: LevelProps): JSX.Element => {
   let level = 0;
 
-  while (levelProgression[++level] <= exp);
+  while (progression[++level] <= exp);
   level--;
 
   function getProgress(exp: number, level: number) {
-    if (level < levelProgression.length - 1) {
-      const levelCap = levelProgression[level + 1] - levelProgression[level];
-      const currentProgress = (exp - levelProgression[level]) / levelCap;
+    if (level < progression.length - 1) {
+      const levelCap = progression[level + 1] - progression[level];
+      const currentProgress = (exp - progression[level]) / levelCap;
       return currentProgress;
     } else {
       return 0;

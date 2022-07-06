@@ -46,15 +46,7 @@ export const AchievementsContainer = styled.div`
 export const LevelContainer = styled.div`
   flex: 5;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
-`;
-
-export const ShareContainer = styled.div`
-  flex: 3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
 `;

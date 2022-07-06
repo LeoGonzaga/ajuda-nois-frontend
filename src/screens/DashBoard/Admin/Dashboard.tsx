@@ -32,14 +32,14 @@ export const Dashboard = (): JSX.Element => {
           <BigCard
             color={COLORS.SUBJECT_BLUE}
             indicator="Alunos"
-            value={42}
+            value={8}
             icon={<FaUsers />}
           />
           <Spacing horizontal={10} />
           <BigCard
             color={COLORS.GREEN}
             indicator="Professores"
-            value={13}
+            value={4}
             icon={<FaChalkboardTeacher />}
           />
           <Spacing horizontal={10} />

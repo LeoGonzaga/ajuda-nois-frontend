@@ -10,7 +10,8 @@ export const WrapperCards = styled.div`
   display: flex;
   flex-direction: column;
   margin: 5px 0px;
-  div {
-    display: flex;
-  }
+`;
+
+export const Row = styled.div`
+  display: flex;
 `;

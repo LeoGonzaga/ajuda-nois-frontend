@@ -16,6 +16,7 @@ import {
   Wrapper,
 } from './styles';
 import useSubjectContent from './useSubjectContent';
+import Pomodoro from '../Pomodoro';
 
 export const SubjectContent = (): JSX.Element => {
   const { data, topics, handleRedirect } = useSubjectContent();

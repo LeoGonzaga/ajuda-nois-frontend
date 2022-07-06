@@ -6,7 +6,6 @@ export const Container = styled.div`
   height: 400px;
   padding: 16px;
   margin-right: 30px;
-
   border-radius: 100%;
 
   .CircularProgressbar-path {
