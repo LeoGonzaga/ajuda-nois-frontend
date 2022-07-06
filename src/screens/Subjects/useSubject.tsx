@@ -134,8 +134,6 @@ const useSubject = () => {
     if (activeSubject !== '') getTopicBySubject();
   }, [activeSubject]);
 
-  console.log(subjectsByTeacher);
-
   return {
     data,
     allSubjects,

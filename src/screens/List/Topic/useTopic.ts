@@ -17,7 +17,7 @@ export const useTopic = () => {
 
     const payload: Options = {
       method: 'GET',
-      url: '/getSubjects',
+      url: '/getUser',
       headers: { Authorization: `Bearer ${token}` },
     };
     const { response }: Response = await requestAPI(payload);
@@ -25,14 +25,54 @@ export const useTopic = () => {
       return;
     }
 
-    const value = response?.data?.map((subject: any) => {
+    console.log(response.data);
+    const value = response.data;
+
+    const mathematics = value.mathematics?.map((subjects: any) => {
       return {
-        name: subject.name,
-        value: subject?._id,
+        name: subjects.name,
+        value: subjects._id,
       };
     });
 
-    setSubjects(value);
+    const languages = value.languages?.map((subjects: any) => {
+      return {
+        name: subjects.name,
+        value: subjects._id,
+      };
+    });
+
+    const human_sciences = value.human_sciences?.map((subjects: any) => {
+      return {
+        name: subjects.name,
+        value: subjects._id,
+      };
+    });
+
+    const natural_sciences = value.natural_sciences?.map((subjects: any) => {
+      return {
+        name: subjects.name,
+        value: subjects._id,
+      };
+    });
+
+    const allSubjects: any = [
+      ...mathematics,
+      ...human_sciences,
+      ...natural_sciences,
+      ...languages,
+    ];
+
+    setSubjects(allSubjects);
+
+    // const value = response?.data?.map((subject: any) => {
+    //   return {
+    //     name: subject.name,
+    //     value: subject?._id,
+    //   };
+    // });
+
+    // setSubjects(value);
   };
 
   const getAll = async () => {
