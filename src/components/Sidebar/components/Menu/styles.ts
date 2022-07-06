@@ -5,24 +5,19 @@ type Props = {
   active: boolean;
 };
 
-type ExpandedProps = {
-  expanded: boolean;
-};
-
 export const Container = styled.div<Props>`
-  background-color: ${(props) => (props.active ? COLORS.NEUTRAL : 'none')};
-  color: ${(props) => (props.active ? COLORS.SECONDARY : COLORS.WHITE)};
-  font-weight: ${(props) => (props.active ? 'bold' : 'initial')};
+  color: ${COLORS.WHITE};
+  font-weight: 'bold';
   cursor: pointer;
   border-radius: 9px;
-  /* width: 90%; */
+  width: 90%;
   height: 61px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 `;
 
-export const Wrapper = styled.div<ExpandedProps>`
+export const Wrapper = styled.div<Props>`
   svg,
   span {
     margin: 0 14px;
@@ -35,6 +30,6 @@ export const Wrapper = styled.div<ExpandedProps>`
   /* background-color: red; */
 
   span {
-    display: ${(props) => (props.expanded ? 'initial' : 'none')};
+    display: ${(props) => (props.active ? 'initial' : 'none')};
   }
 `;
