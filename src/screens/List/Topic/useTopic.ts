@@ -64,15 +64,6 @@ export const useTopic = () => {
     ];
 
     setSubjects(allSubjects);
-
-    // const value = response?.data?.map((subject: any) => {
-    //   return {
-    //     name: subject.name,
-    //     value: subject?._id,
-    //   };
-    // });
-
-    // setSubjects(value);
   };
 
   const getAll = async () => {

@@ -13,8 +13,15 @@ import { Container } from './styles';
 import { useLesson } from './useLesson';
 
 export const Lesson = (): JSX.Element => {
-  const { data, getAll, handleToggleModal, loading, openModal, topics } =
-    useLesson();
+  const {
+    data,
+    getAll,
+    handleToggleModal,
+    loading,
+    openModal,
+    topics,
+    subjectsByTeacher,
+  } = useLesson();
 
   return (
     <Container>
@@ -23,7 +30,12 @@ export const Lesson = (): JSX.Element => {
         title="Criação de lições"
         handleClose={handleToggleModal}
       >
-        <Form onClose={handleToggleModal} reload={getAll} topics={topics} />
+        <Form
+          onClose={handleToggleModal}
+          reload={getAll}
+          topics={topics}
+          subjectsByTeacher={subjectsByTeacher}
+        />
       </ModalContainer>
       <Flex align="center">
         <div>
