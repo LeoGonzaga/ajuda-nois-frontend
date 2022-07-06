@@ -31,6 +31,13 @@ const data = [
   },
 ];
 
+const teacher_data = [
+  {
+    value: 'student',
+    name: 'Aluno',
+  },
+];
+
 type Props = {
   onClose: () => void;
   reload: () => void;
@@ -38,6 +45,7 @@ type Props = {
 
 export const Form = ({ onClose, reload }: Props): JSX.Element => {
   const dispatch = useDispatch();
+  const user = localStorage.getItem('role');
 
   const [username, setUsername] = useChangeText('');
   const [email, setEmail] = useChangeText('');
@@ -146,7 +154,11 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
       <Text>Tipo de usuário:</Text>
 
       <Spacing vertical={15} />
-      <Select onChange={setUserType} value={usertype} data={data} />
+      <Select
+        onChange={setUserType}
+        value={usertype}
+        data={user === 'admin' ? data : teacher_data}
+      />
       <Spacing vertical={15} />
       <Flex width="19%">
         <ActionButton

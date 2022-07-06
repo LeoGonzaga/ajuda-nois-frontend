@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const WrapperCards = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   margin: 5px 0px;
 `;
 

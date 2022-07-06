@@ -31,7 +31,7 @@ export const Upload = (): JSX.Element => {
         <Flex align="center" justify="space-between">
           <Title text="Simulados" contrast="" subText="" />
           <SecondaryButton onClick={handleToggleModal}>
-            Novo simuulado
+            Novo simulado
           </SecondaryButton>
         </Flex>
       </Flex>

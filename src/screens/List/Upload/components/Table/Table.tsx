@@ -78,8 +78,10 @@ export const Table = ({ data, reload, loading }: Props): JSX.Element => {
 
             <Column>
               {!loading && (
-                <ButtonsContainer onClick={() => handleRemoveExam(element._id)}>
-                  <BiTrash size={25} />
+                <ButtonsContainer>
+                  <button onClick={() => handleRemoveExam(element._id)}>
+                    <BiTrash size={25} />
+                  </button>
                 </ButtonsContainer>
               )}
             </Column>

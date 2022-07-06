@@ -8,6 +8,7 @@ import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { ROUTES } from 'src/routes/routes';
 
+import Pomodoro from '../Pomodoro';
 import {
   Container,
   EditorWrapper,
@@ -54,6 +55,8 @@ export const SubjectContent = (): JSX.Element => {
                 <p>{element.title}</p>
               </Item>
             ))}
+
+          {/* <Pomodoro /> */}
         </SideBarSubjects>
       </Container>
     </Wrapper>
