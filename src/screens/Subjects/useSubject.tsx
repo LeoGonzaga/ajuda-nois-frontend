@@ -1,9 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Options, Response, requestAPI } from '@services/index';
 import { checkError } from '@utils/functions';
 import { add } from 'src/config/actions/subjects';
+
+const STUDENT = 'student';
 
 const useSubject = () => {
   const dispatch = useDispatch();
@@ -13,7 +16,9 @@ const useSubject = () => {
   const [activeArea, setActiveArea] = useState<string>('mathematics');
   const [activeSubject, setActiveSubject] = useState('');
   const [activeSubjectName, setActiveSubjectName] = useState('');
+  const [subjectsByTeacher, setSubjectsByTeacher] = useState<Array<string>>([]);
   const [loading, setLoading] = useState(false);
+  const [role, setRole] = useState('');
   const [permissions, setPermissions] = useState({
     natural_sciences: false,
     human_sciences: false,
@@ -32,31 +37,59 @@ const useSubject = () => {
     setData([]);
   };
 
-  const checkExistingSubject = (data) => {
-    return data.length > 0;
+  const checkExistingSubject = (data: any) => {
+    return data?.length > 0;
   };
 
   const handleGetTeacherSubject = async () => {
     const token = localStorage.getItem('token');
     const payload: Options = {
       method: 'GET',
-      url: '/getTeacher',
+      url: '/getUser',
       headers: { Authorization: `Bearer ${token}` },
     };
     const { response }: Response = await requestAPI(payload);
     const error = checkError(response.status);
 
     const value = response?.data;
-    console.log(response.data);
-    setPermissions({
-      human_sciences: checkExistingSubject(value?.human_sciences),
-      languages: checkExistingSubject(value?.languages),
-      mathematics: checkExistingSubject(value?.mathematics),
-      natural_sciences: checkExistingSubject(value?.natural_sciences),
-    });
 
     if (error) {
       return;
+    }
+
+    setRole(value?.user?.usertype);
+    if (value?.user?.usertype === STUDENT) {
+      setPermissions({
+        human_sciences: true,
+        languages: true,
+        mathematics: true,
+        natural_sciences: true,
+      });
+    } else {
+      const mathematics = value.mathematics?.map(
+        (subjects: any) => subjects.name
+      );
+      const languages = value.languages?.map((subjects: any) => subjects.name);
+      const human_sciences = value.human_sciences?.map(
+        (subjects: any) => subjects.name
+      );
+      const natural_sciences = value.natural_sciences?.map(
+        (subjects: any) => subjects.name
+      );
+
+      setPermissions({
+        human_sciences: checkExistingSubject(value?.human_sciences),
+        languages: checkExistingSubject(value?.languages),
+        mathematics: checkExistingSubject(value?.mathematics),
+        natural_sciences: checkExistingSubject(value?.natural_sciences),
+      });
+
+      setSubjectsByTeacher([
+        ...mathematics,
+        ...languages,
+        ...human_sciences,
+        ...natural_sciences,
+      ]);
     }
   };
 
@@ -90,17 +123,18 @@ const useSubject = () => {
     const { response }: Response = await requestAPI(payload);
 
     setData(response?.data);
-    setLoading(true);
+    setLoading(false);
   };
 
   useEffect(() => {
-    handleGetTeacherSubject();
-    getAll();
+    Promise.all([handleGetTeacherSubject(), getAll()]);
   }, []);
 
   useEffect(() => {
-    getTopicBySubject();
+    if (activeSubject !== '') getTopicBySubject();
   }, [activeSubject]);
+
+  console.log(subjectsByTeacher);
 
   return {
     data,
@@ -111,6 +145,8 @@ const useSubject = () => {
     activeSubjectName,
     loading,
     permissions,
+    subjectsByTeacher,
+    role,
   };
 };
 

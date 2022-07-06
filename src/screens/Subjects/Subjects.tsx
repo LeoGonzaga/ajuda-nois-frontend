@@ -4,10 +4,12 @@ import { BsChatLeftQuote } from 'react-icons/bs';
 import { GiGreekTemple } from 'react-icons/gi';
 import { IoTelescopeOutline } from 'react-icons/io5';
 
+import LoadingTable from '@components/LoadingTable';
 import Title from '@components/Title';
 
 import Card from './components/Card';
 import SubjectItem from './components/SubjectItem';
+import { Empty } from './components/SubjectItem/styles';
 import {
   Container,
   Grid,
@@ -27,9 +29,10 @@ export const Subjects = (): JSX.Element => {
     activeSubjectName,
     loading,
     permissions,
+    subjectsByTeacher,
+    role,
   } = useSubject();
 
-  console.log(permissions);
   return (
     <Container>
       <Title text="Escolher" contrast="matéria" />
@@ -78,10 +81,26 @@ export const Subjects = (): JSX.Element => {
         {activeArea && (
           <SubjectContent>
             {allSubjects?.map((subject: any, index) => {
-              if (subject.area === activeArea) {
+              if (
+                subject?.area === activeArea &&
+                subjectsByTeacher.includes(subject?.name)
+              ) {
                 return (
                   <SubjectItemButton
-                    active={subject.name === activeSubjectName}
+                    active={subject?.name === activeSubjectName}
+                    key={index}
+                    onClick={() =>
+                      handleChangeActiveSubject(subject?._id, subject.name)
+                    }
+                  >
+                    {subject.name}
+                  </SubjectItemButton>
+                );
+              }
+              if (subject?.area === activeArea && role === 'student') {
+                return (
+                  <SubjectItemButton
+                    active={subject?.name === activeSubjectName}
                     key={index}
                     onClick={() =>
                       handleChangeActiveSubject(subject?._id, subject.name)
@@ -104,6 +123,8 @@ export const Subjects = (): JSX.Element => {
                     loading={loading}
                   />
                 ))}
+
+              {data?.length === 0 && loading && <LoadingTable />}
             </Table>
           </SubjectContent>
         )}
