@@ -55,6 +55,14 @@ export const openErrorNotification = (message: string) => {
   };
 };
 
+export const closeNotification = () => {
+  return {
+    open: false,
+    autoClose: CLOSE_NOTIFICATION,
+    message: '',
+  };
+};
+
 export const toBase64 = (file: any) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();

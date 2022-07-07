@@ -8,29 +8,24 @@ import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { ROUTES } from 'src/routes/routes';
 
-import {
-  Container,
-  EditorWrapper,
-  Item,
-  SideBarSubjects,
-  Wrapper,
-} from './styles';
+import { Container, EditorWrapper, Wrapper } from './styles';
 import useQuiz from './useQuiz';
 
 export const Quiz = (): JSX.Element => {
-  const { data, topics, handleRedirect } = useQuiz();
+  const { data } = useQuiz();
+  const index = 0;
   return (
     <Wrapper>
       <Flex align="center">
         <BackButton route={ROUTES.SUBJECT} />
-        {data?.title}
+        {data?.name}
       </Flex>
       <Container>
         <EditorWrapper>
           {data?._id && (
             <EditorContainer
               showControls={false}
-              data={data.content}
+              data={data.questions_info[0].question}
               onChange={() => {}}
               height="100%"
               width="100%"
@@ -38,22 +33,6 @@ export const Quiz = (): JSX.Element => {
             />
           )}
         </EditorWrapper>
-        <SideBarSubjects>
-          <Text bold size={20}>
-            {data?.topic_info?.name}
-          </Text>
-          <Spacing vertical={5} />
-          {topics &&
-            topics?.map((element: any, index) => (
-              <Item
-                active={element.title === data?.title}
-                onClick={() => handleRedirect(element?._id)}
-                key={index}
-              >
-                <p>{element.title}</p>
-              </Item>
-            ))}
-        </SideBarSubjects>
       </Container>
     </Wrapper>
   );
