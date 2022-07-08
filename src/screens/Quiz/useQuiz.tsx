@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 import { Options, Response, requestAPI } from '@services/index';
 import { handleRedirect } from '@utils/functions';
@@ -10,6 +11,48 @@ const useQuiz = () => {
   const [quizId, setQuizId] = useState<any>('');
   const [data, setData] = useState<any>([]);
   const [expand, setExpand] = useState<boolean>(false);
+  const [index, setIndex] = useState<any>('0');
+  const [questions, setQuestons] = useState<any>([]);
+  const [awnsers, setAwnsers] = useState([
+    {
+      check: false,
+      value: '',
+    },
+    {
+      check: false,
+      value: '',
+    },
+    {
+      check: false,
+      value: '',
+    },
+    {
+      check: false,
+      value: '',
+    },
+    {
+      check: false,
+      value: '',
+    },
+  ]);
+
+  const handleCheck = (index: number, value: string) => {
+    const items = [...awnsers];
+    const disabledCheck = items?.map((elem) => {
+      return {
+        check: false,
+        value: elem.value,
+      };
+    });
+
+    disabledCheck[index].check = true;
+    disabledCheck[index].value = value;
+    setAwnsers(disabledCheck);
+  };
+
+  const handleRedirectToIndex = (id: string, index: string) => {
+    router.replace('/quiz?id=' + id + '&index=' + index);
+  };
 
   const handleToggle = useCallback(() => {
     setExpand(!expand);
@@ -31,13 +74,16 @@ const useQuiz = () => {
     const value = response?.data;
     if (value) {
       setData(value);
+      setQuestons(value.questions_info);
     }
   };
 
   useEffect(() => {
     const id = router.query.id;
+    const valueIndex = router.query.index;
     if (id) {
       setQuizId(id);
+      setIndex(valueIndex);
     } else {
       handleRedirect(ROUTES.SUBJECT);
     }
@@ -49,7 +95,16 @@ const useQuiz = () => {
     }
   }, [quizId, router]);
 
-  return { data, handleToggle, expand, handleRedirect };
+  return {
+    data,
+    handleToggle,
+    expand,
+    handleRedirectToIndex,
+    index,
+    questions,
+    handleCheck,
+    awnsers,
+  };
 };
 
 export default useQuiz;

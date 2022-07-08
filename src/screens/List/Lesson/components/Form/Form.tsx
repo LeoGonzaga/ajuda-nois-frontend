@@ -30,7 +30,7 @@ export const Form = ({
   const dispatch = useDispatch();
   const [title, setTitle] = useChangeText('');
   const [content, setContent] = useState('');
-  const [topic, setTopic] = useState<string>(topics[0]?.value);
+  const [topic, setTopic] = useState<string>('');
   const [subject, setSubject] = useState<string>(subjectsByTeacher[0]?.value);
   const [loading, setLoading] = useState(false);
   const [allTopics, setAllTopics] = useState(topics);
@@ -42,7 +42,7 @@ export const Form = ({
 
   const handleChangeSubject = (id: string) => {
     setSubject(id);
-    const filter = topics?.filter((topic: any) => topic.value == id);
+    const filter = topics?.filter((topic: any) => topic.id == id);
     setAllTopics(filter);
   };
 
@@ -102,8 +102,10 @@ export const Form = ({
   useEffect(() => {
     handleResetErrorInput();
 
-    const filter = topics?.filter((topic: any) => topic.value == subject);
+    const filter = topics?.filter((topic: any) => topic.id == subject);
     setAllTopics(filter);
+    setTopic(filter[0]?.value);
+    console.log(filter);
   }, [title]);
 
   return (
@@ -141,7 +143,7 @@ export const Form = ({
           color={COLORS.SECONDARY}
           width="350px"
           onClick={handleSubmit}
-          disabled={loading}
+          disabled={loading || allTopics?.length === 0}
           loading={loading}
         >
           Salvar

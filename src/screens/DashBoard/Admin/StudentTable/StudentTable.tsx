@@ -7,85 +7,88 @@ import { Container, Content } from './styles';
 
 type Props = {
   size: number;
+  data: any;
 };
 
-export const StudentTable = ({ size }: Props): JSX.Element => {
-  const [data, setData] = useState([
-    {
-      name: 'Fulano de Souza',
-      email: 'fulanosouza@hotmail.com',
-      humanScore: '27/45',
-      natureScore: '32/45',
-      languageScore: '35/45',
-      mathScore: '33/45',
-    },
-    {
-      name: 'Bryan Fortunato de Souza',
-      email: 'azuosbryan@yahoo.com.br',
-      humanScore: '40/45',
-      natureScore: '40/45',
-      languageScore: '40/45',
-      mathScore: '40/45',
-    },
-    {
-      name: 'Breno Fortunato de Souza',
-      email: 'brenofortunato@gmail.com',
-      humanScore: '15/45',
-      natureScore: '25/45',
-      languageScore: '35/45',
-      mathScore: '45/45',
-    },
-    {
-      name: 'Renan Rodriguez Bizarri',
-      email: 'rrb@hotmail.com',
-      humanScore: '27/45',
-      natureScore: '32/45',
-      languageScore: '35/45',
-      mathScore: '33/45',
-    },
-    {
-      name: 'Renan Rodrigues Bizarri',
-      email: 'renanbiz@yahoo.com.br',
-      humanScore: '40/45',
-      natureScore: '40/45',
-      languageScore: '40/45',
-      mathScore: '40/45',
-    },
-    {
-      name: 'Beltrano da Silva',
-      email: 'bds@gmail.com',
-      humanScore: '15/45',
-      natureScore: '25/45',
-      languageScore: '35/45',
-      mathScore: '45/45',
-    },
-    {
-      name: 'Cicrano Pinto',
-      email: 'cicpinto@hotmail.com',
-      humanScore: '27/45',
-      natureScore: '32/45',
-      languageScore: '35/45',
-      mathScore: '33/45',
-    },
-    {
-      name: 'Leonardo Gonzaga Silva',
-      email: 'lgs@yahoo.com.br',
-      humanScore: '40/45',
-      natureScore: '40/45',
-      languageScore: '40/45',
-      mathScore: '40/45',
-    },
-    {
-      name: 'Desenvolvedor Pleno Senior',
-      email: 'develper@gmail.com',
-      humanScore: '15/45',
-      natureScore: '25/45',
-      languageScore: '35/45',
-      mathScore: '45/45',
-    },
-  ]);
+export const StudentTable = ({ size, data }: Props): JSX.Element => {
+  // const [data, setData] = useState([
+  //   {
+  //     name: 'Fulano de Souza',
+  //     email: 'fulanosouza@hotmail.com',
+  //     humanScore: '27/45',
+  //     natureScore: '32/45',
+  //     languageScore: '35/45',
+  //     mathScore: '33/45',
+  //   },
+  //   {
+  //     name: 'Bryan Fortunato de Souza',
+  //     email: 'azuosbryan@yahoo.com.br',
+  //     humanScore: '40/45',
+  //     natureScore: '40/45',
+  //     languageScore: '40/45',
+  //     mathScore: '40/45',
+  //   },
+  //   {
+  //     name: 'Breno Fortunato de Souza',
+  //     email: 'brenofortunato@gmail.com',
+  //     humanScore: '15/45',
+  //     natureScore: '25/45',
+  //     languageScore: '35/45',
+  //     mathScore: '45/45',
+  //   },
+  //   {
+  //     name: 'Renan Rodriguez Bizarri',
+  //     email: 'rrb@hotmail.com',
+  //     humanScore: '27/45',
+  //     natureScore: '32/45',
+  //     languageScore: '35/45',
+  //     mathScore: '33/45',
+  //   },
+  //   {
+  //     name: 'Renan Rodrigues Bizarri',
+  //     email: 'renanbiz@yahoo.com.br',
+  //     humanScore: '40/45',
+  //     natureScore: '40/45',
+  //     languageScore: '40/45',
+  //     mathScore: '40/45',
+  //   },
+  //   {
+  //     name: 'Beltrano da Silva',
+  //     email: 'bds@gmail.com',
+  //     humanScore: '15/45',
+  //     natureScore: '25/45',
+  //     languageScore: '35/45',
+  //     mathScore: '45/45',
+  //   },
+  //   {
+  //     name: 'Cicrano Pinto',
+  //     email: 'cicpinto@hotmail.com',
+  //     humanScore: '27/45',
+  //     natureScore: '32/45',
+  //     languageScore: '35/45',
+  //     mathScore: '33/45',
+  //   },
+  //   {
+  //     name: 'Leonardo Gonzaga Silva',
+  //     email: 'lgs@yahoo.com.br',
+  //     humanScore: '40/45',
+  //     natureScore: '40/45',
+  //     languageScore: '40/45',
+  //     mathScore: '40/45',
+  //   },
+  //   {
+  //     name: 'Desenvolvedor Pleno Senior',
+  //     email: 'develper@gmail.com',
+  //     humanScore: '15/45',
+  //     natureScore: '25/45',
+  //     languageScore: '35/45',
+  //     mathScore: '45/45',
+  //   },
+  // ]);
 
-  const dataSorted = data.sort((a, b) => a.name.localeCompare(b.name));
+  const dataSorted = data?.sort((a: any, b: any) =>
+    a.username.localeCompare(b.username)
+  );
 
   return (
     <Container>
@@ -130,23 +133,23 @@ export const StudentTable = ({ size }: Props): JSX.Element => {
               {dataSorted?.map(
                 (
                   {
-                    name,
+                    username,
                     email,
                     humanScore,
                     natureScore,
                     languageScore,
                     mathScore,
-                  },
-                  index
+                  }: any,
+                  index: number
                 ) => {
                   return (
                     <tr key={index}>
-                      <td>{name}</td>
+                      <td>{username}</td>
                       <td>{email}</td>
-                      <td>{humanScore}</td>
-                      <td>{natureScore}</td>
-                      <td>{languageScore}</td>
-                      <td>{mathScore}</td>
+                      <td>{humanScore || '0/45'}</td>
+                      <td>{natureScore || '0/45'}</td>
+                      <td>{languageScore || '0/45'}</td>
+                      <td>{mathScore || '0/45'}</td>
                     </tr>
                   );
                 }

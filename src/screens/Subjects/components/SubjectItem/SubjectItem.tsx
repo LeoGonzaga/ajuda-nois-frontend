@@ -23,6 +23,10 @@ export const SubjectItem = ({
     router.replace(`${route}?id=${id}`);
   };
 
+  const handleRedirectQuiz = (route: string, id: string) => {
+    router.replace(`${route}?id=${id}&index=0`);
+  };
+
   useEffect(() => {
     if (expand) getLessonsByTopic(topic_id);
   }, [expand]);
@@ -60,7 +64,7 @@ export const SubjectItem = ({
                 elem?.quizzes?.map((quiz: any) => {
                   return (
                     <button
-                      onClick={() => handleRedirect('quiz/', quiz?._id)}
+                      onClick={() => handleRedirectQuiz('quiz/', quiz?._id)}
                       key={index}
                     >
                       <Text>{quiz.name}</Text>

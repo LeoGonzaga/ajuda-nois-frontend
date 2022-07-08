@@ -29,7 +29,8 @@ export const useLesson = () => {
     const value = response?.data?.map((subject: any) => {
       return {
         name: subject.name,
-        value: subject?.subject_id,
+        value: subject?._id,
+        id: subject?.subject_id,
       };
     });
 

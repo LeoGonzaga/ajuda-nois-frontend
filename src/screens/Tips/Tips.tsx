@@ -2,11 +2,9 @@ import React from 'react';
 
 import Spacing from '@components/Spacing';
 import Title from '@components/Title';
-import { COLORS } from '@themes/colors';
 import { getRandomColors } from '@utils/functions';
 
 import Card from './components/Card';
-import SelectSubject from './components/SelectSubject';
 import { Container, WrapperCards } from './styles';
 import useTips from './useTips';
 

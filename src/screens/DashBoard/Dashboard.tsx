@@ -6,11 +6,13 @@ import { ROUTES } from 'src/routes/routes';
 import Admin from './Admin';
 import Student from './Student';
 import Teacher from './Teacher';
+import useDashBoard from './useDashboard';
 
 export const DashBoard = (): JSX.Element => {
-  const [user, setUser] = useState<string>('');
-
   const value = localStorage.getItem('user');
+  const [user, setUser] = useState<string>('');
+  const { data } = useDashBoard();
+
   useEffect(() => {
     if (!value) {
       handleRedirect(ROUTES.LOGIN);
@@ -23,7 +25,7 @@ export const DashBoard = (): JSX.Element => {
   const dashboardByRole: any = {
     student: <Student />,
     teacher: <Teacher />,
-    admin: <Admin />,
+    admin: <Admin data={data} />,
   };
   return <>{dashboardByRole[user]}</>;
 };

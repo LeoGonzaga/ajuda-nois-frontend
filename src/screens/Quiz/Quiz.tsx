@@ -8,12 +8,26 @@ import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { ROUTES } from 'src/routes/routes';
 
-import { Container, EditorWrapper, Wrapper } from './styles';
+import {
+  Container,
+  EditorWrapper,
+  InputsContainer,
+  Item,
+  SideBarSubjects,
+  Wrapper,
+} from './styles';
 import useQuiz from './useQuiz';
 
 export const Quiz = (): JSX.Element => {
-  const { data } = useQuiz();
-  const index = 0;
+  const {
+    data,
+    handleRedirectToIndex,
+    index,
+    questions,
+    handleCheck,
+    awnsers,
+  } = useQuiz();
+
   return (
     <Wrapper>
       <Flex align="center">
@@ -21,18 +35,57 @@ export const Quiz = (): JSX.Element => {
         {data?.name}
       </Flex>
       <Container>
-        <EditorWrapper>
-          {data?._id && (
-            <EditorContainer
-              showControls={false}
-              data={data.questions_info[0].question}
-              onChange={() => {}}
-              height="100%"
-              width="100%"
-              hide
-            />
-          )}
-        </EditorWrapper>
+        <div>
+          <EditorWrapper>
+            {data?._id && (
+              <EditorContainer
+                showControls={false}
+                data={questions[index]?.question}
+                onChange={() => {}}
+                height="60%"
+                width="100%"
+                hide
+              />
+            )}
+          </EditorWrapper>
+          <InputsContainer>
+            <div>
+              <Text>Selecione a opção correta abaixo:</Text>
+              {questions[index]?.alternatives?.map(
+                (alternative: any, index: any) => (
+                  <label
+                    key={index}
+                    onClick={() => handleCheck(index, alternative)}
+                  >
+                    <input
+                      type="checkbox"
+                      name=""
+                      id=""
+                      checked={awnsers[index].check}
+                    />
+                    <p>{alternative}</p>
+                  </label>
+                )
+              )}
+            </div>
+          </InputsContainer>
+        </div>
+        <SideBarSubjects>
+          <Text bold size={20}>
+            {data?.topic_info?.name}
+          </Text>
+          <Spacing vertical={5} />
+          {data &&
+            data?.questions_info?.map((element: any, current: any) => (
+              <Item
+                active={questions[index]?.name === element.name}
+                onClick={() => handleRedirectToIndex(data?._id, current)}
+                key={current}
+              >
+                <p>{element.name}</p>
+              </Item>
+            ))}
+        </SideBarSubjects>
       </Container>
     </Wrapper>
   );

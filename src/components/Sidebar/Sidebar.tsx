@@ -52,12 +52,7 @@ export const Sidebar = (): JSX.Element => {
         <Item text="Matérias" router={ROUTES.SUBJECT} icon={<BiRocket />} />
         <Item text="Dicas" router={ROUTES.TIPS} icon={<BiWorld />} />
         <Item active text="Provas" router={ROUTES.TESTS} icon={<BiBrain />} />
-        <Item
-              text="Quiz"
-              router={ROUTES.QUIZ}
-              icon={<BsClockHistory />}
-            />
-
+     
         {dashboard === 'student' && (
           <>
             <Item text="Cronograma" router={ROUTES.STUDYPLAN} icon={<BiBook />} />
