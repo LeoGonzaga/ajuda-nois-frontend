@@ -9,7 +9,9 @@ export const Container = styled.div`
 export const Wrapper = styled.div``;
 
 export const WrapperCards = styled.div`
-  display: flex;
+  column-count: 3;
+  column-gap: 15px;
+  /* display: flex;
   flex-wrap: wrap;
 
   div {
@@ -26,5 +28,5 @@ export const WrapperCards = styled.div`
     &:nth-of-type(4n + 3) {
       order: 3;
     }
-  }
+  } */
 `;

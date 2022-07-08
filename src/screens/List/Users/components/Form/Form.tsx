@@ -73,6 +73,9 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
         ...prevState,
         email: true,
       }));
+
+      setLoading(false);
+      return;
     }
 
     if (username.length === 0) {
@@ -80,6 +83,8 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
         ...prevState,
         username: true,
       }));
+      setLoading(false);
+      return;
     }
 
     const options: Options = {
@@ -165,7 +170,7 @@ export const Form = ({ onClose, reload }: Props): JSX.Element => {
           color={COLORS.SECONDARY}
           width="350px"
           onClick={handleSubmit}
-          disabled={loading}
+          disabled={loading || errors.email || errors.username}
           loading={loading}
         >
           Salvar

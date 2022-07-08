@@ -7,29 +7,30 @@ import { Container, Content } from './styles';
 
 type Props = {
   size: number;
+  data: any;
 };
 
-export const TeacherTable = ({ size }: Props): JSX.Element => {
-  const data = [
-    {
-      name: 'Professor de Humanas',
-      email: 'prof_human@hotmail.com',
-      fields: 'Humanas',
-      subjects: 'Geografia, História',
-    },
-    {
-      name: 'English Teacher',
-      email: 'english@gmail.com',
-      fields: 'Linguagens',
-      subjects: 'Inglês',
-    },
-    {
-      name: 'Professor de Cálculos',
-      email: 'calc_prof@gmail.com.br',
-      fields: 'Matemática, Natureza',
-      subjects: 'Matemática, Física',
-    },
-  ];
+export const TeacherTable = ({ size, data }: Props): JSX.Element => {
+  // const data = [
+  //   {
+  //     name: 'Professor de Humanas',
+  //     email: 'prof_human@hotmail.com',
+  //     fields: 'Humanas',
+  //     subjects: 'Geografia, História',
+  //   },
+  //   {
+  //     name: 'English Teacher',
+  //     email: 'english@gmail.com',
+  //     fields: 'Linguagens',
+  //     subjects: 'Inglês',
+  //   },
+  //   {
+  //     name: 'Professor de Cálculos',
+  //     email: 'calc_prof@gmail.com.br',
+  //     fields: 'Matemática, Natureza',
+  //     subjects: 'Matemática, Física',
+  //   },
+  // ];
 
   return (
     <Container>
@@ -53,13 +54,13 @@ export const TeacherTable = ({ size }: Props): JSX.Element => {
             </thead>
 
             <tbody>
-              {data?.map(({ name, email, fields, subjects }, index) => {
+              {data?.map(({ username, email }: any, index: number) => {
                 return (
                   <tr key={index}>
-                    <td>{name}</td>
+                    <td>{username}</td>
                     <td>{email}</td>
-                    <td>{fields}</td>
-                    <td>{subjects}</td>
+                    {/* <td>{fields}</td>
+                    <td>{subjects}</td> */}
                   </tr>
                 );
               })}

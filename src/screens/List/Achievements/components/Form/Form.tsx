@@ -71,6 +71,17 @@ const areas = [
   },
 ];
 
+const GERAL_ONLY = ['mock_exam_done', 'level'];
+
+const PLACEHOLDERS: any = {
+  mock_exam_score: 'Quantidade de acertos',
+  mock_exam_done: 'Quantidade de simulados feitos',
+  topics_completed: 'Quantidade de tópicos completados',
+  quiz_completed: 'Quantidade de quizzes realizados',
+  level: 'Nível que o aluno deve alcançar',
+  pomodoro_time: 'Quantidade de tempo em minutos',
+};
+
 export const Form = ({ onClose, reload }: any): JSX.Element => {
   const dispatch = useDispatch();
   const [name, setName] = useChangeText('');
@@ -118,6 +129,7 @@ export const Form = ({ onClose, reload }: any): JSX.Element => {
       }));
     }
 
+    const selectedArea = GERAL_ONLY.includes(type) ? 'general' : area;
     const options: Options = {
       method: 'POST',
       url: '/createAchievement',
@@ -128,7 +140,7 @@ export const Form = ({ onClose, reload }: any): JSX.Element => {
         description,
         experience: Number(exp),
         type,
-        area,
+        area: selectedArea,
         quantity: Number(value),
       },
     };
@@ -199,15 +211,20 @@ export const Form = ({ onClose, reload }: any): JSX.Element => {
       <Text>Tipo de conquista:</Text>
       <Spacing vertical={15} />
       <Select onChange={setType} value={type} data={types} />
-      <Spacing vertical={15} />
-      <Text>Aréa do conhecimento:</Text>
-      <Spacing vertical={15} />
-      <Select onChange={setArea} value={area} data={areas} />
+      {!GERAL_ONLY.includes(type) && (
+        <>
+          <Spacing vertical={15} />
+          <Text>Aréa do conhecimento:</Text>
+          <Spacing vertical={15} />
+          <Select onChange={setArea} value={area} data={areas} />
+        </>
+      )}
+
       <Spacing vertical={15} />
 
       <input
         type="number"
-        placeholder="Valor"
+        placeholder={PLACEHOLDERS[type]}
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />

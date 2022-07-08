@@ -2,8 +2,7 @@ import { COLORS } from '@themes/colors';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: grid;
-  grid-template-columns: 0.8fr 0.2fr;
+  display: flex;
   height: 100vh;
 `;
 
@@ -30,7 +29,8 @@ export const SideBarSubjects = styled.div`
 export const EditorWrapper = styled.div`
   overflow-x: hidden;
   padding: 0px 20px;
-  cursor: pointer;
+  max-height: 500px;
+  width: 70vw;
 `;
 
 export const ContentLine = styled.div`
@@ -47,4 +47,18 @@ export const ContentLine = styled.div`
 
 export const Wrapper = styled.div`
   padding: 20px;
+`;
+
+export const InputsContainer = styled.div`
+  padding: 10px;
+  div {
+    label {
+      display: flex;
+      padding: 5px;
+      cursor: pointer;
+      p {
+        margin-left: 10px;
+      }
+    }
+  }
 `;

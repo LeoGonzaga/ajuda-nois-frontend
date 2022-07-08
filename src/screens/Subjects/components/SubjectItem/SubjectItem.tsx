@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 
+import LoadingTable from '@components/LoadingTable';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 import { useRouter } from 'next/router';
@@ -9,12 +10,21 @@ import { useRouter } from 'next/router';
 import { Empty, TableItem, TableItemContent } from './styles';
 import useSubjectItem from './useSubjectItem';
 
-export const SubjectItem = ({ topic, check, topic_id }: any): JSX.Element => {
+export const SubjectItem = ({
+  topic,
+  check,
+  topic_id,
+  loading,
+}: any): JSX.Element => {
   const router = useRouter();
   const { data, expand, getLessonsByTopic, handleToggle } = useSubjectItem();
 
   const handleRedirect = (route: string, id: string) => {
     router.replace(`${route}?id=${id}`);
+  };
+
+  const handleRedirectQuiz = (route: string, id: string) => {
+    router.replace(`${route}?id=${id}&index=0`);
   };
 
   useEffect(() => {
@@ -54,7 +64,7 @@ export const SubjectItem = ({ topic, check, topic_id }: any): JSX.Element => {
                 elem?.quizzes?.map((quiz: any) => {
                   return (
                     <button
-                      onClick={() => handleRedirect('quiz/', quiz?._id)}
+                      onClick={() => handleRedirectQuiz('quiz/', quiz?._id)}
                       key={index}
                     >
                       <Text>{quiz.name}</Text>
@@ -63,6 +73,8 @@ export const SubjectItem = ({ topic, check, topic_id }: any): JSX.Element => {
                 })
               );
             })}
+
+          {data?.length === 0 && loading && <LoadingTable />}
         </TableItemContent>
       )}
     </>

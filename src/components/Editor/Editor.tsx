@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { AiOutlineLink } from 'react-icons/ai';
 import { BiParagraph } from 'react-icons/bi';
 import { CgArrowsBreakeV } from 'react-icons/cg';
@@ -213,10 +213,7 @@ export const EditorContainer = ({
     content: data
       ? data
       : `
-      <p>
-      Digite aqui...
-      </p>
-   
+      
     `,
   });
 

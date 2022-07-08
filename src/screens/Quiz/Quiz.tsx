@@ -11,6 +11,7 @@ import { ROUTES } from 'src/routes/routes';
 import {
   Container,
   EditorWrapper,
+  InputsContainer,
   Item,
   SideBarSubjects,
   Wrapper,
@@ -18,39 +19,70 @@ import {
 import useQuiz from './useQuiz';
 
 export const Quiz = (): JSX.Element => {
-  const { data, topics, handleRedirect } = useQuiz();
+  const {
+    data,
+    handleRedirectToIndex,
+    index,
+    questions,
+    handleCheck,
+    awnsers,
+  } = useQuiz();
+
   return (
     <Wrapper>
       <Flex align="center">
         <BackButton route={ROUTES.SUBJECT} />
-        {data?.title}
+        {data?.name}
       </Flex>
       <Container>
-        <EditorWrapper>
-          {data?._id && (
-            <EditorContainer
-              showControls={false}
-              data={data.content}
-              onChange={() => {}}
-              height="100%"
-              width="100%"
-              hide
-            />
-          )}
-        </EditorWrapper>
+        <div>
+          <EditorWrapper>
+            {data?._id && (
+              <EditorContainer
+                showControls={false}
+                data={questions[index]?.question}
+                onChange={() => {}}
+                height="60%"
+                width="100%"
+                hide
+              />
+            )}
+          </EditorWrapper>
+          <InputsContainer>
+            <div>
+              <Text>Selecione a opção correta abaixo:</Text>
+              {questions[index]?.alternatives?.map(
+                (alternative: any, index: any) => (
+                  <label
+                    key={index}
+                    onClick={() => handleCheck(index, alternative)}
+                  >
+                    <input
+                      type="checkbox"
+                      name=""
+                      id=""
+                      checked={awnsers[index].check}
+                    />
+                    <p>{alternative}</p>
+                  </label>
+                )
+              )}
+            </div>
+          </InputsContainer>
+        </div>
         <SideBarSubjects>
           <Text bold size={20}>
             {data?.topic_info?.name}
           </Text>
           <Spacing vertical={5} />
-          {topics &&
-            topics?.map((element: any, index) => (
+          {data &&
+            data?.questions_info?.map((element: any, current: any) => (
               <Item
-                active={element.title === data?.title}
-                onClick={() => handleRedirect(element?._id)}
-                key={index}
+                active={questions[index]?.name === element.name}
+                onClick={() => handleRedirectToIndex(data?._id, current)}
+                key={current}
               >
-                <p>{element.title}</p>
+                <p>{element.name}</p>
               </Item>
             ))}
         </SideBarSubjects>

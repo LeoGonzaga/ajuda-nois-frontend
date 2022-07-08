@@ -6,9 +6,6 @@ export const Container = styled.div`
   border-radius: 8px;
   /* border: 1px solid ${({ theme }) => theme.TEXT}; */
 
-  display: flex;
-  flex-direction: column;
-
   padding: 15px;
   margin: 10px;
 
@@ -30,4 +27,7 @@ export const Container = styled.div`
   p {
     font-size: 14px;
   }
+
+  display: inline-block;
+  width: 100%;
 `;

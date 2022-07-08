@@ -1,62 +1,110 @@
-import React, { useCallback, useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 import { Options, Response, requestAPI } from '@services/index';
+import { handleRedirect } from '@utils/functions';
 import { useRouter } from 'next/router';
 import { ROUTES } from 'src/routes/routes';
 
 const useQuiz = () => {
   const router = useRouter();
-  const [lessonId, setLessonId] = useState<any>('');
-  const [topicId, setTopicId] = useState('');
+  const [quizId, setQuizId] = useState<any>('');
   const [data, setData] = useState<any>([]);
-  const [topics, setTopics] = useState([]);
   const [expand, setExpand] = useState<boolean>(false);
+  const [index, setIndex] = useState<any>('0');
+  const [questions, setQuestons] = useState<any>([]);
+  const [awnsers, setAwnsers] = useState([
+    {
+      check: false,
+      value: '',
+    },
+    {
+      check: false,
+      value: '',
+    },
+    {
+      check: false,
+      value: '',
+    },
+    {
+      check: false,
+      value: '',
+    },
+    {
+      check: false,
+      value: '',
+    },
+  ]);
+
+  const handleCheck = (index: number, value: string) => {
+    const items = [...awnsers];
+    const disabledCheck = items?.map((elem) => {
+      return {
+        check: false,
+        value: elem.value,
+      };
+    });
+
+    disabledCheck[index].check = true;
+    disabledCheck[index].value = value;
+    setAwnsers(disabledCheck);
+  };
+
+  const handleRedirectToIndex = (id: string, index: string) => {
+    router.replace('/quiz?id=' + id + '&index=' + index);
+  };
 
   const handleToggle = useCallback(() => {
     setExpand(!expand);
   }, [expand]);
 
-  const handleRedirect = (id: string) => {
-    router.replace('/view?id=' + id);
-  };
-
-  const getLesson = async () => {
+  const getQuiz = async () => {
     const token = localStorage.getItem('token');
     setData([]);
-    setTopicId('');
     const payload: Options = {
       method: 'POST',
-      url: '/getQuizzes',
+      url: '/getQuiz',
       headers: { Authorization: `Bearer ${token}` },
       data: {
-        quiz_id: lessonId,
+        quiz_id: quizId,
       },
     };
     const { response }: Response = await requestAPI(payload);
 
-    const value = response?.data[0];
+    const value = response?.data;
     if (value) {
       setData(value);
-      setTopicId(value?.topic_id);
+      setQuestons(value.questions_info);
     }
   };
 
   useEffect(() => {
     const id = router.query.id;
+    const valueIndex = router.query.index;
     if (id) {
-      setLessonId(id);
+      setQuizId(id);
+      setIndex(valueIndex);
     } else {
       handleRedirect(ROUTES.SUBJECT);
     }
   }, [router]);
 
   useEffect(() => {
-    if (lessonId) {
-      getLesson();
+    if (quizId) {
+      getQuiz();
     }
-  }, [lessonId, router]);
+  }, [quizId, router]);
 
-  return { data, handleToggle, expand, topics, handleRedirect };
+  return {
+    data,
+    handleToggle,
+    expand,
+    handleRedirectToIndex,
+    index,
+    questions,
+    handleCheck,
+    awnsers,
+  };
 };
 
 export default useQuiz;

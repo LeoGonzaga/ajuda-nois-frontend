@@ -18,6 +18,7 @@ export const TableItem = styled.div`
 
 export const Empty = styled.div`
   padding-left: 15px;
+  margin-top: 10px;
 `;
 
 export const TableItemContent = styled.div`
