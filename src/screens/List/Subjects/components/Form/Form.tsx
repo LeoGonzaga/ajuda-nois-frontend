@@ -60,7 +60,6 @@ export const Form = ({
   });
 
   const [loading, setLoading] = useState(false);
-  console.log(editabled);
 
   const handleUpdate = async (e: any) => {
     e.preventDefault();
