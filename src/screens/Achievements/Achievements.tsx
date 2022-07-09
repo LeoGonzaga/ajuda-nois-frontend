@@ -1,31 +1,24 @@
 import React from 'react';
 
-import Text from '@components/Text';
 import Title from '@components/Title';
 
 import Achievement from './components/Achievement';
 import Level from './components/Level';
-import Share from './components/Share';
 import {
   AchievementsContainer,
   Container,
   Content,
   LevelContainer,
-  ShareContainer,
 } from './styles';
 import useAchievements from './useAchievements';
 
 export const Achievements = (): JSX.Element => {
-  const { data, loading, enabled } = useAchievements();
+  const { data, enabled } = useAchievements();
 
   let totalExp = 0;
 
-  // Ordena o array de data para mostrar as conquistas desbloqueadas primeiro
-  // data.sort((a, b) => (a.achieved === b.achieved ? 0 : a.achieved ? -1 : 1));
-
   return (
     <Container>
-      {/* Screen title */}
       <Title
         text="Suas"
         contrast="conquistas"

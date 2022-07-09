@@ -35,8 +35,8 @@ export const ImageContainer = styled.div<Props>`
   justify-content: center;
   align-items: center;
 
-  min-width: 120px;
-  min-height: 120px;
+  min-width: 100px;
+  min-height: 100px;
 
   padding: 8px;
 
@@ -46,8 +46,8 @@ export const ImageContainer = styled.div<Props>`
   border-radius: 50%;
 
   img {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
   }
 
   background-image: ${(props) =>
