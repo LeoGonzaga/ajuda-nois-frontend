@@ -17,11 +17,46 @@ export const Container = styled.div<Props>`
       }
     }
   }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    margin-bottom: 30px;
+    margin-left: 0px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+    div {
+      div {
+        div + p {
+          max-width: 600px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
 `;
 
 export const NoHeightFlex = styled.div`
   display: flex;
   align-items: center;
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    flex-direction: column;
+    align-items: flex-start;
+    p:first-child {
+      font-size: 19px;
+    }
+    p:last-child {
+      margin-bottom: 5px;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+    align-items: center;
+    p:first-child {
+      font-size: 30px;
+    }
+    margin-bottom: 5px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -48,6 +83,7 @@ export const ImageContainer = styled.div<Props>`
   img {
     width: 120px;
     height: 120px;
+    display: ${(props) => (props.achieved ? 'initial' : 'none')};
   }
 
   background-image: ${(props) =>
@@ -61,5 +97,25 @@ export const ImageContainer = styled.div<Props>`
   img {
     max-width: 120px;
   }
-  background-color: red;
+  background-color: blue;
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    min-width: 100px;
+    min-height: 100px;
+
+    img {
+      width: 65px;
+      height: 65px;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+    min-width: 120px;
+    min-height: 120px;
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
 `;

@@ -11,7 +11,6 @@ export const Container = styled.div`
   @media (min-width: 425px) and (max-width: 1023px) {
     align-self: center;
     margin-left: 30px;
-    margin-bottom: 50px;
 
     span + p {
       display: none;

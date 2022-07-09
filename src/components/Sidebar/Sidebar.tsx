@@ -19,7 +19,7 @@ import Menu from './components/Menu';
 import { RiLogoutCircleLine } from 'react-icons/ri';
 
 export const Sidebar = (): JSX.Element => {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
   const [dashboard, setDashBoard] = useState<string>('');
   const user = localStorage.getItem('user');
 

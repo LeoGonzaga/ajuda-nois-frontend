@@ -26,4 +26,14 @@ export const Container = styled.div`
   .CircularProgressbar {
     border-radius: 100%;
   }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    width: 320px;
+    height: 320px;
+    margin-right: 0px;
+
+    p {
+      font-size: 38px;
+    }
+  }
 `;
