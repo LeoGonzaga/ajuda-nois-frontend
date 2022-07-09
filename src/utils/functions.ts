@@ -1,6 +1,13 @@
 import { COLORS } from '@themes/colors';
 import Router from 'next/router';
 
+export const AREAS: any = {
+  human_sciences: 'Ciências Humanas',
+  languages: 'Linguagem',
+  natural_sciences: 'Ciências da Natureza',
+  mathematics: 'Matemática',
+};
+
 const RANDOM_COLORS = [
   COLORS.SUCCESS,
   COLORS.PINK,

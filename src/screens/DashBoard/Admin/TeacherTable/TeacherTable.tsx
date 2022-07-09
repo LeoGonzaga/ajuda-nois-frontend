@@ -54,16 +54,18 @@ export const TeacherTable = ({ size, data }: Props): JSX.Element => {
             </thead>
 
             <tbody>
-              {data?.map(({ username, email }: any, index: number) => {
-                return (
-                  <tr key={index}>
-                    <td>{username}</td>
-                    <td>{email}</td>
-                    {/* <td>{fields}</td>
-                    <td>{subjects}</td> */}
-                  </tr>
-                );
-              })}
+              {data?.map(
+                ({ username, email, fields, subjects }: any, index: number) => {
+                  return (
+                    <tr key={index}>
+                      <td>{username}</td>
+                      <td>{email}</td>
+                      <td>{fields}</td>
+                      <td>{subjects}</td>
+                    </tr>
+                  );
+                }
+              )}
             </tbody>
           </table>
         </Content>
