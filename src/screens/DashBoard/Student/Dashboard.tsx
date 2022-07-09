@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 
 import ResultsPomodoro from '../components/ResultsPomodoro';
@@ -22,7 +23,6 @@ export const Dashboard = ({ data }: Props): JSX.Element => {
     return (current / total) * 100;
   };
 
-  console.log(data.topicsGraph);
   const handleFormatDataToTopics = () => {
     const topicsByArea = data?.topicsGraph;
     const human = calcPorcentageByArea(
