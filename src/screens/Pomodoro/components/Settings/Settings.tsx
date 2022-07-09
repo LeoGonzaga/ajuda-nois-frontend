@@ -21,7 +21,7 @@ export const Settings = (): JSX.Element => {
     if (control.modeType === 'work' && (control.isIdle || control.isPaused)) {
       if (index == 0) {
         setTimeState({ left: true, middle: false, right: false, active: 0 });
-        dispatch(setWorkTime(1));
+        dispatch(setWorkTime(15));
       } else if (index == 1) {
         setTimeState({ left: false, middle: true, right: false, active: 1 });
         dispatch(setWorkTime(20));
@@ -32,7 +32,6 @@ export const Settings = (): JSX.Element => {
     }
   }
 
-  console.log(control.modeType, control);
   return (
     <Container>
       <Lock>

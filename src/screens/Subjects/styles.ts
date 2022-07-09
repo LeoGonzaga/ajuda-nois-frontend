@@ -26,4 +26,6 @@ export const SubjectItemButton = styled.button<{ active: boolean }>`
   padding: 15px;
   border-radius: 5px;
   cursor: pointer;
+  border: none;
+  margin: 2px;
 `;
