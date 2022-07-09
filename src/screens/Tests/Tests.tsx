@@ -7,7 +7,7 @@ import { getColorByTest, getRandomColors } from '@utils/functions';
 
 import Card from './components/Card';
 import SelectTestYear from './components/SelectTestYear';
-import { Container, WrapperCards } from './styles';
+import { Container, Row, WrapperCards } from './styles';
 import useTests from './useTests';
 
 export const Tests = (): JSX.Element => {
@@ -24,37 +24,41 @@ export const Tests = (): JSX.Element => {
       {data?.map((item: any, index) => {
         return (
           <>
-            <Text size={20} bold>
-              {item.year}
-            </Text>
             <WrapperCards>
-              {item?.colors?.map((enem: any) => {
-                if (enem?.days.first) {
-                  return (
-                    <Card
-                      color={getColorByTest(enem.color)}
-                      title={enem.title}
-                      key={index}
-                      test={enem.days?.first}
-                      day={1}
-                    />
-                  );
-                }
-              })}
+              <Text size={20} bold>
+                {item.year}
+              </Text>
+              <Row>
+                {item?.colors?.map((enem: any) => {
+                  if (enem?.days.first) {
+                    return (
+                      <Card
+                        color={getColorByTest(enem.color)}
+                        title={enem.title}
+                        key={index}
+                        test={enem.days?.first}
+                        day={1}
+                      />
+                    );
+                  }
+                })}
+              </Row>
 
-              {item?.colors?.map((enem: any) => {
-                if (enem?.days.second) {
-                  return (
-                    <Card
-                      color={getColorByTest(enem.color)}
-                      title={enem.title}
-                      key={index}
-                      test={enem.days?.second}
-                      day={2}
-                    />
-                  );
-                }
-              })}
+              <Row>
+                {item?.colors?.map((enem: any) => {
+                  if (enem?.days.second) {
+                    return (
+                      <Card
+                        color={getColorByTest(enem.color)}
+                        title={enem.title}
+                        key={index}
+                        test={enem.days?.second}
+                        day={2}
+                      />
+                    );
+                  }
+                })}
+              </Row>
             </WrapperCards>
           </>
         );

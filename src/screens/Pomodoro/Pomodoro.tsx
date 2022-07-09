@@ -2,7 +2,7 @@ import React from 'react';
 
 import Settings from './components/Settings';
 import Timer from './components/Timer';
-import { Container } from './styles';
+import { Container, Content, Spacer } from './styles';
 
 type Props = {
   area: string;

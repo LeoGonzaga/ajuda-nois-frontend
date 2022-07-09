@@ -40,49 +40,44 @@ export const StudentTable = ({
   ]);
   const [data, setDate] = useState<SimsProps[]>([
     {
-      name: 'Fulano de Souza',
+      name: 'Bryan aluno',
       quizAverage: 69,
       sims: [30, 45, 12, 24, 28, '-', 7],
     },
     {
-      name: 'Bryan Fortunato de Souza',
+      name: 'Sebastião Carrara',
       quizAverage: 88,
       sims: [42, 5, 12, 14, 28, 45, 41],
     },
     {
-      name: 'Breno Fortunato de Souza',
+      name: 'Horácio Vale',
       quizAverage: 28,
       sims: [10, 45, 19, 19, 28, '-', 7],
     },
     {
-      name: 'Renan Rodriguez Bizarri',
+      name: 'Fernando Esteves',
       quizAverage: 69,
       sims: [30, 45, 12, 24, 28, '-', 25],
     },
     {
-      name: 'Renan Rodrigues Bizarri',
+      name: 'Joaquin Madeira',
       quizAverage: 88,
       sims: [42, 45, 12, 24, 2, '-', 7],
     },
     {
-      name: 'Beltrano da Silva',
+      name: 'Marcos Ferraz',
       quizAverage: 28,
       sims: [3, 40, 17, 24, 29, '-', 7],
     },
     {
-      name: 'Cicrano Pinto',
+      name: 'Hugo Pacheco',
       quizAverage: 69,
       sims: [30, 45, 35, 24, 28, '-', 7],
     },
     {
-      name: 'Leonardo Gonzaga Silva',
+      name: 'Carla Colaço',
       quizAverage: 88,
       sims: [30, 45, 15, 24, 28, 19, 27],
-    },
-    {
-      name: 'Desenvolvedor Pleno Senior',
-      quizAverage: 28,
-      sims: [30, 45, 12, 24, 28, '-', 42],
     },
   ]);
 

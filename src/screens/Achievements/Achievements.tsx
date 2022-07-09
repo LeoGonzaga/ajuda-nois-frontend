@@ -11,11 +11,15 @@ import {
   LevelContainer,
 } from './styles';
 import useAchievements from './useAchievements';
+import ToNextLevel from './components/ToNextLevel';
 
 export const Achievements = (): JSX.Element => {
   const { data, enabled } = useAchievements();
 
   let totalExp = 0;
+  const levelProgression = [
+    0, 100, 500, 1000, 2000, 3500, 5000, 7500, 10000, 15000,
+  ];
 
   return (
     <Container>
@@ -46,7 +50,8 @@ export const Achievements = (): JSX.Element => {
 
         <Container>
           <LevelContainer>
-            <Level exp={totalExp} />
+            <Level exp={totalExp} progression={levelProgression} />
+            <ToNextLevel exp={totalExp} progression={levelProgression} />
           </LevelContainer>
         </Container>
       </Content>

@@ -23,9 +23,6 @@ export const Card = ({ test, title, color, day }: CardProps): JSX.Element => {
   return (
     <Container color={color}>
       <EnemLogo />
-      <Flex align="center" width="100%" justify="left">
-        <p>{title}</p>
-      </Flex>
       <Spacing vertical={5} />
       <div>
         <Flex>

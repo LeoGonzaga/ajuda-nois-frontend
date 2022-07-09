@@ -16,6 +16,14 @@ export const Container = styled.div`
       margin-bottom: 20px;
     }
   }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    overflow-y: initial;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+    overflow-y: initial;
+  }
 `;
 
 export const Content = styled.div`
@@ -31,30 +39,65 @@ export const Content = styled.div`
     padding: 10px;
     justify-content: space-between;
   }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    display: flex;
+    flex-direction: column-reverse;
+
+    height: 100vh;
+
+    overflow-y: scroll;
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+    display: flex;
+    flex-direction: column-reverse;
+
+    height: 100vh;
+
+    overflow-y: scroll;
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 
 export const AchievementsContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 90vh;
-  flex: 1;
   padding: 10px;
   overflow-y: auto;
   scroll-behavior: smooth;
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    height: auto;
+    margin-bottom: 50px;
+    overflow-y: initial;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+    height: auto;
+    margin-bottom: 100px;
+    overflow-y: initial;
+  }
 `;
 
 export const LevelContainer = styled.div`
-  flex: 5;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
-`;
-
-export const ShareContainer = styled.div`
-  flex: 3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
+  height: 100%;
 `;
