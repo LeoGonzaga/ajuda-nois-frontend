@@ -1,9 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 
 import BackButton from '@components/BackButton';
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Flex from '@components/Flex';
 import ModalContainer from '@components/Modal';
+import Text from '@components/Text';
 import Title from '@components/Title';
 import { ROUTES } from 'src/routes/routes';
 
@@ -13,17 +14,30 @@ import { Container } from './styles';
 import { useTopic } from './useTopic';
 
 export const Topic = (): JSX.Element => {
-  const { handleToggleModal, openModal, data, getAll, loading, subjects } =
-    useTopic();
+  const {
+    setOpen,
+    open,
+    data,
+    getAll,
+    loading,
+    subjects,
+    contentEditabled,
+    handleSelectedEditContent,
+  } = useTopic();
 
   return (
     <Container>
       <ModalContainer
-        open={openModal}
+        open={open}
         title="Criação de tópico"
-        handleClose={handleToggleModal}
+        handleClose={setOpen}
       >
-        <Form onClose={handleToggleModal} reload={getAll} subjects={subjects} />
+        <Form
+          onClose={setOpen}
+          reload={getAll}
+          subjects={subjects}
+          editabled={contentEditabled}
+        />
       </ModalContainer>
       <Flex align="center">
         <div>
@@ -31,12 +45,21 @@ export const Topic = (): JSX.Element => {
         </div>
         <Flex align="center" justify="space-between">
           <Title text="Tópicos" contrast="" subText="" />
-          <SecondaryButton onClick={handleToggleModal}>
-            Novo tópico
-          </SecondaryButton>
+          {subjects?.length > 0 ? (
+            <SecondaryButton onClick={setOpen}>Novo tópico</SecondaryButton>
+          ) : (
+            <Text color="#ccc" size={12}>
+              Não há matérias associadas a essa conta
+            </Text>
+          )}
         </Flex>
       </Flex>
-      <Table data={data} reload={getAll} loading={loading} />
+      <Table
+        data={data}
+        reload={getAll}
+        loading={loading}
+        handleClick={handleSelectedEditContent}
+      />
     </Container>
   );
 };

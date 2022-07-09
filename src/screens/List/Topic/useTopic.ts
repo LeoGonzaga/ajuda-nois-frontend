@@ -1,16 +1,19 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Options, requestAPI, Response } from '@services/index';
+import useToggle from 'src/hooks/useToggle';
 
 export const useTopic = () => {
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [open, setOpen] = useToggle();
   const [data, setData] = useState<any>([]);
   const [subjects, setSubjects] = useState([]);
+  const [contentEditabled, setContentEditabled] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const handleToggleModal = useCallback(() => {
-    setOpenModal(!openModal);
-  }, [openModal]);
+  const handleSelectedEditContent = (value: any) => {
+    setContentEditabled(value);
+    setOpen();
+  };
 
   const getSubjects = async () => {
     const token = localStorage.getItem('token');
@@ -87,13 +90,19 @@ export const useTopic = () => {
     Promise.all([getAll(), getSubjects()]);
   }, []);
 
+  useEffect(() => {
+    if (!open) setContentEditabled([]);
+  }, [open]);
+
   return {
-    openModal,
-    handleToggleModal,
+    open,
+    setOpen,
     data,
     getAll,
     setData,
     loading,
     subjects,
+    contentEditabled,
+    handleSelectedEditContent,
   };
 };
