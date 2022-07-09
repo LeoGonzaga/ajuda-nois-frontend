@@ -32,7 +32,6 @@ export const Settings = (): JSX.Element => {
     }
   }
 
-  console.log(control.modeType, control);
   return (
     <Container>
       <Lock>

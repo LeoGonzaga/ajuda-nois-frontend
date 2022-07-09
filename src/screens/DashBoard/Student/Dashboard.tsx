@@ -22,6 +22,7 @@ export const Dashboard = ({ data }: Props): JSX.Element => {
     return (current / total) * 100;
   };
 
+  console.log(data.topicsGraph);
   const handleFormatDataToTopics = () => {
     const topicsByArea = data?.topicsGraph;
     const human = calcPorcentageByArea(
@@ -49,12 +50,11 @@ export const Dashboard = ({ data }: Props): JSX.Element => {
       math: math,
       natural: natural,
     });
-    console.log(human);
   };
 
   useEffect(() => {
     handleFormatDataToTopics();
-  }, []);
+  }, [data]);
 
   return (
     <Container>

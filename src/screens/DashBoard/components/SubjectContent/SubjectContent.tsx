@@ -25,7 +25,7 @@ export const SubjectContent = ({ value }: Props): JSX.Element => {
         <CircleProgress
           area="Natureza"
           color={COLORS.GREEN}
-          value={value?.human || 0}
+          value={value?.natural || 0}
           size={150}
         />
         <CircleProgress
