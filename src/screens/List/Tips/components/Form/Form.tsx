@@ -18,16 +18,60 @@ import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
-export const Form = ({ onClose, reload }: any): JSX.Element => {
+export const Form = ({ onClose, reload, editabled }: any): JSX.Element => {
   const dispatch = useDispatch();
-  const [topic, setTopic] = useChangeText('');
-  const [information, setInformation] = useChangeText('');
+  const [topic, setTopic] = useChangeText(editabled?.name || '');
+  const [information, setInformation] = useChangeText(editabled?.content || '');
   const [loading, setLoading] = useState(false);
 
   const [errors, setErrors] = useState({
     topic: false,
     information: false,
   });
+
+  const handleUpdate = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    const token = localStorage.getItem('token');
+
+    if (topic.length === 0) {
+      setErrors((prevState) => ({
+        ...prevState,
+        topic: true,
+      }));
+    }
+
+    if (information.length === 0) {
+      setErrors((prevState) => ({
+        ...prevState,
+        information: true,
+      }));
+    }
+
+    const options: Options = {
+      method: 'PUT',
+      url: '/updateTip',
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        id: editabled?._id,
+        name: topic,
+        content: information,
+      },
+    };
+    const { response }: Response = await requestAPI(options);
+
+    const error = checkError(response?.status);
+
+    if (error) {
+      dispatch(setNotification(openErrorNotification(response?.data?.error)));
+      setLoading(false);
+      return;
+    }
+    dispatch(setNotification(openNotification('Dica atualizada com sucesso!')));
+    await reload();
+    setLoading(false);
+    onClose();
+  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -113,11 +157,11 @@ export const Form = ({ onClose, reload }: any): JSX.Element => {
         <ActionButton
           color={COLORS.SECONDARY}
           width="350px"
-          onClick={handleSubmit}
+          onClick={editabled?.name ? handleUpdate : handleSubmit}
           loading={loading}
           disabled={loading}
         >
-          Salvar
+          {editabled?.name ? 'Salvar' : 'Criar'}
         </ActionButton>
         <Spacing vertical={5} />
       </Flex>

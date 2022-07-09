@@ -13,12 +13,25 @@ import { Container } from './styles';
 import { useTips } from './useTips';
 
 export const Tips = (): JSX.Element => {
-  const { data, getAll, open, setOpen, loading } = useTips();
+  const {
+    data,
+    getAll,
+    open,
+    setOpen,
+    loading,
+    contentEditabled,
+    handleSelectedEditContent,
+  } = useTips();
 
   return (
     <Container>
       <ModalContainer open={open} title="Criação de dica" handleClose={setOpen}>
-        <Form reload={getAll} onClose={setOpen} />
+        <Form
+          reload={getAll}
+          onClose={setOpen}
+          editabled={contentEditabled}
+          reset={handleSelectedEditContent}
+        />
       </ModalContainer>
       <Flex align="center">
         <div>
@@ -29,7 +42,12 @@ export const Tips = (): JSX.Element => {
           <SecondaryButton onClick={setOpen}>Nova dica</SecondaryButton>
         </Flex>
       </Flex>
-      <Table data={data} reload={getAll} loading={loading} />
+      <Table
+        data={data}
+        reload={getAll}
+        loading={loading}
+        handleClick={handleSelectedEditContent}
+      />
     </Container>
   );
 };
