@@ -11,7 +11,6 @@ export const Container = styled.div`
 `;
 
 export const Center = styled.div`
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,5 +39,29 @@ export const Wrapper = styled.div`
   p {
     padding-top: 5px;
     padding-left: 10px;
+  }
+`;
+
+export const Arrow = styled.button`
+  display: flex;
+
+  margin-bottom: 30px;
+  font-size: 30px;
+  color: ${COLORS.TEXT};
+
+  border: none;
+  background-color: transparent;
+
+  transition: filter 0.3s ease;
+
+  cursor: pointer;
+  filter: brightness(0.5);
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+
+  svg {
+    transform: scaleY(1.8);
   }
 `;

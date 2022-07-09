@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 
 import ResultsPomodoro from '../components/ResultsPomodoro';
@@ -17,12 +18,14 @@ export const Dashboard = ({ data }: Props): JSX.Element => {
     human: 0,
     language: 0,
   });
+  const [pomodoros, setPomodoros] = useState([]);
+  const [examPerArea, setExamPerArea] = useState([]);
+  const [examInfo, setExamInfo] = useState([]);
 
   const calcPorcentageByArea = (current: number, total: number) => {
     return (current / total) * 100;
   };
 
-  console.log(data.topicsGraph);
   const handleFormatDataToTopics = () => {
     const topicsByArea = data?.topicsGraph;
     const human = calcPorcentageByArea(
@@ -52,8 +55,26 @@ export const Dashboard = ({ data }: Props): JSX.Element => {
     });
   };
 
+  const getInfosByStudent = () => {
+    if (data?.student) {
+      const value = data?.student[0];
+      const allPomodoros = value?.pomodoros;
+      const exams = value?.mock_exams;
+      const infos = value?.mock_exams_info;
+
+      setPomodoros(allPomodoros);
+      setExamPerArea(exams);
+      setExamInfo(infos);
+    }
+  };
+
   useEffect(() => {
-    handleFormatDataToTopics();
+    const fetchData = async () => {
+      await handleFormatDataToTopics();
+      await getInfosByStudent();
+    };
+
+    fetchData();
   }, [data]);
 
   return (
@@ -62,10 +83,10 @@ export const Dashboard = ({ data }: Props): JSX.Element => {
         <Column>
           <SubjectContent value={areas} />
         </Column>
-        <StudentChart />
+        <StudentChart data={examPerArea} infos={examInfo} />
       </Row>
       <Row>
-        <ResultsPomodoro />
+        <ResultsPomodoro data={pomodoros} />
         <Timeline />
       </Row>
     </Container>

@@ -10,6 +10,11 @@ const useSubjectItem = () => {
     setExpand(!expand);
   }, [expand]);
 
+  const handleClose = () => {
+    setExpand(false);
+    setData([]);
+  };
+
   const getLessonsByTopic = async (topic: number) => {
     const token = localStorage.getItem('token');
 
@@ -26,7 +31,7 @@ const useSubjectItem = () => {
     setData(response?.data);
   };
 
-  return { data, getLessonsByTopic, handleToggle, expand };
+  return { data, getLessonsByTopic, handleToggle, expand, handleClose };
 };
 
 export default useSubjectItem;

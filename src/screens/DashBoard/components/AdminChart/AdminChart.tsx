@@ -114,7 +114,7 @@ export const AdminChart = (): JSX.Element => {
         <Arrow onClick={() => prevSim()}>
           <IoIosArrowBack />
         </Arrow>
-        <HorizontalBarChartContainer data={data[index]} />
+        {/* <HorizontalBarChartContainer data={data[index]} /> */}
         <Arrow onClick={() => nextSim()}>
           <IoIosArrowForward />
         </Arrow>
