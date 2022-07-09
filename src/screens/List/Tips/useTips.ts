@@ -7,7 +7,13 @@ import useToggle from 'src/hooks/useToggle';
 export const useTips = () => {
   const [open, setOpen] = useToggle();
   const [data, setData] = useState<any>([]);
+  const [contentEditabled, setContentEditabled] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const handleSelectedEditContent = (value: any) => {
+    setContentEditabled(value);
+    setOpen();
+  };
 
   const getAll = async () => {
     setLoading(true);
@@ -31,5 +37,17 @@ export const useTips = () => {
     getAll();
   }, []);
 
-  return { open, setOpen, data, getAll, loading };
+  useEffect(() => {
+    if (!open) setContentEditabled([]);
+  }, [open]);
+
+  return {
+    open,
+    setOpen,
+    data,
+    getAll,
+    loading,
+    contentEditabled,
+    handleSelectedEditContent,
+  };
 };
