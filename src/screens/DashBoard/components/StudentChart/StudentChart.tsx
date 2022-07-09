@@ -105,7 +105,7 @@ export const StudentChart = (): JSX.Element => {
     <Container>
       <div>
         <Text bold color={COLORS.BLACK} size={18}>
-          Acertos Por Questão
+          Acertos Por Área do Conhecimento
         </Text>
         <Text size={14}> Simulado de {simData[index]}</Text>
       </div>

@@ -20,7 +20,7 @@ export const Container = styled.div<Props>`
 
   @media (max-width: 425px) {
     width: ${(props) => (props.expanded ? '100%' : '60px')};
-    height: ${(props) => (props.expanded ? '100%' : '60px')};
+    height: ${(props) => (props.expanded ? '100%' : '53px')};
     background-color: ${COLORS.TERTIARY};
     border-bottom: 1px solid ${COLORS.NEUTRAL};
     overflow: hidden;

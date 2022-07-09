@@ -1,12 +1,11 @@
 import React from 'react';
 
-import Flex from '@components/Flex';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 import EnemLogo from 'assets/enem.svg';
 
-import { Container } from './styles';
+import { Container, Flex } from './styles';
 
 type Props = {
   exam: string;

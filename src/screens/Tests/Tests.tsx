@@ -7,7 +7,7 @@ import { getColorByTest, getRandomColors } from '@utils/functions';
 
 import Card from './components/Card';
 import SelectTestYear from './components/SelectTestYear';
-import { Container, Row, WrapperCards } from './styles';
+import { Container, Content, Row, SelectRow, WrapperCards } from './styles';
 import useTests from './useTests';
 
 export const Tests = (): JSX.Element => {
@@ -20,14 +20,17 @@ export const Tests = (): JSX.Element => {
         contrast="provas"
         subText="Selecione o ano abaixo para filtrar"
       />
-      <SelectTestYear />
+      <SelectRow>
+        <SelectTestYear />
+      </SelectRow>
       {data?.map((item: any, index) => {
         return (
-          <>
+          // eslint-disable-next-line react/jsx-key
+          <Content>
+            <Text size={20} bold>
+              {item.year}
+            </Text>
             <WrapperCards>
-              <Text size={20} bold>
-                {item.year}
-              </Text>
               <Row>
                 {item?.colors?.map((enem: any) => {
                   if (enem?.days.first) {
@@ -60,7 +63,7 @@ export const Tests = (): JSX.Element => {
                 })}
               </Row>
             </WrapperCards>
-          </>
+          </Content>
         );
       })}
     </Container>
