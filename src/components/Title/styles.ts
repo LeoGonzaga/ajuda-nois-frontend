@@ -9,7 +9,7 @@ export const Container = styled.div`
   }
 
   @media (min-width: 425px) and (max-width: 1023px) {
-    align-self: center;
+    align-items: center;
     margin-left: 30px;
 
     span + p {
