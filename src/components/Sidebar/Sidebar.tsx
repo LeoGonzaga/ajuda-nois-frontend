@@ -8,7 +8,6 @@ import {
   BiAward,
   BiBook,
 } from 'react-icons/bi';
-import { BsClockHistory } from 'react-icons/bs';
 
 import { handleRedirect } from '@utils/functions';
 import { ROUTES } from 'src/routes/routes';
@@ -106,13 +105,6 @@ export const Sidebar = (): JSX.Element => {
               text="Conquistas"
               router={ROUTES.ACHIEVEMENTS}
               icon={<BiAward />}
-              expanded={expanded}
-            />
-
-            <Item
-              text="Pomodoro"
-              router={ROUTES.POMODORO}
-              icon={<BsClockHistory />}
               expanded={expanded}
             />
           </>

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Text from '@components/Text';
 import Title from '@components/Title';
 
 import Achievement from './components/Achievement';
@@ -15,19 +14,15 @@ import useAchievements from './useAchievements';
 import ToNextLevel from './components/ToNextLevel';
 
 export const Achievements = (): JSX.Element => {
-  const { data, loading, enabled } = useAchievements();
+  const { data, enabled } = useAchievements();
 
   let totalExp = 0;
   const levelProgression = [
     0, 100, 500, 1000, 2000, 3500, 5000, 7500, 10000, 15000,
   ];
 
-  // Ordena o array de data para mostrar as conquistas desbloqueadas primeiro
-  // data.sort((a, b) => (a.achieved === b.achieved ? 0 : a.achieved ? -1 : 1));
-
   return (
     <Container>
-      {/* Screen title */}
       <Title
         text="Suas"
         contrast="conquistas"

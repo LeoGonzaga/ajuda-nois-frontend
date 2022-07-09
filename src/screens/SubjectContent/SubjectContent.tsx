@@ -16,11 +16,13 @@ import {
   Item,
   SideBarSubjects,
   Wrapper,
+  ScrollSideBar,
 } from './styles';
 import useSubjectContent from './useSubjectContent';
 
 export const SubjectContent = (): JSX.Element => {
-  const { data, topics, handleRedirect, loading } = useSubjectContent();
+  const { data, topics, handleRedirect, loading, area } = useSubjectContent();
+
   return (
     <Wrapper>
       <Flex align="center">
@@ -50,18 +52,19 @@ export const SubjectContent = (): JSX.Element => {
             {data?.topic_info?.name}
           </Text>
           <Spacing vertical={5} />
-          {topics &&
-            topics?.map((element: any, index) => (
-              <Item
-                active={element.title === data?.title}
-                onClick={() => handleRedirect(element?._id)}
-                key={index}
-              >
-                <p>{element.title}</p>
-              </Item>
-            ))}
-
-          {/* <Pomodoro /> */}
+          <ScrollSideBar>
+            {topics &&
+              topics?.map((element: any, index) => (
+                <Item
+                  active={element.title === data?.title}
+                  onClick={() => handleRedirect(element?._id)}
+                  key={index}
+                >
+                  <p>{element.title}</p>
+                </Item>
+              ))}
+          </ScrollSideBar>
+          <Pomodoro area={area} />
         </SideBarSubjects>
       </Container>
     </Wrapper>

@@ -24,9 +24,6 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* margin-left: 60px; */
-  padding: 20px;
-  height: 100vh;
   p {
     margin-bottom: 10px;
   }

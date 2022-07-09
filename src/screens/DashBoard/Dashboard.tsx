@@ -23,7 +23,7 @@ export const DashBoard = (): JSX.Element => {
   }, [value]);
 
   const dashboardByRole: any = {
-    student: <Student />,
+    student: <Student data={data} />,
     teacher: <Teacher />,
     admin: <Admin data={data} />,
   };

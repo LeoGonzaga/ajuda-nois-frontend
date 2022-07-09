@@ -9,7 +9,6 @@ import Title from '@components/Title';
 
 import Card from './components/Card';
 import SubjectItem from './components/SubjectItem';
-import { Empty } from './components/SubjectItem/styles';
 import {
   Container,
   Grid,

@@ -70,8 +70,8 @@ export const ImageContainer = styled.div<Props>`
   justify-content: center;
   align-items: center;
 
-  min-width: 120px;
-  min-height: 120px;
+  min-width: 100px;
+  min-height: 100px;
 
   padding: 8px;
 
@@ -81,9 +81,8 @@ export const ImageContainer = styled.div<Props>`
   border-radius: 50%;
 
   img {
-    width: 120px;
-    height: 120px;
-    display: ${(props) => (props.achieved ? 'initial' : 'none')};
+    width: 100px;
+    height: 100px;
   }
 
   background-image: ${(props) =>
@@ -110,8 +109,8 @@ export const ImageContainer = styled.div<Props>`
   }
 
   @media (min-width: 1024px) and (max-width: 1329px) {
-    min-width: 120px;
-    min-height: 120px;
+    min-width: 100px;
+    min-height: 100px;
 
     img {
       width: 100px;

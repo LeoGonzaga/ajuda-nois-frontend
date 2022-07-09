@@ -25,7 +25,6 @@ export const useTopic = () => {
       return;
     }
 
-    console.log(response.data);
     const value = response.data;
 
     const mathematics = value.mathematics?.map((subjects: any) => {

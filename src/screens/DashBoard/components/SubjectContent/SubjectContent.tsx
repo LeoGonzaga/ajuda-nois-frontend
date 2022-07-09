@@ -6,7 +6,16 @@ import { COLORS } from '@themes/colors';
 
 import { Container, Row } from './styles';
 
-export const SubjectContent = (): JSX.Element => {
+type Props = {
+  value: {
+    natural: number;
+    human: number;
+    language: number;
+    math: number;
+  };
+};
+
+export const SubjectContent = ({ value }: Props): JSX.Element => {
   return (
     <Container>
       <Text bold color={COLORS.BLACK} size={18}>
@@ -16,25 +25,25 @@ export const SubjectContent = (): JSX.Element => {
         <CircleProgress
           area="Natureza"
           color={COLORS.GREEN}
-          value={100}
+          value={value?.natural || 0}
           size={150}
         />
         <CircleProgress
           area="Exatas"
           color={COLORS.SUBJECT_BLUE}
-          value={75}
+          value={value.math || 0}
           size={150}
         />
         <CircleProgress
           area="Linguagens"
           color={COLORS.RED}
-          value={50}
+          value={value.language || 0}
           size={150}
         />
         <CircleProgress
           area="Humanas"
           color={COLORS.YELLOW}
-          value={25}
+          value={value.human || 0}
           size={150}
         />
       </Row>

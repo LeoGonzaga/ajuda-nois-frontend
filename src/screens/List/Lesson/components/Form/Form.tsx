@@ -105,7 +105,6 @@ export const Form = ({
     const filter = topics?.filter((topic: any) => topic.id == subject);
     setAllTopics(filter);
     setTopic(filter[0]?.value);
-    console.log(filter);
   }, [title]);
 
   return (

@@ -15,7 +15,6 @@
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
 - [x] Adição da tela de login
-- [x] Adicionando botão de ação para login com o google
 - [x] Adição do gráfico de acertos por simulado em cada área
 - [x] Adição do gráfico de porcentagem de acertos por matéria
 - [x] Adição da visualização da porcentagem do progresso no plano de estudos e acertos no quiz
@@ -24,12 +23,15 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [x] Adição da tela com cards de dicas
 - [x] Adição do plano de estudo do aluno
 - [x] Adição da visualização de contéudo por matéria
-- [ ] Desenvolver uma imagem para a área de login
-- [ ] Adição do gráfico de tempo por área
-- [ ] Adição do QUIZ com questões cadastradas pelos professores
+- [x] Desenvolver uma imagem para a área de login
+- [x] Adição do gráfico de tempo por área
+- [x] Adição do QUIZ com questões cadastradas pelos professores
 - [x] Adição de tipos diferentes de visualização do dashboard de acordo com a função do usuário
 - [x] Adição do formulário de criação de usuários dentro da plataforma
 - [x] Adição redirecionamento de dashboard de acordo com o tipo do usuário
+- [ ] Responsividade
+- [ ] Melhoria na experiência de usuário
+- [ ]
 
 Ele esta disponivel para a visualização por esse [link](https://ajudanois.vercel.app/).
 
