@@ -23,6 +23,20 @@ const useSubjectContent = () => {
     router.replace('/view?id=' + id);
   };
 
+  const lessonViewed = async () => {
+    const token = localStorage.getItem('token');
+
+    const payload: Options = {
+      method: 'POST',
+      url: '/lessonViewned',
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        lesson_id: lessonId,
+      },
+    };
+    await requestAPI(payload);
+  };
+
   const getTopicBySubject = async () => {
     const token = localStorage.getItem('token');
 
@@ -75,6 +89,7 @@ const useSubjectContent = () => {
   useEffect(() => {
     if (lessonId) {
       getLesson();
+      lessonViewed();
     }
   }, [lessonId, router]);
 
