@@ -19,10 +19,10 @@ export default class PieGraph extends PureComponent<Props> {
     const { data } = this.props;
 
     return (
-      <PieChart width={350} height={200}>
+      <PieChart width={280} height={200}>
         <Pie
           data={data}
-          cx={160}
+          cx={140}
           cy={100}
           innerRadius={60}
           outerRadius={80}
