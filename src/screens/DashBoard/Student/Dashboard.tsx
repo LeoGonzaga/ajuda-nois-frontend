@@ -18,6 +18,7 @@ export const Dashboard = ({ data }: Props): JSX.Element => {
     human: 0,
     language: 0,
   });
+  const [pomodoros, setPomodoros] = useState([]);
 
   const calcPorcentageByArea = (current: number, total: number) => {
     return (current / total) * 100;
@@ -52,8 +53,20 @@ export const Dashboard = ({ data }: Props): JSX.Element => {
     });
   };
 
+  const getAllPomodoros = () => {
+    if (data?.student) {
+      const allPomodoros = data?.student[0]?.pomodoros;
+      setPomodoros(allPomodoros);
+    }
+  };
+
   useEffect(() => {
-    handleFormatDataToTopics();
+    const fetchData = async () => {
+      await handleFormatDataToTopics();
+      await getAllPomodoros();
+    };
+
+    fetchData();
   }, [data]);
 
   return (
@@ -65,7 +78,7 @@ export const Dashboard = ({ data }: Props): JSX.Element => {
         <StudentChart />
       </Row>
       <Row>
-        <ResultsPomodoro />
+        <ResultsPomodoro data={pomodoros} />
         <Timeline />
       </Row>
     </Container>

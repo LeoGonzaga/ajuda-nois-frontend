@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import { COLORS } from '@themes/colors';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell } from 'recharts';
 
 type DataProps = {
   name: string;

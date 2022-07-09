@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
+import HorizontalBarChartContainer from '@components/HorizontalBarChart';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 
 import { Arrow, Container, Wrapper } from './styles';
-import HorizontalBarChartContainer from '@components/HorizontalBarChart';
 
 export const StudentChart = (): JSX.Element => {
   const simData = ['Janeiro de 2022', 'Fevereiro de 2022', 'Março de 2022'];
@@ -105,7 +105,7 @@ export const StudentChart = (): JSX.Element => {
     <Container>
       <div>
         <Text bold color={COLORS.BLACK} size={18}>
-          Acertos Por Questão
+          Acertos Por Área
         </Text>
         <Text size={14}> Simulado de {simData[index]}</Text>
       </div>
