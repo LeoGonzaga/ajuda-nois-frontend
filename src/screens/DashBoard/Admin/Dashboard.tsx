@@ -14,7 +14,7 @@ import StudentTable from './StudentTable';
 import { Column, Container, Controls, Row } from './styles';
 import TeacherTable from './TeacherTable';
 
-export const Dashboard = (): JSX.Element => {
+export const Dashboard = ({ data }: any): JSX.Element => {
   const handleRedirectToPanel = () => {
     Router.push(ROUTES.PANEL);
   };
@@ -32,30 +32,30 @@ export const Dashboard = (): JSX.Element => {
           <BigCard
             color={COLORS.SUBJECT_BLUE}
             indicator="Alunos"
-            value={8}
+            value={data?.allStudents}
             icon={<FaUsers />}
           />
           <Spacing horizontal={10} />
           <BigCard
             color={COLORS.GREEN}
             indicator="Professores"
-            value={4}
+            value={data?.allTeachers}
             icon={<FaChalkboardTeacher />}
           />
           <Spacing horizontal={10} />
           <BigCard
             color={COLORS.RED}
             indicator="Simulados"
-            value={6}
+            value={data?.allMockExam}
             icon={<FaBook />}
           />
         </Row>
         <Spacing vertical={5} />
         <AdminChart />
         <Spacing vertical={10} />
-        <StudentTable size={10} />
+        <StudentTable size={10} data={data?.newStudents} />
         <Spacing vertical={10} />
-        <TeacherTable size={3} />
+        <TeacherTable size={3} data={data?.newTeachers} />
       </Column>
     </Container>
   );

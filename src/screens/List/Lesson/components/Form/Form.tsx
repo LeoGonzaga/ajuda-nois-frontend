@@ -21,17 +21,30 @@ import { useChangeText } from 'src/hooks/useChangeText';
 
 import { Styles } from './styles';
 
-export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
+export const Form = ({
+  onClose,
+  reload,
+  topics,
+  subjectsByTeacher,
+}: any): JSX.Element => {
   const dispatch = useDispatch();
   const [title, setTitle] = useChangeText('');
   const [content, setContent] = useState('');
-  const [topic, setTopic] = useState(topics[0]?.value);
+  const [topic, setTopic] = useState<string>('');
+  const [subject, setSubject] = useState<string>(subjectsByTeacher[0]?.value);
   const [loading, setLoading] = useState(false);
+  const [allTopics, setAllTopics] = useState(topics);
 
   const [errors, setErrors] = useState({
     title: false,
     content: false,
   });
+
+  const handleChangeSubject = (id: string) => {
+    setSubject(id);
+    const filter = topics?.filter((topic: any) => topic.id == id);
+    setAllTopics(filter);
+  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -88,6 +101,11 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
 
   useEffect(() => {
     handleResetErrorInput();
+
+    const filter = topics?.filter((topic: any) => topic.id == subject);
+    setAllTopics(filter);
+    setTopic(filter[0]?.value);
+    console.log(filter);
   }, [title]);
 
   return (
@@ -103,16 +121,29 @@ export const Form = ({ onClose, reload, topics }: any): JSX.Element => {
       <Spacing vertical={15} />
       <EditorContainer showControls onChange={handleChangeEditor} />
       <Spacing vertical={15} />
-      <Text>Associar a um tópico:</Text>
+      <Text>Selecionar matéria:</Text>
       <Spacing vertical={15} />
-      <Select onChange={setTopic} value={topic} data={topics} />
+      <Select
+        onChange={handleChangeSubject}
+        value={subject}
+        data={subjectsByTeacher}
+      />
       <Spacing vertical={15} />
+      {subject && (
+        <>
+          <Text>Associar a um tópico:</Text>
+          <Spacing vertical={15} />
+          <Select onChange={setTopic} value={topic} data={allTopics} />
+          <Spacing vertical={15} />
+        </>
+      )}
+
       <Flex width="19%">
         <ActionButton
           color={COLORS.SECONDARY}
           width="350px"
           onClick={handleSubmit}
-          disabled={loading}
+          disabled={loading || allTopics?.length === 0}
           loading={loading}
         >
           Salvar

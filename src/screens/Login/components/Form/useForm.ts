@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { requestAPI, Options } from '@services/index';
-import { handleRedirect } from '@utils/functions';
+import { closeNotification, handleRedirect } from '@utils/functions';
+import { setNotification } from 'src/config/actions/notification';
 import { ROUTES } from 'src/routes/routes';
 import * as yup from 'yup';
 
@@ -24,6 +26,7 @@ const schema = yup
   .required();
 
 export const useFormLogin = () => {
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
   const [apiError, setApiError] = useState<boolean>(false);
   const [openNotification, setOpenNotification] = useState<boolean>(false);
@@ -69,6 +72,14 @@ export const useFormLogin = () => {
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('role', user.usertype);
   };
+
+  const handleDisabledGlobalNotification = () => {
+    dispatch(setNotification(closeNotification()));
+  };
+
+  useEffect(() => {
+    handleDisabledGlobalNotification();
+  }, []);
 
   return {
     register,

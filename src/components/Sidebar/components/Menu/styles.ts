@@ -30,6 +30,8 @@ export const Wrapper = styled.div<Props>`
   /* background-color: red; */
 
   span {
-    display: ${(props) => (props.active ? 'initial' : 'none')};
+    width: ${(props) => (props.active ? '120' : '0')}px;
+    overflow: hidden;
+    transition: width 0.2s ease-in-out;
   }
 `;

@@ -17,4 +17,18 @@ export const Container = styled.div<Props>`
   justify-content: space-between;
 
   transition: width 0.2s ease-in-out;
+
+  @media (max-width: 425px) {
+    width: ${(props) => (props.expanded ? '100%' : '60px')};
+    position: absolute;
+    z-index: 99;
+    background-color: ${COLORS.TERTIARY};
+  }
+
+  @media (max-width: 1024px) {
+    width: ${(props) => (props.expanded ? '100%' : '60px')};
+    position: absolute;
+    z-index: 99;
+    background-color: ${COLORS.TERTIARY};
+  }
 `;

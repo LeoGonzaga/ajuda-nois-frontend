@@ -92,13 +92,7 @@ export const Sidebar = (): JSX.Element => {
           icon={<BiBrain />}
           expanded={expanded}
         />
-        <Item
-          text="Quiz"
-          router={ROUTES.QUIZ}
-          icon={<BsClockHistory />}
-          expanded={expanded}
-        />
-
+     
         {dashboard === 'student' && (
           <>
             <Item

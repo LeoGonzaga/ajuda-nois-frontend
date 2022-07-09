@@ -2,13 +2,16 @@ import React from 'react';
 
 import Settings from './components/Settings';
 import Timer from './components/Timer';
-import { Container } from './styles';
+import { Container, Content, Spacer } from './styles';
 
 export const Pomodoro = (): JSX.Element => {
   return (
     <Container>
-      <Timer />
-      <Settings />
+      <Spacer />
+      <Content>
+        <Timer />
+        <Settings />
+      </Content>
     </Container>
   );
 };
