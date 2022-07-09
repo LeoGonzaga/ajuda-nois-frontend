@@ -13,9 +13,7 @@ import {
 
 type DataProps = {
   name: string;
-  acertos: number;
-  uv: number;
-  amt: number;
+  corrected: number;
 };
 
 type Props = {
@@ -63,8 +61,8 @@ export class HorizontalBarChartContainer extends PureComponent<Props> {
           />
           <Tooltip />
           <CartesianGrid strokeDasharray="1 5" horizontal={false} />
-          <Bar dataKey="acertos" background={{ fill: 'transparent' }}>
-            {data.map((entry, index) => (
+          <Bar dataKey="corrected" background={{ fill: 'transparent' }}>
+            {data?.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={barColors[index]} />
             ))}
           </Bar>

@@ -60,7 +60,6 @@ export const ResultsPomodoro = ({ data }: Props): JSX.Element => {
       },
     ];
 
-    console.log(payload);
     setPomodoro(payload);
   };
 
@@ -70,7 +69,6 @@ export const ResultsPomodoro = ({ data }: Props): JSX.Element => {
     const sum = arrayValuesToKeys.reduce((partialSum, a) => partialSum + a, 0);
     setTotalTime(sum);
     formatValuesToPie(keys);
-    console.log('a', keys);
   };
 
   function prevSim() {
