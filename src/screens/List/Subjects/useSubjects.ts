@@ -9,6 +9,12 @@ export const useSubjects = () => {
   const [data, setData] = useState<any>([]);
   const [teachers, setTeachers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [contentEditabled, setContentEditabled] = useState([]);
+
+  const handleSelectedEditContent = (value: any) => {
+    setContentEditabled(value);
+    setOpen();
+  };
 
   const getAll = async () => {
     setLoading(true);
@@ -59,5 +65,18 @@ export const useSubjects = () => {
     Promise.all([getAll(), getAllTeachers()]);
   }, []);
 
-  return { open, setOpen, data, getAll, teachers, loading };
+  useEffect(() => {
+    if (!open) setContentEditabled([]);
+  }, [open]);
+
+  return {
+    open,
+    setOpen,
+    data,
+    getAll,
+    teachers,
+    loading,
+    handleSelectedEditContent,
+    contentEditabled,
+  };
 };

@@ -39,11 +39,20 @@ const data = [
   },
 ];
 
-export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
+export const Form = ({
+  teachers,
+  reload,
+  onClose,
+  editabled,
+}: any): JSX.Element => {
   const dispatch = useDispatch();
-  const [name, setName] = useChangeText('');
-  const [area, setArea] = useState<string>(data[0]?.value);
-  const [teacher, setTeacher] = useState<string>(teachers[0]?.value);
+  const [name, setName] = useChangeText(editabled?.name ? editabled?.name : '');
+  const [area, setArea] = useState<string>(
+    editabled?.area ? editabled?.area : data[0]?.value
+  );
+  const [teacher, setTeacher] = useState<string>(
+    editabled?.user_id ? editabled?.user_id : teachers[0]?.value
+  );
   const [errors, setErrors] = useState({
     name: false,
     area: false,
@@ -51,6 +60,49 @@ export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
   });
 
   const [loading, setLoading] = useState(false);
+  console.log(editabled);
+
+  const handleUpdate = async (e: any) => {
+    e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+    const token = localStorage.getItem('token');
+
+    if (name.length === 0) {
+      setErrors((prevState) => ({
+        ...prevState,
+        name: true,
+      }));
+    }
+
+    const options: Options = {
+      method: 'PUT',
+      url: '/updateSubject',
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        id: editabled?._id,
+        name,
+        area,
+        teacher_id: teacher,
+      },
+    };
+    const { response }: Response = await requestAPI(options);
+
+    const error = checkError(response?.status);
+
+    if (error) {
+      dispatch(setNotification(openErrorNotification(response?.data?.error)));
+      setLoading(false);
+      return;
+    }
+    dispatch(
+      setNotification(openNotification('Matéria atualizada com sucesso!'))
+    );
+
+    await reload();
+    setLoading(false);
+    onClose();
+  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -127,11 +179,11 @@ export const Form = ({ teachers, reload, onClose }: any): JSX.Element => {
         <ActionButton
           color={COLORS.SECONDARY}
           width="350px"
-          onClick={handleSubmit}
+          onClick={editabled?._id ? handleUpdate : handleSubmit}
           loading={loading}
           disabled={loading}
         >
-          Salvar
+          {editabled?._id ? 'Salvar' : 'Criar'}
         </ActionButton>
         <Spacing vertical={5} />
       </Flex>
