@@ -30,4 +30,11 @@ export const Container = styled.div`
 
   display: inline-block;
   width: 100%;
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    width: 94%;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;
