@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: grid;
-  grid-template-columns: 0.8fr 0.2fr;
+  grid-template-columns: 0.8fr 0.3fr;
   height: 100vh;
 `;
 
@@ -22,9 +22,9 @@ export const Item = styled.button<{ active: boolean }>`
 export const SideBarSubjects = styled.div`
   padding: 10px;
   background-color: ${({ theme }) => theme.NEUTRAL};
-
   display: flex;
   flex-direction: column;
+  max-width: 300px;
 `;
 
 export const ScrollSideBar = styled.div`

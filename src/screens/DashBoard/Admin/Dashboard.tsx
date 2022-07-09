@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaUsers, FaChalkboardTeacher, FaBook } from 'react-icons/fa';
 
 import SecondaryButton from '@components/Buttons/SecondaryButton';
 import Spacing from '@components/Spacing';
 import Title from '@components/Title';
 import { COLORS } from '@themes/colors';
+import { AREAS } from '@utils/functions';
 import Router from 'next/router';
 import { ROUTES } from 'src/routes/routes';
 
@@ -15,10 +16,35 @@ import { Column, Container, Controls, Row } from './styles';
 import TeacherTable from './TeacherTable';
 
 export const Dashboard = ({ data }: any): JSX.Element => {
+  const [value, setValue] = useState();
   const handleRedirectToPanel = () => {
     Router.push(ROUTES.PANEL);
   };
 
+  const handleGetSubjectsByTeacher = () => {
+    const content = data?.newTeachers?.map((teacher: any) => {
+      const areas = teacher?.subjects_info?.map(
+        (subject: any) => AREAS[subject.area]
+      );
+      const subjects = teacher?.subjects_info?.map(
+        (subject: any) => subject.name
+      );
+      return {
+        username: teacher.username,
+        email: teacher.email,
+        fields: areas.toString(),
+        subjects: subjects.toString(),
+      };
+    });
+
+    setValue(content);
+  };
+
+  useEffect(() => {
+    if (data) {
+      handleGetSubjectsByTeacher();
+    }
+  }, [data]);
   return (
     <Container>
       <Controls>
@@ -55,7 +81,7 @@ export const Dashboard = ({ data }: any): JSX.Element => {
         <Spacing vertical={10} />
         <StudentTable size={10} data={data?.newStudents} />
         <Spacing vertical={10} />
-        <TeacherTable size={3} data={data?.newTeachers} />
+        <TeacherTable size={3} data={value} />
       </Column>
     </Container>
   );
