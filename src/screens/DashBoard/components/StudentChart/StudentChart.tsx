@@ -1,105 +1,55 @@
-import React, { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
+import HorizontalBarChartContainer from '@components/HorizontalBarChart';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 
 import { Arrow, Container, Wrapper } from './styles';
-import HorizontalBarChartContainer from '@components/HorizontalBarChart';
 
-export const StudentChart = (): JSX.Element => {
-  const simData = ['Janeiro de 2022', 'Fevereiro de 2022', 'Março de 2022'];
-  const data = [
-    [
-      {
-        name: 'Ciências Humanas e suas Tecnologias',
-        uv: 2780,
-        acertos: 22,
-        amt: 22,
-      },
-      {
-        name: 'Ciências da Natureza e suas Tecnologias',
-        uv: 3000,
-        acertos: 23,
-        amt: 22,
-      },
-      {
-        name: 'Linguagens, Códigos e suas Tecnologias',
-        uv: 2000,
-        acertos: 33,
-        amt: 12,
-      },
-      {
-        name: 'Matemática e suas Tecnologias',
-        uv: 4000,
-        acertos: 45,
-        amt: 45,
-      },
-    ],
-    [
-      {
-        name: 'Ciências Humanas e suas Tecnologias',
-        uv: 4000,
-        acertos: 35,
-        amt: 45,
-      },
-      {
-        name: 'Ciências da Natureza e suas Tecnologias',
-        uv: 3000,
-        acertos: 3,
-        amt: 22,
-      },
-      {
-        name: 'Linguagens, Códigos e suas Tecnologias',
-        uv: 2000,
-        acertos: 23,
-        amt: 12,
-      },
-      {
-        name: 'Matemática e suas Tecnologias',
-        uv: 2780,
-        acertos: 42,
-        amt: 22,
-      },
-    ],
-    [
-      {
-        name: 'Ciências Humanas e suas Tecnologias',
-        uv: 4000,
-        acertos: 40,
-        amt: 45,
-      },
-      {
-        name: 'Ciências da Natureza e suas Tecnologias',
-        uv: 3000,
-        acertos: 27,
-        amt: 22,
-      },
-      {
-        name: 'Linguagens, Códigos e suas Tecnologias',
-        uv: 2000,
-        acertos: 30,
-        amt: 12,
-      },
-      {
-        name: 'Matemática e suas Tecnologias',
-        uv: 2780,
-        acertos: 12,
-        amt: 22,
-      },
-    ],
-  ];
-
-  const [index, setIndex] = useState(data.length - 1);
+export const StudentChart = ({ data, infos }: any): JSX.Element => {
+  const [index, setIndex] = useState(0);
+  const [examResult, setExamResult] = useState([]);
 
   function prevSim() {
-    index > 0 ? setIndex(index - 1) : setIndex(data.length - 1);
+    index > 0 ? setIndex(index - 1) : setIndex(examResult.length - 1);
   }
 
   function nextSim() {
-    index < data.length - 1 ? setIndex(index + 1) : setIndex(0);
+    index < examResult.length - 1 ? setIndex(index + 1) : setIndex(0);
   }
+
+  const handleFormatDataToDisplay = () => {
+    if (data?.length > 0) {
+      const formated = data.map((elem: any) => {
+        return [
+          {
+            name: 'Matemática e suas Tecnologias',
+            corrected: elem.mathematics_score,
+          },
+          {
+            name: 'Ciências Humanas e suas Tecnologias',
+            corrected: elem.human_sciences_score,
+          },
+          {
+            name: 'Ciências da Natureza e suas Tecnologias',
+            corrected: elem.natural_sciences_score,
+          },
+          {
+            name: 'Linguagens, Códigos e suas Tecnologias',
+            corrected: elem.languages_score,
+          },
+        ];
+      });
+      setExamResult(formated);
+    }
+  };
+
+  useEffect(() => {
+    handleFormatDataToDisplay();
+  }, [data]);
 
   return (
     <Container>
@@ -107,14 +57,17 @@ export const StudentChart = (): JSX.Element => {
         <Text bold color={COLORS.BLACK} size={18}>
           Acertos Por Área do Conhecimento
         </Text>
-        <Text size={14}> Simulado de {simData[index]}</Text>
+        <Text size={14}>
+          {' '}
+          Simulado de {infos[index]?.date?.split('-').reverse().join('-')}
+        </Text>
       </div>
       <Spacing vertical={10} />
       <Wrapper>
         <Arrow onClick={() => prevSim()}>
           <IoIosArrowBack />
         </Arrow>
-        <HorizontalBarChartContainer data={data[index]} />
+        <HorizontalBarChartContainer data={examResult[index]} />
         <Arrow onClick={() => nextSim()}>
           <IoIosArrowForward />
         </Arrow>

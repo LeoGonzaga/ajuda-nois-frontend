@@ -17,7 +17,8 @@ export const SubjectItem = ({
   loading,
 }: any): JSX.Element => {
   const router = useRouter();
-  const { data, expand, getLessonsByTopic, handleToggle } = useSubjectItem();
+  const { data, expand, getLessonsByTopic, handleToggle, handleClose } =
+    useSubjectItem();
 
   const handleRedirect = (route: string, id: string) => {
     router.replace(`${route}?id=${id}`);
@@ -30,6 +31,10 @@ export const SubjectItem = ({
   useEffect(() => {
     if (expand) getLessonsByTopic(topic_id);
   }, [expand]);
+
+  useEffect(() => {
+    handleClose();
+  }, [topic]);
 
   return (
     <>
