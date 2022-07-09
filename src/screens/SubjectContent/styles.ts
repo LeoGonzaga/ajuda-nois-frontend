@@ -27,10 +27,17 @@ export const SideBarSubjects = styled.div`
   flex-direction: column;
 `;
 
+export const ScrollSideBar = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 50%;
+`;
+
 export const EditorWrapper = styled.div`
   overflow-x: hidden;
   padding: 20px;
-  cursor: pointer;
+  width: 60vw;
 `;
 
 export const ContentLine = styled.div`
