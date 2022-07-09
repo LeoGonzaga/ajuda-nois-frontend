@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useCallback, useEffect, useState } from 'react';
 
 import { Options, Response, requestAPI } from '@services/index';
 import { useRouter } from 'next/router';
@@ -12,6 +13,7 @@ const useSubjectContent = () => {
   const [topics, setTopics] = useState([]);
   const [expand, setExpand] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
+  const [area, setArea] = useState<string>('');
 
   const handleToggle = useCallback(() => {
     setExpand(!expand);
@@ -33,8 +35,8 @@ const useSubjectContent = () => {
       },
     };
     const { response }: Response = await requestAPI(payload);
-
     setTopics(response?.data[0]?.lessons);
+    setArea(response?.data[0]?.subject_info?.area);
   };
 
   const getLesson = async () => {
@@ -82,7 +84,7 @@ const useSubjectContent = () => {
     }
   }, [topicId]);
 
-  return { data, handleToggle, expand, loading, topics, handleRedirect };
+  return { data, handleToggle, expand, loading, topics, handleRedirect, area };
 };
 
 export default useSubjectContent;

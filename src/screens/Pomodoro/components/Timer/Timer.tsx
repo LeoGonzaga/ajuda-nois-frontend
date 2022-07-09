@@ -1,9 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useRef } from 'react';
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import { BsFillPlayFill, BsFillPauseFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 
 import GradientCircularProgressBar from '@components/GradientCircularProgressBar';
+import { Options, Response, requestAPI } from '@services/index';
+import { openNotification } from '@utils/functions';
+import { setNotification } from 'src/config/actions/notification';
 import {
   setBreakTime,
   setIsIdle,
@@ -20,7 +24,11 @@ import {
   PomoText,
 } from './styles';
 
-export const Timer = (): JSX.Element => {
+type Props = {
+  area: string;
+};
+
+export const Timer = ({ area }: Props): JSX.Element => {
   const dispatch = useDispatch();
   const selectedTime = useSelector((state: RootState) => state.pomodoroTime);
 
@@ -29,6 +37,8 @@ export const Timer = (): JSX.Element => {
   const [mode, setMode] = useState('work');
   const [cicles, setCicles] = useState(1);
   const [secondsLeft, setSecondsLeft] = useState(0);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [time, setTime] = useState<string>('0');
 
   const idleRef = useRef(idle);
   const pauseRef = useRef(pause);
@@ -118,6 +128,32 @@ export const Timer = (): JSX.Element => {
 
     return () => clearInterval(interval);
   }, [selectedTime.workTime, selectedTime.breakTime]);
+
+  const handleAddTimeInPomodoroUser = async () => {
+    setLoading(true);
+    const token = await localStorage.getItem('token');
+    const payload: Options = {
+      method: 'POST',
+      url: '/addPomodoro',
+      data: {
+        time: selectedTime.workTime,
+        area,
+      },
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const { response }: Response = await requestAPI(payload);
+    const achievements = response?.data?.achievements;
+    if (achievements?.length) {
+      dispatch(setNotification(openNotification(achievements[0]?.name)));
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    if (minutes === 0 && seconds === '00' && area !== '') {
+      handleAddTimeInPomodoroUser();
+    }
+  }, [minutes, seconds]);
 
   return (
     <Container>

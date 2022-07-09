@@ -4,10 +4,14 @@ import Settings from './components/Settings';
 import Timer from './components/Timer';
 import { Container } from './styles';
 
-export const Pomodoro = (): JSX.Element => {
+type Props = {
+  area: string;
+};
+
+export const Pomodoro = ({ area }: Props): JSX.Element => {
   return (
     <Container>
-      <Timer />
+      <Timer area={area} />
       <Settings />
     </Container>
   );
