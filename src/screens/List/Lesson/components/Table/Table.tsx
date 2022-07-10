@@ -1,5 +1,5 @@
 import React from 'react';
-import { BiTrash } from 'react-icons/bi';
+import { BiEdit, BiTrash } from 'react-icons/bi';
 import { useDispatch } from 'react-redux';
 
 import EmptyState from '@components/EmptyState';
@@ -22,7 +22,12 @@ import {
   ButtonsContainer,
 } from './styles';
 
-export const Table = ({ data, reload, loading }: any): JSX.Element => {
+export const Table = ({
+  data,
+  reload,
+  loading,
+  handleClick,
+}: any): JSX.Element => {
   const dispatch = useDispatch();
   const handleRemoveSubject = async (id: string) => {
     const token = localStorage.getItem('token');
@@ -68,6 +73,9 @@ export const Table = ({ data, reload, loading }: any): JSX.Element => {
             <Column>
               {!loading && (
                 <ButtonsContainer>
+                  <button onClick={() => handleClick(element)}>
+                    <BiEdit size={25} />
+                  </button>
                   <button onClick={() => handleRemoveSubject(element._id)}>
                     <BiTrash size={25} />
                   </button>
