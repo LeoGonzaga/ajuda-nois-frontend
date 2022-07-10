@@ -16,25 +16,28 @@ export const Lesson = (): JSX.Element => {
   const {
     data,
     getAll,
-    handleToggleModal,
+    setOpen,
     loading,
-    openModal,
+    open,
     topics,
     subjectsByTeacher,
+    contentEditabled,
+    handleSelectedEditContent,
   } = useLesson();
 
   return (
     <Container>
       <ModalContainer
-        open={openModal}
+        open={open}
         title="Criação de lições"
-        handleClose={handleToggleModal}
+        handleClose={setOpen}
       >
         <Form
-          onClose={handleToggleModal}
+          onClose={setOpen}
           reload={getAll}
           topics={topics}
           subjectsByTeacher={subjectsByTeacher}
+          editabled={contentEditabled}
         />
       </ModalContainer>
       <Flex align="center">
@@ -43,12 +46,15 @@ export const Lesson = (): JSX.Element => {
         </div>
         <Flex align="center" justify="space-between">
           <Title text="Lições" contrast="" subText="" />
-          <SecondaryButton onClick={handleToggleModal}>
-            Nova lição
-          </SecondaryButton>
+          <SecondaryButton onClick={setOpen}>Nova lição</SecondaryButton>
         </Flex>
       </Flex>
-      <Table data={data} reload={getAll} loading={loading} />
+      <Table
+        data={data}
+        reload={getAll}
+        loading={loading}
+        handleClick={handleSelectedEditContent}
+      />
     </Container>
   );
 };

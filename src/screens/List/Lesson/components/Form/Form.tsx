@@ -26,10 +26,15 @@ export const Form = ({
   reload,
   topics,
   subjectsByTeacher,
+  editabled,
 }: any): JSX.Element => {
   const dispatch = useDispatch();
-  const [title, setTitle] = useChangeText('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useChangeText(
+    editabled?.title ? editabled?.title : ''
+  );
+  const [content, setContent] = useState(
+    editabled?.content ? editabled?.content : ''
+  );
   const [topic, setTopic] = useState<string>('');
   const [subject, setSubject] = useState<string>(subjectsByTeacher[0]?.value);
   const [loading, setLoading] = useState(false);
@@ -44,6 +49,48 @@ export const Form = ({
     setSubject(id);
     const filter = topics?.filter((topic: any) => topic.id == id);
     setAllTopics(filter);
+  };
+
+  console.log(content);
+
+  const handleUpdate = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    const token = localStorage.getItem('token');
+
+    if (title.length === 0) {
+      setErrors((prevState) => ({
+        ...prevState,
+        title: true,
+      }));
+    }
+
+    const options: Options = {
+      method: 'PUT',
+      url: '/updateLesson',
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        id: editabled?._id,
+        title,
+        content,
+        topic_id: topic,
+      },
+    };
+    const { response }: Response = await requestAPI(options);
+    const error = checkError(response?.status);
+
+    if (error) {
+      dispatch(setNotification(openErrorNotification(response?.data?.error)));
+      setLoading(false);
+      return;
+    }
+    dispatch(
+      setNotification(openNotification('Lição atualizada com sucesso!'))
+    );
+
+    await reload();
+    setLoading(false);
+    onClose();
   };
 
   const handleSubmit = async (e: any) => {
@@ -76,7 +123,7 @@ export const Form = ({
       setLoading(false);
       return;
     }
-    dispatch(setNotification(openNotification('Lição criado com sucesso!')));
+    dispatch(setNotification(openNotification('Lição criada com sucesso!')));
 
     await reload();
     setLoading(false);
@@ -107,6 +154,12 @@ export const Form = ({
     setTopic(filter[0]?.value);
   }, [title]);
 
+  useEffect(() => {
+    if (editabled?._id) {
+      setContent(editabled?.content);
+    }
+  }, [editabled]);
+
   return (
     <Styles.Container>
       <TextInput
@@ -118,7 +171,11 @@ export const Form = ({
         error={errors.title}
       />
       <Spacing vertical={15} />
-      <EditorContainer showControls onChange={handleChangeEditor} />
+      <EditorContainer
+        showControls
+        onChange={handleChangeEditor}
+        data={content}
+      />
       <Spacing vertical={15} />
       <Text>Selecionar matéria:</Text>
       <Spacing vertical={15} />
@@ -141,11 +198,11 @@ export const Form = ({
         <ActionButton
           color={COLORS.SECONDARY}
           width="350px"
-          onClick={handleSubmit}
+          onClick={editabled?._id ? handleUpdate : handleSubmit}
           disabled={loading || allTopics?.length === 0}
           loading={loading}
         >
-          Salvar
+          {editabled?._id ? 'Salvar' : 'Criar'}
         </ActionButton>
         <Spacing vertical={15} />
       </Flex>
