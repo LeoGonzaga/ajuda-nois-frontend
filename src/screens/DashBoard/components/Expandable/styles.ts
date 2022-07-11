@@ -78,4 +78,10 @@ export const Wrapper = styled.div<Props>`
       filter: brightness(0.8);
     }
   }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;

@@ -70,4 +70,12 @@ export const Content = styled.div`
       }
     }
   }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    table-layout: auto;
+    width: 1000px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;

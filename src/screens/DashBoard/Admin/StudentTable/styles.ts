@@ -17,7 +17,6 @@ export const Content = styled.div`
 
     font-size: 13px;
     color: ${COLORS.TEXT};
-
     th {
       text-align: left;
 
@@ -79,5 +78,13 @@ export const Content = styled.div`
         border-bottom-right-radius: 50px;
       }
     }
+  }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    table-layout: auto;
+    width: 1000px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
   }
 `;

@@ -9,6 +9,21 @@ type Props = {
 export const Content = styled.div`
   width: 100%;
   padding: 15px 20px 5px 20px;
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    & > div > div {
+      justify-content: center;
+      align-items: center;
+
+      p + p {
+        font-size: 13px;
+        padding: 0;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;
 
 export const Container = styled.div<Props>`
@@ -56,5 +71,14 @@ export const Wrapper = styled.div<Props>`
     font-size: ${(props) => (props.type === 'Simulados' ? '75px' : '90px')};
     margin-bottom: ${(props) => (props.type === 'Simulados' ? '-10px' : '0')};
     color: ${(props) => props.color};
+  }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    svg {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
   }
 `;
