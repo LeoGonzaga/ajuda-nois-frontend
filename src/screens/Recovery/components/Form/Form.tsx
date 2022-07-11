@@ -35,7 +35,7 @@ export const Form = (): JSX.Element => {
       />
       <div>
         <Text bold size={22}>
-          Calma! Vamos recuperar sua senha :p
+          Calma! Vamos recuperar sua senha :D
         </Text>
         <Spacing vertical={5} />
         <form action="">
