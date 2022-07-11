@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { BsPlusLg } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
 
 import Title from '@components/Title';
+import { Options, Response, requestAPI } from '@services/index';
+import { checkError } from '@utils/functions';
+import moment from 'moment';
+import { RootState } from 'src/config/store';
 
 import Card from './components/Card';
 import NewCardModal from './components/NewCardModal';
@@ -14,6 +19,7 @@ import {
   CardsWrapper,
   HorizontalContainer,
 } from './styles';
+import useStudyPlan from './useStudyPlan';
 
 type CardProps = {
   status: string;
@@ -25,33 +31,11 @@ type CardProps = {
 };
 
 export const StudyPlan = (): JSX.Element => {
+  const selectedDays = useSelector((state: RootState) => state.calendar);
+  const { subjects, getAllPlanByDays, cards } = useStudyPlan();
   const [isNewCardModalOpen, setIsNewCardModalOpen] = useState(false);
-  const [cards, setCards] = useState<CardProps[]>([
-    {
-      status: 'idle',
-      startTime: '10:00',
-      endTime: '15:30',
-      subject: 'Matemática',
-      topic: 'Trigonometria',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.',
-    },
-    {
-      status: 'failed',
-      startTime: '9:00',
-      endTime: '10:00',
-      subject: 'Química',
-      topic: 'Inorgânica',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.',
-    },
-    {
-      status: 'idle',
-      startTime: '6:00',
-      endTime: '8:30',
-      subject: 'Filosofia',
-      topic: 'Existencialismo',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.',
-    },
-  ]);
+
+  console.log(cards);
 
   function handleOpenNewCardModal() {
     setIsNewCardModalOpen(true);
@@ -61,8 +45,37 @@ export const StudyPlan = (): JSX.Element => {
     setIsNewCardModalOpen(false);
   }
 
-  const handleNewCard = (data: CardProps) => {
-    setCards((prevState) => [...prevState, data]);
+  const handleNewCard = async (data: CardProps) => {
+    const token = localStorage.getItem('token');
+    console.log(data, selectedDays);
+
+    const selectedDate = selectedDays?.selectedDays[0];
+    const format = moment(selectedDate).format('YYYY-MM-DD');
+    console.log(format);
+
+    const payload: Options = {
+      method: 'POST',
+      url: '/createStudyPlan',
+      data: {
+        studies: [
+          {
+            subject_id: data?.subject,
+            topic_id: data?.topic,
+            begin: data?.startTime,
+            end: data?.endTime,
+            description: data?.text,
+          },
+        ],
+        date: format,
+      },
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const { response }: Response = await requestAPI(payload);
+    const error = checkError(response.status);
+    if (error) {
+      return;
+    }
+    getAllPlanByDays();
   };
 
   return (
@@ -101,6 +114,7 @@ export const StudyPlan = (): JSX.Element => {
         isOpen={isNewCardModalOpen}
         onRequestClose={handleCloseNewCardModal}
         onHandleNewCard={handleNewCard}
+        subjects={subjects}
       />
     </Container>
   );

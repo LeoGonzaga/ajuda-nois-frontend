@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { BiError } from 'react-icons/bi';
 import Modal from 'react-modal';
 
 import Flex from '@components/Flex';
 import Spacing from '@components/Spacing';
+import { Options, requestAPI, Response } from '@services/index';
 
 import EndTime from './EndTime';
 import StartTime from './StartTime';
@@ -23,6 +24,7 @@ type CardProps = {
 
 type Props = {
   isOpen: boolean;
+  subjects: Array<any>;
   onRequestClose: () => void;
   onHandleNewCard: (data: CardProps) => void;
 };
@@ -31,6 +33,7 @@ export function NewCardModal({
   isOpen,
   onRequestClose,
   onHandleNewCard,
+  subjects,
 }: Props): JSX.Element {
   const {
     register,
@@ -40,23 +43,16 @@ export function NewCardModal({
   } = useForm<CardProps>({
     defaultValues: {
       subject: 'Escolher...',
+      topic: 'Escolher...',
     },
   });
 
-  const subjects = [
-    'Biologia',
-    'Espanhol',
-    'Filosofia',
-    'Física',
-    'Química',
-    'Geografia',
-    'História',
-    'Inglês',
-    'Literatura',
-    'Matemática',
-    'Português',
-    'Sociologia',
-  ];
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [topics, setTopics] = useState([]);
+  const [activeSubject, setActiveSubject] = useState('');
+  const [activeTopic, setActiveTopic] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const onSubmit: SubmitHandler<CardProps> = (data) => {
     data.status = 'idle';
@@ -68,6 +64,34 @@ export function NewCardModal({
       onRequestClose();
     }
   };
+
+  const getTopicBySubject = async () => {
+    const token = localStorage.getItem('token');
+    setLoading(true);
+    const payload: Options = {
+      method: 'POST',
+      url: '/getTopicsBySubject',
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        subject_id: activeSubject,
+      },
+    };
+    const { response }: Response = await requestAPI(payload);
+
+    setTopics(response?.data);
+    setActiveTopic(response?.data[0]?._id);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    const fecthData = async () => {
+      await getTopicBySubject();
+    };
+
+    if (activeSubject?.length > 0) {
+      fecthData();
+    }
+  }, [activeSubject]);
 
   return (
     <Modal
@@ -115,24 +139,39 @@ export function NewCardModal({
                   selected: (value) => value != 'Escolher...',
                 },
               })}
+              onChange={(e) => setActiveSubject(e.target.value)}
             >
               <option value="Escolher..." disabled hidden>
                 Escolher...
               </option>
               {subjects.map((item, index) => (
-                <option key={index} value={item}>
-                  {item}
+                <option key={index} value={item._id}>
+                  {item.name}
                 </option>
               ))}
             </select>
           </Subject>
           <Topic showError={!!errors.topic}>
-            <input
-              type="text"
+            <select
               id="topic"
-              placeholder="Insira um tópico..."
-              {...register('topic', { required: true })}
-            />
+              {...register('topic', {
+                validate: {
+                  topic: (value) => value != 'Escolher...',
+                },
+                required: true,
+              })}
+              value={activeTopic}
+              onChange={(e) => setActiveTopic(e.target.value)}
+            >
+              <option value="Escolher..." disabled hidden>
+                Escolher...
+              </option>
+              {topics.map((item: any, index) => (
+                <option key={index} value={item._id}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
           </Topic>
         </Flex>
 
@@ -148,7 +187,7 @@ export function NewCardModal({
         </Wrapper>
 
         <span>
-          <button type="submit">Confirmar</button>
+          {!loading && <button type="submit">Confirmar</button>}
           <div onClick={onRequestClose}>Cancelar</div>
         </span>
       </Container>

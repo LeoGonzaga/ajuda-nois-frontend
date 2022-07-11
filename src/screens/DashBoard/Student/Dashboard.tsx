@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 
+import { monthNames } from '@utils/functions';
+
 import ResultsPomodoro from '../components/ResultsPomodoro';
 import StudentChart from '../components/StudentChart';
 import SubjectContent from '../components/SubjectContent';
@@ -83,7 +85,7 @@ export const Dashboard = ({ data }: Props): JSX.Element => {
       const total = value.pomodoros?.map((pomodoro: any) => {
         const sum = sumAllTimePomodoro(pomodoro.pomodoro);
         return {
-          month: pomodoro.month,
+          name: monthNames[pomodoro.month],
           Horas: sum,
         };
       });

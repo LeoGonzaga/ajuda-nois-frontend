@@ -7,47 +7,9 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
+  Legend,
 } from 'recharts';
-
-const data = [
-  {
-    name: 'Janeiro',
-    uv: 400,
-    pv: 240,
-  },
-  {
-    name: 'Fevereiro',
-    uv: 300,
-    pv: 198,
-  },
-  {
-    name: 'Março',
-    uv: 200,
-    pv: 900,
-  },
-  {
-    name: 'Abril',
-    uv: 80,
-    pv: 108,
-  },
-  {
-    name: 'Maio',
-    uv: 190,
-    pv: 200,
-  },
-  {
-    name: 'Junho',
-    uv: 290,
-    pv: 300,
-  },
-  {
-    name: 'Julho',
-    uv: 490,
-    pv: 300,
-  },
-];
 
 type DataProps = {
   name: string;
@@ -64,7 +26,7 @@ export class LineChartContainer extends PureComponent<Props> {
   render() {
     const { data } = this.props;
     return (
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="98%" height="80%">
         <LineChart
           width={500}
           height={300}
@@ -79,6 +41,7 @@ export class LineChartContainer extends PureComponent<Props> {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis />
+          <Legend />
           <Tooltip />
           <Line
             type="monotone"
