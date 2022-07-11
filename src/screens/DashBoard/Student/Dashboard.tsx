@@ -48,10 +48,10 @@ export const Dashboard = ({ data }: Props): JSX.Element => {
       topicsByArea?.natural_total
     );
     setAreas({
-      human: human,
-      language: language,
-      math: math,
-      natural: natural,
+      human: human?.toFixed(2),
+      language: language?.toFixed(2),
+      math: math?.toFixed(2),
+      natural: natural?.toFixed(2),
     });
   };
 
