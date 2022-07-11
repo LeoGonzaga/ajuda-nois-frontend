@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import Spacing from '@components/Spacing';
+import { Options, Response, requestAPI } from '@services/index';
+import {
+  checkError,
+  openErrorNotification,
+  openNotification,
+} from '@utils/functions';
+import { setNotification } from 'src/config/actions/notification';
 
 import Buttons from './Buttons';
 import Description from './Description';
@@ -21,6 +29,8 @@ type Props = {
   subject: string;
   topic: string;
   text?: string;
+  id: string;
+  reload: () => void;
 };
 
 export const Card = ({
@@ -30,7 +40,10 @@ export const Card = ({
   subject,
   topic,
   text,
+  id,
+  reload,
 }: Props): JSX.Element => {
+  const dispatch = useDispatch();
   const [expanded, setExpanded] = useState(false);
   const [state, setState] = useState({
     currentState: status,
@@ -44,6 +57,27 @@ export const Card = ({
         previousState: prevState.currentState,
       };
     });
+  };
+
+  const handleRemove = async () => {
+    const token = localStorage.getItem('token');
+    const payload: Options = {
+      method: 'DELETE',
+      url: '/deleteStudyPlan',
+      data: {
+        id,
+      },
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const { response }: Response = await requestAPI(payload);
+    const error = checkError(response?.status);
+
+    if (error) {
+      dispatch(setNotification(openErrorNotification(response?.data?.error)));
+      return;
+    }
+    dispatch(setNotification(openNotification(response?.data?.message)));
+    reload();
   };
 
   return (
@@ -63,6 +97,7 @@ export const Card = ({
             status={state.currentState}
             prevStatus={state.previousState}
             onHandleClick={handleState}
+            onRemove={handleRemove}
           />
         </HideableContent>
       </ExpandableContent>

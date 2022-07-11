@@ -14,25 +14,25 @@ export const AdminChart = (): JSX.Element => {
     [
       {
         name: 'Ciências Humanas e suas Tecnologias',
-        acertos: 15,
+        corrected: 15,
         uv: 2780,
         amt: 22,
       },
       {
         name: 'Ciências da Natureza e suas Tecnologias',
-        acertos: 33,
+        corrected: 33,
         uv: 3000,
         amt: 22,
       },
       {
         name: 'Linguagens, Códigos e suas Tecnologias',
-        acertos: 28,
+        corrected: 28,
         uv: 2000,
         amt: 12,
       },
       {
         name: 'Matemática e suas Tecnologias',
-        acertos: 32,
+        corrected: 32,
         uv: 4000,
         amt: 45,
       },
@@ -40,25 +40,25 @@ export const AdminChart = (): JSX.Element => {
     [
       {
         name: 'Ciências Humanas e suas Tecnologias',
-        acertos: 35,
+        corrected: 35,
         uv: 2780,
         amt: 22,
       },
       {
         name: 'Ciências da Natureza e suas Tecnologias',
-        acertos: 36,
+        corrected: 36,
         uv: 3000,
         amt: 22,
       },
       {
         name: 'Linguagens, Códigos e suas Tecnologias',
-        acertos: 8,
+        corrected: 8,
         uv: 2000,
         amt: 12,
       },
       {
         name: 'Matemática e suas Tecnologias',
-        acertos: 42,
+        corrected: 42,
         uv: 4000,
         amt: 45,
       },
@@ -66,25 +66,25 @@ export const AdminChart = (): JSX.Element => {
     [
       {
         name: 'Ciências Humanas e suas Tecnologias',
-        acertos: 45,
+        corrected: 45,
         uv: 2780,
         amt: 22,
       },
       {
         name: 'Ciências da Natureza e suas Tecnologias',
-        acertos: 23,
+        corrected: 23,
         uv: 3000,
         amt: 22,
       },
       {
         name: 'Linguagens, Códigos e suas Tecnologias',
-        acertos: 33,
+        corrected: 33,
         uv: 2000,
         amt: 12,
       },
       {
         name: 'Matemática e suas Tecnologias',
-        acertos: 22,
+        corrected: 22,
         uv: 4000,
         amt: 45,
       },
@@ -114,7 +114,7 @@ export const AdminChart = (): JSX.Element => {
         <Arrow onClick={() => prevSim()}>
           <IoIosArrowBack />
         </Arrow>
-        {/* <HorizontalBarChartContainer data={data[index]} /> */}
+        <HorizontalBarChartContainer data={data[0]} />
         <Arrow onClick={() => nextSim()}>
           <IoIosArrowForward />
         </Arrow>

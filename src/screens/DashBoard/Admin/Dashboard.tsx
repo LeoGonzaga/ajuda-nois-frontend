@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { FaUsers, FaChalkboardTeacher, FaBook } from 'react-icons/fa';
 
@@ -45,6 +46,7 @@ export const Dashboard = ({ data }: any): JSX.Element => {
       handleGetSubjectsByTeacher();
     }
   }, [data]);
+
   return (
     <Container>
       <Controls>

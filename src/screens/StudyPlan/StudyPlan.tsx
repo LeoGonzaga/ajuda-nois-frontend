@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { BsPlusLg } from 'react-icons/bs';
-import { useSelector } from 'react-redux';
 
+import LoadingTable from '@components/LoadingTable';
+import Text from '@components/Text';
 import Title from '@components/Title';
 import { Options, Response, requestAPI } from '@services/index';
 import { checkError } from '@utils/functions';
-import moment from 'moment';
-import { RootState } from 'src/config/store';
 
 import Card from './components/Card';
 import NewCardModal from './components/NewCardModal';
@@ -23,19 +22,17 @@ import useStudyPlan from './useStudyPlan';
 
 type CardProps = {
   status: string;
-  startTime: string;
-  endTime: string;
+  begin: string;
+  end: string;
   subject: string;
   topic: string;
   text?: string;
+  date: string;
 };
 
 export const StudyPlan = (): JSX.Element => {
-  const selectedDays = useSelector((state: RootState) => state.calendar);
-  const { subjects, getAllPlanByDays, cards } = useStudyPlan();
+  const { subjects, getAllPlanByDays, cards, loading } = useStudyPlan();
   const [isNewCardModalOpen, setIsNewCardModalOpen] = useState(false);
-
-  console.log(cards);
 
   function handleOpenNewCardModal() {
     setIsNewCardModalOpen(true);
@@ -47,11 +44,6 @@ export const StudyPlan = (): JSX.Element => {
 
   const handleNewCard = async (data: CardProps) => {
     const token = localStorage.getItem('token');
-    console.log(data, selectedDays);
-
-    const selectedDate = selectedDays?.selectedDays[0];
-    const format = moment(selectedDate).format('YYYY-MM-DD');
-    console.log(format);
 
     const payload: Options = {
       method: 'POST',
@@ -61,12 +53,13 @@ export const StudyPlan = (): JSX.Element => {
           {
             subject_id: data?.subject,
             topic_id: data?.topic,
-            begin: data?.startTime,
-            end: data?.endTime,
+            begin: data?.begin,
+            end: data?.end,
             description: data?.text,
+            status: 'planned',
           },
         ],
-        date: format,
+        date: data?.date,
       },
       headers: { Authorization: `Bearer ${token}` },
     };
@@ -97,14 +90,20 @@ export const StudyPlan = (): JSX.Element => {
             {cards.map((card, index) => (
               <Card
                 key={index}
-                status={card.status}
-                startTime={card.startTime}
-                endTime={card.endTime}
-                subject={card.subject}
-                topic={card.topic}
-                text={card.text}
+                status={'idle'}
+                startTime={card?.studies[0]?.begin}
+                endTime={card?.studies[0]?.end}
+                subject={card?.studies[0]?.subject_info?.name}
+                topic={card?.studies[0]?.topic_info?.name}
+                text={card?.studies[0]?.description}
+                id={card?._id}
+                reload={getAllPlanByDays}
               />
             ))}
+            {cards?.length === 0 && loading && <LoadingTable />}
+            {cards?.length === 0 && !loading && (
+              <Text>Você ainda não cadastrou nada por aqui :)</Text>
+            )}
           </CardsWrapper>
         </HorizontalContainer>
       </VerticalContainer>
