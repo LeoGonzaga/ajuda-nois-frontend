@@ -29,4 +29,12 @@ export const Container = styled.div<{ color: string; active: boolean }>`
   span {
     font-size: 12px;
   }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    height: 81px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+    height: 81px;
+  }
 `;
