@@ -1,43 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Spacing from '@components/Spacing';
 
 import Expandable from '../../components/Expandable';
 import { Container, Content } from './styles';
-
 type Props = {
   size: number;
   data: any;
 };
 
 export const TeacherTable = ({ size, data }: Props): JSX.Element => {
-  // const data = [
-  //   {
-  //     name: 'Professor de Humanas',
-  //     email: 'prof_human@hotmail.com',
-  //     fields: 'Humanas',
-  //     subjects: 'Geografia, História',
-  //   },
-  //   {
-  //     name: 'English Teacher',
-  //     email: 'english@gmail.com',
-  //     fields: 'Linguagens',
-  //     subjects: 'Inglês',
-  //   },
-  //   {
-  //     name: 'Professor de Cálculos',
-  //     email: 'calc_prof@gmail.com.br',
-  //     fields: 'Matemática, Natureza',
-  //     subjects: 'Matemática, Física',
-  //   },
-  // ];
+  const dataSorted = data?.sort((a: any, b: any) =>
+    a.username.localeCompare(b.username)
+  );
+
+  useEffect(() => {
+    size = dataSorted?.length;
+  }, []);
 
   return (
     <Container>
       <Expandable
         title="Professores"
         subtitle="Cadastrados neste ano"
-        size={size}
+        size={dataSorted?.length}
         simSize={0}
         type="admin"
       >
@@ -54,7 +40,7 @@ export const TeacherTable = ({ size, data }: Props): JSX.Element => {
             </thead>
 
             <tbody>
-              {data?.map(
+              {dataSorted?.map(
                 ({ username, email, fields, subjects }: any, index: number) => {
                   return (
                     <tr key={index}>

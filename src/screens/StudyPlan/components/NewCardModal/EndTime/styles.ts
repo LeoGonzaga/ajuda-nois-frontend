@@ -11,6 +11,20 @@ export const Container = styled.div`
   color: ${COLORS.TEXT};
 `;
 
+export const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    flex-direction: column;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
+`;
+
 export const InputError = styled.p`
   display: flex;
   justify-content: center;

@@ -13,10 +13,11 @@ export const Container = styled.div`
   color: ${COLORS.WHITE};
 
   overflow-y: scroll;
-  scroll-behavior: smooth;
-  -ms-overflow-style: none;
 
-  &::-webkit-scrollbar {
-    display: none;
+  @media (min-width: 425px) and (max-width: 1023px) {
+    font-size: 15px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
   }
 `;

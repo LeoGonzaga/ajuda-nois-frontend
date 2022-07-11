@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Spacing from '@components/Spacing';
 
@@ -15,12 +15,16 @@ export const StudentTable = ({ size, data }: Props): JSX.Element => {
     a.username.localeCompare(b.username)
   );
 
+  useEffect(() => {
+    size = dataSorted?.length;
+  }, [data]);
+
   return (
     <Container>
       <Expandable
         title="Alunos"
         subtitle="Matriculados neste ano"
-        size={size}
+        size={dataSorted?.length}
         simSize={0}
         type="admin"
       >

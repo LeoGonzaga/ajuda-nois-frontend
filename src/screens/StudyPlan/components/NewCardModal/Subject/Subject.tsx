@@ -3,7 +3,7 @@ import { BiError } from 'react-icons/bi';
 
 import Flex from '@components/Flex';
 
-import { Container, InputError } from './styles';
+import { Container, InputError, Row } from './styles';
 
 type Props = {
   showError: boolean;
@@ -14,12 +14,12 @@ export function Subject({ showError, children }: Props): JSX.Element {
   return (
     <Container>
       <Flex direction="column" align="center" justify="flex-end">
-        <Flex align="center" justify="center">
+        <Row>
           <label htmlFor="startTime">
             <strong>Disciplina:</strong>
           </label>
           {children}
-        </Flex>
+        </Row>
         {showError && (
           <InputError>
             <BiError size={15} />

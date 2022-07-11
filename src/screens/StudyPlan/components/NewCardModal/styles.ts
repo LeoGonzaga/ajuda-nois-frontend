@@ -105,6 +105,25 @@ export const Container = styled.form`
       background-color: ${COLORS.ERROR};
     }
   }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    textarea {
+      width: 100%;
+      max-width: 380px;
+
+      resize: none;
+
+      padding: 8px;
+      margin-left: 0;
+
+      &::placeholder {
+        color: ${COLORS.TEXT};
+      }
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;
 
 export const InputError = styled.p`
@@ -139,4 +158,11 @@ export const Wrapper = styled.div`
   padding: 15px 10px 0px 10px;
 
   border-top: 1px solid ${COLORS.GRAY};
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    width: 380px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;

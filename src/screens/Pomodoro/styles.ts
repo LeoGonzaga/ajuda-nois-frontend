@@ -9,11 +9,9 @@ export const Container = styled.div`
 
 export const Spacer = styled.div`
   width: 0px;
-
   @media (min-width: 425px) and (max-width: 1023px) {
     width: 0px;
   }
-
   @media (min-width: 1024px) {
     width: 60px;
   }

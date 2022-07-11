@@ -15,6 +15,7 @@ import BigCard from '../components/BigCard';
 import StudentTable from './StudentTable';
 import { Column, Container, Controls, Row } from './styles';
 import TeacherTable from './TeacherTable';
+import Content from '@components/Content';
 
 export const Dashboard = ({ data }: any): JSX.Element => {
   const [value, setValue] = useState();
