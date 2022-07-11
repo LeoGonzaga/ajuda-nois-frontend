@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { FaUsers, FaChalkboardTeacher, FaBook } from 'react-icons/fa';
 
@@ -17,6 +18,9 @@ import TeacherTable from './TeacherTable';
 
 export const Dashboard = ({ data }: any): JSX.Element => {
   const [value, setValue] = useState();
+  const [index, setIndex] = useState(0);
+  const [allExams, setAllExams] = useState([]);
+
   const handleRedirectToPanel = () => {
     Router.push(ROUTES.PANEL);
   };
@@ -40,11 +44,48 @@ export const Dashboard = ({ data }: any): JSX.Element => {
     setValue(content);
   };
 
+  const sumAllExams = () => {
+    const exams = data?.newStudents?.map((student: any) => student?.mock_exams);
+    const filterEmpyt = exams?.filter((item: any) => item?.length > 0);
+    setAllExams(filterEmpyt);
+
+    // const totalHuman = exams?.map((human) => human.human_sciences_score);
+    // const totalNatureza = exams?.map((human) => human.natural_sciences_score);
+    // const totalMath = exams?.map((human) => human.mathematics_score);
+    // const totalLanguage = exams?.map((human) => human.languages_score);
+
+    // const sumHuman = totalHuman?.reduce((partialSum, a) => partialSum + a, 0);
+    // const sumNatureza = totalNatureza?.reduce(
+    //   (partialSum, a) => partialSum + a,
+    //   0
+    // );
+    // const sumMath = totalMath?.reduce((partialSum, a) => partialSum + a, 0);
+    // const sumLanguage = totalLanguage?.reduce(
+    //   (partialSum, a) => partialSum + a,
+    //   0
+    // );
+
+    // console.log(exams);
+
+    // const paylaod = {
+    //   human: sumHuman / exams?.length,
+    //   natureza: sumNatureza / exams?.length,
+    //   math: sumMath / exams?.length,
+    //   language: sumLanguage / exams?.length,
+    // };
+
+    // console.log(paylaod);
+
+    console.log(filterEmpyt);
+  };
+
   useEffect(() => {
     if (data) {
       handleGetSubjectsByTeacher();
+      sumAllExams();
     }
   }, [data]);
+
   return (
     <Container>
       <Controls>
@@ -77,7 +118,7 @@ export const Dashboard = ({ data }: any): JSX.Element => {
           />
         </Row>
         <Spacing vertical={5} />
-        <AdminChart />
+        <AdminChart handleChangeIndex={setIndex} data={allExams} />
         <Spacing vertical={10} />
         <StudentTable size={10} data={data?.newStudents} />
         <Spacing vertical={10} />

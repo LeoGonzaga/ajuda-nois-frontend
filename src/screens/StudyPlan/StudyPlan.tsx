@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { BsPlusLg } from 'react-icons/bs';
 
+import LoadingTable from '@components/LoadingTable';
+import Text from '@components/Text';
 import Title from '@components/Title';
+import { Options, Response, requestAPI } from '@services/index';
+import { checkError } from '@utils/functions';
 
 import Card from './components/Card';
 import NewCardModal from './components/NewCardModal';
@@ -14,44 +18,21 @@ import {
   CardsWrapper,
   HorizontalContainer,
 } from './styles';
+import useStudyPlan from './useStudyPlan';
 
 type CardProps = {
   status: string;
-  startTime: string;
-  endTime: string;
+  begin: string;
+  end: string;
   subject: string;
   topic: string;
   text?: string;
+  date: string;
 };
 
 export const StudyPlan = (): JSX.Element => {
+  const { subjects, getAllPlanByDays, cards, loading } = useStudyPlan();
   const [isNewCardModalOpen, setIsNewCardModalOpen] = useState(false);
-  const [cards, setCards] = useState<CardProps[]>([
-    {
-      status: 'idle',
-      startTime: '10:00',
-      endTime: '15:30',
-      subject: 'Matemática',
-      topic: 'Trigonometria',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.',
-    },
-    {
-      status: 'failed',
-      startTime: '9:00',
-      endTime: '10:00',
-      subject: 'Química',
-      topic: 'Inorgânica',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.',
-    },
-    {
-      status: 'idle',
-      startTime: '6:00',
-      endTime: '8:30',
-      subject: 'Filosofia',
-      topic: 'Existencialismo',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.',
-    },
-  ]);
 
   function handleOpenNewCardModal() {
     setIsNewCardModalOpen(true);
@@ -61,8 +42,33 @@ export const StudyPlan = (): JSX.Element => {
     setIsNewCardModalOpen(false);
   }
 
-  const handleNewCard = (data: CardProps) => {
-    setCards((prevState) => [...prevState, data]);
+  const handleNewCard = async (data: CardProps) => {
+    const token = localStorage.getItem('token');
+
+    const payload: Options = {
+      method: 'POST',
+      url: '/createStudyPlan',
+      data: {
+        studies: [
+          {
+            subject_id: data?.subject,
+            topic_id: data?.topic,
+            begin: data?.begin,
+            end: data?.end,
+            description: data?.text,
+            status: 'planned',
+          },
+        ],
+        date: data?.date,
+      },
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const { response }: Response = await requestAPI(payload);
+    const error = checkError(response.status);
+    if (error) {
+      return;
+    }
+    getAllPlanByDays();
   };
 
   return (
@@ -84,14 +90,20 @@ export const StudyPlan = (): JSX.Element => {
             {cards.map((card, index) => (
               <Card
                 key={index}
-                status={card.status}
-                startTime={card.startTime}
-                endTime={card.endTime}
-                subject={card.subject}
-                topic={card.topic}
-                text={card.text}
+                status={'idle'}
+                startTime={card?.studies[0]?.begin}
+                endTime={card?.studies[0]?.end}
+                subject={card?.studies[0]?.subject_info?.name}
+                topic={card?.studies[0]?.topic_info?.name}
+                text={card?.studies[0]?.description}
+                id={card?._id}
+                reload={getAllPlanByDays}
               />
             ))}
+            {cards?.length === 0 && loading && <LoadingTable />}
+            {cards?.length === 0 && !loading && (
+              <Text>Você ainda não cadastrou nada por aqui :)</Text>
+            )}
           </CardsWrapper>
         </HorizontalContainer>
       </VerticalContainer>
@@ -101,6 +113,7 @@ export const StudyPlan = (): JSX.Element => {
         isOpen={isNewCardModalOpen}
         onRequestClose={handleCloseNewCardModal}
         onHandleNewCard={handleNewCard}
+        subjects={subjects}
       />
     </Container>
   );

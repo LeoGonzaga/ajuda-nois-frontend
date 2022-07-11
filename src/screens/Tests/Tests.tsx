@@ -1,5 +1,6 @@
 import React from 'react';
 
+import EmptyState from '@components/EmptyState';
 import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import Title from '@components/Title';
@@ -11,7 +12,7 @@ import { Container, Content, Row, SelectRow, WrapperCards } from './styles';
 import useTests from './useTests';
 
 export const Tests = (): JSX.Element => {
-  const { data } = useTests();
+  const { data, allYears, setSelectedYear } = useTests();
 
   return (
     <Container>
@@ -21,7 +22,9 @@ export const Tests = (): JSX.Element => {
         subText="Selecione o ano abaixo para filtrar"
       />
       <SelectRow>
-        <SelectTestYear />
+        {allYears && (
+          <SelectTestYear data={allYears} handleClick={setSelectedYear} />
+        )}
       </SelectRow>
       {data?.map((item: any, index) => {
         return (
@@ -66,6 +69,10 @@ export const Tests = (): JSX.Element => {
           </Content>
         );
       })}
+
+      {data?.length === 0 && (
+        <EmptyState text="Sem provas cadastradas nesse ano" />
+      )}
     </Container>
   );
 };

@@ -6,12 +6,14 @@ export type Props = {
   status: string;
   prevStatus: string;
   onHandleClick: (state: string) => void;
+  onRemove: () => void;
 };
 
 export const Buttons = ({
   status,
   prevStatus,
   onHandleClick,
+  onRemove,
 }: Props): JSX.Element => {
   const handleStateChange = (state: string) => {
     onHandleClick(state);
@@ -24,7 +26,7 @@ export const Buttons = ({
       ) : (
         <div onClick={() => handleStateChange('completed')}>Concluir</div>
       )}
-      <div>Deletar</div>
+      <div onClick={onRemove}>Deletar</div>
     </Container>
   );
 };

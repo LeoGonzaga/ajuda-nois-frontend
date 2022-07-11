@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { BiError } from 'react-icons/bi';
 import Modal from 'react-modal';
+import { useSelector } from 'react-redux';
 
 import Flex from '@components/Flex';
 import Spacing from '@components/Spacing';
+import { Options, requestAPI, Response } from '@services/index';
+import moment from 'moment';
+import { RootState } from 'src/config/store';
 
 import EndTime from './EndTime';
 import StartTime from './StartTime';
@@ -14,15 +18,17 @@ import Topic from './Topic';
 
 type CardProps = {
   status: string;
-  startTime: string;
-  endTime: string;
+  begin: string;
+  end: string;
   subject: string;
   topic: string;
   text?: string;
+  date: string;
 };
 
 type Props = {
   isOpen: boolean;
+  subjects: Array<any>;
   onRequestClose: () => void;
   onHandleNewCard: (data: CardProps) => void;
 };
@@ -31,6 +37,7 @@ export function NewCardModal({
   isOpen,
   onRequestClose,
   onHandleNewCard,
+  subjects,
 }: Props): JSX.Element {
   const {
     register,
@@ -40,34 +47,73 @@ export function NewCardModal({
   } = useForm<CardProps>({
     defaultValues: {
       subject: 'Escolher...',
+      topic: 'Escolher...',
     },
   });
 
-  const subjects = [
-    'Biologia',
-    'Espanhol',
-    'Filosofia',
-    'Física',
-    'Química',
-    'Geografia',
-    'História',
-    'Inglês',
-    'Literatura',
-    'Matemática',
-    'Português',
-    'Sociologia',
-  ];
+  const selectedDays = useSelector(
+    (state: RootState) => state.calendar.selectedDays
+  );
+  const [topics, setTopics] = useState([]);
+  const [activeSubject, setActiveSubject] = useState('');
+  const [activeTopic, setActiveTopic] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [dates, setDates] = useState<any>([]);
 
   const onSubmit: SubmitHandler<CardProps> = (data) => {
     data.status = 'idle';
     if (
-      Number(data.startTime.replace(/:/g, '')) <
-      Number(data.endTime.replace(/:/g, ''))
+      Number(data.begin.replace(/:/g, '')) < Number(data.end.replace(/:/g, ''))
     ) {
       onHandleNewCard(data);
       onRequestClose();
     }
   };
+
+  const getTopicBySubject = async () => {
+    const token = localStorage.getItem('token');
+    setLoading(true);
+    const payload: Options = {
+      method: 'POST',
+      url: '/getTopicsBySubject',
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        subject_id: activeSubject,
+      },
+    };
+    const { response }: Response = await requestAPI(payload);
+
+    setTopics(response?.data);
+    setActiveTopic(response?.data[0]?._id);
+    setLoading(false);
+  };
+
+  const handleFormatDates = () => {
+    if (selectedDays?.length > 0) {
+      const array = selectedDays?.map((elem) => {
+        return {
+          name: moment(elem).format('ddd'),
+          value: moment(elem).format('YYYY-MM-DD'),
+        };
+      });
+      setDates(array);
+      console.log(array);
+    }
+  };
+
+  useEffect(() => {
+    const fecthData = async () => {
+      await getTopicBySubject();
+    };
+
+    if (activeSubject?.length > 0) {
+      fecthData();
+    }
+  }, [activeSubject]);
+
+  useEffect(() => {
+    handleFormatDates();
+  }, [selectedDays]);
 
   return (
     <Modal
@@ -79,26 +125,26 @@ export function NewCardModal({
     >
       <Container onSubmit={handleSubmit(onSubmit)}>
         <Flex direction="row" justify="space-between">
-          <StartTime showError={!!errors.startTime}>
+          <StartTime showError={!!errors.begin}>
             <input
               type="time"
               id="startTime"
-              {...register('startTime', { required: true })}
+              {...register('begin', { required: true })}
             />
           </StartTime>
           <Bar />
-          <EndTime showError={!!errors.endTime}>
+          <EndTime showError={!!errors.end}>
             <input
               type="time"
               id="endTime"
-              {...register('endTime', { required: true })}
+              {...register('end', { required: true })}
             />
           </EndTime>
         </Flex>
 
-        {!!getValues('startTime') &&
-          !!getValues('endTime') &&
-          getValues('startTime') > getValues('endTime') && (
+        {!!getValues('begin') &&
+          !!getValues('end') &&
+          getValues('begin') > getValues('end') && (
             <InputError>
               <BiError size={15} />O horário de início deve ser inferior ao
               horário de término
@@ -115,29 +161,66 @@ export function NewCardModal({
                   selected: (value) => value != 'Escolher...',
                 },
               })}
+              onChange={(e) => setActiveSubject(e.target.value)}
             >
               <option value="Escolher..." disabled hidden>
                 Escolher...
               </option>
               {subjects.map((item, index) => (
-                <option key={index} value={item}>
-                  {item}
+                <option key={index} value={item._id}>
+                  {item.name}
                 </option>
               ))}
             </select>
           </Subject>
           <Topic showError={!!errors.topic}>
-            <input
-              type="text"
+            <select
               id="topic"
-              placeholder="Insira um tópico..."
-              {...register('topic', { required: true })}
-            />
+              {...register('topic', {
+                validate: {
+                  topic: (value) => value != 'Escolher...',
+                },
+                required: true,
+              })}
+              value={activeTopic}
+              onChange={(e) => setActiveTopic(e.target.value)}
+            >
+              <option value="Escolher..." disabled hidden>
+                Escolher...
+              </option>
+              {topics?.length > 0 &&
+                topics?.map((item: any, index) => (
+                  <option key={index} value={item._id}>
+                    {item.name}
+                  </option>
+                ))}
+            </select>
           </Topic>
         </Flex>
 
         <Spacing vertical={10} />
-
+        <Flex direction="row" justify="flex-start">
+          <select
+            id="date"
+            {...register('date', {
+              validate: {
+                date: (value) => value != 'Escolher...',
+              },
+            })}
+            onChange={(e) => setActiveSubject(e.target.value)}
+          >
+            <option value="Escolher..." disabled hidden>
+              Escolher...
+            </option>
+            {dates?.length &&
+              dates?.map((item: any, index: number) => (
+                <option key={index} value={item?.value}>
+                  {item?.name}
+                </option>
+              ))}
+          </select>
+        </Flex>
+        <Spacing vertical={10} />
         <Wrapper>
           <textarea
             id="text"
@@ -148,7 +231,7 @@ export function NewCardModal({
         </Wrapper>
 
         <span>
-          <button type="submit">Confirmar</button>
+          {!loading && <button type="submit">Confirmar</button>}
           <div onClick={onRequestClose}>Cancelar</div>
         </span>
       </Container>

@@ -83,3 +83,18 @@ export const formatBaseToRequest = (base: any) => {
     return base?.split('base64,');
   }
 };
+
+export const monthNames = [
+  'Janeiro',
+  'Fevereiro',
+  'Março',
+  'Abril',
+  'Maio',
+  'Junho',
+  'Julho',
+  'Agosto',
+  'Setembro',
+  'Outubro',
+  'Novembro',
+  'Dezembro',
+];

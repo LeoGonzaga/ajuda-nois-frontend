@@ -18,6 +18,7 @@ export const Container = styled.div<ContainerProps>`
 
   padding: 8px;
   margin-bottom: 10px;
+  cursor: pointer;
 
   border: ${(props) =>
     props.status == 'failed'
