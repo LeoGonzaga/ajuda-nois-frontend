@@ -14,6 +14,7 @@ import BigCard from '../components/BigCard';
 import StudentTable from './StudentTable';
 import { Column, Container, Controls, Row } from './styles';
 import TeacherTable from './TeacherTable';
+import Content from '@components/Content';
 
 export const Dashboard = ({ data }: any): JSX.Element => {
   const [value, setValue] = useState();
@@ -53,36 +54,38 @@ export const Dashboard = ({ data }: any): JSX.Element => {
           Painel de controle
         </SecondaryButton>
       </Controls>
-      <Column>
-        <Row>
-          <BigCard
-            color={COLORS.SUBJECT_BLUE}
-            indicator="Alunos"
-            value={data?.allStudents}
-            icon={<FaUsers />}
-          />
-          <Spacing horizontal={10} />
-          <BigCard
-            color={COLORS.GREEN}
-            indicator="Professores"
-            value={data?.allTeachers}
-            icon={<FaChalkboardTeacher />}
-          />
-          <Spacing horizontal={10} />
-          <BigCard
-            color={COLORS.RED}
-            indicator="Simulados"
-            value={data?.allMockExam}
-            icon={<FaBook />}
-          />
-        </Row>
-        <Spacing vertical={5} />
-        <AdminChart />
-        <Spacing vertical={10} />
-        <StudentTable size={10} data={data?.newStudents} />
-        <Spacing vertical={10} />
-        <TeacherTable size={3} data={value} />
-      </Column>
+      <Content>
+        <Column>
+          <Row>
+            <BigCard
+              color={COLORS.SUBJECT_BLUE}
+              indicator="Alunos"
+              value={data?.allStudents}
+              icon={<FaUsers />}
+            />
+            <Spacing horizontal={10} />
+            <BigCard
+              color={COLORS.GREEN}
+              indicator="Professores"
+              value={data?.allTeachers}
+              icon={<FaChalkboardTeacher />}
+            />
+            <Spacing horizontal={10} />
+            <BigCard
+              color={COLORS.RED}
+              indicator="Simulados"
+              value={data?.allMockExam}
+              icon={<FaBook />}
+            />
+          </Row>
+          <Spacing vertical={5} />
+          <AdminChart />
+          <Spacing vertical={10} />
+          <StudentTable size={10} data={data?.newStudents} />
+          <Spacing vertical={10} />
+          <TeacherTable size={3} data={value} />
+        </Column>
+      </Content>
     </Container>
   );
 };
