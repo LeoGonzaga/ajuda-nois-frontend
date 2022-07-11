@@ -7,7 +7,7 @@ import { COLORS } from '@themes/colors';
 
 import { Container } from './styles';
 
-export const Timeline = (): JSX.Element => {
+export const Timeline = ({ data }: any): JSX.Element => {
   return (
     <Container>
       <div>
@@ -17,7 +17,7 @@ export const Timeline = (): JSX.Element => {
         <Text size={14}>Pomorodo total mensal</Text>
       </div>
       <Spacing vertical={10} />
-      <LineChartContainer />
+      <LineChartContainer data={data} />
     </Container>
   );
 };

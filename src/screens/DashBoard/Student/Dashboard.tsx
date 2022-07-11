@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const Dashboard = ({ data }: Props): JSX.Element => {
-  const [areas, setAreas] = useState({
+  const [areas, setAreas] = useState<any>({
     natural: 0,
     math: 0,
     human: 0,
@@ -21,6 +21,7 @@ export const Dashboard = ({ data }: Props): JSX.Element => {
   const [pomodoros, setPomodoros] = useState([]);
   const [examPerArea, setExamPerArea] = useState([]);
   const [examInfo, setExamInfo] = useState([]);
+  const [allTimePomodoro, setAllTimePomodoro] = useState([]);
 
   const calcPorcentageByArea = (current: number, total: number) => {
     return (current / total) * 100;
@@ -68,10 +69,33 @@ export const Dashboard = ({ data }: Props): JSX.Element => {
     }
   };
 
+  const sumAllTimePomodoro = (array: Array<number>) => {
+    const values = Object.values(array);
+    if (values?.length) {
+      const sum = values.reduce((partialSum, a) => partialSum + a, 0);
+      return (sum / 60)?.toFixed(2);
+    }
+  };
+
+  const handleFormatTotalPomodoro = () => {
+    if (data?.student) {
+      const value = data?.student[0];
+      const total = value.pomodoros?.map((pomodoro: any) => {
+        const sum = sumAllTimePomodoro(pomodoro.pomodoro);
+        return {
+          month: pomodoro.month,
+          Horas: sum,
+        };
+      });
+      setAllTimePomodoro(total);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       await handleFormatDataToTopics();
       await getInfosByStudent();
+      await handleFormatTotalPomodoro();
     };
 
     fetchData();
@@ -87,7 +111,7 @@ export const Dashboard = ({ data }: Props): JSX.Element => {
       </Row>
       <Row>
         <ResultsPomodoro data={pomodoros} />
-        <Timeline />
+        <Timeline data={allTimePomodoro} />
       </Row>
     </Container>
   );
