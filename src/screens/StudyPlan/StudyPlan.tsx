@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { BsPlusLg } from 'react-icons/bs';
+import React, { useEffect, useState } from 'react';
+import { BsCalendar4, BsPlusLg } from 'react-icons/bs';
 
+import Flex from '@components/Flex';
 import Title from '@components/Title';
 
 import Card from './components/Card';
@@ -13,7 +14,13 @@ import {
   TitleWrapper,
   CardsWrapper,
   HorizontalContainer,
+  Icon,
+  Row,
+  IconBig,
 } from './styles';
+import { COLORS } from '@themes/colors';
+import SidebarModal from './components/SidebarModal';
+import Spacing from '@components/Spacing';
 
 type CardProps = {
   status: string;
@@ -25,6 +32,7 @@ type CardProps = {
 };
 
 export const StudyPlan = (): JSX.Element => {
+  const [openCalendar, setOpenCalendar] = useState(false);
   const [isNewCardModalOpen, setIsNewCardModalOpen] = useState(false);
   const [cards, setCards] = useState<CardProps[]>([
     {
@@ -52,6 +60,16 @@ export const StudyPlan = (): JSX.Element => {
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat ornare tincidunt. Ut eleifend eros ac mauris sagittis sollicitudin. Nam varius mi arcu. Nulla placerat erat quam, vitae ultricies nunc auctor et. Nam maximus non lorem et euismod.',
     },
   ]);
+  const [width, setWidth] = React.useState(window.innerWidth);
+  const breakpoint = 1329;
+
+  function handleOpenCalendar() {
+    setOpenCalendar(true);
+  }
+
+  function handleCloseCalendar() {
+    setOpenCalendar(false);
+  }
 
   function handleOpenNewCardModal() {
     setIsNewCardModalOpen(true);
@@ -65,21 +83,36 @@ export const StudyPlan = (): JSX.Element => {
     setCards((prevState) => [...prevState, data]);
   };
 
+  useEffect(() => {
+    window.addEventListener('resize', () => setWidth(window.innerWidth));
+  }, []);
+
   return (
     <Container>
       <VerticalContainer>
         <TitleWrapper>
-          <Title
-            text="Cronograma de"
-            contrast="estudos"
-            subText="Selecione um dia para filtrar"
-          />
+          <Flex direction="row">
+            <Title
+              text="Cronograma de"
+              contrast="estudos"
+              subText="Selecione um dia para filtrar"
+            />
+            <Icon onClick={() => handleOpenCalendar()}>
+              <BsCalendar4 size={26} color={COLORS.SECONDARY} />
+            </Icon>
+          </Flex>
           <button onClick={handleOpenNewCardModal}>
             <BsPlusLg /> Criar novo plano
           </button>
         </TitleWrapper>
         <HorizontalContainer>
-          <Weekday />
+          <Row>
+            <Weekday />
+            <IconBig onClick={() => handleOpenCalendar()}>
+              <BsCalendar4 size={24} color={COLORS.SECONDARY} /> Calendário
+            </IconBig>
+          </Row>
+          <Spacing horizontal={10} />
           <CardsWrapper>
             {cards.map((card, index) => (
               <Card
@@ -95,7 +128,14 @@ export const StudyPlan = (): JSX.Element => {
           </CardsWrapper>
         </HorizontalContainer>
       </VerticalContainer>
-      <Sidebar />
+      {width <= breakpoint ? (
+        <SidebarModal
+          open={openCalendar}
+          onRequestClose={handleCloseCalendar}
+        />
+      ) : (
+        <Sidebar />
+      )}
 
       <NewCardModal
         isOpen={isNewCardModalOpen}

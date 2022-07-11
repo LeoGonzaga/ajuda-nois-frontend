@@ -14,7 +14,7 @@ export const Container = styled.div<ContainerProps>`
   flex-direction: row;
 
   width: 100%;
-  max-width: 1000px;
+  /* max-width: 1000px; */
 
   padding: 8px;
   margin-bottom: 10px;

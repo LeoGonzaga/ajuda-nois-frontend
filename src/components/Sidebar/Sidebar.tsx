@@ -18,7 +18,10 @@ import Menu from './components/Menu';
 import { RiLogoutCircleLine } from 'react-icons/ri';
 
 export const Sidebar = (): JSX.Element => {
-  const [expanded, setExpanded] = useState(false);
+  const [width, setWidth] = React.useState(window.innerWidth);
+  const breakpoint = 1329;
+
+  const [expanded, setExpanded] = useState(width <= breakpoint ? false : true);
   const [dashboard, setDashBoard] = useState<string>('');
   const user = localStorage.getItem('user');
 
@@ -38,6 +41,10 @@ export const Sidebar = (): JSX.Element => {
       setDashBoard(parseUser.usertype);
     }
   }, [user]);
+
+  useEffect(() => {
+    window.addEventListener('resize', () => setWidth(window.innerWidth));
+  }, []);
 
   const ACCESS: any = {
     admin: (
@@ -91,7 +98,7 @@ export const Sidebar = (): JSX.Element => {
           icon={<BiBrain />}
           expanded={expanded}
         />
-     
+
         {dashboard === 'student' && (
           <>
             <Item
@@ -111,7 +118,12 @@ export const Sidebar = (): JSX.Element => {
         )}
       </div>
       <div onClick={handleLogout}>
-        <Item text="Sair" router={ROUTES.LOGIN} expanded={expanded} icon={<RiLogoutCircleLine />}/>
+        <Item
+          text="Sair"
+          router={ROUTES.LOGIN}
+          expanded={expanded}
+          icon={<RiLogoutCircleLine />}
+        />
       </div>
     </Container>
   );

@@ -18,7 +18,7 @@ export const Container = styled.div<Props>`
 
   transition: all 0.2s ease-in-out;
 
-  @media (max-width: 425px) {
+  @media (min-width: 425px) and (max-width: 1023px) {
     width: ${(props) => (props.expanded ? '100%' : '60px')};
     height: ${(props) => (props.expanded ? '100%' : '53px')};
     background-color: ${COLORS.TERTIARY};
@@ -28,7 +28,7 @@ export const Container = styled.div<Props>`
     z-index: 99;
   }
 
-  @media (max-width: 1024px) {
+  @media (min-width: 1024px) and (max-width: 1329px) {
     width: ${(props) => (props.expanded ? '260' : '60px')};
     /* position: absolute;
     z-index: 99; */

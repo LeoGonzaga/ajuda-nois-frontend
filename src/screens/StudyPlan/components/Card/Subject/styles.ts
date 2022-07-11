@@ -43,4 +43,27 @@ export const Container = styled.div`
       }
     }
   }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    span:first-child {
+      display: none;
+    }
+
+    span:last-child {
+      max-width: 150px;
+
+      color: ${COLORS.WHITE};
+
+      overflow-x: scroll;
+      scroll-behavior: smooth;
+      -ms-overflow-style: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;
