@@ -60,25 +60,15 @@ export const StudentTable = ({ size, data }: Props): JSX.Element => {
 
             <tbody>
               {dataSorted?.map(
-                (
-                  {
-                    username,
-                    email,
-                    humanScore,
-                    natureScore,
-                    languageScore,
-                    mathScore,
-                  }: any,
-                  index: number
-                ) => {
+                ({ username, email, mock_exams }: any, index: number) => {
                   return (
                     <tr key={index}>
                       <td>{username}</td>
                       <td>{email}</td>
-                      <td>{humanScore || '0/45'}</td>
-                      <td>{natureScore || '0/45'}</td>
-                      <td>{languageScore || '0/45'}</td>
-                      <td>{mathScore || '0/45'}</td>
+                      <td>{mock_exams[0]?.human_sciences_score || 0} /45</td>
+                      <td>{mock_exams[0]?.natural_sciences_score || 0} /45</td>
+                      <td>{mock_exams[0]?.languages_score || 0} /45</td>
+                      <td>{mock_exams[0]?.mathematics_score || 0} /45</td>
                     </tr>
                   );
                 }

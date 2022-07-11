@@ -42,39 +42,41 @@ export const Form = (): JSX.Element => {
           Acessar com a minha conta
         </Text>
         <Spacing vertical={5} />
-        <input
-          width="350px"
-          placeholder="Email"
-          type="email"
-          {...register('email')}
-        />
-        <Spacing vertical={3} />
-        <Text color={COLORS.RED} center>
-          {errors.email?.message}
-        </Text>
+        <form action="">
+          <input
+            width="350px"
+            placeholder="Email"
+            type="email"
+            {...register('email')}
+          />
+          <Spacing vertical={3} />
+          <Text color={COLORS.RED} center>
+            {errors.email?.message}
+          </Text>
 
-        <Spacing vertical={5} />
-        <input
-          width="350px"
-          placeholder="Senha"
-          type="password"
-          {...register('password')}
-        />
-        <Spacing vertical={3} />
-        <Text color={COLORS.RED} center>
-          {errors.password?.message}
-        </Text>
+          <Spacing vertical={5} />
+          <input
+            width="350px"
+            placeholder="Senha"
+            type="password"
+            {...register('password')}
+          />
+          <Spacing vertical={3} />
+          <Text color={COLORS.RED} center>
+            {errors.password?.message}
+          </Text>
 
-        <Spacing vertical={10} />
-        <ActionButton
-          color={COLORS.SECONDARY}
-          width="350px"
-          loading={loading}
-          disabled={Object.keys(errors)?.length > 0 || loading}
-          onClick={handleSubmit(onSubmit)}
-        >
-          Entrar
-        </ActionButton>
+          <Spacing vertical={10} />
+          <ActionButton
+            color={COLORS.SECONDARY}
+            width="350px"
+            loading={loading}
+            disabled={Object.keys(errors)?.length > 0 || loading}
+            onClick={handleSubmit(onSubmit)}
+          >
+            Entrar
+          </ActionButton>
+        </form>
         <Spacing vertical={5} />
 
         <Spacing vertical={10} />

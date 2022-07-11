@@ -38,28 +38,30 @@ export const Form = (): JSX.Element => {
           Calma! Vamos recuperar sua senha :p
         </Text>
         <Spacing vertical={5} />
-        <input
-          width="350px"
-          placeholder="Digite seu email"
-          type="email"
-          {...register('email')}
-        />
+        <form action="">
+          <input
+            width="350px"
+            placeholder="Digite seu email"
+            type="email"
+            {...register('email')}
+          />
 
-        <Spacing vertical={3} />
-        <Text color={COLORS.RED} center>
-          {errors.email?.message}
-        </Text>
+          <Spacing vertical={3} />
+          <Text color={COLORS.RED} center>
+            {errors.email?.message}
+          </Text>
 
-        <Spacing vertical={10} />
-        <ActionButton
-          color={COLORS.SECONDARY}
-          width="350px"
-          loading={loading}
-          disabled={loading}
-          onClick={handleSubmit(onSubmit)}
-        >
-          Enviar
-        </ActionButton>
+          <Spacing vertical={10} />
+          <ActionButton
+            color={COLORS.SECONDARY}
+            width="350px"
+            loading={loading}
+            disabled={loading}
+            onClick={handleSubmit(onSubmit)}
+          >
+            Enviar
+          </ActionButton>
+        </form>
         <Spacing vertical={5} />
         <Link href={ROUTES.LOGIN}>Voltar</Link>
       </div>

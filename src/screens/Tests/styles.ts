@@ -4,7 +4,7 @@ export const SelectRow = styled.div`
   display: flex;
   align-items: center;
   margin: 15px 0;
-
+  flex-wrap: wrap;
   @media (min-width: 425px) and (max-width: 1023px) {
     margin: 15px 0 25px 0;
     width: 100%;

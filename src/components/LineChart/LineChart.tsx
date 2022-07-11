@@ -7,61 +7,26 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
+  Legend,
 } from 'recharts';
 
-const data = [
-  {
-    name: 'Janeiro',
-    uv: 400,
-    pv: 240,
-    amt: 240,
-  },
-  {
-    name: 'Fevereiro',
-    uv: 300,
-    pv: 198,
-    amt: 210,
-  },
-  {
-    name: 'Março',
-    uv: 200,
-    pv: 900,
-    amt: 290,
-  },
-  {
-    name: 'Abril',
-    uv: 80,
-    pv: 108,
-    amt: 100,
-  },
-  {
-    name: 'Maio',
-    uv: 190,
-    pv: 200,
-    amt: 281,
-  },
-  {
-    name: 'Junho',
-    uv: 290,
-    pv: 300,
-    amt: 500,
-  },
-  {
-    name: 'Julho',
-    uv: 490,
-    pv: 300,
-    amt: 100,
-  },
-];
+type DataProps = {
+  name: string;
+  Horas: number;
+};
 
-export class LineChartContainer extends PureComponent {
+type Props = {
+  data: Array<DataProps>;
+};
+
+export class LineChartContainer extends PureComponent<Props> {
   static demoUrl = 'https://codesandbox.io/s/simple-line-chart-kec3v';
 
   render() {
+    const { data } = this.props;
     return (
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="98%" height="80%">
         <LineChart
           width={500}
           height={300}
@@ -76,14 +41,14 @@ export class LineChartContainer extends PureComponent {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis />
+          <Legend />
           <Tooltip />
           <Line
             type="monotone"
-            dataKey="pv"
+            dataKey="Horas"
             stroke="#8884d8"
             activeDot={{ r: 8 }}
           />
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
         </LineChart>
       </ResponsiveContainer>
     );
