@@ -13,6 +13,17 @@ export const Container = styled.div<Props>`
     text-align: center;
     padding: 5px;
   }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    &:first-child,
+    &:nth-child(2) {
+      margin-bottom: 30px;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+    overflow-y: initial;
+  }
 `;
 
 export const Wrapper = styled.div<Props>`

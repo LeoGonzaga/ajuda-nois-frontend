@@ -7,11 +7,13 @@ import Spacing from '@components/Spacing';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 
-import { Arrow, Container, Wrapper } from './styles';
+import { Arrow, Container, Restrainer, Wrapper } from './styles';
 
 export const StudentChart = ({ data, infos }: any): JSX.Element => {
   const [index, setIndex] = useState(0);
   const [examResult, setExamResult] = useState([]);
+  const [width, setWidth] = useState(window.innerWidth);
+  const breakpoint = 1023;
 
   function prevSim() {
     index > 0 ? setIndex(index - 1) : setIndex(examResult.length - 1);
@@ -21,24 +23,38 @@ export const StudentChart = ({ data, infos }: any): JSX.Element => {
     index < examResult.length - 1 ? setIndex(index + 1) : setIndex(0);
   }
 
+  useEffect(() => {
+    window.addEventListener('resize', () => setWidth(window.innerWidth));
+  }, []);
+
   const handleFormatDataToDisplay = () => {
     if (data?.length > 0) {
       const formated = data.map((elem: any) => {
         return [
           {
-            name: 'Matemática e suas Tecnologias',
+            name:
+              width <= breakpoint ? 'Exatas' : 'Matemática e suas Tecnologias',
             corrected: elem.mathematics_score,
           },
           {
-            name: 'Ciências Humanas e suas Tecnologias',
+            name:
+              width <= breakpoint
+                ? 'Humanas'
+                : 'Ciências Humanas e suas Tecnologias',
             corrected: elem.human_sciences_score,
           },
           {
-            name: 'Ciências da Natureza e suas Tecnologias',
+            name:
+              width <= breakpoint
+                ? 'Natureza'
+                : 'Ciências da Natureza e suas Tecnologias',
             corrected: elem.natural_sciences_score,
           },
           {
-            name: 'Linguagens, Códigos e suas Tecnologias',
+            name:
+              width <= breakpoint
+                ? 'Linguagem'
+                : 'Linguagens, Códigos e suas Tecnologias',
             corrected: elem.languages_score,
           },
         ];
@@ -67,7 +83,12 @@ export const StudentChart = ({ data, infos }: any): JSX.Element => {
         <Arrow onClick={() => prevSim()}>
           <IoIosArrowBack />
         </Arrow>
-        <HorizontalBarChartContainer data={examResult[index]} />
+        <Restrainer>
+          <HorizontalBarChartContainer
+            data={examResult[index]}
+            small={width <= breakpoint ? true : false}
+          />
+        </Restrainer>
         <Arrow onClick={() => nextSim()}>
           <IoIosArrowForward />
         </Arrow>

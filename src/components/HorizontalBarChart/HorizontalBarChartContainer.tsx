@@ -18,11 +18,12 @@ type DataProps = {
 
 type Props = {
   data: Array<DataProps>;
+  small: boolean;
 };
 
 export class HorizontalBarChartContainer extends PureComponent<Props> {
   render() {
-    const { data } = this.props;
+    const { data, small } = this.props;
 
     const barColors = ['#FBBC05', '#00BF20', '#CA1E3C', '#6F52ED'];
 
@@ -43,9 +44,9 @@ export class HorizontalBarChartContainer extends PureComponent<Props> {
             type="category"
             dataKey="name"
             scale="point"
-            width={170}
+            width={small ? 90 : 170}
             padding={{ top: 25, bottom: 25 }}
-            dx={-160}
+            dx={small ? -89 : -160}
             stroke="#CED4DA"
             tick={{ fontSize: 15, textAnchor: 'start' }}
           />
