@@ -11,7 +11,7 @@ import ConfigurationsModal from './ConfigurationsModal';
 import { ConfigButton, Container, Content, Controls } from './styles';
 import Subject from './Subject';
 
-export const Dashboard = (): JSX.Element => {
+export const Dashboard = ({ data }: any): JSX.Element => {
   const [isConfigurationsOpen, setIsConfigurationsOpen] = useState(false);
   const [lowRate, setLowRate] = useState(25);
   const [mediumRate, setMediumRate] = useState(60);
@@ -57,9 +57,11 @@ export const Dashboard = (): JSX.Element => {
   const handleMediumRate = (ratesMedium: number) => {
     setMediumRate(ratesMedium);
   };
+
   const handleRedirectToPanel = () => {
     Router.push(ROUTES.PANEL);
   };
+
   return (
     <Container>
       <Controls>
@@ -75,16 +77,16 @@ export const Dashboard = (): JSX.Element => {
       </Controls>
 
       <Content>
-        {subjectData?.map(({ name, topics, quizRates }, index) => {
+        {data?.subjects?.map(({ name }: any, index: number) => {
           return (
             <>
               <Subject
                 key={index}
                 name={name}
-                topics={topics}
+                topics={[]}
                 lowRate={lowRate}
                 mediumRate={mediumRate}
-                quizRates={quizRates}
+                quizRates={[]}
                 studentSize={studentSize}
               />
             </>

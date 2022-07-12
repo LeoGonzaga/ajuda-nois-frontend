@@ -11,13 +11,8 @@ import {
   Cell,
 } from 'recharts';
 
-type DataProps = {
-  name: string;
-  corrected: number;
-};
-
 type Props = {
-  data: Array<DataProps>;
+  data: any;
   small: boolean;
 };
 
@@ -62,8 +57,8 @@ export class HorizontalBarChartContainer extends PureComponent<Props> {
           />
           <Tooltip />
           <CartesianGrid strokeDasharray="1 5" horizontal={false} />
-          <Bar dataKey="corrected" background={{ fill: 'transparent' }}>
-            {data?.map((entry, index) => (
+          <Bar dataKey="acertos" background={{ fill: 'transparent' }}>
+            {data?.map((entry: any, index: number) => (
               <Cell key={`cell-${index}`} fill={barColors[index]} />
             ))}
           </Bar>
