@@ -40,6 +40,8 @@ export const Subject = ({
     setExpand(!expand);
   };
 
+  console.log(exams);
+
   return (
     <Container>
       {/* <Expandable title={name} size={100} simSize={180} type="teacher"> */}
@@ -81,7 +83,7 @@ export const Subject = ({
             students={students}
             id={id}
           />
-          <TeacherChart id={id} exams={exams} />
+          <TeacherChart id={id} exams={exams} student={students} />
         </>
       )}
 
