@@ -61,12 +61,7 @@ export const Panel = (): JSX.Element => {
       image:
         'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Questões.png',
     },
-    {
-      name: 'Quiz',
-      path: ROUTES.LIST_QUIZ,
-      image:
-        'https://storage.googleapis.com/ajuda-nois.appspot.com/icons/Quiz.png',
-    },
+
     {
       name: 'Simulados',
       path: ROUTES.LIST_UPLOAD,
