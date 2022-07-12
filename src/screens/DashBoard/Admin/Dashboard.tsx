@@ -45,6 +45,7 @@ export const Dashboard = ({ data }: any): JSX.Element => {
   };
 
   const sumAllExams = () => {
+    console.log(data);
     const exams = data?.newStudents?.map((student: any) => student?.mock_exams);
     const filterEmpyt = exams?.filter((item: any) => item?.length > 0);
     setAllExams(filterEmpyt);

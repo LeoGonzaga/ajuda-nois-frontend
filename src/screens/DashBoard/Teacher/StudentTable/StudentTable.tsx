@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import Spacing from '@components/Spacing';
 
@@ -24,8 +24,6 @@ export const StudentTable = ({
   lowRate,
   mediumRate,
 }: Props): JSX.Element => {
-  const [redNames, setRedNames] = useState(0);
-  const [yellowNames, setYellowNames] = useState(0);
   const [simsNames, setSimsNames] = useState([
     'Janeiro',
     'Fevereiro',

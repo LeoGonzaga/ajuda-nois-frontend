@@ -7,6 +7,10 @@ const useAchievements = () => {
   const [data, setData] = useState([]);
   const [enabled, setEnabled] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [level, setLevel] = useState({
+    level: 0,
+    experience: 0,
+  });
 
   const getAll = async () => {
     setLoading(true);
@@ -29,6 +33,10 @@ const useAchievements = () => {
 
     setEnabled(enabledAchievements);
     setData(allAchievements);
+    setLevel({
+      level: response?.data?.user?.level,
+      experience: response?.data?.user?.experience,
+    });
     setLoading(false);
   };
 
@@ -36,7 +44,7 @@ const useAchievements = () => {
     getAll();
   }, []);
 
-  return { data, loading, enabled };
+  return { data, loading, enabled, level };
 };
 
 export default useAchievements;

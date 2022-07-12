@@ -32,7 +32,7 @@ const COLORS_BOOK: any = {
 };
 
 const DAY: any = {
-  fisrt: '1º dia',
+  first: '1º dia',
   second: '2º dia',
 };
 
