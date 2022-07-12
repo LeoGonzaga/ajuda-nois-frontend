@@ -36,7 +36,7 @@ export const CircleProgress = ({
         >
           <TextWrap>{area}</TextWrap>
         </CircularProgressbarWithChildren>
-        <Text bold>{value}%</Text>
+        {value > -1 && <Text bold>{value}%</Text>}
       </Wrapper>
     </Container>
   );

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import Spacing from '@components/Spacing';
+import { RootState } from 'src/config/store';
 
 import Expandable from '../../components/Expandable';
 import { Container, Content } from './styles';
@@ -11,9 +13,8 @@ type Props = {
 };
 
 export const StudentTable = ({ size, data }: Props): JSX.Element => {
-  const dataSorted = data?.sort((a: any, b: any) =>
-    a.username.localeCompare(b.username)
-  );
+  const students = useSelector((state: RootState) => state.admin.student);
+  const [dataSorted, setDataSorted] = useState([]);
 
   return (
     <Container>
@@ -55,20 +56,23 @@ export const StudentTable = ({ size, data }: Props): JSX.Element => {
             </thead>
 
             <tbody>
-              {dataSorted?.map(
-                ({ username, email, mock_exams }: any, index: number) => {
-                  return (
-                    <tr key={index}>
-                      <td>{username}</td>
-                      <td>{email}</td>
-                      <td>{mock_exams[0]?.human_sciences_score || 0} /45</td>
-                      <td>{mock_exams[0]?.natural_sciences_score || 0} /45</td>
-                      <td>{mock_exams[0]?.languages_score || 0} /45</td>
-                      <td>{mock_exams[0]?.mathematics_score || 0} /45</td>
-                    </tr>
-                  );
-                }
-              )}
+              {students?.length > 0 &&
+                students?.map(
+                  ({ username, email, mock_exams }: any, index: number) => {
+                    return (
+                      <tr key={index}>
+                        <td>{username}</td>
+                        <td>{email}</td>
+                        <td>{mock_exams[0]?.human_sciences_score || 0} /45</td>
+                        <td>
+                          {mock_exams[0]?.natural_sciences_score || 0} /45
+                        </td>
+                        <td>{mock_exams[0]?.languages_score || 0} /45</td>
+                        <td>{mock_exams[0]?.mathematics_score || 0} /45</td>
+                      </tr>
+                    );
+                  }
+                )}
             </tbody>
           </table>
         </Content>
