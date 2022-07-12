@@ -27,14 +27,17 @@ export const Content = styled.div`
 
       &:first-child {
         padding-left: 10px;
-        width: 30%;
+        width: 20%;
       }
 
       &:nth-child(2) {
+        width: 20%;
+      }
+
+      &:nth-child(3) {
         width: 30%;
       }
 
-      &:nth-child(3),
       &:nth-child(4) {
         width: 20%;
       }
