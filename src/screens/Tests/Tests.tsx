@@ -52,7 +52,9 @@ export const Tests = (): JSX.Element => {
 
               <Row>
                 {item?.colors?.map((enem: any) => {
-                  if (enem?.days.second) {
+                  console.log(enem);
+                  if (enem?.days.second?.exam) {
+                    console.log('entrou');
                     return (
                       <Card
                         color={getColorByTest(enem.color)}
