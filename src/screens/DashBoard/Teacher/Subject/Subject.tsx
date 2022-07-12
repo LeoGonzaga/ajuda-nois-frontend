@@ -40,8 +40,6 @@ export const Subject = ({
     setExpand(!expand);
   };
 
-  console.log(exams);
-
   return (
     <Container>
       {/* <Expandable title={name} size={100} simSize={180} type="teacher"> */}

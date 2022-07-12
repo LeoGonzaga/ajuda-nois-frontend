@@ -16,8 +16,6 @@ export const TeacherChart = ({ id, exams, student }: any): JSX.Element => {
   const [data, setData] = useState([]);
   const [index, setIndex] = useState(0);
 
-  console.log('a', student[0]?.mock_exams[index]?.date);
-
   function prevSim() {
     index > 0 ? setIndex(index - 1) : setIndex(exams.length - 1);
   }

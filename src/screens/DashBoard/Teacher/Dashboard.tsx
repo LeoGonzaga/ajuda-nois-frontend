@@ -54,7 +54,6 @@ export const Dashboard = ({ data }: any): JSX.Element => {
 
       <Spacing vertical={5} />
       {data?.subjects?.map(({ name, _id }: any, index: number) => {
-        console.log(data);
         return (
           <>
             <Subject
