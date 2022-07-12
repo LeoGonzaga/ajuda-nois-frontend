@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FaUsers, FaChalkboardTeacher, FaBook } from 'react-icons/fa';
 
 import SecondaryButton from '@components/Buttons/SecondaryButton';
+import Content from '@components/Content';
 import Spacing from '@components/Spacing';
 import Title from '@components/Title';
 import { COLORS } from '@themes/colors';
@@ -83,7 +84,7 @@ export const Dashboard = ({ data }: any): JSX.Element => {
         <Spacing vertical={5} />
         <AdminChart handleChangeIndex={setIndex} data={data?.allMockExams} />
         <Spacing vertical={10} />
-        <StudentTable size={10} data={data?.allMockExams} />
+        <StudentTable />
         <Spacing vertical={10} />
         <TeacherTable size={3} data={value} />
       </Column>

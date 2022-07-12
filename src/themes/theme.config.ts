@@ -90,6 +90,13 @@ input, textarea, button {
   border-radius: 10px;
 
   background-color: ${({ theme }) => theme.TERTIARY};
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    max-width: 400px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 }
 
 .ReactModal__Overlay {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Spacing from '@components/Spacing';
@@ -7,21 +7,15 @@ import { RootState } from 'src/config/store';
 import Expandable from '../../components/Expandable';
 import { Container, Content } from './styles';
 
-type Props = {
-  size: number;
-  data: any;
-};
-
-export const StudentTable = ({ size, data }: Props): JSX.Element => {
+export const StudentTable = (): JSX.Element => {
   const students = useSelector((state: RootState) => state.admin.student);
-  const [dataSorted, setDataSorted] = useState([]);
 
   return (
     <Container>
       <Expandable
         title="Alunos"
         subtitle="Matriculados neste ano"
-        size={size}
+        size={students?.length}
         simSize={0}
         type="admin"
       >
