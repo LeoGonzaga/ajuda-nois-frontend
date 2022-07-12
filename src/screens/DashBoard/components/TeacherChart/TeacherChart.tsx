@@ -15,6 +15,12 @@ export const TeacherChart = ({ id, exams }: any): JSX.Element => {
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
   const [index, setIndex] = useState(0);
+  const [width, setWidth] = React.useState(window.innerWidth);
+  const breakpoint = 1023;
+
+  useEffect(() => {
+    window.addEventListener('resize', () => setWidth(window.innerWidth));
+  }, []);
 
   function prevSim() {
     index > 0 ? setIndex(index - 1) : setIndex(exams.length - 1);
@@ -27,7 +33,7 @@ export const TeacherChart = ({ id, exams }: any): JSX.Element => {
   const formatToDisplay = () => {
     const formatValues = exams[index]?.map((elem: any) => {
       return {
-        name: 'Questão ' + elem.question_number,
+        name: (width <= breakpoint ? 'Q. ' : 'Questão ') + elem.question_number,
         acertos: Math.trunc(elem.correct_answers),
         subject_id: elem.subject_id,
       };
@@ -63,7 +69,10 @@ export const TeacherChart = ({ id, exams }: any): JSX.Element => {
           <IoIosArrowBack />
         </Arrow>
         <Restrainer>
-          <SpecificBarChartContainer data={data} />
+          <SpecificBarChartContainer
+            small={width <= breakpoint ? true : false}
+            data={data}
+          />
         </Restrainer>
         <Arrow onClick={() => nextSim()}>
           <IoIosArrowForward />

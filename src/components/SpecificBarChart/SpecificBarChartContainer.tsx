@@ -19,11 +19,12 @@ type DataProps = {
 
 type Props = {
   data: Array<DataProps>;
+  smal: boolean;
 };
 
 export class SpecificBarChartContainer extends PureComponent<Props> {
   render() {
-    const { data } = this.props;
+    const { data, small } = this.props;
 
     const barColor = '#6F52ED';
 
@@ -44,9 +45,9 @@ export class SpecificBarChartContainer extends PureComponent<Props> {
             type="category"
             dataKey="name"
             scale="point"
-            width={110}
+            width={small ? 60 : 110}
             padding={{ top: 15, bottom: 15 }}
-            dx={-100}
+            dx={small ? -50 : -100}
             stroke="#CED4DA"
             tick={{ fontSize: 15, textAnchor: 'start' }}
           />
@@ -58,7 +59,7 @@ export class SpecificBarChartContainer extends PureComponent<Props> {
             dy={-5}
             orientation="top"
             tick={{ fontSize: 14 }}
-            domain={[0, 100]}
+            // domain={[0, 100]}
           />
           <Tooltip />
           <CartesianGrid strokeDasharray="1 5" horizontal={false} />

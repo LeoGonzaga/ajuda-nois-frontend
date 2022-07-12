@@ -16,6 +16,13 @@ export const Container = styled.div`
 export const Restrainer = styled.div`
   width: 1450px;
   height: 100%;
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    width: 280px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;
 
 export const Wrapper = styled.div`
