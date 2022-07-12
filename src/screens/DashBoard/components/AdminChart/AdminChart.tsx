@@ -8,7 +8,7 @@ import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 import { setStudent } from 'src/config/actions/admin';
 
-import { Arrow, Container, Wrapper } from './styles';
+import { Arrow, Container, Restrainer, Wrapper } from './styles';
 
 export const AdminChart = ({ data }: any): JSX.Element => {
   const dispatch = useDispatch();
@@ -31,6 +31,12 @@ export const AdminChart = ({ data }: any): JSX.Element => {
       acertos: 0,
     },
   ]);
+  const [width, setWidth] = React.useState(window.innerWidth);
+  const breakpoint = 1023;
+
+  useEffect(() => {
+    window.addEventListener('resize', () => setWidth(window.innerWidth));
+  }, []);
 
   function prevSim() {
     index > 0 ? setIndex(index - 1) : setIndex(data.length - 1);
@@ -70,19 +76,25 @@ export const AdminChart = ({ data }: any): JSX.Element => {
 
     setContent([
       {
-        name: 'Matemática e suas tecnologias',
+        name: width <= breakpoint ? 'Exatas' : 'Matemática e suas tecnologias',
         acertos: Math.ceil(sumMath),
       },
       {
-        name: 'Ciências Humanas e suas tecnologias',
+        name:
+          width <= breakpoint
+            ? 'Humanas'
+            : 'Ciências Humanas e suas tecnologias',
         acertos: Math.ceil(sumHuman),
       },
       {
-        name: 'Ciência da Natureza e suas tecnologias',
+        name:
+          width <= breakpoint
+            ? 'Natureza'
+            : 'Ciência da Natureza e suas tecnologias',
         acertos: Math.ceil(sumNatural),
       },
       {
-        name: 'Linguagens e seus códigos',
+        name: width <= breakpoint ? 'Linguagem' : 'Linguagens e seus códigos',
         acertos: Math.ceil(sumLanguage),
       },
     ]);
@@ -114,7 +126,12 @@ export const AdminChart = ({ data }: any): JSX.Element => {
         <Arrow onClick={() => prevSim()}>
           <IoIosArrowBack />
         </Arrow>
-        <HorizontalBarChartContainer data={content} />
+        <Restrainer>
+          <HorizontalBarChartContainer
+            small={width <= breakpoint ? true : false}
+            data={content}
+          />
+        </Restrainer>
         <Arrow onClick={() => nextSim()}>
           <IoIosArrowForward />
         </Arrow>
