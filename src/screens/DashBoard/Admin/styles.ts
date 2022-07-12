@@ -4,14 +4,17 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
-  height: 100vh;
+  height: 97vh;
   padding: 20px;
-  overflow: hidden;
+
+  overflow-y: scroll;
 
   @media (min-width: 425px) and (max-width: 1023px) {
+    overflow: hidden;
   }
 
   @media (min-width: 1024px) and (max-width: 1329px) {
+    overflow: hidden;
   }
 `;
 

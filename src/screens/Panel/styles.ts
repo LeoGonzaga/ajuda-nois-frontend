@@ -37,6 +37,13 @@ export const SubjectCards = styled.button`
   :hover {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    width: 150px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;
 
 export const Circle = styled.div<Props>`
@@ -49,4 +56,12 @@ export const Circle = styled.div<Props>`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    width: 100px;
+    height: 100px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;

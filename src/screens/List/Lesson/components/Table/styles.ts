@@ -15,6 +15,13 @@ export const Th = styled.div`
   padding: 0px 20px;
   min-width: 200px;
   width: 100%;
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    width: 1000px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;
 
 export const Tr = styled.div`
@@ -31,6 +38,13 @@ export const Tr = styled.div`
   :hover {
     background-color: ${({ theme }) => theme.SECONDARY};
   }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    width: 1000px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;
 
 export const Column = styled.div`
@@ -46,6 +60,18 @@ export const Column = styled.div`
 export const ScrollContainer = styled.div`
   height: 90vh;
   overflow-y: auto;
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;
 
 export const ButtonsContainer = styled.div`
