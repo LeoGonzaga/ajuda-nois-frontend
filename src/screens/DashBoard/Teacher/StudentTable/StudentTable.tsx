@@ -27,20 +27,18 @@ export const StudentTable = ({
   const quantity = useSelector((state: RootState) => state.admin.quantity);
 
   const [header, setHeader] = useState<any>([]);
+  const [users, setUsers] = useState<any>([]);
 
   const uniq = (a: any) => {
     return Array.from(new Set(a));
   };
 
   const handleHeader = () => {
-    const header = students?.map((elem: any) => elem.mock_exams).flat(Infinity);
-    const mapToArray = header?.map((elem: any) => elem.date);
-
+    const header = students?.map((elem: any) => elem.mock_exams);
+    const mapToArray = header?.flat(Infinity).map((elem: any) => elem.date);
     const unique = uniq(mapToArray);
-    console.log(unique?.reverse());
-    const rev = unique?.reverse();
-
     setHeader(unique);
+    setUsers(header);
   };
 
   useEffect(() => {
@@ -48,20 +46,6 @@ export const StudentTable = ({
       handleHeader();
     }
   }, []);
-
-  // if (elem.mock_exams[inn]?.date == head) {
-  //     console.log('aqui', elem.mock_exams[inn]);
-  //     const subject = value?.map((el: any) => el.subject_id);
-  //     if (subject?.includes(id)) {
-  //       const indexOf = subject.indexOf(id);
-  //       return <td>{value[indexOf]?.correct_answers}</td>;
-  //     } else {
-  //       return <td>Não fez a prova</td>;
-  //     }
-  //   } else {
-  //     return <td>Não fez a prova</td>;
-  //   }
-  // })}
 
   return (
     <Container>
@@ -95,17 +79,13 @@ export const StudentTable = ({
                   <tr key={i}>
                     <td>{elem.username}</td>
 
-                    {header?.map((_: any, inn: number) => {
-                      const value =
-                        elem.mock_exams[inn]?.correct_answers_per_subject;
-                      const subject = value?.map((el: any) => el.subject_id);
+                    {elem.mock_exams?.map((exam: any) => {
+                      const value = exam.correct_answers_per_subject;
+                      const filter = value?.filter(
+                        (item: any) => item.subject_id === id
+                      )[0];
 
-                      if (subject?.includes(id)) {
-                        const indexOf = subject.indexOf(id);
-                        return <td>{value[indexOf]?.correct_answers}</td>;
-                      } else {
-                        return <td>Não fez a prova</td>;
-                      }
+                      return <td>{filter?.correct_answers}</td>;
                     })}
                   </tr>
                 );
