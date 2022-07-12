@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ImParagraphLeft } from 'react-icons/im';
 
 import SecondaryButton from '@components/Buttons/SecondaryButton';
@@ -15,31 +15,7 @@ export const Dashboard = ({ data }: any): JSX.Element => {
   const [isConfigurationsOpen, setIsConfigurationsOpen] = useState(false);
   const [lowRate, setLowRate] = useState(25);
   const [mediumRate, setMediumRate] = useState(60);
-  const subjectData = [
-    {
-      name: 'Geografia',
-      topics: ['Planetas', 'Minérios', 'Bacias Hidrográficas'],
-      quizRates: [78, 55, 83, 12],
-    },
-    {
-      name: 'Matemática',
-      topics: [
-        'Equações 1º Grau',
-        'Equações 2º Grau',
-        'Inequações',
-        'Geometria',
-        'Funções',
-        'Juros',
-        'Operações Complexas',
-      ],
-      quizRates: [89, 52, 23, 42, 88, 97, 19],
-    },
-    {
-      name: 'Inglês',
-      topics: [],
-      quizRates: [],
-    },
-  ];
+
   const studentSize = 10;
 
   function handleOpenConfigurations() {
@@ -67,9 +43,9 @@ export const Dashboard = ({ data }: any): JSX.Element => {
       <Controls>
         <Title text="Dashboard" contrast="" subText="" />
         <span>
-          <ConfigButton onClick={handleOpenConfigurations}>
+          {/* <ConfigButton onClick={handleOpenConfigurations}>
             <ImParagraphLeft /> Medidores
-          </ConfigButton>
+          </ConfigButton> */}
           <SecondaryButton onClick={handleRedirectToPanel}>
             Painel de controle
           </SecondaryButton>
@@ -77,10 +53,11 @@ export const Dashboard = ({ data }: any): JSX.Element => {
       </Controls>
 
       <Spacing vertical={5} />
-      {data?.subjects?.map(({ name }: any, index: number) => {
+      {data?.subjects?.map(({ name, _id }: any, index: number) => {
         return (
           <>
             <Subject
+              id={_id}
               key={index}
               name={name}
               topics={[]}
@@ -88,6 +65,8 @@ export const Dashboard = ({ data }: any): JSX.Element => {
               mediumRate={mediumRate}
               quizRates={[]}
               studentSize={studentSize}
+              exams={data?.mockExamGraph}
+              students={data?.students}
             />
           </>
         );

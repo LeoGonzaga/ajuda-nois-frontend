@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoWarning } from 'react-icons/io5';
 import { MdError } from 'react-icons/md';
 
@@ -10,7 +10,7 @@ import MediumCard from '../../components/MediumCard';
 import TeacherChart from '../../components/TeacherChart';
 import TopicContent from '../../components/TopicContent';
 import StudentTable from '../StudentTable';
-import { Column, Container, Content, Row } from './styles';
+import { Button, Column, Container, Content, Row } from './styles';
 
 type Props = {
   name: string;
@@ -19,6 +19,9 @@ type Props = {
   mediumRate: number;
   quizRates: Array<number>;
   studentSize: number;
+  id: string;
+  exams: any;
+  students: any;
 };
 
 export const Subject = ({
@@ -27,53 +30,62 @@ export const Subject = ({
   quizRates,
   lowRate,
   mediumRate,
-  studentSize,
+  id,
+  exams,
+  students,
 }: Props): JSX.Element => {
-  const simData = 13;
+  const [expand, setExpand] = useState(false);
+
+  const handleToggle = () => {
+    setExpand(!expand);
+  };
 
   return (
     <Container>
-      <Expandable
-        title={name}
-        size={studentSize}
-        simSize={simData}
-        type="teacher"
-      >
-        <Content>
-          <Row>
-            <Column>
-              <MediumCard
-                color={COLORS.RED}
-                indicator={lowRate}
-                value={5}
-                icon={<MdError />}
+      {/* <Expandable title={name} size={100} simSize={180} type="teacher"> */}
+      <Button onClick={handleToggle}>{name}</Button>
+      {expand && (
+        <>
+          <Content>
+            {/* <Row>
+              <Column>
+                <MediumCard
+                  color={COLORS.RED}
+                  indicator={lowRate}
+                  value={5}
+                  icon={<MdError />}
+                />
+                <Spacing horizontal={5} vertical={5} />
+                <MediumCard
+                  color={COLORS.YELLOW}
+                  indicator={mediumRate}
+                  value={2}
+                  icon={<IoWarning />}
+                />
+              </Column>
+              <Spacing horizontal={5} />
+              <TopicContent
+                topics={topics}
+                quizRates={quizRates}
+                lowRate={lowRate}
+                mediumRate={mediumRate}
               />
-              <Spacing horizontal={5} vertical={5} />
-              <MediumCard
-                color={COLORS.YELLOW}
-                indicator={mediumRate}
-                value={2}
-                icon={<IoWarning />}
-              />
-            </Column>
-            <Spacing horizontal={5} />
-            <TopicContent
-              topics={topics}
-              quizRates={quizRates}
-              lowRate={lowRate}
-              mediumRate={mediumRate}
-            />
-          </Row>
-        </Content>
-        <Spacing vertical={5} />
-        <StudentTable
-          size={12}
-          name={name}
-          lowRate={lowRate}
-          mediumRate={mediumRate}
-        />
-        <TeacherChart />
-      </Expandable>
+            </Row> */}
+          </Content>
+          <Spacing vertical={5} />
+          <StudentTable
+            size={12}
+            name={name}
+            lowRate={lowRate}
+            mediumRate={mediumRate}
+            students={students}
+            id={id}
+          />
+          <TeacherChart id={id} exams={exams} />
+        </>
+      )}
+
+      {/* </Expandable> */}
     </Container>
   );
 };

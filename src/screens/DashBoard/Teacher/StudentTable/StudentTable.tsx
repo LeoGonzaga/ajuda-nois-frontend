@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+/* eslint-disable react/jsx-key */
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import Spacing from '@components/Spacing';
+import { RootState } from 'src/config/store';
 
 import Expandable from '../../components/Expandable';
 import { ColorTD, Container, Content } from './styles';
@@ -10,78 +13,55 @@ type Props = {
   name: string;
   lowRate: number;
   mediumRate: number;
-};
-
-type SimsProps = {
-  name: string;
-  quizAverage: number;
-  sims: Array<any>;
+  students: any;
+  id: string;
 };
 
 export const StudentTable = ({
   size,
   name,
-  lowRate,
-  mediumRate,
+  students,
+  id,
 }: Props): JSX.Element => {
-  const [simsNames, setSimsNames] = useState([
-    'Janeiro',
-    'Fevereiro',
-    'Março',
-    'Abril',
-    'Maio',
-    'Junho',
-    'Julho',
-  ]);
-  const [simsQuestions, setSimsQuestions] = useState([
-    45, 45, 45, 30, 30, 40, 45,
-  ]);
-  const [data, setDate] = useState<SimsProps[]>([
-    {
-      name: 'Bryan aluno',
-      quizAverage: 69,
-      sims: [30, 45, 12, 24, 28, '-', 7],
-    },
-    {
-      name: 'Sebastião Carrara',
-      quizAverage: 88,
-      sims: [42, 5, 12, 14, 28, 45, 41],
-    },
-    {
-      name: 'Horácio Vale',
-      quizAverage: 28,
-      sims: [10, 45, 19, 19, 28, '-', 7],
-    },
-    {
-      name: 'Fernando Esteves',
-      quizAverage: 69,
-      sims: [30, 45, 12, 24, 28, '-', 25],
-    },
-    {
-      name: 'Joaquin Madeira',
-      quizAverage: 88,
-      sims: [42, 45, 12, 24, 2, '-', 7],
-    },
-    {
-      name: 'Marcos Ferraz',
-      quizAverage: 28,
-      sims: [3, 40, 17, 24, 29, '-', 7],
-    },
-    {
-      name: 'Hugo Pacheco',
-      quizAverage: 69,
-      sims: [30, 45, 35, 24, 28, '-', 7],
-    },
-    {
-      name: 'Carla Colaço',
-      quizAverage: 88,
-      sims: [30, 45, 15, 24, 28, 19, 27],
-    },
-  ]);
+  const index = useSelector((state: RootState) => state.admin.index);
+  const quantity = useSelector((state: RootState) => state.admin.quantity);
 
-  const dataSorted: SimsProps[] = data.sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
+  const [header, setHeader] = useState<any>([]);
+
+  const uniq = (a: any) => {
+    return Array.from(new Set(a));
+  };
+
+  const handleHeader = () => {
+    const header = students?.map((elem: any) => elem.mock_exams).flat(Infinity);
+    const mapToArray = header?.map((elem: any) => elem.date);
+
+    const unique = uniq(mapToArray);
+    console.log(unique?.reverse());
+    const rev = unique?.reverse();
+
+    setHeader(unique);
+  };
+
+  useEffect(() => {
+    if (students?.length > 0) {
+      handleHeader();
+    }
+  }, []);
+
+  // if (elem.mock_exams[inn]?.date == head) {
+  //     console.log('aqui', elem.mock_exams[inn]);
+  //     const subject = value?.map((el: any) => el.subject_id);
+  //     if (subject?.includes(id)) {
+  //       const indexOf = subject.indexOf(id);
+  //       return <td>{value[indexOf]?.correct_answers}</td>;
+  //     } else {
+  //       return <td>Não fez a prova</td>;
+  //     }
+  //   } else {
+  //     return <td>Não fez a prova</td>;
+  //   }
+  // })}
 
   return (
     <Container>
@@ -98,61 +78,34 @@ export const StudentTable = ({
             <thead>
               <tr>
                 <th>Nome</th>
-                <th>
-                  <div>
-                    Média <br /> Quizzes
-                  </div>
-                </th>
-                {simsNames?.map((name, index) => {
+                {header?.map((elem: any, i: number) => {
                   return (
-                    <th key={index}>
+                    <th key={i}>
                       <div>
-                        Simulado <br /> {name}
+                        Acertos <br /> {elem?.split('-')?.reverse().join('-')}
                       </div>
                     </th>
                   );
                 })}
               </tr>
             </thead>
-
             <tbody>
-              {dataSorted?.map(({ name, quizAverage, sims }, index) => {
+              {students?.map((elem: any, i: number) => {
                 return (
-                  <tr key={index}>
-                    <ColorTD
-                      value={
-                        sims[sims.length - 1] != '-'
-                          ? (sims[sims.length - 1] * 100) /
-                            simsQuestions[sims.length - 1]
-                          : '-'
+                  <tr key={i}>
+                    <td>{elem.username}</td>
+
+                    {header?.map((_: any, inn: number) => {
+                      const value =
+                        elem.mock_exams[inn]?.correct_answers_per_subject;
+                      const subject = value?.map((el: any) => el.subject_id);
+
+                      if (subject?.includes(id)) {
+                        const indexOf = subject.indexOf(id);
+                        return <td>{value[indexOf]?.correct_answers}</td>;
+                      } else {
+                        return <td>Não fez a prova</td>;
                       }
-                      low={lowRate}
-                      medium={mediumRate}
-                    >
-                      {name}
-                    </ColorTD>
-                    <ColorTD
-                      value={quizAverage}
-                      low={lowRate}
-                      medium={mediumRate}
-                    >
-                      {quizAverage} %
-                    </ColorTD>
-                    {sims.map((sim, simIndex) => {
-                      return (
-                        <ColorTD
-                          key={simIndex}
-                          value={
-                            sim != '-'
-                              ? (sim * 100) / simsQuestions[simIndex]
-                              : '-'
-                          }
-                          low={lowRate}
-                          medium={mediumRate}
-                        >
-                          {sim} / {simsQuestions[simIndex]}
-                        </ColorTD>
-                      );
                     })}
                   </tr>
                 );
