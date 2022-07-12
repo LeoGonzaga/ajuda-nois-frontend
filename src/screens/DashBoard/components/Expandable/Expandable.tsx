@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 
 import Flex from '@components/Flex';
@@ -25,7 +25,6 @@ export const Expandable = ({
   children,
 }: Props): JSX.Element => {
   const [expanded, setExpanded] = useState(false);
-  // max-height = height conteúdo + height container fechado + paddings tabela + height da linha * nº de linhas
   const expandSize =
     (type == 'admin' ? 0 : 35 * simSize + 500) + 80 + 95 + 26 * size;
 
