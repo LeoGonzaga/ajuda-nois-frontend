@@ -56,17 +56,23 @@ export const AdminChart = ({ data }: any): JSX.Element => {
     const totalLanguage = formatByArea?.map((elem: any) => elem.language);
     const totalHuman = formatByArea?.map((elem: any) => elem.human);
 
+    const totalStudents = data[index].users?.length;
+
     const sumMath =
-      totalMaths?.reduce((partialSum: any, a: any) => partialSum + a, 0) / 6;
+      totalMaths?.reduce((partialSum: any, a: any) => partialSum + a, 0) /
+      totalStudents;
 
     const sumHuman =
-      totalHuman?.reduce((partialSum: any, a: any) => partialSum + a, 0) / 6;
+      totalHuman?.reduce((partialSum: any, a: any) => partialSum + a, 0) /
+      totalStudents;
 
     const sumNatural =
-      totalNatural?.reduce((partialSum: any, a: any) => partialSum + a, 0) / 6;
+      totalNatural?.reduce((partialSum: any, a: any) => partialSum + a, 0) /
+      totalStudents;
 
     const sumLanguage =
-      totalLanguage?.reduce((partialSum: any, a: any) => partialSum + a, 0) / 6;
+      totalLanguage?.reduce((partialSum: any, a: any) => partialSum + a, 0) /
+      totalStudents;
 
     setContent([
       {
