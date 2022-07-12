@@ -64,7 +64,6 @@ export const Dashboard = ({ data }: Props): JSX.Element => {
       const allPomodoros = value?.pomodoros;
       const exams = value?.mock_exams;
       const infos = value?.mock_exams_info;
-      console.log(exams);
       setPomodoros(allPomodoros);
       setExamPerArea(exams);
       setExamInfo(infos);
