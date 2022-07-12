@@ -13,6 +13,11 @@ export const Container = styled.div`
   background-color: ${COLORS.NEUTRAL};
 `;
 
+export const Restrainer = styled.div`
+  width: 1450px;
+  height: 100%;
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;

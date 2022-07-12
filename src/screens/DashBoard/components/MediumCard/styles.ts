@@ -17,6 +17,14 @@ export const Container = styled.div<Props>`
   padding: 15px 20px;
   border-radius: 5px;
   background-color: ${COLORS.NEUTRAL};
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    max-width: 175px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+    width: 100%;
+  }
 `;
 
 export const Focus = styled.p<Props>`
@@ -27,6 +35,17 @@ export const Focus = styled.p<Props>`
   svg {
     font-size: 38px;
   }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    font-size: 20px;
+
+    svg {
+      font-size: 30px;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;
 
 export const Subtext = styled.p`
@@ -34,4 +53,11 @@ export const Subtext = styled.p`
   font-size: 16px;
   font-weight: bold;
   color: ${COLORS.TEXT};
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    font-size: 14px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;

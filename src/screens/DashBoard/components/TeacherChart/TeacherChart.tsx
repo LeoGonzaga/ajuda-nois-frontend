@@ -6,7 +6,7 @@ import SpecificBarChartContainer from '@components/SpecificBarChart';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 
-import { Arrow, Container, Wrapper } from './styles';
+import { Arrow, Container, Restrainer, Wrapper } from './styles';
 
 export const TeacherChart = (): JSX.Element => {
   const simData = ['Janeiro de 2022', 'Fevereiro de 2022', 'Março de 2022'];
@@ -270,7 +270,9 @@ export const TeacherChart = (): JSX.Element => {
         <Arrow onClick={() => prevSim()}>
           <IoIosArrowBack />
         </Arrow>
-        <SpecificBarChartContainer data={data[index]} />
+        <Restrainer>
+          <SpecificBarChartContainer data={data[index]} />
+        </Restrainer>
         <Arrow onClick={() => nextSim()}>
           <IoIosArrowForward />
         </Arrow>
