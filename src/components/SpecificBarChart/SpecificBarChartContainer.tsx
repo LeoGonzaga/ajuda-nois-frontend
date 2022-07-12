@@ -28,7 +28,7 @@ export class SpecificBarChartContainer extends PureComponent<Props> {
     const barColor = '#6F52ED';
 
     return (
-      <ResponsiveContainer width="100%" height={35 * data.length}>
+      <ResponsiveContainer width="100%" height={35 * data?.length}>
         <BarChart
           data={data}
           barSize={20}
@@ -58,6 +58,7 @@ export class SpecificBarChartContainer extends PureComponent<Props> {
             dy={-5}
             orientation="top"
             tick={{ fontSize: 14 }}
+            domain={[0, 100]}
           />
           <Tooltip />
           <CartesianGrid strokeDasharray="1 5" horizontal={false} />
