@@ -5,6 +5,7 @@ export const SelectRow = styled.div`
   align-items: center;
   margin: 15px 0;
   overflow-x: scroll;
+  width: 85%;
   /* flex-wrap: wrap; */
   @media (min-width: 425px) and (max-width: 1023px) {
     margin: 15px 0 25px 0;
