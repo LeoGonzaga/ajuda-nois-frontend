@@ -34,28 +34,28 @@ export const StudentChart = ({ data, infos }: any): JSX.Element => {
           {
             name:
               width <= breakpoint ? 'Exatas' : 'Matemática e suas Tecnologias',
-            corrected: elem.mathematics_score,
+            acertos: elem.mathematics_score,
           },
           {
             name:
               width <= breakpoint
                 ? 'Humanas'
                 : 'Ciências Humanas e suas Tecnologias',
-            corrected: elem.human_sciences_score,
+            acertos: elem.human_sciences_score,
           },
           {
             name:
               width <= breakpoint
                 ? 'Natureza'
                 : 'Ciências da Natureza e suas Tecnologias',
-            corrected: elem.natural_sciences_score,
+            acertos: elem.natural_sciences_score,
           },
           {
             name:
               width <= breakpoint
                 ? 'Linguagem'
                 : 'Linguagens, Códigos e suas Tecnologias',
-            corrected: elem.languages_score,
+            acertos: elem.languages_score,
           },
         ];
       });
