@@ -25,25 +25,25 @@ export const SubjectContent = ({ value }: Props): JSX.Element => {
         <CircleProgress
           area="Natureza"
           color={COLORS.GREEN}
-          value={value?.natural || 0}
+          value={value?.natural}
           size={150}
         />
         <CircleProgress
           area="Exatas"
           color={COLORS.SUBJECT_BLUE}
-          value={value.math || 0}
+          value={value.math}
           size={150}
         />
         <CircleProgress
           area="Linguagens"
           color={COLORS.RED}
-          value={value.language || 0}
+          value={value.language}
           size={150}
         />
         <CircleProgress
           area="Humanas"
           color={COLORS.YELLOW}
-          value={value.human || 0}
+          value={value.human}
           size={150}
         />
       </Row>

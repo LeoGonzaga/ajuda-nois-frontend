@@ -8,18 +8,23 @@ import { Container } from './styles';
 type LevelProps = {
   exp: number;
   progression: Array<number>;
+  level: {
+    level: number;
+    experience: number;
+  };
 };
 
-export const Level = ({ exp, progression }: LevelProps): JSX.Element => {
-  let level = 0;
+export const Level = ({ exp, progression, level }: LevelProps): JSX.Element => {
+  let levelLocal = 0;
 
-  while (progression[++level] <= exp);
-  level--;
+  while (progression[++levelLocal] <= exp);
+  levelLocal--;
 
-  function getProgress(exp: number, level: number) {
-    if (level < progression.length - 1) {
-      const levelCap = progression[level + 1] - progression[level];
-      const currentProgress = (exp - progression[level]) / levelCap;
+  function getProgress(exp: number, levelLocal: number) {
+    if (levelLocal < progression.length - 1) {
+      const levelLocalCap =
+        progression[levelLocal + 1] - progression[levelLocal];
+      const currentProgress = (exp - progression[levelLocal]) / levelLocalCap;
       return currentProgress;
     } else {
       return 0;
@@ -30,12 +35,14 @@ export const Level = ({ exp, progression }: LevelProps): JSX.Element => {
       <GradientCircularProgressBar
         startColor={'#F9C948'}
         endColor={'#37332b'}
-        idCSS="level"
+        idCSS="levelLocal"
         rotation={90}
       />
-      <CircularProgressbarWithChildren value={getProgress(exp, level) * 100}>
+      <CircularProgressbarWithChildren
+        value={getProgress(exp, levelLocal) * 100}
+      >
         <Text size={48} bold color="#ffd054">
-          Nível {level}
+          Nível {level.level}
         </Text>
       </CircularProgressbarWithChildren>
     </Container>

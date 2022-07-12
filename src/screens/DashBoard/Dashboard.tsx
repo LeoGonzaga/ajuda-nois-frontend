@@ -24,7 +24,7 @@ export const DashBoard = (): JSX.Element => {
 
   const dashboardByRole: any = {
     student: <Student data={data} />,
-    teacher: <Teacher />,
+    teacher: <Teacher data={data} />,
     admin: <Admin data={data} />,
   };
   return <>{dashboardByRole[user]}</>;

@@ -1,22 +1,21 @@
-import Flex from '@components/Flex';
 import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 
 import { Container } from './styles';
 
 type LevelProps = {
-  exp: number;
   progression: Array<number>;
+  level: {
+    level: number;
+    experience: number;
+  };
 };
 
-export const ToNextLevel = ({ exp, progression }: LevelProps): JSX.Element => {
-  let level = 0;
-  let toNextLevel = 0;
-
-  while (progression[++level] <= exp);
-  level--;
-
-  toNextLevel = progression[level + 1] - exp;
+export const ToNextLevel = ({
+  progression,
+  level,
+}: LevelProps): JSX.Element => {
+  const toNextLevel = progression[level.level + 1] - level.experience;
 
   return (
     <Container>

@@ -32,7 +32,6 @@ export class LineChartContainer extends PureComponent<Props> {
           height={300}
           data={data}
           margin={{
-            top: 5,
             right: 30,
             left: 20,
             bottom: 5,
@@ -40,7 +39,7 @@ export class LineChartContainer extends PureComponent<Props> {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis />
+          <YAxis domain={[0, 20]} />
           <Legend />
           <Tooltip />
           <Line

@@ -8,6 +8,7 @@ export const useTopic = () => {
   const [data, setData] = useState<any>([]);
   const [subjects, setSubjects] = useState([]);
   const [contentEditabled, setContentEditabled] = useState([]);
+  const [onlySubject, setOnlySubject] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handleSelectedEditContent = (value: any) => {
