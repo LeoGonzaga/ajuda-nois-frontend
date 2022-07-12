@@ -19,7 +19,7 @@ type DataProps = {
 
 type Props = {
   data: Array<DataProps>;
-  smal: boolean;
+  small: boolean;
 };
 
 export class SpecificBarChartContainer extends PureComponent<Props> {
