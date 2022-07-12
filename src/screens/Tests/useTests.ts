@@ -58,7 +58,7 @@ const useTests = () => {
       const filter = initial.filter((test: any) => test.year === selecteYear);
       setData(filter);
     }
-  }, [selecteYear]);
+  }, [selecteYear, initial]);
 
   return { data, loading, enabled, allYears, setSelectedYear };
 };
