@@ -81,7 +81,7 @@ export const Subject = ({
             students={students}
             id={id}
           />
-          <TeacherChart id={id} exams={exams} />
+          <TeacherChart id={id} exams={exams} student={students} />
         </>
       )}
 

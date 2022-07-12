@@ -11,7 +11,7 @@ import { setActiveIndex, setQuantity } from 'src/config/actions/admin';
 
 import { Arrow, Container, Wrapper } from './styles';
 
-export const TeacherChart = ({ id, exams }: any): JSX.Element => {
+export const TeacherChart = ({ id, exams, student }: any): JSX.Element => {
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
   const [index, setIndex] = useState(0);
@@ -55,7 +55,11 @@ export const TeacherChart = ({ id, exams }: any): JSX.Element => {
         <Text bold color={COLORS.BLACK} size={18}>
           Acertos Por Questão
         </Text>
-        <Text size={14}> Simulado de {exams[index]?.date}</Text>
+        <Text size={14}>
+          {' '}
+          Simulado de{' '}
+          {student[0]?.mock_exams[index]?.date?.split('-')?.reverse().join('/')}
+        </Text>
       </div>
       <Spacing vertical={10} />
       <Wrapper>
