@@ -39,6 +39,24 @@ export const Container = styled.div`
       filter: brightness(0.8);
     }
   }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    overflow: hidden;
+
+    .react-slideshow-container {
+      max-width: 325px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+    .react-slideshow-container {
+      max-width: 600px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 `;
 
 export const Center = styled.div`
@@ -68,6 +86,16 @@ export const Row = styled.div`
   height: 100%;
 
   padding-bottom: 10px;
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    width: 400px;
+    height: 230px;
+    padding: 0;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+    width: 60%;
+  }
 `;
 
 export const Info = styled.div`
@@ -84,4 +112,12 @@ export const Info = styled.div`
   color: ${COLORS.BLACK};
 
   filter: brightness(0.7);
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    text-align: center;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+    text-align: center;
+  }
 `;

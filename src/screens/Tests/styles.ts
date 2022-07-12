@@ -4,7 +4,9 @@ export const SelectRow = styled.div`
   display: flex;
   align-items: center;
   margin: 15px 0;
-  flex-wrap: wrap;
+  overflow-x: scroll;
+  width: 85%;
+  /* flex-wrap: wrap; */
   @media (min-width: 425px) and (max-width: 1023px) {
     margin: 15px 0 25px 0;
     width: 100%;
@@ -23,12 +25,6 @@ export const SelectRow = styled.div`
     width: 100%;
 
     overflow-x: scroll;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
   }
 `;
 

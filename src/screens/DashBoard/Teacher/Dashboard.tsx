@@ -8,7 +8,7 @@ import Router from 'next/router';
 import { ROUTES } from 'src/routes/routes';
 
 import ConfigurationsModal from './ConfigurationsModal';
-import { ConfigButton, Container, Controls } from './styles';
+import { ConfigButton, Container, Content, Controls } from './styles';
 import Subject from './Subject';
 
 export const Dashboard = ({ data }: any): JSX.Element => {
@@ -52,25 +52,27 @@ export const Dashboard = ({ data }: any): JSX.Element => {
         </span>
       </Controls>
 
-      <Spacing vertical={5} />
-      {data?.subjects?.map(({ name, _id }: any, index: number) => {
-        return (
-          <>
-            <Subject
-              id={_id}
-              key={index}
-              name={name}
-              topics={[]}
-              lowRate={lowRate}
-              mediumRate={mediumRate}
-              quizRates={[]}
-              studentSize={studentSize}
-              exams={data?.mockExamGraph}
-              students={data?.students}
-            />
-          </>
-        );
-      })}
+      <Content>
+        {data?.subjects?.map(({ name, _id }: any, index: number) => {
+          return (
+            <>
+              <Subject
+                id={_id}
+                key={index}
+                name={name}
+                topics={[]}
+                lowRate={lowRate}
+                mediumRate={mediumRate}
+                quizRates={[]}
+                studentSize={studentSize}
+                exams={data?.mockExamGraph}
+                students={data?.students}
+              />
+            </>
+          );
+        })}
+        <Spacing vertical={5} />
+      </Content>
 
       <ConfigurationsModal
         isOpen={isConfigurationsOpen}

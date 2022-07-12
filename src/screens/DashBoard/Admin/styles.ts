@@ -4,20 +4,30 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
-  height: 100vh;
+  height: 97vh;
   padding: 20px;
-  overflow: hidden;
+
+  overflow-y: scroll;
 
   @media (min-width: 425px) and (max-width: 1023px) {
+    overflow: hidden;
   }
 
   @media (min-width: 1024px) and (max-width: 1329px) {
+    overflow: hidden;
   }
 `;
 
 export const Row = styled.div`
   display: flex;
   padding-top: 10px;
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    flex-direction: row;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
 `;
 
 export const Column = styled.div`
@@ -58,7 +68,7 @@ export const Content = styled.div`
 
   @media (min-width: 425px) and (max-width: 1023px) {
     display: flex;
-    flex-direction: column-reverse;
+    /* flex-direction: column-reverse; */
 
     height: 90vh;
 
@@ -74,8 +84,6 @@ export const Content = styled.div`
 
   @media (min-width: 1024px) and (max-width: 1329px) {
     display: flex;
-    flex-direction: column-reverse;
-
     height: 100vh;
 
     overflow-y: scroll;

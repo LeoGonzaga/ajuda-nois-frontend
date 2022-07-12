@@ -23,7 +23,7 @@ export const TeacherTable = ({ size, data }: Props): JSX.Element => {
       <Expandable
         title="Professores"
         subtitle="Cadastrados neste ano"
-        size={dataSorted?.length}
+        size={dataSorted?.length + 1}
         simSize={0}
         type="admin"
       >

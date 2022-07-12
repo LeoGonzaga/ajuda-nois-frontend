@@ -8,6 +8,14 @@ export const Container = styled.div`
   background-color: ${COLORS.NEUTRAL};
   border-radius: 5px;
   padding: 10px;
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+    width: 100%;
+  }
 `;
 
 export const Center = styled.div`
@@ -16,7 +24,13 @@ export const Center = styled.div`
   justify-content: center;
 `;
 
-export const Content = styled.div``;
+export const Content = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const Circle = styled.div<{ color: string }>`
   width: 10px;
@@ -40,12 +54,20 @@ export const Wrapper = styled.div`
     padding-top: 5px;
     padding-left: 10px;
   }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+    width: 40%;
+  }
 `;
 
 export const Arrow = styled.button`
   display: flex;
 
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   font-size: 30px;
   color: ${COLORS.TEXT};
 

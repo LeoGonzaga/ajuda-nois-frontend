@@ -3,13 +3,20 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 50%;
-  max-width: 775px;
   margin-top: 10px;
   margin-left: 0px;
   padding: 15px;
 
   border-radius: 5px;
   background-color: ${COLORS.NEUTRAL};
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+    width: 100%;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -17,6 +24,11 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 0px;
+`;
+
+export const Restrainer = styled.div`
+  width: 100%;
+  max-width: 677px;
 `;
 
 export const Arrow = styled.button`
@@ -29,6 +41,7 @@ export const Arrow = styled.button`
 
   border: none;
   background-color: transparent;
+  width: 35px;
 
   transition: filter 0.3s ease;
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { Slide } from 'react-slideshow-image';
 
@@ -23,14 +23,24 @@ export const TopicContent = ({
   lowRate,
   mediumRate,
 }: Props): JSX.Element => {
+  const [width, setWidth] = React.useState(window.innerWidth);
+  const breakpoint1 = 1024;
+  const breakpoint2 = 1330;
+
   const properties = {
     autoplay: false,
     indicators: false,
     transitionDuration: 500,
-    slidesToShow: 5,
+    slidesToShow: 1,
     slidesToScroll: 1,
-    canSwipe: topics.length > 5 ? true : false,
-    arrows: topics.length > 5 ? true : false,
+    canSwipe:
+      topics.length > (width < breakpoint1 ? 1 : width < breakpoint2 ? 3 : 5)
+        ? true
+        : false,
+    arrows:
+      topics.length > (width < breakpoint1 ? 1 : width < breakpoint2 ? 3 : 5)
+        ? true
+        : false,
     prevArrow: (
       <IoIosArrowBack size={30} color={COLORS.TEXT} className="arrow" />
     ),
@@ -39,7 +49,7 @@ export const TopicContent = ({
     ),
     responsive: [
       {
-        breakpoint: 1140,
+        breakpoint: 1330,
         settings: {
           slidesToShow: 5,
           slidesToScroll: 1,
@@ -55,12 +65,17 @@ export const TopicContent = ({
     ],
   };
 
+  useEffect(() => {
+    window.addEventListener('resize', () => setWidth(window.innerWidth));
+  }, []);
+
   return (
     <Container>
       <Text bold>Taxa de Acertos nos Quizzes</Text>
       <Flex direction="row" align="center" justify="center">
         <Row>
-          {topics.length > 5 ? (
+          {topics.length >
+          (width < breakpoint1 ? 1 : width < breakpoint2 ? 3 : 5) ? (
             <Slide {...properties}>
               {topics?.map((_topic, index) => {
                 return (

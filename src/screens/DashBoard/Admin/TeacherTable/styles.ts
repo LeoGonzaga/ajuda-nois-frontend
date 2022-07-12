@@ -27,14 +27,17 @@ export const Content = styled.div`
 
       &:first-child {
         padding-left: 10px;
-        width: 30%;
+        width: 20%;
       }
 
       &:nth-child(2) {
+        width: 20%;
+      }
+
+      &:nth-child(3) {
         width: 30%;
       }
 
-      &:nth-child(3),
       &:nth-child(4) {
         width: 20%;
       }
@@ -69,5 +72,13 @@ export const Content = styled.div`
         border-bottom-right-radius: 50px;
       }
     }
+  }
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    table-layout: auto;
+    width: 1000px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
   }
 `;

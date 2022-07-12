@@ -9,12 +9,18 @@ import Text from '@components/Text';
 import { COLORS } from '@themes/colors';
 import { setActiveIndex, setQuantity } from 'src/config/actions/admin';
 
-import { Arrow, Container, Wrapper } from './styles';
+import { Arrow, Container, Restrainer, Wrapper } from './styles';
 
 export const TeacherChart = ({ id, exams, student }: any): JSX.Element => {
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
   const [index, setIndex] = useState(0);
+  const [width, setWidth] = React.useState(window.innerWidth);
+  const breakpoint = 1023;
+
+  useEffect(() => {
+    window.addEventListener('resize', () => setWidth(window.innerWidth));
+  }, []);
 
   function prevSim() {
     index > 0 ? setIndex(index - 1) : setIndex(exams.length - 1);
@@ -27,7 +33,7 @@ export const TeacherChart = ({ id, exams, student }: any): JSX.Element => {
   const formatToDisplay = () => {
     const formatValues = exams[index]?.map((elem: any) => {
       return {
-        name: 'Questão ' + elem.question_number,
+        name: (width <= breakpoint ? 'Q. ' : 'Questão ') + elem.question_number,
         acertos: Math.trunc(elem.correct_answers),
         subject_id: elem.subject_id,
       };
@@ -66,7 +72,12 @@ export const TeacherChart = ({ id, exams, student }: any): JSX.Element => {
         <Arrow onClick={() => prevSim()}>
           <IoIosArrowBack />
         </Arrow>
-        <SpecificBarChartContainer data={data} />
+        <Restrainer>
+          <SpecificBarChartContainer
+            small={width <= breakpoint ? true : false}
+            data={data}
+          />
+        </Restrainer>
         <Arrow onClick={() => nextSim()}>
           <IoIosArrowForward />
         </Arrow>

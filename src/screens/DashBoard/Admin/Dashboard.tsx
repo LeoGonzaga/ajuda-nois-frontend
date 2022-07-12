@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { FaUsers, FaChalkboardTeacher, FaBook } from 'react-icons/fa';
 
 import SecondaryButton from '@components/Buttons/SecondaryButton';
-import Content from '@components/Content';
 import Spacing from '@components/Spacing';
 import Title from '@components/Title';
 import { COLORS } from '@themes/colors';
@@ -14,7 +13,7 @@ import { ROUTES } from 'src/routes/routes';
 import AdminChart from '../components/AdminChart';
 import BigCard from '../components/BigCard';
 import StudentTable from './StudentTable';
-import { Column, Container, Controls, Row } from './styles';
+import { Column, Container, Content, Controls, Row } from './styles';
 import TeacherTable from './TeacherTable';
 
 export const Dashboard = ({ data }: any): JSX.Element => {
@@ -58,36 +57,38 @@ export const Dashboard = ({ data }: any): JSX.Element => {
           Painel de controle
         </SecondaryButton>
       </Controls>
-      <Column>
-        <Row>
-          <BigCard
-            color={COLORS.SUBJECT_BLUE}
-            indicator="Alunos"
-            value={data?.allStudents}
-            icon={<FaUsers />}
-          />
-          <Spacing horizontal={10} />
-          <BigCard
-            color={COLORS.GREEN}
-            indicator="Professores"
-            value={data?.allTeachers}
-            icon={<FaChalkboardTeacher />}
-          />
-          <Spacing horizontal={10} />
-          <BigCard
-            color={COLORS.RED}
-            indicator="Simulados"
-            value={data?.allMockExams?.length}
-            icon={<FaBook />}
-          />
-        </Row>
-        <Spacing vertical={5} />
-        <AdminChart handleChangeIndex={setIndex} data={data?.allMockExams} />
-        <Spacing vertical={10} />
-        <StudentTable />
-        <Spacing vertical={10} />
-        <TeacherTable size={3} data={value} />
-      </Column>
+      <Content>
+        <Column>
+          <Row>
+            <BigCard
+              color={COLORS.SUBJECT_BLUE}
+              indicator="Alunos"
+              value={data?.allStudents}
+              icon={<FaUsers />}
+            />
+            <Spacing horizontal={10} />
+            <BigCard
+              color={COLORS.GREEN}
+              indicator="Professores"
+              value={data?.allTeachers}
+              icon={<FaChalkboardTeacher />}
+            />
+            <Spacing horizontal={10} />
+            <BigCard
+              color={COLORS.RED}
+              indicator="Simulados"
+              value={data?.allMockExams?.length}
+              icon={<FaBook />}
+            />
+          </Row>
+          <Spacing vertical={5} />
+          <AdminChart handleChangeIndex={setIndex} data={data?.allMockExams} />
+          <Spacing vertical={10} />
+          <StudentTable />
+          <Spacing vertical={10} />
+          <TeacherTable size={3} data={value} />
+        </Column>
+      </Content>
     </Container>
   );
 };

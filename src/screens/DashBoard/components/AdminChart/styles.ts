@@ -13,6 +13,19 @@ export const Container = styled.div`
   background-color: ${COLORS.NEUTRAL};
 `;
 
+export const Restrainer = styled.div`
+  width: 1400px;
+  height: 100%;
+  display: flex;
+
+  @media (min-width: 425px) and (max-width: 1023px) {
+    width: 280px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1329px) {
+  }
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
